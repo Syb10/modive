@@ -9,7 +9,7 @@
             type="checkbox"
             :id="checkbox.id"           
             :value="checkbox.title"
-            v-model="value"
+            v-model="geschlecht"
           />
         </div>
       </div>
@@ -18,6 +18,12 @@
 </template>
 
 <script>
+import {createHelpers} from "vuex-map-fields";
+
+const {mapFields} = createHelpers ({
+  mutationType: "updateCheckbox"
+});
+
 export default {
   name: "checkboxForm",
   props: {
@@ -30,9 +36,17 @@ export default {
       get() {
         return this.modelValue
       },
-      set(value) {
-        this.$emit("update:modelValue", value)
-      }
+      //set(value) {
+      //  this.$store.commit("updateCheckbox", value)
+      //}
+    },
+    ...mapFields([
+      "geschlecht"
+    ])
+  },
+  methods: {
+    changeBox() {
+      this.$store.commit("changeBox", this.value);
     }
   }
 };
