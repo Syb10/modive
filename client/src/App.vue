@@ -31,14 +31,7 @@
   color: #42b983;
 }
 
-.input-group-text {
-  /**background-color: #b2ced0 !important;
-  border: 1px solid #74afb0 !important;*/
-  background-color: #b5a673 !important;
-  border: 1px solid #9a884f !important;
-}
 .form-control {
-  border: 1px solid #9a884f !important;
   border-radius: 0 0.25rem 0.25rem 0 !important;
 }
 .input-group-text{
@@ -46,5 +39,16 @@
 }
 .checkbox {
   border-radius: 0 0.25rem 0.25rem 0 !important;
+}
+.tab-button{
+  border-radius: 0 !important;
+  opacity: 0.6;
+}
+.tab-button:hover{
+  opacity: 1;
+  
+}
+.tab-button.active{
+  opacity: 1;
 }
 </style>

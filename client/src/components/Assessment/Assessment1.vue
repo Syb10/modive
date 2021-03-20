@@ -34,12 +34,12 @@
 </template>
 
 <script>
-import InputForm from "./InputForm.vue";
-import CheckboxForm from "./CheckboxForm.vue";
+import InputForm from "../InputForm.vue";
+import CheckboxForm from "../CheckboxForm.vue";
 import {mapFields} from "vuex-map-fields";
 
 export default {
-  name: 'Test',
+  name: 'assessment1',
   components: {
     InputForm,
     CheckboxForm
