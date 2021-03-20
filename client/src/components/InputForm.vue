@@ -7,6 +7,7 @@
         </label>
         <input
           :type="content.type"
+          :step="content.step"
           class="form-control"
           :id="content.id"
           :value="modelValue"
@@ -24,7 +25,8 @@ export default {
     content: {
       title: String,
       id: String,
-      type: String
+      type: String,
+      step: String
     },
     modelValue: String
   }

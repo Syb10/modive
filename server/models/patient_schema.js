@@ -17,6 +17,9 @@ const patientSchema = new Schema(
         geschlecht: [],
         herkunft: String,
         muttersprache: String,
+        koerpergroesse: Number,
+        koerpergewicht: Number,
+        bmi:Number,
     },
     {timestamps:true},
 );
