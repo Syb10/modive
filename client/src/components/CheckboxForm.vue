@@ -20,12 +20,12 @@
 <script>
 import {createHelpers} from "vuex-map-fields";
 
-const {mapFields} = createHelpers ({
+const {mapFields} = createHelpers({
   mutationType: "updateCheckbox"
 });
 
 export default {
-  name: "checkboxForm",
+  name: "CheckboxForm",
   props: {
     checkboxs: [],
     modelValue: []
@@ -36,9 +36,17 @@ export default {
       get() {
         return this.modelValue
       },
-      //set(value) {
-      //  this.$store.commit("updateCheckbox", value)
-      //}
+      set(value) {
+        this.$store.state.form.geschlecht = value
+      }
+    },
+    test: {
+      get() {
+        return this.$store.state.geschlecht
+      },
+      set(val) {
+        this.$store.state.geschlecht = val
+      }
     },
     ...mapFields([
       "geschlecht"

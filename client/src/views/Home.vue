@@ -56,13 +56,15 @@ export default {
       "vorname",
       "nachname",
       "geburtsdatum",
-      "geschlecht",
       "herkunft",
       "muttersprache",
       "koerpergroesse",
       "koerpergewicht",
       "bmi"
     ]),
+    geschlecht(){
+      return this.$store.state.form.geschlecht;
+    }
   },
   methods: {
     addPatient() {
@@ -77,7 +79,7 @@ export default {
           "muttersprache": this.muttersprache,
           "koerpergroesse": this.koerpergroesse,
           "koerpergewicht": this.koerpergewicht,
-          "bmi": this.bmi
+          "bmi": this.bmi,
         })
         .then(response => {
           console.log(response);
