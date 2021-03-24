@@ -12,7 +12,15 @@
         v-model="geburtsdatum"
         :content="{ title: 'Geburtsdatum', id: 'geburtsdatum', type:'date' }"
       />
-      <Checkboxgeschlecht />
+      <CheckboxForm
+        :checkboxs="[
+          {value:'weiblich', id:'weiblich', name:'geschlecht'},
+          {value:'männlich', id:'maennlich', name:'geschlecht'},
+          {value:'divers', id:'divers', name:'geschlecht'}
+        ]"
+        :title="'Geschlecht'"
+        v-model="geschlecht"
+      />
       <InputForm
         v-model="herkunft"
         :content="{ title: 'Herkunft', id: 'herkunft', type:'text' }"
@@ -26,20 +34,21 @@
 
 <script>
 import InputForm from "../InputForm.vue";
-import Checkboxgeschlecht from "../CheckboxGeschlecht.vue";
+import CheckboxForm from "../CheckboxForm.vue";
 import {mapFields} from "vuex-map-fields";
 
 export default {
   name: 'assessment1',
   components: {
     InputForm,
-    Checkboxgeschlecht
+    CheckboxForm,
   },
   computed: {
     ...mapFields([
       "vorname",
       "nachname",
       "geburtsdatum",
+      "geschlecht",
       "herkunft",
       "muttersprache",
     ]),

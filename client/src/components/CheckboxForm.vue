@@ -1,15 +1,16 @@
 <template>
   <div class="form-group">
-    <label>Geschlecht</label>
+    <label>{{title}}</label>
     <div class="input-group mb-4">
       <div class="input-group-prepend mr-5 mb-3" v-for="(checkbox, index) in checkboxs" :key="index">
-        <label class="input-group-text" :for="checkbox.id">{{checkbox.title}}</label>
+        <label class="input-group-text" :for="checkbox.id">{{checkbox.value}}</label>
         <div class="input-group-text checkbox">
           <input
-            type="checkbox"
-            :id="checkbox.id"           
-            :value="checkbox.title"
-            v-model="geschlecht"
+            type="radio"
+            :id="checkbox.id"
+            :name="checkbox.name"           
+            :value="checkbox.value"
+            v-model="value"
           />
         </div>
       </div>
@@ -18,16 +19,11 @@
 </template>
 
 <script>
-import {createHelpers} from "vuex-map-fields";
-
-const {mapFields} = createHelpers({
-  mutationType: "updateCheckbox"
-});
-
 export default {
   name: "CheckboxForm",
   props: {
     checkboxs: [],
+    title:String,
     modelValue: []
   },
   emits: ["update:modelValue"],
@@ -37,24 +33,8 @@ export default {
         return this.modelValue
       },
       set(value) {
-        this.$store.state.form.geschlecht = value
+        this.$emit("update:modelValue", value)
       }
-    },
-    test: {
-      get() {
-        return this.$store.state.geschlecht
-      },
-      set(val) {
-        this.$store.state.geschlecht = val
-      }
-    },
-    ...mapFields([
-      "geschlecht"
-    ])
-  },
-  methods: {
-    changeBox() {
-      this.$store.commit("changeBox", this.value);
     }
   }
 };

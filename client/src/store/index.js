@@ -9,7 +9,7 @@ export default createStore({
         geburtsdatum:"",
         geschlecht: [],
         herkunft:"",
-        muttersprache:""
+        muttersprache:"",
     }
   },
   getters: {
