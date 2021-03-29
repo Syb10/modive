@@ -31,10 +31,10 @@
   color: #42b983;
 }
 
-.form-control {
+.form-control.inputForm{
   border-radius: 0 0.25rem 0.25rem 0 !important;
 }
-.input-group-text{
+.input-group-text.inputForm{
   border-radius: 0.25rem 0 0 0.25rem !important;
 }
 .checkbox {
