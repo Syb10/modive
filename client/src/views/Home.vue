@@ -2,16 +2,18 @@
   <div class="home">
     <form>
       <div>
-        <button
-          v-for="tab in tabs"
-          :key="tab.id"
-          class="btn mb-5"
-          :id="tab.id"
-          :class="['tab-button', {active:currentTab === tab.id}]"
-          @click.prevent="currentTab = tab.id"
-        >
-          {{tab.name}}
-        </button>
+        <div class="header">
+          <button
+            v-for="tab in tabs"
+            :key="tab.id"
+            class="btn mb-5"
+            :id="tab.id"
+            :class="['tab-button', {active:currentTab === tab.id}]"
+            @click.prevent="currentTab = tab.id"
+          >
+            {{tab.name}}
+          </button>
+        </div>
         <keep-alive>
           <component :is="currentTab"></component>
         </keep-alive>
@@ -56,15 +58,16 @@ export default {
       "vorname",
       "nachname",
       "geburtsdatum",
+      "geschlecht",
       "herkunft",
       "muttersprache",
+      "schulischeBildung",
+      "beruflicheBildung",
+      "beruf",
       "koerpergroesse",
       "koerpergewicht",
       "bmi"
-    ]),
-    geschlecht(){
-      return this.$store.state.form.geschlecht;
-    }
+    ])
   },
   methods: {
     addPatient() {
@@ -77,6 +80,9 @@ export default {
           "geschlecht" : this.geschlecht,
           "herkunft": this.herkunft,
           "muttersprache": this.muttersprache,
+          "schulischeBildung": this.schulischeBildung,
+          "beruflicheBildung": this.beruflicheBildung,
+          "beruf": this.beruf,
           "koerpergroesse": this.koerpergroesse,
           "koerpergewicht": this.koerpergewicht,
           "bmi": this.bmi,
@@ -89,6 +95,9 @@ export default {
           this.geschlecht = [];
           this.herkunft = "";
           this.muttersprache = "";
+          this.schulischeBildung = [];
+          this.beruflicheBildung = [];
+          this.beruf = "";
           this.koerpergroesse = null;
           this.koerpergewicht = null;
           this.bmi = null;

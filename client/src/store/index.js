@@ -10,6 +10,10 @@ export default createStore({
         geschlecht: [],
         herkunft:"",
         muttersprache:"",
+        schulischeBildung:[],
+        beruflicheBildung:[],
+        beruf:"",
+        getraenke:[]
     }
   },
   getters: {
