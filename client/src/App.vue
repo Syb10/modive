@@ -51,4 +51,16 @@
 .tab-button.active{
   opacity: 1;
 }
+.stickyoben{
+  position: sticky;
+  top:0;
+  padding-top: 1rem;
+  z-index:1;
+}
+.stickyunten{
+  position: sticky;
+  top:0;
+  padding-top: 4rem;
+  background-color: white;
+}
 </style>

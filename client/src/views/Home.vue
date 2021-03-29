@@ -2,7 +2,7 @@
   <div class="home">
     <form>
       <div>
-        <div class="header">
+        <div class="stickyoben">
           <button
             v-for="tab in tabs"
             :key="tab.id"

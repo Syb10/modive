@@ -1,15 +1,17 @@
 <template>
     <div>
-      <button
-        v-for="tab in tabs"
-        :key="tab.id"
-        class="btn mb-5"
-        :class="['tab-button', {active:currentTab === tab.id}]"
-        @click.prevent="currentTab = tab.id"
-      >
-        <span v-show="currentTab === tab.id">{{tab.namelang}}</span>
-        <span v-show="currentTab !== tab.id">{{tab.namekurz}}</span>
-      </button>
+      <div class="stickyunten">
+        <button
+          v-for="tab in tabs"
+          :key="tab.id"
+          class="btn mb-5"
+          :class="['tab-button', {active:currentTab === tab.id}]"
+          @click.prevent="currentTab = tab.id"
+        >
+          <span v-show="currentTab === tab.id">{{tab.namelang}}</span>
+          <span v-show="currentTab !== tab.id">{{tab.namekurz}}</span>
+        </button>
+      </div>
       <keep-alive>
         <component :is="currentTab"></component>
       </keep-alive>
