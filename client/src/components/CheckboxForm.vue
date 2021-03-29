@@ -3,7 +3,7 @@
     <label>{{title}}</label>
     <div class="input-group mb-4">
       <div class="input-group-prepend mr-5 mb-3" v-for="(checkbox, index) in checkboxs" :key="index">
-        <label class="input-group-text" :for="checkbox.id">{{checkbox.value}}</label>
+        <label class="input-group-text inputForm" :for="checkbox.id">{{checkbox.title}}</label>
         <div class="input-group-text checkbox">
           <input
             type="radio"
