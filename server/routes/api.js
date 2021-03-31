@@ -2,6 +2,7 @@ const express = require('express');
 
 const {
   createData,
+  readSingleData,
   readData,
   updateData,
   deleteData,
@@ -11,6 +12,7 @@ const router = express.Router();
 
 router
   .post('/', createData)
+  .get('/:id', readSingleData)
   .get('/', readData)
   .put('/:id', updateData)
   .delete('/:id', deleteData);
