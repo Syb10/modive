@@ -7,13 +7,13 @@ export default createStore({
         vorname:"",
         nachname: "",
         geburtsdatum:"",
-        geschlecht: [],
+        geschlecht: "",
         herkunft:"",
         muttersprache:"",
-        schulischeBildung:[],
-        beruflicheBildung:[],
+        schulischeBildung:"",
+        beruflicheBildung:"",
         beruf:"",
-        getraenke:[]
+        getraenke:""
     }
   },
   getters: {

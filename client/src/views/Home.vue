@@ -92,11 +92,11 @@ export default {
           this.vorname = "";
           this.nachname = "";
           this.geburtsdatum = "";
-          this.geschlecht = [];
+          this.geschlecht = "";
           this.herkunft = "";
           this.muttersprache = "";
-          this.schulischeBildung = [];
-          this.beruflicheBildung = [];
+          this.schulischeBildung = "";
+          this.beruflicheBildung = "";
           this.beruf = "";
           this.koerpergroesse = null;
           this.koerpergewicht = null;
