@@ -1,11 +1,11 @@
 <template>
   <h3> {{ patient.nachname }}, {{ patient.vorname }} </h3>
-  <p>{{ patient.geburtsdatum }} </p>
-  <p v-if="patient.geschlecht !== undefind"> Geschlecht: {{ patient.geschlecht}}</p>
-  <p v-if="patient.schulischeBildung !== undefind "> Schulische Bildung: {{ patient.schulischeBildung}}</p>
-  <p v-if="patient.beruflicheBildung !== undefind"> berufliche Bildung: {{ patient.beruflicheBildung}}</p>
-
-  <ul v-for="(value, key) in patient" :key="key">
+  <p>Patient*innenhistorie/Krankengeschichte</p>
+  <ul v-for="(value, key) in patient.assessment1" :key="key">
+      <li>{{key}} : {{value}}</li>
+  </ul>
+  <p>Klinischer Status</p>
+  <ul v-for="(value, key) in patient.assessment3" :key="key">
       <li>{{key}} : {{value}}</li>
   </ul>
 
