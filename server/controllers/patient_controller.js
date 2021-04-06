@@ -18,7 +18,18 @@ const createData = (req, res) => {
         }
       });
 };
-  
+
+const readSingleData = (req, res) => {
+  Patient.findById(req.params.id)
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json(err);
+    });
+};
+
 const readData = (req, res) => {
     Patient.find()
       .then((data) => {
@@ -70,6 +81,7 @@ const readData = (req, res) => {
   
   module.exports = {
     createData,
+    readSingleData,
     readData,
     updateData,
     deleteData,

@@ -1,8 +1,8 @@
 <template>
   <div>
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Formular</router-link> |
+      <router-link to="/list">Patienten-Liste</router-link>
     </div>
     <div class="container mt-5">
       <router-view/>
@@ -31,20 +31,37 @@
   color: #42b983;
 }
 
-.input-group-text {
-  /**background-color: #b2ced0 !important;
-  border: 1px solid #74afb0 !important;*/
-  background-color: #b5a673 !important;
-  border: 1px solid #9a884f !important;
-}
-.form-control {
-  border: 1px solid #9a884f !important;
+.form-control.inputForm{
   border-radius: 0 0.25rem 0.25rem 0 !important;
 }
-.input-group-text{
+.input-group-text.inputForm{
   border-radius: 0.25rem 0 0 0.25rem !important;
 }
 .checkbox {
   border-radius: 0 0.25rem 0.25rem 0 !important;
+}
+.tab-button{
+  border-radius: 0 !important;
+  opacity: 0.6;
+}
+.tab-button:hover{
+  opacity: 1;
+  
+}
+.tab-button.active{
+  opacity: 1;
+}
+.stickyoben{
+  position: sticky;
+  top:0;
+  padding-top: 1rem;
+  z-index:2;
+}
+.stickyunten{
+  position: sticky;
+  top:0;
+  padding-top: 6rem;
+  background-color: white;
+  z-index:1;
 }
 </style>
