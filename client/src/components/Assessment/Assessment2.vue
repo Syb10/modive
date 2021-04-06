@@ -7,52 +7,69 @@
                 <th>zu wenig</th>
                 <th>entprechend der Ernährungsempfehlung<input class="form-control"/></th>
                 <th>zu viel</th>
-                <th>Notizen</th>
             </thead>
             <tbody class=".table-striped">
-                <tr v-for="(item, index) in items" :key="index">
-                    <td>{{item.Lebensmittel}}</td>
-                    <td v-html="item.zu_wenig"></td>
-                    <td v-html="item.empfehlung"></td>
-                    <td v-html="item.zu_viel"></td>
-                    <td v-html="item.notizen"></td>
-                </tr>    
+                <tr>
+                    <td>Lebensmittel</td>
+                    <td>
+                      <TableForm
+                      :items="[{value:'zuwenig', id:'zuwenig', name:'getraenke'}]"
+                      v-model="getraenke"
+                      />
+                    </td>
+                    <td>
+                      <TableForm
+                      :items="[{value:'entsprechend', id:'entsprechend', name:'getraenke'}]"
+                      v-model="getraenke"
+                      />
+                    </td>
+                    <td>
+                      <TableForm
+                      :items="[{value:'zuviel', id:'zuviel', name:'getraenke'}]"
+                      v-model="getraenke"
+                      />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gemüse</td>
+                    <td>
+                      <TableForm
+                      :items="[{value:'zuwenig', id:'zuwenig', name:'gemuese'}]"
+                      v-model="gemuese"
+                      />
+                    </td>
+                    <td>
+                      <TableForm
+                      :items="[{value:'entsprechend', id:'entsprechend', name:'gemuese'}]"
+                      v-model="gemuese"
+                      />
+                    </td>
+                    <td>
+                      <TableForm
+                      :items="[{value:'zuviel', id:'zuviel', name:'gemuese'}]"
+                      v-model="gemuese"
+                      />
+                    </td>
+                </tr>       
             </tbody>
         </table>
-        <div>Getränke:{{getraenke}}</div>
         <!--<input type="range" class="custom-range" min="0" max="2">-->
     </div>
 </template>
 
 <script>
 import {mapFields} from "vuex-map-fields";
+import TableForm from "../TableForm.vue";
 
 export default {
     name: "assessment2",
-    data() {
-      return{
-        items:[
-          {
-            Lebensmittel:"Getränke", 
-            zu_wenig:"<input type='radio' name='getraenke' value='zuwenig' v-model='getraenke' @input='$emit('update:getraenke', $event.target.value)'/>",
-            empfehlung:"<input type='radio' name='getraenke' value='entsprechend' v-model='getraenke'/>",
-            zu_viel:"<input type='radio' name='getraenke' value='zuviel' v-model='getraenke'/>",
-            notizen:"<input type='text' class='form-control'/>",
-            model:"getraenke"
-          },
-          {
-            Lebensmittel:"Getränke", 
-            zu_wenig:'Welcome to <br/> Arrow GTP',
-            empfehlung:'Welcome to <input type="radio" name="getraenke" value="entsprechend"/> Arrow GTP',
-            zu_viel:"<input type='radio' name='getraenke' value='zuviel' />",
-            notizen:"<input type='text' class='form-control'/>"
-          }
-        ]
-      }
-    },
+    components: {
+      TableForm
+    },  
     computed: {
         ...mapFields([
-            "getraenke"
+            "getraenke",
+            "gemuese"
         ])
     }
 };
