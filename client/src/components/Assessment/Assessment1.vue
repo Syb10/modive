@@ -104,20 +104,20 @@
       />
       <RadioForm
         :items="[
-          {title:'ja', value:'ja', id:'ja', name:'beeintreachtigungen'},
-          {title:'nein', value:'nein', id:'nein', name:'beeintreachtigungen'},
+          {title:'ja', value:'ja', id:'ja', name:'beeintraechtigungen'},
+          {title:'nein', value:'nein', id:'nein', name:'beeintraechtigungen'},
         ]"
         :title="'Körperliche Beeinträchtigungen'"
-        v-model="beeintreachtigungen"
+        v-model="beeintraechtigungen"
       />
-      <div v-if="beeintreachtigungen == 'ja'">
+      <div v-if="beeintraechtigungen == 'ja'">
         <RadioForm
         :items="[
-          {title:'Sehbehinderung', value:'sehbehinderung', id:'sehbehinderung', name:'beeintreachtigungenVorhanden'},
-          {title:'Hörbehinderung', value:'hörbehinderung', id:'hörbehinderung', name:'beeintreachtigungenVorhanden'},
+          {title:'Sehbehinderung', value:'sehbehinderung', id:'sehbehinderung', name:'beeintraechtigungenVorhanden'},
+          {title:'Hörbehinderung', value:'hörbehinderung', id:'hörbehinderung', name:'beeintraechtigungenVorhanden'},
         ]"
         :title="'Welche Körperliche Beeinträchtigungen sind vorhanden'"
-        v-model="beeintreachtigungenVorhanden"
+        v-model="beeintraechtigungenVorhanden"
       />
       </div>
       <CheckboxForm
@@ -128,7 +128,7 @@
         :title="'Welche Körperliche Beeinträchtigungen sind vorhanden'"
         v-model="test"
       />
-      <div>beeintreachtigungenVorhanden: {{beeintreachtigungenVorhanden}}</div>
+      <div>beeintraechtigungenVorhanden: {{beeintraechtigungenVorhanden}}</div>
       <div>Test: {{test}}</div>
     </div>
 </template>
@@ -162,8 +162,8 @@ export default {
       "personenImHaushalt",
       "aktuellGeraucht",
       "jemalsGeraucht",
-      "beeintreachtigungen",
-      "beeintreachtigungenVorhanden",
+      "beeintraechtigungen",
+      "beeintraechtigungenVorhanden",
       "test"
     ]),
   },

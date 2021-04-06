@@ -64,6 +64,13 @@ export default {
       "schulischeBildung",
       "beruflicheBildung",
       "beruf",
+      "familienstand",
+      "wohnsituation",
+      "personenImHaushalt",
+      "aktuellGeraucht",
+      "jemalsGeraucht",
+      "beeintraechtigungen",
+      "beeintraechtigungenVorhanden",
       "koerpergroesse",
       "koerpergewicht",
       "bmi"
@@ -77,15 +84,26 @@ export default {
           "vorname": this.vorname,
           "nachname": this.nachname,
           "geburtsdatum": this.geburtsdatum,
-          "geschlecht" : this.geschlecht,
-          "herkunft": this.herkunft,
-          "muttersprache": this.muttersprache,
-          "schulischeBildung": this.schulischeBildung,
-          "beruflicheBildung": this.beruflicheBildung,
-          "beruf": this.beruf,
-          "koerpergroesse": this.koerpergroesse,
-          "koerpergewicht": this.koerpergewicht,
-          "bmi": this.bmi,
+          assessment1:{
+            "geschlecht" : this.geschlecht,
+            "herkunft": this.herkunft,
+            "muttersprache": this.muttersprache,
+            "schulischeBildung": this.schulischeBildung,
+            "beruflicheBildung": this.beruflicheBildung,
+            "beruf": this.beruf,
+            "familienstand": this.familienstand,
+            "wohnsituation": this.wohnsituation,
+            "personenImHaushalt": this.personenImHaushalt,
+            "aktuellGeraucht": this.aktuellGeraucht,
+            "jemalsGeraucht" : this.jemalsGeraucht,
+            "beeintreachtigungen": this.beeintreachtigungen,
+            "beeintreachtigungenVorhanden": this.beeintreachtigungenVorhanden
+          },
+          assessment3:{
+            "koerpergroesse": this.koerpergroesse,
+            "koerpergewicht": this.koerpergewicht,
+            "bmi": this.bmi,
+          }  
         })
         .then(response => {
           console.log(response);
@@ -98,6 +116,13 @@ export default {
           this.schulischeBildung = "";
           this.beruflicheBildung = "";
           this.beruf = "";
+          this.familienstand = "";
+          this.wohnsituation = "";
+          this.personenImHaushalt = null;
+          this.aktuellGeraucht = "";
+          this.jemalsGeraucht = "";
+          this.beeintreachtigungen = "";
+          this.beeintreachtigungenVorhanden = "";
           this.koerpergroesse = null;
           this.koerpergewicht = null;
           this.bmi = null;

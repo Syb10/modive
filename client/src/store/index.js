@@ -13,7 +13,16 @@ export default createStore({
         schulischeBildung:"",
         beruflicheBildung:"",
         beruf:"",
-        getraenke:""
+        familienstand: "",
+        wohnsituation: "",
+        personenImHaushalt: null,
+        aktuellGeraucht: "",
+        jemalsGeraucht: "",
+        beeintraechtigungen: "",
+        beeintraechtigungenVorhanden: "",
+        getraenke:"",
+        gemuese:"",
+        test:[]
     }
   },
   getters: {

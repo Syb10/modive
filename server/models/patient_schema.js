@@ -2,27 +2,38 @@ const {Schema, model} = require('mongoose');
 
 const patientSchema = new Schema(
     {
-        vorname: {
-            type: String,
-            required: [true, 'Name ist ein Pflichtfeld'],   
-        },
-        nachname: {
-            type: String,
-            required: [true, 'Name ist ein Pflichtfeld'],   
-        },
-        geburtsdatum: {
-            type: Date,
-            required: [true, 'Geburtsdatum ist ein Pflichtfeld'],
-        },
+      vorname: {
+        type: String,
+        required: [true, 'Name ist ein Pflichtfeld'],   
+      },
+      nachname: {
+        type: String,
+        required: [true, 'Name ist ein Pflichtfeld'],   
+      },
+      geburtsdatum: {
+        type: Date,
+        required: [true, 'Geburtsdatum ist ein Pflichtfeld'],
+      },
+      assessment1:{
         geschlecht: String,
         herkunft: String,
         muttersprache: String,
         schulischeBildung: String,
         beruflicheBildung: String,
-        beruf:String,
+        beruf: String,
+        familienstand: String,
+        wohnsituation: String,
+        personenImHaushalt: Number,
+        aktuellGeraucht: String,
+        jemalsGeraucht: String,
+        beeintraechtigungen: String,
+        beeintraechtigungenVorhanden: String,
+      },
+      assessment3:{ 
         koerpergroesse: Number,
         koerpergewicht: Number,
-        bmi:Number,
+        bmi: Number,
+      }  
     },
     {timestamps:true},
 );
