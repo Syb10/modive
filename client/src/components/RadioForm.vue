@@ -2,14 +2,14 @@
   <div class="form-group">
     <label>{{title}}</label>
     <div class="input-group mb-4">
-      <div class="input-group-prepend mr-5 mb-3" v-for="(checkbox, index) in checkboxs" :key="index">
-        <label class="input-group-text inputForm" :for="checkbox.id">{{checkbox.title}}</label>
+      <div class="input-group-prepend mr-5 mb-3" v-for="(item, index) in items" :key="index">
+        <label class="input-group-text inputForm" :for="item.id">{{item.title}}</label>
         <div class="input-group-text checkbox">
           <input
-            type="checkbox"
-            :id="checkbox.id"
-            :name="checkbox.name"           
-            :value="checkbox.value"
+            type="radio"
+            :id="item.id"
+            :name="item.name"           
+            :value="item.value"
             v-model="value"
           />
         </div>
@@ -20,9 +20,9 @@
 
 <script>
 export default {
-  name: "CheckboxForm",
+  name: "RadioForm",
   props: {
-    checkboxs: [],
+    items: [],
     title:String,
     modelValue: []
   },
@@ -33,7 +33,6 @@ export default {
         return this.modelValue
       },
       set(value) {
-          console.log(value)
         this.$emit("update:modelValue", value)
       }
     }
