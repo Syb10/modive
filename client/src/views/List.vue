@@ -16,13 +16,13 @@
             <td>{{ patient.vorname }}</td>
             <td>{{ patient.geburtsdatum }}</td>
             <td>
-              <router-link :to="{name:'Show', params: {id: patient._id}}" class="btn btn-warning">
+              <router-link :to="{name:'Show', params: {id: patient._id}}" class="btn btn-gold">
                 <i class="fa fa-bars mr-1" aria-hidden="true"></i> anzeigen
               </router-link>
-              <router-link :to="{name:'Edit', params: {id: patient._id}}" class="btn btn-primary">
+              <router-link :to="{name:'Edit', params: {id: patient._id}}" class="btn btn-blue">
                 <i class="fa fa-pencil mr-1" aria-hidden="true"></i> bearbeiten
               </router-link>  
-              <button @click.prevent="deletePatient(patient._id)" class="btn btn-danger">
+              <button @click.prevent="deletePatient(patient._id)" class="btn btn-red">
                 <i class="fa fa-trash mr-1" aria-hidden="true"></i>löschen
               </button>
             </td>
@@ -71,5 +71,20 @@ export default {
 <style scoped>
   .btn{
     margin: 5px;
+  }
+  .btn-gold{
+    background-color: #9a884f !important;
+    border: 1px solid #9a884f !important;
+    color: white !important;
+  }
+  .btn-blue{
+    background-color: #6eaead !important;
+    border: 1px solid #6eaead !important;
+    color: white !important;
+  }
+  .btn-red{
+    background-color: #B75757 !important;
+    border: 1px solid #B75757 !important;
+    color: white !important;
   }
 </style>
