@@ -55,12 +55,13 @@
   position: sticky;
   top:0;
   padding-top: 1rem;
-  z-index:1;
+  z-index:2;
 }
 .stickyunten{
   position: sticky;
   top:0;
-  padding-top: 4rem;
+  padding-top: 6rem;
   background-color: white;
+  z-index:1;
 }
 </style>
