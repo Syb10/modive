@@ -14,7 +14,7 @@
           <tr v-for="patient in patienten" :key="patient._id">
             <td>{{ patient.nachname }}</td>
             <td>{{ patient.vorname }}</td>
-            <td>{{ patient.geburtsdatum }}</td>
+            <td>{{ changeDate(patient.geburtsdatum) }}</td>
             <td>
               <router-link :to="{name:'Show', params: {id: patient._id}}" class="btn btn-gold">
                 <i class="fa fa-bars mr-1" aria-hidden="true"></i> anzeigen
@@ -35,6 +35,7 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
 
 export default {
   data() {
@@ -63,6 +64,9 @@ export default {
             console.log(error);
         });
       }
+    },
+    changeDate(value){
+      return moment(value).format('L');
     }
   }
 }
