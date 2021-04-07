@@ -58,6 +58,15 @@
       />
       <RadioForm
         :items="[
+          {title:'Vollzeit', value:'vollzeit', id:'vollzeit', name:'artarbeit'},
+          {title:'Teilzeit', value:'teilzeit', id:'teilzeit', name:'artarbeit'},
+          {title:'Schichtarbeit', value:'schichtarbeit', id:'schichtarbeit', name:'artarbeit'}
+        ]"
+        v-model="artarbeit"
+        :style="marginSmall"
+      />
+      <RadioForm
+        :items="[
           {title:'ledig', value:'ledig', id:'ledig', name:'familienstand'},
           {title:'in Partnerschaft', value:'partnerschaft', id:'partnerschaft', name:'familienstand'},
           {title:'verheiratet/eingetragene Partnerschaft', value:'verheiratet', id:'verheiratet', name:'familienstand'},
@@ -88,20 +97,38 @@
       <div>Tabakkonsum</div>
       <RadioForm
         :items="[
-          {title:'ja', value:'ja', id:'ja', name:'aktuellGeraucht'},
-          {title:'nein', value:'nein', id:'nein', name:'aktuellGeraucht'},
+          {title:'ja', value:'ja', id:'jaaktuell', name:'aktuellGeraucht'},
+          {title:'nein', value:'nein', id:'neinaktuell', name:'aktuellGeraucht'},
         ]"
         :title="'Wird zum aktuellen Zeitpunkt geraucht?'"
         v-model="aktuellGeraucht"
       />
       <RadioForm
         :items="[
-          {title:'ja', value:'ja', id:'ja', name:'jemalsGeraucht'},
-          {title:'nein', value:'nein', id:'nein', name:'jemalsGeraucht'},
+          {title:'ja', value:'ja', id:'jajemals', name:'jemalsGeraucht'},
+          {title:'nein', value:'nein', id:'neinjemals', name:'jemalsGeraucht'},
         ]"
         :title="'Wurde jemals geraucht?'"
         v-model="jemalsGeraucht"
+        :style="marginSmall"
       />
+      <div v-if="jemalsGeraucht == 'ja' || aktuellGeraucht == 'ja'">
+        <InputForm
+          v-model="anzahlZigaretten"
+          :content="{ title: 'Anzahl an Zigaretten/Tag', id: 'anzahlZigaretten', type:'number' }"
+          :style="marginSmall"
+        />
+        <InputForm
+          v-model="anzahlTabakprodukte"
+          :content="{ title: 'Anzahl an Tabakprodukten/Tag', id: 'anzahlTabakprodukte', type:'number' }"
+          :style="marginSmaller"
+        />
+        <InputForm
+          v-model="anzahlJahreRauchen"
+          :content="{ title: 'Anzahl an Jahren, in denen bisher geraucht wurde', id: 'anzahlJahreRauchen', type:'number' }"
+          :style="marginSmaller"
+        />
+      </div>
       <RadioForm
         :items="[
           {title:'ja', value:'ja', id:'ja', name:'beeintraechtigungen'},
@@ -118,6 +145,7 @@
         ]"
         :title="'Welche Körperliche Beeinträchtigungen sind vorhanden'"
         v-model="beeintraechtigungenVorhanden"
+        :style="marginSmall"
       />
       </div>
       <CheckboxForm
@@ -130,6 +158,27 @@
       />
       <div>beeintraechtigungenVorhanden: {{beeintraechtigungenVorhanden}}</div>
       <div>Test: {{test}}</div>
+      <RadioForm
+        :items="[
+          {title:'ja', value:'ja', id:'jamobil', name:'beeintraechtigungen'},
+          {title:'nein', value:'nein', id:'neinmobil', name:'beeintraechtigungen'},
+        ]"
+        :title="'mobil'"
+        v-model="mobil"
+      />
+      <div v-if="mobil == 'nein'">
+        <RadioForm
+        :items="[
+          {title:'ans Haus gebunden', value:'haus', id:'haus', name:'mobileingeschraenkt'},
+          {title:'bettlägerig', value:'bettlaegerig', id:'bettlaegerig', name:'mobileingeschraenkt'},
+          {title:'an den Rollstuhl gebunden', value:'rollstuhl', id:'rollstuhl', name:'mobileingeschraenkt'},
+          {title:'andere', value:'andere', id:'andere', name:'mobileingeschraenkt'},
+        ]"
+        :title="'Warum?'"
+        v-model="mobileingeschraenkt"
+        :style="marginSmall"
+      />
+      </div>
     </div>
 </template>
 
@@ -146,6 +195,16 @@ export default {
     CheckboxForm,
     RadioForm,
   },
+  data() {
+    return {
+      marginSmall: {
+        margin: '-2rem 0 0 0',
+      },
+      marginSmaller: {
+        margin: '-1rem 0 0 0',
+      }
+    }
+  },
   computed: {
     ...mapFields([
       "vorname",
@@ -157,14 +216,20 @@ export default {
       "schulischeBildung",
       "beruflicheBildung",
       "beruf",
+      "artarbeit",
       "familienstand",
       "wohnsituation",
       "personenImHaushalt",
       "aktuellGeraucht",
       "jemalsGeraucht",
+      "anzahlZigaretten",
+      "anzahlTabakprodukte",
+      "anzahlJahreRauchen",
       "beeintraechtigungen",
       "beeintraechtigungenVorhanden",
-      "test"
+      "test",
+      "mobil",
+      "mobileingeschraenkt"
     ]),
   },
   //watch: {

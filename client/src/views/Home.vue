@@ -64,13 +64,19 @@ export default {
       "schulischeBildung",
       "beruflicheBildung",
       "beruf",
+      "artarbeit",
       "familienstand",
       "wohnsituation",
       "personenImHaushalt",
       "aktuellGeraucht",
       "jemalsGeraucht",
+      "anzahlZigaretten",
+      "anzahlTabakprodukte",
+      "anzahlJahreRauchen",
       "beeintraechtigungen",
       "beeintraechtigungenVorhanden",
+      "mobil",
+      "mobileingeschraenkt",
       "koerpergroesse",
       "koerpergewicht",
       "bmi"
@@ -91,13 +97,19 @@ export default {
             "schulischeBildung": this.schulischeBildung,
             "beruflicheBildung": this.beruflicheBildung,
             "beruf": this.beruf,
+            "artarbeit": this.artarbeit,
             "familienstand": this.familienstand,
             "wohnsituation": this.wohnsituation,
             "personenImHaushalt": this.personenImHaushalt,
             "aktuellGeraucht": this.aktuellGeraucht,
             "jemalsGeraucht" : this.jemalsGeraucht,
-            "beeintreachtigungen": this.beeintreachtigungen,
-            "beeintreachtigungenVorhanden": this.beeintreachtigungenVorhanden
+            "anzahlZigaretten": this.anzahlZigaretten,
+            "anzahlTabakprodukte": this.anzahlTabakprodukte,
+            "anzahlJahreRauchen": this.anzahlJahreRauchen,
+            "beeintraechtigungen": this.beeintraechtigungen,
+            "beeintraechtigungenVorhanden": this.beeintraechtigungenVorhanden,
+            "mobil": this.mobil,
+            "mobileingeschraenkt": this.mobileingeschraenkt
           },
           assessment3:{
             "koerpergroesse": this.koerpergroesse,
@@ -107,6 +119,7 @@ export default {
         })
         .then(response => {
           console.log(response);
+          this.$router.push('/List');
           this.vorname = "";
           this.nachname = "";
           this.geburtsdatum = "";
@@ -116,13 +129,19 @@ export default {
           this.schulischeBildung = "";
           this.beruflicheBildung = "";
           this.beruf = "";
+          this.artarbeit = "";
           this.familienstand = "";
           this.wohnsituation = "";
           this.personenImHaushalt = null;
           this.aktuellGeraucht = "";
           this.jemalsGeraucht = "";
-          this.beeintreachtigungen = "";
-          this.beeintreachtigungenVorhanden = "";
+          this.anzahlZigaretten = null;
+          this.anzahlTabakprodukte = null;
+          this.anzahlJahreRauchen = null;
+          this.beeintraechtigungen = "";
+          this.beeintraechtigungenVorhanden = "";
+          this.mobil = "";
+          this.mobileingeschraenkt = "";
           this.koerpergroesse = null;
           this.koerpergewicht = null;
           this.bmi = null;
