@@ -8,13 +8,14 @@
           <input
             type="checkbox"
             :id="checkbox.id"
-            :name="checkbox.name"           
+            :name="checkbox.name"
             :value="checkbox.value"
-            v-model="value"
+            v-model="myData"
           />
         </div>
       </div>
     </div>
+    <div>{{myData}}</div>
   </div>
 </template>
 
@@ -28,13 +29,12 @@ export default {
   },
   emits: ["update:modelValue"],
   computed: {
-    value: {
+    myData: {
       get() {
-        return this.modelValue
+        return this.$store.state.form.myData
       },
       set(value) {
-          console.log(value)
-        this.$emit("update:modelValue", value)
+        this.$store.dispatch("changeMyData", value)
       }
     }
   }

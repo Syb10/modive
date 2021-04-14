@@ -28,16 +28,26 @@ export default createStore({
         mobileingeschraenkt: "",
         getraenke:"",
         gemuese:"",
-        test:[]
+        test:[],
+        myData: []
     }
   },
   getters: {
-    getField
+    getField,
+    myData(state) {
+      return state.form.myData;
+    }
   },
   mutations: {
-    updateField
+    updateField,
+    changeMyData(state, value) {
+      state.form.myData = value
+    }
   },
   actions: {
+    changeMyData({commit}, value) {
+      commit("changeMyData", value);
+    }
   },
   modules: {
   }

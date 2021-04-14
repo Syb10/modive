@@ -148,6 +148,7 @@
         :style="marginSmall"
       />
       </div>
+      
       <CheckboxForm
         :checkboxs="[
           {title:'Sehbehinderung', value:'sehbehinderung', id:'sehbehinderung', name:'test'},
@@ -157,7 +158,8 @@
         v-model="test"
       />
       <div>beeintraechtigungenVorhanden: {{beeintraechtigungenVorhanden}}</div>
-      <div>Test: {{test}}</div>
+      <div>Test: {{myData}}</div>
+      
       <RadioForm
         :items="[
           {title:'ja', value:'ja', id:'jamobil', name:'beeintraechtigungen'},
@@ -187,6 +189,7 @@ import InputForm from "../InputForm.vue";
 import CheckboxForm from "../CheckboxForm.vue";
 import RadioForm from "../RadioForm.vue";
 import {mapFields} from "vuex-map-fields";
+import {mapGetters} from "vuex";
 
 export default {
   name: 'assessment1',
@@ -231,19 +234,9 @@ export default {
       "mobil",
       "mobileingeschraenkt"
     ]),
-  },
-  //watch: {
-  //  geburtsdatum(olddate) {
-  //    this.changeDate(olddate)
-  //  }
-  //},
-  methods: {
-    changeDate(olddate) {
-      var date = new Date(olddate);
-      var newdate = [date.getDate(),date.getMonth()+1,date.getFullYear()].join(".");
-      console.log(newdate);
-      this.geburtsdatum = newdate;
-    }
+    ...mapGetters([
+      "myData"
+    ])
   }
 };
 </script>
