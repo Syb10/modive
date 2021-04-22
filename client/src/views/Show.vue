@@ -1,13 +1,17 @@
 <template>
-  <h3> {{ patient.nachname }}, {{ patient.vorname }} </h3>
-  <h5> Geburtsdatum: {{  changeDate(patient.geburtsdatum) }}</h5>
-  <p>Patient*innenhistorie/Krankengeschichte</p>
+  <h3> {{ patient.Nachname }}, {{ patient.Vorname }} </h3>
+  <h5> Geburtsdatum: {{  changeDate(patient.Geburtsdatum) }}</h5>
+  <p class="assessmentAspekt">Patient*innenhistorie/Krankengeschichte</p>
   <ul v-for="(value, key) in patient.assessment1" :key="key">
-      <li>{{key}} : {{value}}</li>
+      <li>{{key.match(/(\d+|[a-z]+|[A-Z][a-z]*)/g).join(' ')}} : {{value}}</li>
   </ul>
-  <p>Klinischer Status</p>
+  <p class="assessmentAspekt">Verhalten und Umfeld</p>
   <ul v-for="(value, key) in patient.assessment3" :key="key">
-      <li>{{key}} : {{value}}</li>
+      <li>{{key.match(/(\d+|[a-z]+|[A-Z][a-z]*)/g).join(' ')}} : {{value}}</li>
+  </ul>
+  <p class="assessmentAspekt">Klinischer Status</p>
+  <ul v-for="(value, key) in patient.assessment4" :key="key">
+      <li>{{key.match(/(\d+|[a-z]+|[A-Z][a-z]*)/g).join(' ')}} : {{value}}</li>
   </ul>
 
 </template>

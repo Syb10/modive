@@ -8,34 +8,33 @@
           <input
             type="checkbox"
             :id="checkbox.id"
-            :name="checkbox.name"
-            :value="checkbox.value"
+            :value="checkbox.title"
             v-model="myData"
           />
         </div>
       </div>
     </div>
-    <div>{{myData}}</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "CheckboxForm",
+  data() {
+    return {
+      myData:[]
+    }
+  },
   props: {
     checkboxs: [],
     title:String,
     modelValue: []
   },
   emits: ["update:modelValue"],
-  computed: {
-    myData: {
-      get() {
-        return this.$store.state.form.myData
-      },
-      set(value) {
-        this.$store.dispatch("changeMyData", value)
-      }
+  watch: {
+    myData (value) {
+      var newValue = value.join(', ')
+      this.$emit("update:modelValue", newValue)
     }
   }
 };

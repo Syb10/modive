@@ -65,8 +65,9 @@ export default {
       "schulischeBildung",
       "beruflicheBildung",
       "beruf",
-      "artarbeit",
+      "artDerArbeit",
       "familienstand",
+      "wohnsituation",
       "personenImHaushalt",
       "aktuellGeraucht",
       "jemalsGeraucht",
@@ -77,12 +78,20 @@ export default {
       "beeintraechtigungenVorhanden",
       "mobil",
       "mobileingeschraenkt",
+      "plantMahlzeiten",
+      "bereitetMahlzeiten",
+      "lebensmitteleinkauf",
+      "selbstversorgen",
+      "selbstversorgenEingeschraenkt",
+      "selbstversorgenNein",
+      "wichtigkeitDerEmpfehlung",
+      "wichtigkeitDerFrische",
       "koerpergroesse",
       "koerpergewicht",
       "bmi"
     ]),
     ...mapGetters([
-      "wohnsituation",
+      
     ]),
     ...mapActions([
       "changeWohnsituation"
@@ -93,33 +102,44 @@ export default {
       const apiURL = "http://localhost:9000/api";
       axios
         .post(apiURL, {
-          "vorname": this.vorname,
-          "nachname": this.nachname,
-          "geburtsdatum": this.geburtsdatum,
+          "Vorname": this.vorname,
+          "Nachname": this.nachname,
+          "Geburtsdatum": this.geburtsdatum,
           assessment1:{
-            "geschlecht" : this.geschlecht,
-            "herkunft": this.herkunft,
-            "muttersprache": this.muttersprache,
-            "schulischeBildung": this.schulischeBildung,
-            "beruflicheBildung": this.beruflicheBildung,
-            "beruf": this.beruf,
-            "artarbeit": this.artarbeit,
-            "familienstand": this.familienstand,
-            "wohnsituation": this.wohnsituation.join(', '),
-            "personenImHaushalt": this.personenImHaushalt,
+            "Geschlecht" : this.geschlecht,
+            "Herkunft": this.herkunft,
+            "Muttersprache": this.muttersprache,
+            "SchulischeBildung": this.schulischeBildung,
+            "BeruflicheBildung": this.beruflicheBildung,
+            "Beruf": this.beruf,
+            "ArtDerArbeit": this.artDerArbeit,
+            "Familienstand": this.familienstand,
+            "Wohnsituation": this.wohnsituation,
+            "PersonenImHaushalt": this.personenImHaushalt,
             "aktuellGeraucht": this.aktuellGeraucht,
             "jemalsGeraucht" : this.jemalsGeraucht,
-            "anzahlZigaretten": this.anzahlZigaretten,
-            "anzahlTabakprodukte": this.anzahlTabakprodukte,
-            "anzahlJahreRauchen": this.anzahlJahreRauchen,
-            "beeintraechtigungen": this.beeintraechtigungen,
-            "beeintraechtigungenVorhanden": this.beeintraechtigungenVorhanden,
+            "AnzahlZigaretten": this.anzahlZigaretten,
+            "AnzahlTabakprodukte": this.anzahlTabakprodukte,
+            "AnzahlJahreRauchen": this.anzahlJahreRauchen,
+            "Beeinträchtigungen": this.beeintraechtigungen,
+            "VorhandendeBeeintraechtigungen": this.beeintraechtigungenVorhanden,
             "mobil": this.mobil,
-            "mobileingeschraenkt": this.mobileingeschraenkt
+            "mobilEingeschränktDurch": this.mobileingeschraenkt
           },
-          assessment3:{
-            "koerpergroesse": this.koerpergroesse,
-            "koerpergewicht": this.koerpergewicht,
+          assessment3: {
+            "WerPlantDieMahlzeiten": this.plantMahlzeiten,
+            "WerBereitetDieMahlzeitenZu": this.bereitetMahlzeiten,
+            "WerTätigtDenLebensmitteleinkauf": this.lebensmitteleinkauf,
+            "selbstversorgen": this.selbstversorgen,
+            "SelbstversorgungIstEingeschränkt": this.selbstversorgenEingeschraenkt,
+            "SelbstversorgungIstNichtMöglich": this.selbstversorgenNein,
+            "EinfachheitMahlzeitZuzubereiten" : this.einfachheitMahlzeitZuzubereiten,
+            "WichtigkeitDerEmpfehlung": this.wichtigkeitDerEmpfehlung,
+            "WichtigkeitDerFrische" : this.wichtigkeitDerFrische,
+          },
+          assessment4:{
+            "Körpergröße": this.koerpergroesse,
+            "Körpergewicht": this.koerpergewicht,
             "bmi": this.bmi,
           }  
         })
@@ -137,7 +157,7 @@ export default {
           this.beruf = "";
           this.artarbeit = "";
           this.familienstand = "";
-          this.$store.dispatch("changeWohnsituation",  []);
+          this.wohnsituation = "";
           this.personenImHaushalt = null;
           this.aktuellGeraucht = "";
           this.jemalsGeraucht = "";
@@ -148,6 +168,15 @@ export default {
           this.beeintraechtigungenVorhanden = "";
           this.mobil = "";
           this.mobileingeschraenkt = "";
+          this.plantMahlzeiten = "";
+          this.bereitetMahlzeiten = "";
+          this.lebensmitteleinkauf = "";
+          this.selbstversorgen = "";
+          this.selbstversorgenEingeschraenkt = "";
+          this.selbstversorgenNein = "";
+          this.einfachheitMahlzeitZuzubereiten = "";
+          this.wichtigkeitDerEmpfehlung = "";
+          this.wichtigkeitDerFrische = "";
           this.koerpergroesse = null;
           this.koerpergewicht = null;
           this.bmi = null;

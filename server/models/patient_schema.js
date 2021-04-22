@@ -2,42 +2,56 @@ const {Schema, model} = require('mongoose');
 
 const patientSchema = new Schema(
     {
-      vorname: {
+      Vorname: {
         type: String,
-        required: [true, 'Name ist ein Pflichtfeld'],   
+        required: [true, 'Vorname ist ein Pflichtfeld'],   
       },
-      nachname: {
+      Nachname: {
         type: String,
-        required: [true, 'Name ist ein Pflichtfeld'],   
+        required: [true, 'Nachname ist ein Pflichtfeld'],   
       },
-      geburtsdatum: {
+      Geburtsdatum: {
         type: Date,
         required: [true, 'Geburtsdatum ist ein Pflichtfeld'],
       },
-      assessment1:{
-        geschlecht: String,
-        herkunft: String,
-        muttersprache: String,
-        schulischeBildung: String,
-        beruflicheBildung: String,
-        beruf: String,
-        artarbeit: String,
-        familienstand: String,
-        wohnsituation: String,
-        personenImHaushalt: Number,
+      assessment1: {
+        Geschlecht: String,
+        Herkunft: String,
+        Muttersprache: String,
+        SchulischeBildung: String,
+        BeruflicheBildung: String,
+        Beruf: String,
+        ArtDerArbeit: String,
+        Familienstand: String,
+        Wohnsituation: String,
+        PersonenImHaushalt: Number,
         aktuellGeraucht: String,
         jemalsGeraucht: String,
-        anzahlZigaretten: Number,
-        anzahlTabakprodukte: Number,
-        anzahlJahreRauchen: Number,
-        beeintraechtigungen: String,
-        beeintraechtigungenVorhanden: String,
+        AnzahlZigaretten: Number,
+        AnzahlTabakprodukte: Number,
+        AnzahlJahreRauchen: Number,
+        Beeinträchtigungen: String,
+        VorhandendeBeeintraechtigungen: String,
         mobil: String,
-        mobileingeschraenkt: String
+        mobilEingeschränktDurch: String
       },
-      assessment3:{ 
-        koerpergroesse: Number,
-        koerpergewicht: Number,
+      assessment2: {
+
+      },
+      assessment3: {
+        WerPlantDieMahlzeiten: String,
+        WerBereitetDieMahlzeitenZu: String,
+        WerTätigtDenLebensmitteleinkauf: String,
+        selbstversorgen: String,
+        SelbstversorgungIstEingeschränkt: String,
+        SelbstversorgungIstNichtMöglich: String,
+        EinfachheitMahlzeitZuzubereiten: String,
+        WichtigkeitDerEmpfehlung: String,
+        WichtigkeitDerFrische: String
+      },
+      assessment4: { 
+        Körpergröße: Number,
+        Körpergewicht: Number,
         bmi: Number,
       }  
     },

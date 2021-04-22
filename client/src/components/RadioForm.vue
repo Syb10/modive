@@ -9,7 +9,7 @@
             type="radio"
             :id="item.id"
             :name="item.name"           
-            :value="item.value"
+            :value="item.title"
             v-model="value"
           />
         </div>

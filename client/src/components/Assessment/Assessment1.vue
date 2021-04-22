@@ -14,9 +14,9 @@
       />
       <RadioForm
         :items="[
-          {title:'weiblich', value:'weiblich', id:'weiblich', name:'geschlecht'},
-          {title:'männlich', value:'maennlich', id:'maennlich', name:'geschlecht'},
-          {title:'divers', value:'divers', id:'divers', name:'geschlecht'}
+          {title:'weiblich', id:'weiblich', name:'geschlecht'},
+          {title:'männlich', id:'maennlich', name:'geschlecht'},
+          {title:'divers', id:'divers', name:'geschlecht'}
         ]"
         :title="'Geschlecht'"
         v-model="geschlecht"
@@ -31,23 +31,23 @@
       />
       <RadioForm
         :items="[
-          {title:'kein schulischer Abschluss', value:'keinAbschluss', id:'keinAbschluss', name:'schulischeBildung'},
-          {title:'Hauptschulabschluss/vergleichbarer Abschluss', value:'hauptschule', id:'hauptschule', name:'schulischeBildung'},
-          {title:'Realschulabschluss/vergleichbarer Abschluss', value:'realschule', id:'realschule', name:'schulischeBildung'},
-          {title:'Fachhochschulreife/Abitur', value:'abitur', id:'abitur', name:'schulischeBildung'},
-          {title:'keine Angaben', value:'keineAngaben', id:'keineAngaben', name:'schulischeBildung'}
+          {title:'kein schulischer Abschluss', id:'keinAbschluss', name:'schulischeBildung'},
+          {title:'Hauptschulabschluss/vergleichbarer Abschluss', id:'hauptschule', name:'schulischeBildung'},
+          {title:'Realschulabschluss/vergleichbarer Abschluss', id:'realschule', name:'schulischeBildung'},
+          {title:'Fachhochschulreife/Abitur', id:'abitur', name:'schulischeBildung'},
+          {title:'keine Angaben', id:'keineAngaben', name:'schulischeBildung'}
         ]"
         :title="'Höchster schulischer Abschluss'"
         v-model="schulischeBildung"
       />
       <RadioForm
         :items="[
-          {title:'kein beruflicher Abschluss', value:'keinAbschluss', id:'keinAbschluss', name:'beruflicheBildung'},
-          {title:'Ausbildung/Lehre/Fachschule', value:'ausbildung', id:'ausbildung', name:'beruflicheBildung'},
-          {title:'Bachelor/Diplom', value:'bachelor', id:'bachelor', name:'beruflicheBildung'},
-          {title:'Master', value:'master', id:'master', name:'beruflicheBildung'},
-          {title:'Promotion', value:'promotion', id:'promotion', name:'beruflicheBildung'},
-          {title:'keine Angaben', value:'keineAngaben', id:'keineAngaben', name:'beruflicheBildung'}
+          {title:'kein beruflicher Abschluss', id:'keinAbschluss', name:'beruflicheBildung'},
+          {title:'Ausbildung/Lehre/Fachschule', id:'ausbildung', name:'beruflicheBildung'},
+          {title:'Bachelor/Diplom', id:'bachelor', name:'beruflicheBildung'},
+          {title:'Master', id:'master', name:'beruflicheBildung'},
+          {title:'Promotion', id:'promotion', name:'beruflicheBildung'},
+          {title:'keine Angaben', id:'keineAngaben', name:'beruflicheBildung'}
         ]"
         :title="'Höchster beruflicher Abschluss'"
         v-model="beruflicheBildung"
@@ -56,55 +56,57 @@
         v-model="beruf"
         :content="{ title: 'Ausgeübter Beruf', id: 'beruf', type:'text' }"
       />
-      <RadioForm
-        :items="[
-          {title:'Vollzeit', value:'vollzeit', id:'vollzeit', name:'artarbeit'},
-          {title:'Teilzeit', value:'teilzeit', id:'teilzeit', name:'artarbeit'},
-          {title:'Schichtarbeit', value:'schichtarbeit', id:'schichtarbeit', name:'artarbeit'}
+      <CheckboxForm
+        :checkboxs="[
+          {title:'Vollzeit', id:'vollzeit'},
+          {title:'Teilzeit', id:'teilzeit'},
+          {title:'Schichtarbeit', id:'schichtarbeit'}
         ]"
-        v-model="artarbeit"
+        v-model="artDerArbeit"
         :style="marginSmall"
       />
-      <RadioForm
-        :items="[
-          {title:'ledig', value:'ledig', id:'ledig', name:'familienstand'},
-          {title:'in Partnerschaft', value:'partnerschaft', id:'partnerschaft', name:'familienstand'},
-          {title:'verheiratet/eingetragene Partnerschaft', value:'verheiratet', id:'verheiratet', name:'familienstand'},
-          {title:'verwitwet/eingetragene*r Lebenspartner*in verstorben', value:'verwitwet', id:'verwitwet', name:'familienstand'},
-          {title:'geschieden/eingetragene Lebenspartnerschaft aufgehoben', value:'geschieden', id:'geschieden', name:'familienstand'},
-          {title:'keine Angaben', value:'keineAngaben', id:'keineAngaben', name:'familienstand'}
+      <CheckboxForm
+        :checkboxs="[
+          {title:'ledig', id:'ledig'},
+          {title:'in Partnerschaft', id:'partnerschaft'},
+          {title:'verheiratet/eingetragene Partnerschaft', id:'verheiratet'},
+          {title:'verwitwet/eingetragene*r Lebenspartner*in verstorben', id:'verwitwet'},
+          {title:'geschieden/eingetragene Lebenspartnerschaft aufgehoben', id:'geschieden'},
+          {title:'keine Angaben', id:'keineAngaben'}
         ]"
         :title="'Familienstand'"
         v-model="familienstand"
       />
-      <WohnsituationForm
+      <CheckboxForm
         :checkboxs="[
-          {title:'alleine lebend', value:'alleine', id:'alleine', name:'wohnsituation'},
-          {title:'mit der Familie lebend', value:'familie', id:'familie', name:'wohnsituation'},
-          {title:'mit pflegender Person lebend', value:'pflegenderPerson', id:'pflegenderPerson', name:'wohnsituation'},
-          {title:'in einer Wohngemeinschaft lebend', value:'wohngemeinschaft', id:'wohngemeinschaft', name:'wohnsituation'},
-          {title:'in einer Pflegeeinrichtung lebend', value:'pflegeeinrichtung', id:'pflegeeinrichtung', name:'wohnsituation'},
-          {title:'in der Stadt lebend', value:'stadt', id:'stadt', name:'wohnsituation'},
-          {title:'auf dem Land lebend', value:'land', id:'land', name:'wohnsituation'},
-          {title:'im Gefängnis', value:'gefaengnis', id:'gefaengnis', name:'wohnsituation'},
-          {title:'obdachlos', value:'obdachlos', id:'obdachlos', name:'wohnsituation'},
-          {title:'keine Angaben', value:'keineAngaben', id:'keineAngaben', name:'wohnsituation'}
+          {title:'alleine lebend', id:'alleine'},
+          {title:'mit der Familie lebend', id:'familie'},
+          {title:'mit pflegender Person lebend', id:'pflegenderPerson'},
+          {title:'in einer Wohngemeinschaft lebend', id:'wohngemeinschaft'},
+          {title:'in einer Pflegeeinrichtung lebend', id:'pflegeeinrichtung'},
+          {title:'in der Stadt lebend', id:'stadt'},
+          {title:'auf dem Land lebend', id:'land'},
+          {title:'im Gefängnis', id:'gefaengnis'},
+          {title:'obdachlos', id:'obdachlos'},
+          {title:'keine Angaben', id:'keineAngaben'}
         ]"
+        :title="'Wohnsituation'"
+        v-model="wohnsituation"
       />
       <div class="form-inline mb-4">Der/die Klient*in lebt mit <input class="form-control mr-1 ml-1" v-model="personenImHaushalt" type="number"/> Personen in einem Haushalt.</div>
       <div>Tabakkonsum</div>
       <RadioForm
         :items="[
-          {title:'ja', value:'ja', id:'jaaktuell', name:'aktuellGeraucht'},
-          {title:'nein', value:'nein', id:'neinaktuell', name:'aktuellGeraucht'},
+          {title:'ja', id:'jaaktuell', name:'aktuellGeraucht'},
+          {title:'nein', id:'neinaktuell', name:'aktuellGeraucht'},
         ]"
         :title="'Wird zum aktuellen Zeitpunkt geraucht?'"
         v-model="aktuellGeraucht"
       />
       <RadioForm
         :items="[
-          {title:'ja', value:'ja', id:'jajemals', name:'jemalsGeraucht'},
-          {title:'nein', value:'nein', id:'neinjemals', name:'jemalsGeraucht'},
+          {title:'ja', id:'jajemals', name:'jemalsGeraucht'},
+          {title:'nein', id:'neinjemals', name:'jemalsGeraucht'},
         ]"
         :title="'Wurde jemals geraucht?'"
         v-model="jemalsGeraucht"
@@ -129,51 +131,38 @@
       </div>
       <RadioForm
         :items="[
-          {title:'ja', value:'ja', id:'ja', name:'beeintraechtigungen'},
-          {title:'nein', value:'nein', id:'nein', name:'beeintraechtigungen'},
+          {title:'ja', id:'jaBeeintraechtigungen', name:'beeintraechtigungen'},
+          {title:'nein', id:'neinBeeintraechtigungen', name:'beeintraechtigungen'},
         ]"
         :title="'Körperliche Beeinträchtigungen'"
         v-model="beeintraechtigungen"
       />
       <div v-if="beeintraechtigungen == 'ja'">
-        <RadioForm
-        :items="[
-          {title:'Sehbehinderung', value:'sehbehinderung', id:'sehbehinderung', name:'beeintraechtigungenVorhanden'},
-          {title:'Hörbehinderung', value:'hörbehinderung', id:'hörbehinderung', name:'beeintraechtigungenVorhanden'},
+        <CheckboxForm
+        :checkboxs="[
+          {title:'Sehbehinderung', id:'sehbehinderung'},
+          {title:'Hörbehinderung', id:'hörbehinderung'},
         ]"
         :title="'Welche Körperliche Beeinträchtigungen sind vorhanden'"
         v-model="beeintraechtigungenVorhanden"
         :style="marginSmall"
       />
       </div>
-      <!--
-      <CheckboxForm
-        :checkboxs="[
-          {title:'Sehbehinderung', value:'sehbehinderung', id:'sehbehinderung', name:'test'},
-          {title:'Hörbehinderung', value:'hörbehinderung', id:'hörbehinderung', name:'test'},
-        ]"
-        :title="'Welche Körperliche Beeinträchtigungen sind vorhanden'"
-        v-model="test"
-      />
-      
-      <div>beeintraechtigungenVorhanden: {{beeintraechtigungenVorhanden}}</div>
-      <div>Test: {{myData}}</div>
-      -->
       <RadioForm
         :items="[
-          {title:'ja', value:'ja', id:'jamobil', name:'beeintraechtigungen'},
-          {title:'nein', value:'nein', id:'neinmobil', name:'beeintraechtigungen'},
+          {title:'ja', id:'jamobil', name:'beeintraechtigungen'},
+          {title:'nein', id:'neinmobil', name:'beeintraechtigungen'},
         ]"
         :title="'mobil'"
         v-model="mobil"
       />
       <div v-if="mobil == 'nein'">
-        <RadioForm
-        :items="[
-          {title:'ans Haus gebunden', value:'haus', id:'haus', name:'mobileingeschraenkt'},
-          {title:'bettlägerig', value:'bettlaegerig', id:'bettlaegerig', name:'mobileingeschraenkt'},
-          {title:'an den Rollstuhl gebunden', value:'rollstuhl', id:'rollstuhl', name:'mobileingeschraenkt'},
-          {title:'andere', value:'andere', id:'andere', name:'mobileingeschraenkt'},
+        <CheckboxForm
+        :checkboxs="[
+          {title:'ans Haus gebunden', id:'haus', name:'mobileingeschraenkt'},
+          {title:'bettlägerig', id:'bettlaegerig', name:'mobileingeschraenkt'},
+          {title:'an den Rollstuhl gebunden', id:'rollstuhl', name:'mobileingeschraenkt'},
+          {title:'andere', id:'andere', name:'mobileingeschraenkt'},
         ]"
         :title="'Warum?'"
         v-model="mobileingeschraenkt"
@@ -185,19 +174,16 @@
 
 <script>
 import InputForm from "../InputForm.vue";
-//import CheckboxForm from "../CheckboxForm.vue";
+import CheckboxForm from "../CheckboxForm.vue";
 import RadioForm from "../RadioForm.vue";
-import WohnsituationForm from "../mehrfachnennung/WohnsituationForm.vue";
 import {mapFields} from "vuex-map-fields";
-import {mapGetters} from "vuex";
 
 export default {
   name: 'assessment1',
   components: {
     InputForm,
-    //CheckboxForm,
+    CheckboxForm,
     RadioForm,
-    WohnsituationForm
   },
   data() {
     return {
@@ -220,8 +206,9 @@ export default {
       "schulischeBildung",
       "beruflicheBildung",
       "beruf",
-      "artarbeit",
-      "familienstand",
+      "artDerArbeit",
+      "familienstand", 
+      "wohnsituation",
       "personenImHaushalt",
       "aktuellGeraucht",
       "jemalsGeraucht",
@@ -230,14 +217,9 @@ export default {
       "anzahlJahreRauchen",
       "beeintraechtigungen",
       "beeintraechtigungenVorhanden",
-      "test",
       "mobil",
       "mobileingeschraenkt"
     ]),
-    ...mapGetters([
-      "myData",
-      "wohnsituation",
-    ])
   }
 };
 </script>

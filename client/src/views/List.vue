@@ -12,9 +12,9 @@
         </thead>
         <tbody>
           <tr v-for="patient in patienten" :key="patient._id">
-            <td>{{ patient.nachname }}</td>
-            <td>{{ patient.vorname }}</td>
-            <td>{{ changeDate(patient.geburtsdatum) }}</td>
+            <td>{{ patient.Nachname }}</td>
+            <td>{{ patient.Vorname }}</td>
+            <td>{{ changeDate(patient.Geburtsdatum) }}</td>
             <td>
               <router-link :to="{name:'Show', params: {id: patient._id}}" class="btn btn-gold">
                 <i class="fa fa-bars mr-1" aria-hidden="true"></i> anzeigen
