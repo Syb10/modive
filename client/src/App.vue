@@ -64,4 +64,8 @@
   background-color: white;
   z-index:1;
 }
+.assessmentAspekt{
+  color: #9a884f;
+  font-weight: bold;
+}
 </style>
