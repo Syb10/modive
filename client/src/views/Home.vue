@@ -35,6 +35,7 @@
 import axios from "axios";
 import assessment from "../components/Assessment/Assessment.vue";
 import {mapFields} from "vuex-map-fields";
+import {mapGetters, mapActions} from "vuex";
 
 export default {
   name: 'Home',
@@ -66,7 +67,6 @@ export default {
       "beruf",
       "artarbeit",
       "familienstand",
-      "wohnsituation",
       "personenImHaushalt",
       "aktuellGeraucht",
       "jemalsGeraucht",
@@ -80,6 +80,12 @@ export default {
       "koerpergroesse",
       "koerpergewicht",
       "bmi"
+    ]),
+    ...mapGetters([
+      "wohnsituation",
+    ]),
+    ...mapActions([
+      "changeWohnsituation"
     ])
   },
   methods: {
@@ -99,7 +105,7 @@ export default {
             "beruf": this.beruf,
             "artarbeit": this.artarbeit,
             "familienstand": this.familienstand,
-            "wohnsituation": this.wohnsituation,
+            "wohnsituation": this.wohnsituation.join(', '),
             "personenImHaushalt": this.personenImHaushalt,
             "aktuellGeraucht": this.aktuellGeraucht,
             "jemalsGeraucht" : this.jemalsGeraucht,
@@ -131,7 +137,7 @@ export default {
           this.beruf = "";
           this.artarbeit = "";
           this.familienstand = "";
-          this.wohnsituation = "";
+          this.$store.dispatch("changeWohnsituation",  []);
           this.personenImHaushalt = null;
           this.aktuellGeraucht = "";
           this.jemalsGeraucht = "";

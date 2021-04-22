@@ -77,8 +77,8 @@
         :title="'Familienstand'"
         v-model="familienstand"
       />
-      <RadioForm
-        :items="[
+      <WohnsituationForm
+        :checkboxs="[
           {title:'alleine lebend', value:'alleine', id:'alleine', name:'wohnsituation'},
           {title:'mit der Familie lebend', value:'familie', id:'familie', name:'wohnsituation'},
           {title:'mit pflegender Person lebend', value:'pflegenderPerson', id:'pflegenderPerson', name:'wohnsituation'},
@@ -90,8 +90,6 @@
           {title:'obdachlos', value:'obdachlos', id:'obdachlos', name:'wohnsituation'},
           {title:'keine Angaben', value:'keineAngaben', id:'keineAngaben', name:'wohnsituation'}
         ]"
-        :title="'Wohnsituation'"
-        v-model="wohnsituation"
       />
       <div class="form-inline mb-4">Der/die Klient*in lebt mit <input class="form-control mr-1 ml-1" v-model="personenImHaushalt" type="number"/> Personen in einem Haushalt.</div>
       <div>Tabakkonsum</div>
@@ -148,7 +146,7 @@
         :style="marginSmall"
       />
       </div>
-      
+      <!--
       <CheckboxForm
         :checkboxs="[
           {title:'Sehbehinderung', value:'sehbehinderung', id:'sehbehinderung', name:'test'},
@@ -157,9 +155,10 @@
         :title="'Welche Körperliche Beeinträchtigungen sind vorhanden'"
         v-model="test"
       />
+      
       <div>beeintraechtigungenVorhanden: {{beeintraechtigungenVorhanden}}</div>
       <div>Test: {{myData}}</div>
-      
+      -->
       <RadioForm
         :items="[
           {title:'ja', value:'ja', id:'jamobil', name:'beeintraechtigungen'},
@@ -186,8 +185,9 @@
 
 <script>
 import InputForm from "../InputForm.vue";
-import CheckboxForm from "../CheckboxForm.vue";
+//import CheckboxForm from "../CheckboxForm.vue";
 import RadioForm from "../RadioForm.vue";
+import WohnsituationForm from "../mehrfachnennung/WohnsituationForm.vue";
 import {mapFields} from "vuex-map-fields";
 import {mapGetters} from "vuex";
 
@@ -195,8 +195,9 @@ export default {
   name: 'assessment1',
   components: {
     InputForm,
-    CheckboxForm,
+    //CheckboxForm,
     RadioForm,
+    WohnsituationForm
   },
   data() {
     return {
@@ -221,7 +222,6 @@ export default {
       "beruf",
       "artarbeit",
       "familienstand",
-      "wohnsituation",
       "personenImHaushalt",
       "aktuellGeraucht",
       "jemalsGeraucht",
@@ -235,7 +235,8 @@ export default {
       "mobileingeschraenkt"
     ]),
     ...mapGetters([
-      "myData"
+      "myData",
+      "wohnsituation",
     ])
   }
 };

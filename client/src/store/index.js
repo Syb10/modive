@@ -15,7 +15,7 @@ export default createStore({
         beruf:"",
         artarbeit:"",
         familienstand: "",
-        wohnsituation: "",
+        wohnsituation: [],
         personenImHaushalt: null,
         aktuellGeraucht: "",
         jemalsGeraucht: "",
@@ -29,24 +29,39 @@ export default createStore({
         getraenke:"",
         gemuese:"",
         test:[],
-        myData: []
+        myData: [],
+        koerpergroesse: null,
+        koerpergewicht: null,
+        bmi:null
     }
   },
   getters: {
     getField,
     myData(state) {
       return state.form.myData;
+    },
+    wohnsituation(state) {
+      return state.form.wohnsituation
+    },
+    bmi(state) {
+      return (state.form.koerpergewicht/ (state.form.koerpergroesse * state.form.koerpergroesse)).toFixed(2)
     }
   },
   mutations: {
     updateField,
     changeMyData(state, value) {
       state.form.myData = value
+    },
+    changeWohnsituation(state, value) {
+      state.form.wohnsituation = value
     }
   },
   actions: {
     changeMyData({commit}, value) {
       commit("changeMyData", value);
+    },
+    changeWohnsituation({commit}, value) {
+      commit("changeWohnsituation", value);
     }
   },
   modules: {
