@@ -35,7 +35,6 @@
 import axios from "axios";
 import assessment from "../components/Assessment/Assessment.vue";
 import {mapFields} from "vuex-map-fields";
-import {mapGetters, mapActions} from "vuex";
 
 export default {
   name: 'Home',
@@ -59,6 +58,11 @@ export default {
       "vorname",
       "nachname",
       "geburtsdatum",
+      "adresse",
+      "telefonnummer",
+      "email",
+      "krankenkasse",
+      "hausarzt",
       "geschlecht",
       "herkunft",
       "muttersprache",
@@ -68,6 +72,7 @@ export default {
       "artDerArbeit",
       "familienstand",
       "wohnsituation",
+      "wohnsituationAndere",
       "personenImHaushalt",
       "aktuellGeraucht",
       "jemalsGeraucht",
@@ -76,8 +81,26 @@ export default {
       "anzahlJahreRauchen",
       "beeintraechtigungen",
       "beeintraechtigungenVorhanden",
+      "beeintraechtigungenVorhandenAndere",
       "mobil",
       "mobileingeschraenkt",
+      "mobileingeschraenktAndere",
+      "kontakAktivitaet",
+      "hobbies",
+      "unterstuetzungMedizinischerVersorgung",
+      "jaUnterstuetzungMedizinischerVersorgung",
+      "jaUnterstuetzungMedizinischerVersorgungAndere",
+      "medizinischeDiagnose",
+      "weitereDiagnosen",
+      "weitereDiagnosenAndere",
+      "vergangeneDiagnosen",
+      "psychischeGesundheit",
+      "psychischeGesundheitAndere",
+      "gesundheitszustandDerFamilie",
+      "gesundheitszustandDerFamilieAndere",
+      "schwangerschaft",
+      "stillzeit",
+      "recall",
       "plantMahlzeiten",
       "bereitetMahlzeiten",
       "lebensmitteleinkauf",
@@ -90,14 +113,75 @@ export default {
       "koerpergewicht",
       "bmi"
     ]),
-    ...mapGetters([
-      
-    ]),
-    ...mapActions([
-      "changeWohnsituation"
-    ])
+    ausgeuebterBeruf: {
+      get() {
+        return this.zweiZusammen(this.beruf, this.artDerArbeit);
+      }
+    },
+    alleWohnsituation: {
+      get() {
+        return this.zweiZusammen(this.wohnsituation, this.wohnsituationAndere);
+      }
+    },
+    alleBeeintraechtigungen: {
+      get() {
+        return this.dreiZusammen(this.beeintraechtigungen, this.beeintraechtigungenVorhanden, this.beeintraechtigungenVorhandenAndere);
+      }  
+    },
+    alleMobileingeschraenkt: {
+      get() {
+        return this.dreiZusammen(this.mobil, this.mobileingeschraenkt, this.mobileingeschraenktAndere);
+      } 
+    },
+    alleUnterstuetzungMedizinischerVersorgung: {
+      get() {
+        return this.dreiZusammen(this.unterstuetzungMedizinischerVersorgung, this.jaUnterstuetzungMedizinischerVersorgung, this.jaUnterstuetzungMedizinischerVersorgungAndere);
+      }
+    },
+    alleWeitereDiagnosen: {
+      get() {
+        return this.zweiZusammen(this.weitereDiagnosen, this.weitereDiagnosenAndere);
+      }
+    },
+    allePsychischeGesundheit: {
+      get() {
+        return this.zweiZusammen(this.psychischeGesundheit, this.psychischeGesundheitAndere);
+      }
+    },
+    alleGesundheitszustandDerFamilie: {
+      get() {
+        return this.zweiZusammen(this.gesundheitszustandDerFamilie, this.gesundheitszustandDerFamilieAndere);
+      }
+    }
   },
   methods: {
+    zweiZusammen(value1, value2) {
+      if(value1 && value2){
+        return value1 +  ', ' + value2
+      }else if(value1 && !value2){
+        return value1
+      }else if(!value1 && value2){
+        return value2
+      }
+    },
+    dreiZusammen(value1, value2, value3) {
+      //alle
+      if(value1 && value2 && value3){
+        return value1 +  ', ' + value2 + ', ' + value3
+      }
+      // nur ja/nein
+      else if(value1 && !value2 && !value3){
+        return value1
+      }
+      // ja/nein + checkbox
+      else if(value1 && value2 && !value3){
+        return value1 + ', ' + value2
+      }
+      // ja/nein + andere
+      else if(value1 && !value2 && value3){
+        return value1 + ', ' + value3
+      }
+    },
     addPatient() {
       const apiURL = "http://localhost:9000/api";
       axios
@@ -106,25 +190,40 @@ export default {
           "Nachname": this.nachname,
           "Geburtsdatum": this.geburtsdatum,
           assessment1:{
+            "Adresse":this.adresse,
+            "Telefonnummer": this.telefonnummer,
+            "Email": this.email,
+            "Krankenkasse": this.krankenkasse,
+            "Hausarzt": this.hausarzt,
             "Geschlecht" : this.geschlecht,
             "Herkunft": this.herkunft,
             "Muttersprache": this.muttersprache,
             "SchulischeBildung": this.schulischeBildung,
             "BeruflicheBildung": this.beruflicheBildung,
-            "Beruf": this.beruf,
-            "ArtDerArbeit": this.artDerArbeit,
+            "Beruf": this.ausgeuebterBeruf,
             "Familienstand": this.familienstand,
-            "Wohnsituation": this.wohnsituation,
+            "Wohnsituation": this.alleWohnsituation,
             "PersonenImHaushalt": this.personenImHaushalt,
             "aktuellGeraucht": this.aktuellGeraucht,
             "jemalsGeraucht" : this.jemalsGeraucht,
             "AnzahlZigaretten": this.anzahlZigaretten,
             "AnzahlTabakprodukte": this.anzahlTabakprodukte,
             "AnzahlJahreRauchen": this.anzahlJahreRauchen,
-            "Beeinträchtigungen": this.beeintraechtigungen,
-            "VorhandendeBeeintraechtigungen": this.beeintraechtigungenVorhanden,
-            "mobil": this.mobil,
-            "mobilEingeschränktDurch": this.mobileingeschraenkt
+            "Beeinträchtigungen": this.alleBeeintraechtigungen,
+            "mobil": this.alleMobileingeschraenkt,
+            "KontakAktivitaetInSozialenStrukturen": this.kontakAktivitaet,
+            "HobbiesFreizeitbeschäftigungen" : this.hobbies,
+            "UnterstützungMedizinischerPflegerischerVersorgung": this.alleUnterstuetzungMedizinischerVersorgung,
+            "MedizinischeDiagnose": this.medizinischeDiagnose,
+            "weitereDiagnosen": this.alleWeitereDiagnosen,
+            "vergangeneDiagnosen": this.vergangeneDiagnosen,
+            "PsychischeGesundheit": this.allePsychischeGesundheit,
+            "GesundheitszustandDerFamilie": this.alleGesundheitszustandDerFamilie,
+            "Schwangerschaft": this.schwangerschaft,
+            "Stillzeit": this.stillzeit
+          },
+          assessment2: {
+            "Recall": this.recall
           },
           assessment3: {
             "WerPlantDieMahlzeiten": this.plantMahlzeiten,
@@ -149,6 +248,11 @@ export default {
           this.vorname = "";
           this.nachname = "";
           this.geburtsdatum = "";
+          this.adresse = "";
+          this.telefonnummer = "";
+          this.email = "";
+          this.krankenkasse = "";
+          this.hausarzt = "";
           this.geschlecht = "";
           this.herkunft = "";
           this.muttersprache = "";
@@ -158,6 +262,7 @@ export default {
           this.artarbeit = "";
           this.familienstand = "";
           this.wohnsituation = "";
+          this.wohnsituationAndere = "";
           this.personenImHaushalt = null;
           this.aktuellGeraucht = "";
           this.jemalsGeraucht = "";
@@ -166,8 +271,26 @@ export default {
           this.anzahlJahreRauchen = null;
           this.beeintraechtigungen = "";
           this.beeintraechtigungenVorhanden = "";
+          this.beeintraechtigungenVorhandenAndere = "";
           this.mobil = "";
           this.mobileingeschraenkt = "";
+          this.mobileingeschraenktAndere = "";
+          this.kontakAktivitaet = "";
+          this.hobbies = "";
+          this.unterstützungMedizinischerVersorgung = "";
+          this.jaUnterstuetzungMedizinischerVersorgung = "";
+          this.jaUnterstuetzungMedizinischerVersorgungAndere = "";
+          this.medizinischeDiagnose = "";
+          this.weitereDiagnosen = "";
+          this.weitereDiagnosenAndere = "";
+          this.vergangeneDiagnosen = "";
+          this.psychischeGesundheit = "";
+          this.psychischeGesundheitAndere = "";
+          this.gesundheitszustandDerFamilie = "";
+          this.gesundheitszustandDerFamilieAndere = "";
+          this.schwangerschaft = "";
+          this.stillzeit = "";
+          this.recall = "";
           this.plantMahlzeiten = "";
           this.bereitetMahlzeiten = "";
           this.lebensmitteleinkauf = "";
