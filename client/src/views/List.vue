@@ -66,7 +66,7 @@ export default {
       }
     },
     changeDate(value){
-      return moment(value).format('L');
+      return moment(value).locale('de').format('L');
     }
   }
 }
