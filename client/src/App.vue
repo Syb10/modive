@@ -2,7 +2,7 @@
   <div>
     <div id="nav">
       <router-link to="/">Formular</router-link> |
-      <router-link to="/list">Patienten-Liste</router-link>
+      <router-link to="/list">Klienten-Liste</router-link>
     </div>
     <div class="container mt-5">
       <router-view/>
@@ -37,6 +37,12 @@
 .input-group-text.inputForm{
   border-radius: 0.25rem 0 0 0.25rem !important;
 }
+.form-control.textareaForm{
+  border-radius: 0 0 0.25rem 0.25rem  !important;
+}
+.input-group-text.textareaForm{
+  border-radius: 0.25rem 0.25rem 0 0  !important;
+}
 .checkbox {
   border-radius: 0 0.25rem 0.25rem 0 !important;
 }
@@ -67,5 +73,29 @@
 .assessmentAspekt{
   color: #9a884f;
   font-weight: bold;
+}
+.tipp {
+  position: relative;
+  display: inline-block;
+  float: right;
+}
+.tipp .tipptext {
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tipp:hover .tipptext {
+  visibility: visible;
+  opacity: 1;
 }
 </style>
