@@ -15,6 +15,11 @@ const patientSchema = new Schema(
         required: [true, 'Geburtsdatum ist ein Pflichtfeld'],
       },
       assessment1: {
+        Adresse: String,
+        Telefonnummer: String,
+        Email: String,
+        Krankenkasse: String,
+        Hausarzt: String,
         Geschlecht: String,
         Herkunft: String,
         Muttersprache: String,
@@ -31,12 +36,20 @@ const patientSchema = new Schema(
         AnzahlTabakprodukte: Number,
         AnzahlJahreRauchen: Number,
         Beeinträchtigungen: String,
-        VorhandendeBeeintraechtigungen: String,
         mobil: String,
-        mobilEingeschränktDurch: String
+        KontakAktivitaetInSozialenStrukturen: String,
+        HobbiesFreizeitbeschäftigungen: String,
+        UnterstützungMedizinischerPflegerischerVersorgung: String,
+        MedizinischeDiagnose: String,
+        weitereDiagnosen: String,
+        vergangeneDiagnosen: String,
+        PsychischeGesundheit: String,
+        GesundheitszustandDerFamilie: String,
+        Schwangerschaft: String,
+        Stillzeit: String
       },
       assessment2: {
-
+        Recall: String
       },
       assessment3: {
         WerPlantDieMahlzeiten: String,
