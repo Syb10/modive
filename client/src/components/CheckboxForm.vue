@@ -1,6 +1,11 @@
 <template>
   <div class="form-group">
-    <label>{{title}}</label>
+    <label>
+      {{title}}
+      <div v-if="isTipp" class="tipp ml-3"> <i class="fa fa-info-circle"></i>
+        <span class="tipptext">{{myTipp}}</span>
+      </div>
+    </label>   
     <div class="input-group mb-4">
       <div class="input-group-prepend mr-5 mb-3" v-for="(checkbox, index) in checkboxs" :key="index">
         <label class="input-group-text inputForm" :for="checkbox.id">{{checkbox.title}}</label>
@@ -28,6 +33,8 @@ export default {
   props: {
     checkboxs: [],
     title:String,
+    isTipp: Boolean,
+    myTipp: String,
     modelValue: []
   },
   emits: ["update:modelValue"],

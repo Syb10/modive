@@ -1,6 +1,11 @@
 <template>
   <div class="form-group">
-    <label>{{title}}</label>
+    <label>
+      {{title}}
+      <div v-if="isTipp" class="tipp ml-3"> <i class="fa fa-info-circle"></i>
+        <span class="tipptext">{{myTipp}}</span>
+      </div>
+    </label>
     <div class="input-group mb-4">
       <div class="input-group-prepend mr-5 mb-3" v-for="(item, index) in items" :key="index">
         <label class="input-group-text inputForm" :for="item.id">{{item.title}}</label>
@@ -24,6 +29,8 @@ export default {
   props: {
     items: [],
     title:String,
+    isTipp: Boolean,
+    myTipp: String,
     modelValue: []
   },
   emits: ["update:modelValue"],
