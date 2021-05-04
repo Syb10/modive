@@ -101,12 +101,33 @@ export default {
       "schwangerschaft",
       "stillzeit",
       "recall",
+      "weitereAnmerkungenRecall",
+      "vorlieben",
+      "abneigungen",
+      "isRecall",
+      "anzahlMahlzeitenRecall",
+      "mahlzeitenNormalerweise",
+      "mahlzeitenWeggelassen",
+      "mahlzeitenZusaetzlich",
+      "mahlzeitenZusaetzlichAndere",
+      "eigenstaendigeDiaet",
+      "eigenstaendigeDiaetJa",
+      "mahlzeitenAusserHaus",
+      "mahlzeitenAusserHausJa",
+      "diaetischeKostform",
+      "diaetischeKostformJa",
+      "diaetischeKostformJaAndere",
+      "enteraleErnaehrung",
+      "enteraleErnaehrungJa",
+      "medikamente",
+      "medikamenteJa",
       "plantMahlzeiten",
       "bereitetMahlzeiten",
       "lebensmitteleinkauf",
       "selbstversorgen",
       "selbstversorgenEingeschraenkt",
       "selbstversorgenNein",
+      "einfachheitMahlzeitZuzubereiten",
       "wichtigkeitDerEmpfehlung",
       "wichtigkeitDerFrische",
       "koerpergroesse",
@@ -151,6 +172,41 @@ export default {
     alleGesundheitszustandDerFamilie: {
       get() {
         return this.zweiZusammen(this.gesundheitszustandDerFamilie, this.gesundheitszustandDerFamilieAndere);
+      }
+    },
+    alleMahlzeitenZusaetzlich: {
+      get() {
+        return this.zweiZusammen(this.mahlzeitenZusaetzlich, this.mahlzeitenZusaetzlichAndere);
+      }
+    },
+    alleEigenstaendigeDiaet: {
+      get() {
+        return this.zweiZusammen(this.eigenstaendigeDiaet, this.eigenstaendigeDiaetJa);
+      }
+    },
+    alleMahlzeitenAusserHaus: {
+      get() {
+        return this.zweiZusammen(this.mahlzeitenAusserHaus, this.mahlzeitenAusserHausJa);
+      }
+    },
+    alleDiaetischeKostform: {
+      get() {
+        return this.dreiZusammen(this.diaetischeKostform, this.diaetischeKostformJa, this.diaetischeKostformJaAndere);
+      }
+    },
+    alleEnteraleErnaehrung: {
+      get() {
+        return this.zweiZusammen(this.enteraleErnaehrung, this.enteraleErnaehrungJa);
+      }
+    },
+    alleMedikamente: {
+      get() {
+        return this.zweiZusammen(this.medikamente, this.medikamenteJa);
+      }
+    },
+    alleSelbstversorgen: {
+      get() {
+        return this.dreiZusammen(this.selbstversorgen, this.selbstversorgenEingeschraenkt, this.selbstversorgenNein)
       }
     }
   },
@@ -223,15 +279,25 @@ export default {
             "Stillzeit": this.stillzeit
           },
           assessment2: {
-            "Recall": this.recall
+            "Recall": this.recall,
+            "weitereAnmerkungenZumRecall": this.weitereAnmerkungenRecall,
+            "VorliebenFürLebensmittelSpeisenUndGetränke": this.vorlieben,
+            "AbneigungenFürLebensmittelSpeisenUndGetränke": this.abneigungen,
+            "IstDieImRecallAngegebeneAnzahlAnMahlzeitenGewöhnlich": this.anzahlMahlzeitenRecall,
+            "WieVieleMahlzeitenWerdenNormalerweiseVerzehrt": this.mahlzeitenNormalerweise,
+            "DieseMahlzeitenWerdenWeggelassen": this.mahlzeitenWeggelassen,
+            "DieseMahlzeitenWerdenZusätzlichGegessen": this.alleMahlzeitenZusaetzlich,
+            "EigenständigeDiätOderErnährungsweiseDurchgeführt": this.alleEigenstaendigeDiaet,
+            "WerdenMahlzeitenAußerHausVerzehrt": this.alleMahlzeitenAusserHaus,
+            "WirdWurdeEineDiätischeKostformAngewendet": this.alleDiaetischeKostform,
+            "WirdEineEnteraleParenteraleErnährungOderZusatznahrungEingesetzt": this.alleEnteraleErnaehrung,
+            "Medikamente": this.alleMedikamente,
           },
           assessment3: {
             "WerPlantDieMahlzeiten": this.plantMahlzeiten,
             "WerBereitetDieMahlzeitenZu": this.bereitetMahlzeiten,
             "WerTätigtDenLebensmitteleinkauf": this.lebensmitteleinkauf,
-            "selbstversorgen": this.selbstversorgen,
-            "SelbstversorgungIstEingeschränkt": this.selbstversorgenEingeschraenkt,
-            "SelbstversorgungIstNichtMöglich": this.selbstversorgenNein,
+            "Selbstversorgung": this.alleSelbstversorgen,
             "EinfachheitMahlzeitZuzubereiten" : this.einfachheitMahlzeitZuzubereiten,
             "WichtigkeitDerEmpfehlung": this.wichtigkeitDerEmpfehlung,
             "WichtigkeitDerFrische" : this.wichtigkeitDerFrische,
@@ -259,7 +325,7 @@ export default {
           this.schulischeBildung = "";
           this.beruflicheBildung = "";
           this.beruf = "";
-          this.artarbeit = "";
+          this.artDerArbeit = "";
           this.familienstand = "";
           this.wohnsituation = "";
           this.wohnsituationAndere = "";
@@ -277,7 +343,7 @@ export default {
           this.mobileingeschraenktAndere = "";
           this.kontakAktivitaet = "";
           this.hobbies = "";
-          this.unterstützungMedizinischerVersorgung = "";
+          this.unterstuetzungMedizinischerVersorgung = "";
           this.jaUnterstuetzungMedizinischerVersorgung = "";
           this.jaUnterstuetzungMedizinischerVersorgungAndere = "";
           this.medizinischeDiagnose = "";
@@ -291,6 +357,26 @@ export default {
           this.schwangerschaft = "";
           this.stillzeit = "";
           this.recall = "";
+          this.weitereAnmerkungenRecall = "";
+          this.vorlieben = "";
+          this.abneigungen = "";
+          this.isRecall = "";
+          this.anzahlMahlzeitenRecall = "";
+          this.mahlzeitenNormalerweise = "";
+          this.mahlzeitenWeggelassen = "";
+          this.mahlzeitenZusaetzlich = "";
+          this.mahlzeitenZusaetzlichAndere = "";
+          this.eigenstaendigeDiaet = "";
+          this.eigenstaendigeDiaetJa = "";
+          this.mahlzeitenAusserHaus = "";
+          this.mahlzeitenAusserHausJa = "";
+          this.diaetischeKostform = "";
+          this.diaetischeKostformJa = "";
+          this.diaetischeKostformJaAndere = "";
+          this.enteraleErnaehrung = "";
+          this.enteraleErnaehrungJa = "";
+          this.medikamente = "";
+          this.medikamenteJa = "";
           this.plantMahlzeiten = "";
           this.bereitetMahlzeiten = "";
           this.lebensmitteleinkauf = "";

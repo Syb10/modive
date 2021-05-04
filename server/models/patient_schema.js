@@ -49,15 +49,25 @@ const patientSchema = new Schema(
         Stillzeit: String
       },
       assessment2: {
-        Recall: String
+        Recall: String,
+        weitereAnmerkungenZumRecall: String,
+        VorliebenFürLebensmittelSpeisenUndGetränke:String,
+        AbneigungenFürLebensmittelSpeisenUndGetränke: String,
+        IstDieImRecallAngegebeneAnzahlAnMahlzeitenGewöhnlich: String,
+        WieVieleMahlzeitenWerdenNormalerweiseVerzehrt: String,
+        DieseMahlzeitenWerdenWeggelassen: String,
+        DieseMahlzeitenWerdenZusätzlichGegessen: String,
+        EigenständigeDiätOderErnährungsweiseDurchgeführt: String,
+        WerdenMahlzeitenAußerHausVerzehrt: String,
+        WirdWurdeEineDiätischeKostformAngewendet: String,
+        WirdEineEnteraleParenteraleErnährungOderZusatznahrungEingesetzt: String,
+        Medikamente: String,
       },
       assessment3: {
         WerPlantDieMahlzeiten: String,
         WerBereitetDieMahlzeitenZu: String,
         WerTätigtDenLebensmitteleinkauf: String,
-        selbstversorgen: String,
-        SelbstversorgungIstEingeschränkt: String,
-        SelbstversorgungIstNichtMöglich: String,
+        Selbstversorgung: String,
         EinfachheitMahlzeitZuzubereiten: String,
         WichtigkeitDerEmpfehlung: String,
         WichtigkeitDerFrische: String
