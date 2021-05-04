@@ -81,13 +81,13 @@
 }
 .tipp .tipptext {
   visibility: hidden;
-  background-color: #555;
+  background-color: #2c3e50;
   color: #fff;
   text-align: center;
   padding: 5px;
   border-radius: 6px;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   bottom: 125%;
   left: 50%;
   margin-left: -60px;
