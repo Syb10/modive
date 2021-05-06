@@ -52,7 +52,7 @@
       />
       <RadioForm
         :items="[
-          {title:'kein schulischer Abschluss', id:'keinAbschluss', name:'schulischeBildung'},
+          {title:'kein schulischer Abschluss', id:'keinAbschlussSchulischeBildung', name:'schulischeBildung'},
           {title:'Hauptschulabschluss/vergleichbarer Abschluss', id:'hauptschule', name:'schulischeBildung'},
           {title:'Realschulabschluss/vergleichbarer Abschluss', id:'realschule', name:'schulischeBildung'},
           {title:'Fachhochschulreife/Abitur', id:'abitur', name:'schulischeBildung'},
@@ -63,7 +63,7 @@
       />
       <RadioForm
         :items="[
-          {title:'kein beruflicher Abschluss', id:'keinAbschluss', name:'beruflicheBildung'},
+          {title:'kein beruflicher Abschluss', id:'keinAbschlussBeruflicheBildung', name:'beruflicheBildung'},
           {title:'Ausbildung/Lehre/Fachschule', id:'ausbildung', name:'beruflicheBildung'},
           {title:'Bachelor/Diplom', id:'bachelor', name:'beruflicheBildung'},
           {title:'Master', id:'master', name:'beruflicheBildung'},
@@ -239,7 +239,7 @@
           :style="marginSmall"
         />
       </div>
-      <p class="assessmentAspekt">Medizinische/gesundheitliche Vergangenheit in der Familie</p>
+      <p class="assessmentAspekt">Medizinische/gesundheitliche Angaben</p>
       <TextareaForm
         v-model="medizinischeDiagnose"
         :content="{ title: 'Medizinische Diagnose', id: 'medizinischeDiagnose'}"

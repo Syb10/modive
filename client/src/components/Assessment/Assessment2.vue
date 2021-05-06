@@ -99,11 +99,11 @@
         v-model="mahlzeitenAusserHaus"
       />
       <div v-if="mahlzeitenAusserHaus == 'ja'">
-        <InputForm
-            v-model="mahlzeitenAusserHausJa"
-            :content="{ title: 'Welche und wo', id: 'mahlzeitenAusserHausJa', type:'text' }"
-            :style="marginSmall"
-          />
+        <TextareaForm
+          v-model="mahlzeitenAusserHausJa"
+          :content="{title: 'Welche und wo', id: 'mahlzeitenAusserHausJa'}"
+          :style="marginSmall"
+        />
       </div>
       <p class="assessmentAspekt">Notwendige diätische Kostform und Medikamente (inkl. rezeptfreier Medikamente und Supplemente)</p>
       <RadioForm
