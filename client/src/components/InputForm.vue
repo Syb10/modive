@@ -11,6 +11,7 @@
         <input
           :type="content.type"
           :step="content.step"
+          :min="content.min"
           class="form-control inputForm"
           :id="content.id"
           :value="modelValue"
@@ -29,7 +30,8 @@ export default {
       title: String,
       id: String,
       type: String,
-      step: String
+      step: String,
+      min: String
     },
     isTipp: Boolean,
     myTipp: String,

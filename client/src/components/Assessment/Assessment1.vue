@@ -118,7 +118,7 @@
         :content="{ title: 'andere', id: 'wohnsituationAndere', type:'text' }"
         :style="marginSmall"
       />
-      <div class="form-inline mb-4">Der/die Klient*in lebt mit <input class="form-control mr-1 ml-1" v-model="personenImHaushalt" type="number"/> Personen in einem Haushalt.</div>
+      <div class="form-inline mb-4">Der/die Klient*in lebt mit <input class="form-control mr-1 ml-1" v-model="personenImHaushalt" type="number" min="0"/> Personen in einem Haushalt.</div>
       <div>Tabakkonsum</div>
       <RadioForm
         :items="[
