@@ -35,6 +35,7 @@
 import axios from "axios";
 import assessment from "../components/Assessment/Assessment.vue";
 import {mapFields} from "vuex-map-fields";
+import {mapGetters} from "vuex";
 
 export default {
   name: 'Home',
@@ -100,7 +101,6 @@ export default {
       "gesundheitszustandDerFamilieAndere",
       "schwangerschaft",
       "stillzeit",
-      "recall",
       "weitereAnmerkungenRecall",
       "vorlieben",
       "abneigungen",
@@ -121,6 +121,30 @@ export default {
       "enteraleErnaehrungJa",
       "medikamente",
       "medikamenteJa",
+      "isBilanzierung",
+      "getraenke",
+      "gemuese",
+      "obst",
+      "getreideprodukte",
+      "milch",
+      "fleisch",
+      "fisch",
+      "ei",
+      "fette",
+      "suessigkeiten",
+      "pikanteSnacks",
+      "energie",
+      "eiweiss",
+      "kohlenhydrate",
+      "ballaststoffe",
+      "zucker",
+      "gesamtfett",
+      "gesaettigteFettsaeuren",
+      "einfachGesaettigte",
+      "mehrfachGesaettigte",
+      "cholesterin",
+      "vitamine",
+      "mineralstoffe",
       "plantMahlzeiten",
       "bereitetMahlzeiten",
       "lebensmitteleinkauf",
@@ -133,6 +157,9 @@ export default {
       "koerpergroesse",
       "koerpergewicht",
       "bmi"
+    ]),
+    ...mapGetters([
+      "recallMahlzeiten"
     ]),
     ausgeuebterBeruf: {
       get() {
@@ -278,8 +305,8 @@ export default {
             "Schwangerschaft": this.schwangerschaft,
             "Stillzeit": this.stillzeit
           },
+          Recall: this.recallMahlzeiten,
           assessment2: {
-            "Recall": this.recall,
             "weitereAnmerkungenZumRecall": this.weitereAnmerkungenRecall,
             "VorliebenFürLebensmittelSpeisenUndGetränke": this.vorlieben,
             "AbneigungenFürLebensmittelSpeisenUndGetränke": this.abneigungen,
@@ -292,6 +319,32 @@ export default {
             "WirdWurdeEineDiätischeKostformAngewendet": this.alleDiaetischeKostform,
             "WirdEineEnteraleParenteraleErnährungOderZusatznahrungEingesetzt": this.alleEnteraleErnaehrung,
             "Medikamente": this.alleMedikamente,
+          },
+          bilanzierung:{
+            //"isBilanzierung": this.isBilanzierung,
+            "Getränke" : this.getraenke,
+            "Gemüse": this.gemuese,
+            "Obst": this.obst,
+            "GetreideprodukteKartoffeln": this.getreideprodukte,
+            "MilchUndMilchprodukte": this.milch,
+            "FleischUndWurtswaren": this.fleisch,
+            "Fisch" : this.fisch,
+            "Ei": this.ei,
+            "Fette": this.fette,
+            "Süßigkeiten": this.suessigkeiten,
+            "PikanteSnacks": this.pikanteSnacks,
+            "Energie": this.energie,
+            "Eiweiß": this.eiweiss,
+            "Kohlenhydrate": this.kohlenhydrate,
+            "Ballaststoffe": this.ballaststoffe,
+            "Zucker": this.zucker,
+            "Gesamtfett": this.gesamtfett,
+            "GesättigteFettsäuren": this.gesaettigteFettsaeuren,
+            "EinfachUngesättigteFettsäuren": this.einfachGesaettigte,
+            "MehrfachUngesättigteFettsäuren": this.mehrfachGesaettigte,
+            "Cholesterin": this.cholesterin,
+            "Vitamine": this.vitamine,
+            "Mineralstoffe": this.mineralstoffe,
           },
           assessment3: {
             "WerPlantDieMahlzeiten": this.plantMahlzeiten,
@@ -356,7 +409,7 @@ export default {
           this.gesundheitszustandDerFamilieAndere = "";
           this.schwangerschaft = "";
           this.stillzeit = "";
-          this.recall = "";
+          this.recallMahlzeiten = {table:[]};
           this.weitereAnmerkungenRecall = "";
           this.vorlieben = "";
           this.abneigungen = "";
@@ -377,6 +430,30 @@ export default {
           this.enteraleErnaehrungJa = "";
           this.medikamente = "";
           this.medikamenteJa = "";
+          this.isBilanzierung = false;
+          this.getraenke = "";
+          this.gemuese = "";
+          this.obst = "";
+          this.getreideprodukte = "";
+          this.milch = "";
+          this.fleisch = "";
+          this.fisch = "";
+          this.ei = "";
+          this.fette = "";
+          this.suessigkeiten = "";
+          this.pikanteSnacks = "";
+          this.energie = "";
+          this.eiweiss = "";
+          this.kohlenhydrate = "";
+          this.ballaststoffe = "";
+          this.zucker = "";
+          this.gesamtfett = "";
+          this.gesaettigteFettsaeuren = "";
+          this.einfachGesaettigte = "";
+          this.mehrfachGesaettigte = "";
+          this.cholesterin = "";
+          this.vitamine = "";
+          this.mineralstoffe = "";
           this.plantMahlzeiten = "";
           this.bereitetMahlzeiten = "";
           this.lebensmitteleinkauf = "";

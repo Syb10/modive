@@ -49,9 +49,10 @@ export default createStore({
         gesundheitszustandDerFamilieAndere: "",
         schwangerschaft: "",
         stillzeit: "",
-        getraenke:"",
-        gemuese:"",
-        recall:"",
+        recallMahlzeiten:
+        {
+          table:[]
+        },
         weitereAnmerkungenRecall: "",
         vorlieben: "",
         abneigungen: "",
@@ -72,6 +73,30 @@ export default createStore({
         enteraleErnaehrungJa: "",
         medikamente: "",
         medikamenteJa: "",
+        isBilanzierung: false,
+        getraenke:"",
+        gemuese:"",
+        obst: "",
+        getreideprodukte: "",
+        milch: "",
+        fleisch: "",
+        fisch: "",
+        ei: "",
+        fette: "",
+        suessigkeiten: "",
+        pikanteSnacks: "",
+        energie: "",
+        eiwess: "",
+        kohlenhydrate: "",
+        ballaststoffe: "",
+        zucker: "",
+        gesamtfett: "",
+        gesaettigteFettsaeuren: "",
+        einfachGesaettigte: "",
+        mehrfachGesaettigte: "",
+        cholesterin: "",
+        vitamine: "",
+        mineralstoffe: "",
         plantMahlzeiten: "",
         bereitetMahlzeiten: "",
         lebensmitteleinkauf: "",
@@ -90,10 +115,45 @@ export default createStore({
     getField,
     bmi(state) {
       return (state.form.koerpergewicht/ (state.form.koerpergroesse * state.form.koerpergroesse)).toFixed(2)
+    },
+    recallMahlzeiten(state) {
+      return state.form.recallMahlzeiten
     }
   },
   mutations: {
     updateField,
+    addTable(state) {
+      state.form.recallMahlzeiten['table'].push([{
+        datum: "",
+        mahlzeit:"",
+        uhrzeit:"",
+        wo:"",
+        wer:"",
+        lebensmittelGetraenke:"",
+        menge:"", 
+      }]);
+    },
+    addNewRow(state, index) {
+      state.form.recallMahlzeiten['table'][index].push({
+        mahlzeit:"",
+        uhrzeit:"",
+        wo:"",
+        wer:"",
+        lebensmittelGetraenke:"",
+        menge:"", 
+      });
+    },
+    deleteRow(state,payload) {
+      state.form.recallMahlzeiten['table'][payload.tableIndex].splice(payload.rowIndex, 1);
+    },
+    deleteTable(state,index) {
+      console.log("lösche Tabelle index " + index);
+      state.form.recallMahlzeiten['table'].splice(index, 1);
+    },
+    addDatum(state, payload) {
+      console.log("hallo Datum?")
+      state.form.recallMahlzeiten['table'][payload.tableIndex].datum = payload.datum;
+    },
   },
   actions: {
   },
