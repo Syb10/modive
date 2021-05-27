@@ -94,7 +94,7 @@
           {title:'verheiratet/eingetragene Partnerschaft', id:'verheiratet'},
           {title:'verwitwet/eingetragene*r Lebenspartner*in verstorben', id:'verwitwet'},
           {title:'geschieden/eingetragene Lebenspartnerschaft aufgehoben', id:'geschieden'},
-          {title:'keine Angaben', id:'keineAngaben'}
+          {title:'keine Angaben', id:'keineAngabenFamilienstand'}
         ]"
         :title="'Familienstand'"
         v-model="familienstand"
@@ -108,7 +108,7 @@
           {title:'in einer Pflegeeinrichtung lebend', id:'pflegeeinrichtung'},
           {title:'in der Stadt lebend', id:'stadt'},
           {title:'auf dem Land lebend', id:'land'},
-          {title:'keine Angaben', id:'keineAngaben'}
+          {title:'keine Angaben', id:'keineAngabenWohnsituation'}
         ]"
         :title="'Wohnsituation'"
         v-model="wohnsituation"
