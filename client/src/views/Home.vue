@@ -174,7 +174,25 @@ export default {
       "weitereAnmerkungenAktivitaet",
       "koerpergroesse",
       "koerpergewicht",
-      "bmi"
+      "bmi",
+      "taillenumfang",
+      "hautfaltendicke",
+      "fettfreieMasse",
+      "fettmasse",
+      "ruheenergieumsatz",
+      "chemieMetabolischeParameter",
+      "vitalzeichen",
+      "weitereMessungen",
+      "schlucken",
+      "schluckenJaAber",
+      "schluckenNein",
+      "erbrechen",
+      "erbrechenJa",
+      "mundgesundheit",
+      "mundgesundheitAndere",
+      "problemeNahrungsaufnahme",
+      "appetitBeeintraechtigung",
+      "weitereKoerperlicheBefunde",
     ]),
     ...mapGetters([
       "recallMahlzeiten"
@@ -287,6 +305,21 @@ export default {
     alleErnaehrungsgewohnheitenVeraendern: {
       get() {
         return this.zweiZusammen(this.ernaehrungsgewohnheitenVeraendern, this.begruendungErnaehrungsgewohnheitenVeraendern);
+      }
+    },
+    alleSchlucken: {
+      get() {
+        return this.dreiZusammen(this.schlucken, this.schluckenJaAber, this.schluckenNein);
+      }
+    },
+    alleErbrechen: {
+      get() {
+        return this.zweiZusammen(this.erbrechen, this.erbrechenJa);
+      }
+    },
+    alleMundgesundheit: {
+      get() {
+        return this.zweiZusammen(this.mundgesundheit, this.mundgesundheitAndere);
       }
     },
   },
@@ -423,6 +456,20 @@ export default {
             "Körpergröße": this.koerpergroesse,
             "Körpergewicht": this.koerpergewicht,
             "bmi": this.bmi,
+            "taillenumfang": this.taillenumfang,
+            "hautfaltendicke": this.hautfaltendicke,
+            "fettfreieMasse": this.fettfreieMasse,
+            "fettmasse": this.fettmasse,
+            "ruheenergieumsatz": this.ruheenergieumsatz,
+            "chemieMetabolischeParameter": this.chemieMetabolischeParameter,
+            "vitalzeichen": this.vitalzeichen,
+            "weitereMessungen": this.weitereMessungen,
+            "schlucken": this.alleSchlucken,
+            "erbrechen": this.alleErbrechen,
+            "mundgesundheit": this.alleMundgesundheit,
+            "problemeNahrungsaufnahme": this.problemeNahrungsaufnahme,
+            "appetitBeeintraechtigung": this.appetitBeeintraechtigung,
+            "weitereKoerperlicheBefunde": this.weitereKoerperlicheBefunde,
           }  
         })
         .then(response => {
@@ -548,6 +595,24 @@ export default {
           this.koerpergroesse = null;
           this.koerpergewicht = null;
           this.bmi = null;
+          this.taillenumfang = "";
+          this.hautfaltendicke = "";
+          this.fettfreieMasse = "";
+          this.fettmasse = "";
+          this.ruheenergieumsatz = "";
+          this.chemieMetabolischeParameter = "";
+          this.vitalzeichen = "";
+          this.weitereMessungen = "";
+          this.schlucken = "";
+          this.schluckenJaAber = "";
+          this.schluckenNein = "";
+          this.erbrechen = "";
+          this.erbrechenJa = "";
+          this.mundgesundheit = "";
+          this.mundgesundheitAndere = "";
+          this.problemeNahrungsaufnahme = "";
+          this.appetitBeeintraechtigung = "";
+          this.weitereKoerperlicheBefunde = "";
         })
         .catch(error => {
           console.log(error);
