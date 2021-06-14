@@ -146,14 +146,32 @@ export default {
       "vitamine",
       "mineralstoffe",
       "plantMahlzeiten",
+      "plantMahlzeitenAndere",
       "bereitetMahlzeiten",
+      "bereitetMahlzeitenAndere",
       "lebensmitteleinkauf",
+      "lebensmitteleinkaufAndere",
       "selbstversorgen",
       "selbstversorgenEingeschraenkt",
       "selbstversorgenNein",
       "einfachheitMahlzeitZuzubereiten",
+      "begruendungMahlzeitZuzubereiten",
+      "informationErnaehrung",
+      "informationErnaehrungAndere",
+      "orientierungErnaehrung",
       "wichtigkeitDerEmpfehlung",
       "wichtigkeitDerFrische",
+      "wichtigkeitDesGeschmacks",
+      "wichtigkeitDerGesundheit",
+      "wichtigkeitEinesGeringenPreises",
+      "wichtigkeitDerRegionalitaet",
+      "wichtigkeitDerSaisonalitaet",
+      "wichtigkeitAndere",
+      "wichtigkeitAndereValue",
+      "ernaehrungsgewohnheitenVeraendern",
+      "begruendungErnaehrungsgewohnheitenVeraendern",
+      "physicalActivityLevel",
+      "weitereAnmerkungenAktivitaet",
       "koerpergroesse",
       "koerpergewicht",
       "bmi"
@@ -231,11 +249,46 @@ export default {
         return this.zweiZusammen(this.medikamente, this.medikamenteJa);
       }
     },
+    allePlantMahlzeiten:{
+      get() {
+        return this.zweiZusammen(this.plantMahlzeiten, this.plantMahlzeitenAndere);
+      }
+    },
+    alleBereitetMahlzeiten: {
+      get() {
+        return this.zweiZusammen(this.bereitetMahlzeiten, this.bereitetMahlzeitenAndere);
+      }
+    },
+    alleLebensmitteleinkauf: {
+      get() {
+        return this.zweiZusammen(this.lebensmitteleinkauf, this.lebensmitteleinkaufAndere);
+      }
+    },
     alleSelbstversorgen: {
       get() {
         return this.dreiZusammen(this.selbstversorgen, this.selbstversorgenEingeschraenkt, this.selbstversorgenNein)
       }
-    }
+    },
+    alleEinfachheitMahlzeitZuzubereiten: {
+      get() {
+        return this.zweiZusammen(this.einfachheitMahlzeitZuzubereiten, this.begruendungMahlzeitZuzubereiten);
+      }
+    },
+    alleInformationErnaehrung: {
+      get() {
+        return this.zweiZusammen(this.informationErnaehrung, this.informationErnaehrungAndere);
+      }
+    },
+    alleWichtigkeitAndere: {
+      get() {
+        return this.zweiZusammen(this.wichtigkeitAndere, this.wichtigkeitAndereValue);
+      }
+    },
+    alleErnaehrungsgewohnheitenVeraendern: {
+      get() {
+        return this.zweiZusammen(this.ernaehrungsgewohnheitenVeraendern, this.begruendungErnaehrungsgewohnheitenVeraendern);
+      }
+    },
   },
   methods: {
     zweiZusammen(value1, value2) {
@@ -347,13 +400,24 @@ export default {
             "Mineralstoffe": this.mineralstoffe,
           },
           assessment3: {
-            "WerPlantDieMahlzeiten": this.plantMahlzeiten,
-            "WerBereitetDieMahlzeitenZu": this.bereitetMahlzeiten,
-            "WerTätigtDenLebensmitteleinkauf": this.lebensmitteleinkauf,
+            "WerPlantDieMahlzeiten": this.allePlantMahlzeiten,
+            "WerBereitetDieMahlzeitenZu": this.alleBereitetMahlzeiten,
+            "WerTätigtDenLebensmitteleinkauf": this.alleLebensmitteleinkauf,
             "Selbstversorgung": this.alleSelbstversorgen,
-            "EinfachheitMahlzeitZuzubereiten" : this.einfachheitMahlzeitZuzubereiten,
+            "EinfachheitMahlzeitZuzubereiten" : this.alleEinfachheitMahlzeitZuzubereiten,
+            "WoherInformationUeberErnaehrung": this.alleInformationErnaehrung,
+            "OrientierungErnaehrung": this.orientierungErnaehrung,
             "WichtigkeitDerEmpfehlung": this.wichtigkeitDerEmpfehlung,
             "WichtigkeitDerFrische" : this.wichtigkeitDerFrische,
+            "WichtigkeitDesGeschmacks": this.wichtigkeitDesGeschmacks,
+            "WichtigkeitDerGesundheit": this.wichtigkeitDerGesundheit,
+            "WichtigkeitEinesGeringenPreises": this.wichtigkeitEinesGeringenPreises,
+            "WichtigkeitDerRegionalitaet": this.wichtigkeitDerRegionalitaet,
+            "WichtigkeitDerSaisonalitaet": this.wichtigkeitDerSaisonalitaet,
+            "WichtigkeitAndere": this.alleWichtigkeitAndere,
+            "ErnaehrungsgewohnheitenVeraendern": this.alleErnaehrungsgewohnheitenVeraendern,
+            "PhysicalActivityLevel": this.physicalActivityLevel,
+            "WeitereAnmerkungenAktivitaet": this.weitereAnmerkungenAktivitaet,
           },
           assessment4:{
             "Körpergröße": this.koerpergroesse,
@@ -455,14 +519,32 @@ export default {
           this.vitamine = "";
           this.mineralstoffe = "";
           this.plantMahlzeiten = "";
+          this.plantMahlzeitenAndere = "";
           this.bereitetMahlzeiten = "";
+          this.bereitetMahlzeitenAndere = "";
           this.lebensmitteleinkauf = "";
+          this.lebensmitteleinkaufAndere = "";
           this.selbstversorgen = "";
           this.selbstversorgenEingeschraenkt = "";
           this.selbstversorgenNein = "";
           this.einfachheitMahlzeitZuzubereiten = "";
+          this.begruendungMahlzeitZuzubereiten = "";
+          this.informationErnaehrung = "";
+          this.informationErnaehrungAndere = "";
+          this.orientierungErnaehrung = "";
           this.wichtigkeitDerEmpfehlung = "";
           this.wichtigkeitDerFrische = "";
+          this.wichtigkeitDesGeschmacks = "";
+          this.wichtigkeitDerGesundheit = "";
+          this.wichtigkeitEinesGeringenPreises = "";
+          this.wichtigkeitDerRegionalitaet = "";
+          this.wichtigkeitDerSaisonalitaet = "";
+          this.wichtigkeitAndere = "";
+          this.wichtigkeitAndereValue = "";
+          this.ernaehrungsgewohnheitenVeraendern = "";
+          this.begruendungErnaehrungsgewohnheitenVeraendern = "";
+          this.physicalActivityLevel = "";
+          this.weitereAnmerkungenAktivitaet = "";
           this.koerpergroesse = null;
           this.koerpergewicht = null;
           this.bmi = null;
