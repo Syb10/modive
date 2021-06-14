@@ -1,6 +1,9 @@
 <template>
     <div>
-      <p class="assessmentAspekt">Klient*innengeschichte</p>
+      <button @click.prevent="scrollMeTo('klientengeschichte')" class="btn mt-1 mr-1 tab-button">Klient*innengeschichte</button>
+      <button @click.prevent="scrollMeTo('medizinischeAngaben')" class="btn mt-1 mr-1 tab-button">Medizinische/gesundheitliche Angaben</button>
+      <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button">Upload-Bereich für weitere Dokumente</button>
+      <p class="assessmentAspekt mt-5" ref="klientengeschichte">Klient*innengeschichte</p>
       <InputForm
         v-model="vorname"
         :content="{ title: 'Vorname', id: 'vorname', type: 'text' }"        
@@ -239,7 +242,7 @@
           :style="marginSmall"
         />
       </div>
-      <p class="assessmentAspekt">Medizinische/gesundheitliche Angaben</p>
+      <p class="assessmentAspekt" ref="medizinischeAngaben">Medizinische/gesundheitliche Angaben</p>
       <TextareaForm
         v-model="medizinischeDiagnose"
         :content="{ title: 'Medizinische Diagnose', id: 'medizinischeDiagnose'}"
@@ -332,7 +335,7 @@
           v-model="stillzeit"
         />
       </div>
-      <p class="assessmentAspekt">Upload-Bereich für weitere Dokumente in der Klient*innengeschichte/Krankengeschichte (Client History)</p>  
+      <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in der Klient*innengeschichte/Krankengeschichte (Client History)</p>  
     </div>
 </template>
 
@@ -359,6 +362,13 @@ export default {
       marginSmaller: {
         margin: '-1rem 0 0 0',
       }
+    }
+  },
+  methods: {
+    //https://stackoverflow.com/questions/42645964/vue-js-anchor-to-div-within-the-same-component
+    scrollMeTo(refName) {
+      var element = this.$refs[refName];
+      element.scrollIntoView({behavior: 'smooth'});
     }
   },
   computed: {

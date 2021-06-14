@@ -1,6 +1,12 @@
 <template>
     <div>
-     <p class="assessmentAspekt">Faktoren, die den Zugang zu Nahrungsmitteln beeinflussen, Lebensmittel und ernährungsbezogene Versorgung</p>
+      <button @click.prevent="scrollMeTo('zugangNahrungsmittel')" class="btn mt-1 mr-1 tab-button">Ernährungsbezogene Versorgung</button>
+      <button @click.prevent="scrollMeTo('wissen')" class="btn mt-1 mr-1 tab-button">Ernährungswissen, Überzeugungen, Einstellungen</button>
+      <button @click.prevent="scrollMeTo('verhalten')" class="btn mt-1 mr-1 tab-button">Verhalten und Verhaltensänderungen</button>
+      <button @click.prevent="scrollMeTo('aktivitaet')" class="btn mt-1 mr-1 tab-button">Körperliche Aktivität</button>
+      <button @click.prevent="scrollMeTo('lebensqualitaet')" class="btn mt-1 mr-1 tab-button">Lebensqualität</button>
+      <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button">Upload-Bereich für weitere Dokumente</button>
+      <p class="assessmentAspekt mt-5" ref="zugangNahrungsmittel">Ernährungsbezogene Versorgung</p>
       <CheckboxForm
         :checkboxs="[
           {title:'gemeinschaftlich', id:'plantGemeinschaftlich'},
@@ -72,7 +78,7 @@
           :style="marginSmall"
         />
       </div>
-       <p class="assessmentAspekt">Wissen über Lebensmittel und Nährstoffe, Überzeugungen, Einstellungen</p>
+      <p class="assessmentAspekt" ref="wissen">Ernährungswissen, Überzeugungen, Einstellungen</p>
       <p>Für wie einfach beurteilt der/die Klient*in es, an einem normalen Tag eine ausgewogene Mahlzeit zu Hause zuzubereiten?</p>
       <table class="table table-striped table-bordered mb-5">
         <thead>
@@ -167,7 +173,7 @@
           /> 
         </tbody>
       </table>
-      <p class="assessmentAspekt">Verhalten und Verhaltensänderungen</p>
+      <p class="assessmentAspekt" ref="verhalten">Verhalten und Verhaltensänderungen</p>
       <p>Kann sich der/die Klient*in vorstellen, begleitet durch die gemeinsamen Treffen, die Ernährungsgewohnheiten zu verändern?</p>
       <table class="table table-striped table-bordered mb-5">
         <thead>
@@ -213,7 +219,7 @@
         v-model="begruendungErnaehrungsgewohnheitenVeraendern"
         :content="{ title: 'Begründung', id: 'begruendungErnaehrungsgewohnheitenVeraendern',}"
       />
-      <p class="assessmentAspekt">Körperliche Aktivität</p>
+      <p class="assessmentAspekt" ref="aktivitaet">Körperliche Aktivität</p>
       <RadioForm
         :items="[
           {title:'1,2-1,3', myInnerTipp:'ausschließlich sitzende oder liegende Tätigkeiten (z.B. gebrechliche, immobile, bettlägerige Menschen)', id:'1physicalActivityLevel', name:'physicalActivityLevel'},
@@ -232,9 +238,9 @@
         :isTipp="true"
         :myTipp="'Alltagsaktivität und Sport inklusive Dauer und Häufigkeit'"
       />
-      <p class="assessmentAspekt">Lebensqualität</p>
+      <p class="assessmentAspekt" ref="lebensqualitaet">Lebensqualität</p>
       <p>Upload-Bereich</p>
-      <p class="assessmentAspekt">Upload-Bereich für weitere Dokumente in Verhalten und Umfeld (Behavioral-Environmental)</p>
+      <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in Verhalten und Umfeld (Behavioral-Environmental)</p>
     </div>
 </template>
 
@@ -358,5 +364,12 @@ export default {
         "weitereAnmerkungenAktivitaet",
       ]),
     },
+    methods: {
+      //https://stackoverflow.com/questions/42645964/vue-js-anchor-to-div-within-the-same-component
+      scrollMeTo(refName) {
+        var element = this.$refs[refName];
+        element.scrollIntoView({behavior: 'smooth'});
+      }
+    }
 };
 </script>

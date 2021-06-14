@@ -1,14 +1,28 @@
 <template>
   <div>
-    <div id="nav">
+    <div id="nav" ref="nav">
       <router-link to="/">Formular</router-link> |
       <router-link to="/list">Klienten-Liste</router-link>
     </div>
     <div class="container mt-5">
       <router-view/>
     </div>
+    <button @click.prevent="scrollMeTo('nav')" class="nachObenButton btn"><i class="fa fa-arrow-circle-up"></i></button>
   </div>
 </template>
+
+<script>
+  export default {
+    name: "App",
+    methods: {
+      //https://stackoverflow.com/questions/42645964/vue-js-anchor-to-div-within-the-same-component
+      scrollMeTo(refName) {
+        var element = this.$refs[refName];
+        element.scrollIntoView({behavior: 'smooth'});
+      }
+    }
+  }
+</script>
 
 <style>
 #app {
@@ -60,18 +74,16 @@
 .tab-button.active{
   opacity: 1;
 }
-.stickyoben{
-  position: sticky;
-  top:0;
-  padding-top: 1rem;
-  z-index:2;
+
+.nachObenButton{
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1;
+  /*background-color: #9a884f !important;*/
 }
-.stickyunten{
-  position: sticky;
-  top:0;
-  padding-top: 6rem;
-  background-color: white;
-  z-index:1;
+.nachObenButton i{
+  font-size: 2rem;
 }
 .assessmentAspekt{
   color: #9a884f;
@@ -91,7 +103,7 @@
   border-radius: 6px;
   position: absolute;
   z-index: 2;
-  bottom: 125%;
+  /**bottom: 125%;*/
   left: 50%;
   margin-left: -60px;
   opacity: 0;

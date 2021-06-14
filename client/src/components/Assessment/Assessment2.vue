@@ -1,6 +1,11 @@
 <template>
     <div>
-      <p class="assessmentAspekt">Upload-Bereich für Ernährungsprotokolle und weitere Ernährungserhebungsmethoden</p>
+      <button @click.prevent="scrollMeTo('ernaehrungsprotokolle')" class="btn mt-1 mr-1 tab-button">Upload-Bereich für Ernährungsprotokolle</button>
+      <button @click.prevent="scrollMeTo('ernaehrungsgewohnheiten')" class="btn mt-1 mr-1 tab-button">Essgewohnheiten</button>
+      <button @click.prevent="scrollMeTo('kostformMedikamente')" class="btn mt-1 mr-1 tab-button">Diätetische Kostform und Medikamente</button>
+      <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button">Upload-Bereich für weitere Dokumente</button>
+      <p class="assessmentAspekt mt-5" ref="ernaehrungsprotokolle">Upload-Bereich für Ernährungsprotokolle und weitere Ernährungserhebungsmethoden</p>
+      <p class="assessmentAspekt" ref="ernaehrungsgewohnheiten">Essgewohnheiten</p>
       <label class="mt-5">
         24-h-Recall
         <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
@@ -24,7 +29,6 @@
         v-model="abneigungen"
         :content="{ title: 'Abneigungen für Lebensmittel, Speisen und Getränke', id: 'abneigungen'}"
       />
-      <p class="assessmentAspekt">Ernährungsgewohnheiten</p>
       <RadioForm
         :items="[
           {title:'ja', id:'jaRecall', name:'isRecall'},
@@ -108,7 +112,7 @@
           :style="marginSmall"
         />
       </div>
-      <p class="assessmentAspekt">Notwendige diätische Kostform und Medikamente (inkl. rezeptfreier Medikamente und Supplemente)</p>
+      <p class="assessmentAspekt" ref="kostformMedikamente">Diätetische Kostform und Medikamente</p>
       <RadioForm
         :items="[
           {title:'ja', id:'jaDiaetischeKostform', name:'diaetischeKostform'},
@@ -320,7 +324,7 @@
           />
         </tbody>
       </table>
-      <p class="assessmentAspekt">Upload-Bereich für weitere Dokumente in Ernährungsgewohnheiten (Diet History)</p>
+      <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in Ernährungsgewohnheiten (Diet History)</p>
     </div>
 </template>
 
@@ -536,7 +540,12 @@ export default {
     methods: {
       showBilanzierung() {
         this.isBilanzierung = !this.isBilanzierung;
-      }
+      },
+      //https://stackoverflow.com/questions/42645964/vue-js-anchor-to-div-within-the-same-component
+      scrollMeTo(refName) {
+        var element = this.$refs[refName];
+        element.scrollIntoView({behavior: 'smooth'});
+      },
     }
 };
 </script>

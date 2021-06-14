@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div class="stickyunten">
+      <div> <!-- class="stickyunten"-->
         <button
           v-for="tab in tabs"
           :key="tab.id"

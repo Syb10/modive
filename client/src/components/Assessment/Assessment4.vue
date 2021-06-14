@@ -1,6 +1,11 @@
 <template>
     <div>
-        <p class="assessmentAspekt" >Anthropometrische Daten</p>
+        <button @click.prevent="scrollMeTo('anthropometrischeDaten')" class="btn mt-1 mr-1 tab-button">Anthropometrische Daten</button>
+        <button @click.prevent="scrollMeTo('koerperzusammensetzung')" class="btn mt-1 mr-1 tab-button">Körperzusammensetzung</button>
+        <button @click.prevent="scrollMeTo('biochemischeParameter')" class="btn mt-1 mr-1 tab-button">Biochemische Parameter, medizinische Tests/Maßnahmen</button>
+        <button @click.prevent="scrollMeTo('koerperlicheErscheinungen')" class="btn mt-1 mr-1 tab-button">Körperliche Erscheinungen</button>
+        <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button">Upload-Bereich für weitere Dokumente</button>
+        <p class="assessmentAspekt mt-5" ref="anthropometrischeDaten">Anthropometrische Daten</p>
         <InputForm
           v-model="koerpergroesse"
           :content="{title:'Körpergröße (in m)', id:'koerpergroesse', type:'number', step: '0.01'}"
@@ -20,7 +25,7 @@
           v-model="hautfaltendicke"
           :content="{title:'Hautfaltendicke', id:'hautfaltendicke', type:'text'}"
         />
-        <p class="assessmentAspekt">Körperzusammensetzung</p>
+        <p class="assessmentAspekt" ref="koerperzusammensetzung">Körperzusammensetzung</p>
         <InputForm
           v-model="fettfreieMasse"
           :content="{title:'fettfreie Masse (FFM)', id:'fettfreieMasse', type:'text'}"
@@ -33,7 +38,7 @@
           v-model="ruheenergieumsatz"
           :content="{title:'Ruheenergieumsatz', id:'ruheenergieumsatz', type:'text'}"
         />
-        <p class="assessmentAspekt">Biochemische Parameter, medizinische Tests/Maßnahmen</p>
+        <p class="assessmentAspekt" ref="biochemischeParameter">Biochemische Parameter, medizinische Tests/Maßnahmen</p>
         <TextareaForm
           v-model="chemieMetabolischeParameter"
           :content="{ title: 'Chemie/metabolische Parameter in Blut und Urin', id: 'chemieMetabolischeParameter',}"
@@ -48,7 +53,7 @@
           v-model="weitereMessungen"
           :content="{ title: 'weitere Messungen', id: 'weitereMessungen',}"
         />
-        <p class="assessmentAspekt">Körperliche Erscheinungen</p>
+        <p class="assessmentAspekt" ref="koerperlicheErscheinungen">Körperliche Erscheinungen</p>
         <RadioForm
           :items="[
             {title:'ja', id:'jaSchlucken', name:'schlucken'},
@@ -117,7 +122,7 @@
         :isTipp="true"
         :myTipp="'z.B. Stuhlgang, Urin, Atmung'"
       />
-       <p class="assessmentAspekt">Upload-Bereich für weitere Dokumente in Klinischer Status (Clinical Status)</p>  
+       <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in Klinischer Status (Clinical Status)</p>  
     </div>
 </template>
 
@@ -172,5 +177,12 @@ export default {
             "weitereKoerperlicheBefunde",
         ]),
     },
+    methods: {
+      //https://stackoverflow.com/questions/42645964/vue-js-anchor-to-div-within-the-same-component
+      scrollMeTo(refName) {
+        var element = this.$refs[refName];
+        element.scrollIntoView({behavior: 'smooth'});
+      }
+    }
 };
 </script>
