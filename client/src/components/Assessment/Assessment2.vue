@@ -187,47 +187,47 @@
           <th>mehr</th>
         </thead>
         <tbody>
-          <BilanzierungsTable
+          <RadioTable
             :items="Getränke"
             v-model="getraenke"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="Gemüse"
             v-model="gemuese"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="Obst"
             v-model="obst"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="Getreideprodukte"
             v-model="getreideprodukte"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="Milch"
             v-model="milch"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="Fleisch"
             v-model="fleisch"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="Fisch"
             v-model="fisch"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="Ei"
             v-model="ei"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="Fette"
             v-model="fette"
           />
-          <TableForm
+          <RadioTable
             :items="Süßigkeiten"
             v-model="suessigkeiten"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="PikanteSnacks"
             v-model="pikanteSnacks"
           />
@@ -241,7 +241,7 @@
           <th>mehr</th>
         </thead>
         <tbody>
-          <BilanzierungsTable
+          <RadioTable
             :items="Energie"
             v-model="energie"
           />
@@ -255,44 +255,44 @@
           <th>mehr</th>
         </thead>
         <tbody>
-          <BilanzierungsTable
+          <RadioTable
             :items="Eiweiß"
             v-model="eiweiss"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="Kohlenhydrate"
             v-model="kohlenhydrate"
           />
-          <TableForm
+          <RadioTable
             :items="Ballaststoffe"
             v-model="ballaststoffe"
             :paddingLeft="paddingLeft"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="Zucker"
             v-model="zucker"
             :paddingLeft="paddingLeft"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="Gesamtfett"
             v-model="gesamtfett"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="GesättigteFettsäuren"
             v-model="gesaettigteFettsaeuren"
             :paddingLeft="paddingLeft"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="EinfachUngesättigteFettsäuren"
             v-model="einfachGesaettigte"
             :paddingLeft="paddingLeft"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="MehrfachUngesättigteFettsäuren"
             v-model="mehrfachGesaettigte"
             :paddingLeft="paddingLeft"
           />
-          <BilanzierungsTable
+          <RadioTable
             :items="Cholesterin"
             v-model="cholesterin"
             :paddingLeft="paddingLeft"
@@ -308,13 +308,15 @@
           <th>Löschen</th>
         </thead>
         <tbody>
-          <BilanzierungsTableDynamic
-            :title="'Vitamine'"
+          <RadioTableDynamic
+            :subtitle="'Vitamine'"
             v-model="vitamine"
+            :isBilanzierung="true"
           />
-          <BilanzierungsTableDynamic
-            :title="'Mineralstoffe'"
+          <RadioTableDynamic
+            :subtitle="'Mineralstoffe'"
             v-model="mineralstoffe"
+            :isBilanzierung="true"
           />
         </tbody>
       </table>
@@ -324,13 +326,13 @@
 
 <script>
 import {mapFields} from "vuex-map-fields";
-import BilanzierungsTable from "../BilanzierungsTable.vue";
-import BilanzierungsTableDynamic from "../BilanzierungsTableDynamic.vue";
 import RecallTable from "../RecallTable.vue";
 import TextareaForm from "../TextareaForm.vue";
 import RadioForm from "../RadioForm.vue";
 import InputForm from "../InputForm.vue";
 import CheckboxForm from "../CheckboxForm.vue";
+import RadioTable from "../RadioTable.vue";
+import RadioTableDynamic from "../RadioTableDynamic.vue";
 
 export default {
     name: "assessment2",
@@ -343,144 +345,144 @@ export default {
           margin: '-1rem 0 0 0',
         },
         paddingLeft: {
-          padding: '.75rem 0 0 2.25rem',
+          padding: '.75rem .75rem .75rem 2.25rem',
         },
-        Getränke:{
-          title: "Getränke",
-          weniger:{value: "weniger",id:"getraenkeWeniger",name:"getraenke"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"getraenkeEntsprechend",name:"getraenke"},
-          mehr:{value: "mehr",id:"getraenkeMehr",name:"getraenke"}
-        },
-        Gemüse:{
-          title: "Gemüse",
-          weniger:{value: "weniger",id:"gemueseWeniger",name:"gemuese"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"gemueseEntsprechend",name:"gemuese"},
-          mehr:{value: "mehr",id:"gemueseMehr",name:"gemuese"}
-        },
-        Obst:{
-          title: "Obst",
-          weniger:{value: "weniger",id:"obstWeniger",name:"obst"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"obstEntsprechend",name:"obst"},
-          mehr:{value: "mehr",id:"obstMehr",name:"obst"}
-        },
-        Getreideprodukte:{
-          title: "Getreideprodukte/Kartoffeln",
-          weniger:{value: "weniger",id:"getreideprodukteWeniger",name:"getreideprodukte"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"getreideprodukteEntsprechend",name:"getreideprodukte"},
-          mehr:{value: "mehr",id:"getreideprodukteMehr",name:"getreideprodukte"}
-        },
-        Milch:{
-          title: "Milch und Milchprodukte",
-          weniger:{value: "weniger",id:"milchWeniger", name:"milch"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"milchEntsprechend", name:"milch"},
-          mehr:{value: "mehr",id:"milchMehr",name:"milch"}
-        },
-        Fleisch:{
-          title: "Fleisch/-waren, Wurst/-waren",
-          weniger:{value: "weniger",id:"fleischWeniger",name:"fleisch"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"fleischEntsprechend",name:"fleisch"},
-          mehr:{value: "mehr",id:"fleischMehr",name:"fleisch"}
-        },
-        Fisch:{
-          title: "Fisch",
-          weniger:{value: "weniger",id:"fischWeniger",name:"fisch"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"fischEntsprechend",name:"fisch"},
-          mehr:{value: "mehr",id:"fischMehr",name:"fisch"}
-        },
-        Ei:{
-          title: "Ei",
-          weniger:{value: "weniger",id:"eiWeniger",name:"ei"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"eiEntsprechend",name:"ei"},
-          mehr:{value: "mehr",id:"eiMehr",name:"ei"}
-        },
-        Fette:{
-          title: "Fette/Öle",
-          weniger:{value: "weniger",id:"fetteWeniger",name:"fette"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"fetteEntsprechend",name:"fette"},
-          mehr:{value: "mehr",id:"fetteMehr",name:"fette"}
-        },
-        Süßigkeiten:{
-          title: "Süßigkeiten",
-          weniger:{value: "weniger",id:"suessigkeitenWeniger",name:"suessigkeiten"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"suessigkeitenEntsprechend",name:"suessigkeiten"},
-          mehr:{value: "mehr",id:"suessigkeitenMehr",name:"suessigkeiten"}
-        },
-        PikanteSnacks:{
-          title: "Pikante Snacks",
-          weniger:{value: "weniger",id:"pikanteSnacksWeniger",name:"pikanteSnacks"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"pikanteSnacksEntsprechend",name:"pikanteSnacks"},
-          mehr:{value: "mehr",id:"pikanteSnacksMehr",name:"pikanteSnacks"}
-        },
-        Energie:{
-          title: "Energie (kcal)",
-          weniger:{value: "weniger",id:"energieWeniger",name:"energie"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"energieEntsprechend",name:"energie"},
-          mehr:{value: "mehr",id:"energieMehr",name:"energie"}
-        },
-        Eiweiß:{
-          title: "Eiweiß",
-          weniger:{value: "weniger",id:"eiweissWeniger",name:"eiweiss"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"eiweissEntsprechend",name:"eiweiss"},
-          mehr:{value: "mehr",id:"eiweissMehr",name:"eiweiss"}
-        },
-        Kohlenhydrate:{
-          title: "Kohlenhydrate",
-          weniger:{value: "weniger",id:"kohlenhydrateWeniger",name:"kohlenhydrate"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"kohlenhydrateEntsprechend",name:"kohlenhydrate"},
-          mehr:{value: "mehr",id:"kohlenhydrateMehr",name:"kohlenhydrate"}
-        },
-        Ballaststoffe:{
-          title: "Ballaststoffe",
-          weniger:{value: "weniger",id:"ballaststoffeWeniger",name:"ballaststoffe"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"ballaststoffeEntsprechend",name:"ballaststoffe"},
-          mehr:{value: "mehr",id:"ballaststoffeMehr",name:"ballaststoffe"}
-        },
-        Zucker:{
-          title: "Zucker",
-          weniger:{value: "weniger",id:"zuckerWeniger",name:"zucker"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"zuckerEntsprechend",name:"zucker"},
-          mehr:{value: "mehr",id:"zuckerMehr",name:"zucker"}
-        },
-        Gesamtfett:{
-          title: "Gesamtfett",
-          weniger:{value: "weniger",id:"gesamtfettWeniger",name:"gesamtfett"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"gesamtfettEntsprechend",name:"gesamtfett"},
-          mehr:{value: "mehr",id:"gesamtfettMehr",name:"gesamtfett"}
-        },
-        GesättigteFettsäuren:{
-          title: "Gesättigte Fettsäuren",
-          weniger:{value: "weniger",id:"gesaettigteFettsaeurenWeniger",name:"gesaettigteFettsaeuren"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"gesaettigteFettsaeurenEntsprechend",name:"gesaettigteFettsaeuren"},
-          mehr:{value: "mehr",id:"gesaettigteFettsaeurenMehr",name:"gesaettigteFettsaeuren"}
-        },
-        EinfachUngesättigteFettsäuren:{
-          title: "Einfach ungesättigte Fettsäuren",
-          weniger:{value: "weniger",id:"einfachGesaettigteWeniger",name:"einfachGesaettigte"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"einfachGesaettigteEntsprechend",name:"einfachGesaettigte"},
-          mehr:{value: "mehr",id:"einfachGesaettigteMehr",name:"einfachGesaettigte"}
-        },
-        MehrfachUngesättigteFettsäuren:{
-          title: "Mehrfach ungesättigte Fettsäuren",
-          weniger:{value: "weniger",id:"mehrfachGesaettigteWeniger",name:"mehrfachGesaettigte"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"mehrfachGesaettigteEntsprechend",name:"mehrfachGesaettigte"},
-          mehr:{value: "mehr",id:"mehrfachGesaettigteMehr",name:"mehrfachGesaettigte"}
-        },
-        Cholesterin:{
-          title: "Cholesterin",
-          weniger:{value: "weniger",id:"cholesterinWeniger",name:"cholesterin"},
-          entsprechend:{value: "entsprechend der Ernährungsempfehlung",id:"cholesterinEntsprechend",name:"cholesterin"},
-          mehr:{value: "mehr",id:"cholesterinMehr",name:"cholesterin"}
-        },
+        Getränke:[
+          {title: "Getränke"},
+          {value: "weniger",id:"getraenkeWeniger",name:"getraenke"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"getraenkeEntsprechend",name:"getraenke"},
+          {value: "mehr",id:"getraenkeMehr",name:"getraenke"},
+        ],
+        Gemüse:[
+          {title: "Gemüse"},
+          {value: "weniger",id:"gemueseWeniger",name:"gemuese"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"gemueseEntsprechend",name:"gemuese"},
+          {value: "mehr",id:"gemueseMehr",name:"gemuese"}
+        ],
+        Obst:[
+          {title: "Obst"},
+          {value: "weniger",id:"obstWeniger",name:"obst"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"obstEntsprechend",name:"obst"},
+          {value: "mehr",id:"obstMehr",name:"obst"}
+        ],
+        Getreideprodukte:[
+          {title: "Getreideprodukte/Kartoffeln"},
+          {value: "weniger",id:"getreideprodukteWeniger",name:"getreideprodukte"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"getreideprodukteEntsprechend",name:"getreideprodukte"},
+          {value: "mehr",id:"getreideprodukteMehr",name:"getreideprodukte"}
+        ],
+        Milch:[
+          {title: "Milch und Milchprodukte"},
+          {value: "weniger",id:"milchWeniger", name:"milch"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"milchEntsprechend", name:"milch"},
+          {value: "mehr",id:"milchMehr",name:"milch"}
+        ],
+        Fleisch:[
+          {title: "Fleisch/-waren, Wurst/-waren"},
+          {value: "weniger",id:"fleischWeniger",name:"fleisch"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"fleischEntsprechend",name:"fleisch"},
+          {value: "mehr",id:"fleischMehr",name:"fleisch"}
+        ],
+        Fisch:[
+          {title: "Fisch"},
+          {value: "weniger",id:"fischWeniger",name:"fisch"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"fischEntsprechend",name:"fisch"},
+          {value: "mehr",id:"fischMehr",name:"fisch"}
+        ],
+        Ei:[
+          {title: "Ei"},
+          {value: "weniger",id:"eiWeniger",name:"ei"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"eiEntsprechend",name:"ei"},
+          {value: "mehr",id:"eiMehr",name:"ei"}
+        ],
+        Fette:[
+          {title: "Fette/Öle"},
+          {value: "weniger",id:"fetteWeniger",name:"fette"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"fetteEntsprechend",name:"fette"},
+          {value: "mehr",id:"fetteMehr",name:"fette"}
+        ],
+        Süßigkeiten:[
+          {title: "Süßigkeiten"},
+          {value: "weniger",id:"suessigkeitenWeniger",name:"suessigkeiten"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"suessigkeitenEntsprechend",name:"suessigkeiten"},
+          {value: "mehr",id:"suessigkeitenMehr",name:"suessigkeiten"}
+        ],
+        PikanteSnacks:[
+          {title: "Pikante Snacks"},
+          {value: "weniger",id:"pikanteSnacksWeniger",name:"pikanteSnacks"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"pikanteSnacksEntsprechend",name:"pikanteSnacks"},
+          {value: "mehr",id:"pikanteSnacksMehr",name:"pikanteSnacks"}
+        ],
+        Energie:[
+          {title: "Energie (kcal)"},
+          {value: "weniger",id:"energieWeniger",name:"energie"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"energieEntsprechend",name:"energie"},
+          {value: "mehr",id:"energieMehr",name:"energie"}
+        ],
+        Eiweiß:[
+          {title: "Eiweiß"},
+          {value: "weniger",id:"eiweissWeniger",name:"eiweiss"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"eiweissEntsprechend",name:"eiweiss"},
+          {value: "mehr",id:"eiweissMehr",name:"eiweiss"}
+        ],
+        Kohlenhydrate:[
+          {title: "Kohlenhydrate"},
+          {value: "weniger",id:"kohlenhydrateWeniger",name:"kohlenhydrate"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"kohlenhydrateEntsprechend",name:"kohlenhydrate"},
+          {value: "mehr",id:"kohlenhydrateMehr",name:"kohlenhydrate"}
+        ],
+        Ballaststoffe:[
+          {title: "Ballaststoffe", class:"paddingLeft"},
+          {value: "weniger",id:"ballaststoffeWeniger",name:"ballaststoffe"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"ballaststoffeEntsprechend",name:"ballaststoffe"},
+          {value: "mehr",id:"ballaststoffeMehr",name:"ballaststoffe"}
+        ],
+        Zucker:[
+          {title: "Zucker", class:"paddingLeft"},
+          {value: "weniger",id:"zuckerWeniger",name:"zucker"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"zuckerEntsprechend",name:"zucker"},
+          {value: "mehr",id:"zuckerMehr",name:"zucker"}
+        ],
+        Gesamtfett:[
+          {title: "Gesamtfett"},
+          {value: "weniger",id:"gesamtfettWeniger",name:"gesamtfett"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"gesamtfettEntsprechend",name:"gesamtfett"},
+          {value: "mehr",id:"gesamtfettMehr",name:"gesamtfett"}
+        ],
+        GesättigteFettsäuren:[
+          {title: "Gesättigte Fettsäuren", class:"paddingLeft"},
+          {value: "weniger",id:"gesaettigteFettsaeurenWeniger",name:"gesaettigteFettsaeuren"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"gesaettigteFettsaeurenEntsprechend",name:"gesaettigteFettsaeuren"},
+          {value: "mehr",id:"gesaettigteFettsaeurenMehr",name:"gesaettigteFettsaeuren"}
+        ],
+        EinfachUngesättigteFettsäuren:[
+          {title: "Einfach ungesättigte Fettsäuren", class:"paddingLeft"},
+          {value: "weniger",id:"einfachGesaettigteWeniger",name:"einfachGesaettigte"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"einfachGesaettigteEntsprechend",name:"einfachGesaettigte"},
+          {value: "mehr",id:"einfachGesaettigteMehr",name:"einfachGesaettigte"}
+        ],
+        MehrfachUngesättigteFettsäuren:[
+          {title: "Mehrfach ungesättigte Fettsäuren", class:"paddingLeft"},
+          {value: "weniger",id:"mehrfachGesaettigteWeniger",name:"mehrfachGesaettigte"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"mehrfachGesaettigteEntsprechend",name:"mehrfachGesaettigte"},
+          {value: "mehr",id:"mehrfachGesaettigteMehr",name:"mehrfachGesaettigte"}
+        ],
+        Cholesterin:[
+          {title: "Cholesterin", class:"paddingLeft"},
+          {value: "weniger",id:"cholesterinWeniger",name:"cholesterin"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"cholesterinEntsprechend",name:"cholesterin"},
+          {value: "mehr",id:"cholesterinMehr",name:"cholesterin"}
+        ],
       }
     },
     components: {
-      BilanzierungsTable,
-      BilanzierungsTableDynamic,
       RecallTable,
       TextareaForm,
       RadioForm,
       InputForm,
-      CheckboxForm
+      CheckboxForm,
+      RadioTable,
+      RadioTableDynamic,
     },  
     computed: {
       ...mapFields([
