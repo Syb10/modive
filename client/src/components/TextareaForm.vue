@@ -2,7 +2,7 @@
   <div class="form-group">
     <div class="mb-4">
       <div class="mr-5 mb-3">
-        <label :for="content.id" class="input-group-text textareaForm">
+        <label :for="content.id" class="input-group-text textareaForm normal-white-space">
           {{ content.title }}
           <div v-if="isTipp" class="tipp ml-3"> <i class="fa fa-info-circle"></i>
             <span class="tipptext">{{myTipp}}</span>

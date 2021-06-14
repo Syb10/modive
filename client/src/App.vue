@@ -43,6 +43,9 @@
 .input-group-text.textareaForm{
   border-radius: 0.25rem 0.25rem 0 0  !important;
 }
+.input-group-text.normal-white-space{
+  white-space: normal;
+}
 .checkbox {
   border-radius: 0 0.25rem 0.25rem 0 !important;
 }
