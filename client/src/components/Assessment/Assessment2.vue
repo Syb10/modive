@@ -309,7 +309,6 @@
           <th>weniger</th>
           <th>entprechend der Ernährungsempfehlung</th>
           <th>mehr</th>
-          <th>Löschen</th>
         </thead>
         <tbody>
           <RadioTableDynamic

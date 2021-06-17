@@ -5,7 +5,8 @@
   <!--for dynamic Bilanzierung-->
   <tr v-show="isBilanzierung" v-for="(item, indexI) in DynamicBilanzierung" :key="`item-${indexI}`">
     <td v-for="(i, index) in item" :key="`item-${index}`">
-      <input v-if="i.input" class="form-control" type="text" v-model="i.title"/>
+      <input v-if="i.input" class="form-control btnAndere" type="text" v-model="i.title"/>
+       <i v-if="i.button" class="fa fa-trash btn btn-red ml-3" @click.prevent="deleteRowBilanzierung(indexI)"></i>
       <div v-if="i.value" class="input-group">
         <input
           type="radio"
@@ -15,15 +16,14 @@
           v-model="item[0].vmodel"
         />
       </div>
-      <i v-if="i.button" class="fa fa-trash btn btn-red ml-3" @click.prevent="deleteRowBilanzierung(indexI)"></i>
     </td>
   </tr>
   <button v-if="isBilanzierung" class="btn btn-gold mb-3 margin" @click.prevent="addNewRowBilanzierung"><i class="fa fa-plus-circle"></i> Zeile hinzufügen</button> 
   <!--for dynamic Andere-->
   <tr v-show="isAndere" v-for="(item, indexI) in DynamicAndere" :key="`item-${indexI}`">
     <td v-for="(i, index) in item" :key="`i-${index}`">
-      <input v-if="!i.value" class="form-control btnAndere" type="text" v-model="i.title"/>
-      <i v-if="!i.value" class="fa fa-trash btn btn-red ml-3" @click.prevent="deleteRowAndere(indexI)"></i>
+      <input v-if="i.input" class="form-control btnAndere" type="text" v-model="i.title"/>
+      <i v-if="i.button" class="fa fa-trash btn btn-red ml-3" @click.prevent="deleteRowAndere(indexI)"></i>
       <div v-if="i.value" class="input-group">
         <input
           type="radio"
@@ -45,16 +45,15 @@
       return {    
         DynamicBilanzierung:[
           [
-            {title: "", vmodel:"", input:true},
+            {title: "", vmodel:"", input:true, button:true},
             {value: "weniger",id:this.subtitle+"0Weniger",name:this.subtitle+"0"},
             {value: "entsprechend der Ernährungsempfehlung",id:this.subtitle+"0Weniger",name:this.subtitle+"0"},
             {value: "mehr",id:this.subtitle+"0Mehr",name:this.subtitle+"0"}, 
-            {button:true},
           ]               
         ],
         DynamicAndere:[
           [
-            {title:"", vmodel:""},
+            {title:"", vmodel:"", input:true, button:true},
             {value:"sehr wichtig", id:this.subtitle+"0sehrWichtig", name:this.subtitle+"0"},
             {value:"wichtig", id:this.subtitle+"0wichtig", name:this.subtitle+"0"},
             {value:"unwichtig", id:this.subtitle+"0unwichtig", name:this.subtitle+"0"},
@@ -111,17 +110,16 @@
     methods: {
       addNewRowBilanzierung() {
         this.DynamicBilanzierung.push([
-          {title: "", vmodel:"",input:true},
+          {title: "", vmodel:"", input:true, button:true},
           {value: "weniger",id:this.subtitle+this.counter+"Weniger",name:this.subtitle+this.counter},
           {value: "entsprechend der Ernährungsempfehlung",id:this.subtitle+this.counter+"Weniger",name:this.subtitle+this.counter},
           {value: "mehr",id:this.subtitle+this.counter+"Mehr",name:this.subtitle+this.counter},
-          {button:true},
         ]);
         this.counter++;
       },
       addNewRowAndere() {
         this.DynamicAndere.push([
-          {title: "", vmodel:""},
+          {title: "", vmodel:"", input:true, button:true},
           {value:"sehr wichtig", id:this.subtitle+this.counter+"sehrWichtig", name:this.subtitle+this.counter},
           {value:"wichtig", id:this.subtitle+this.counter+"wichtig", name:this.subtitle+this.counter},
           {value:"unwichtig", id:this.subtitle+this.counter+"unwichtig", name:this.subtitle+this.counter},
@@ -158,6 +156,6 @@
 }
 .form-control.btnAndere{
   display:inline !important;
-  width: 80%;
+  width: 75%;
 }
 </style>
