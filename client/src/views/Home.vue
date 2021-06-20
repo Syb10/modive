@@ -45,9 +45,9 @@ export default {
       tabs: [
         {id:"assessment", name: "Assessment"},
         {id:"diagnosestellung", name: "Diagnosestellung"},
-        {id:"planung", name: "Planung Intervention"},
+        {id:"planung", name: "Planung der Intervention"},
         {id:"umsetzung", name:"Umsetzung der Intervention"},
-        {id:"evaluation", name:"Evaluation"}
+        {id:"evaluation", name:"Outcome Evaluation"}
       ]
     }
   },
