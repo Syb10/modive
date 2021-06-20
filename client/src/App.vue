@@ -106,8 +106,9 @@
   border-radius: 6px;
   position: absolute;
   z-index: 2;
+  min-width: 250px;
   /**bottom: 125%;*/
-  left: 50%;
+  /**left: 50%;*/
   margin-left: -60px;
   opacity: 0;
   transition: opacity 0.3s;
@@ -115,5 +116,8 @@
 .tipp:hover .tipptext {
   visibility: visible;
   opacity: 1;
+}
+.tipp .tipptext.aufrechterhaltung {
+  margin-left: -2500%;
 }
 </style>

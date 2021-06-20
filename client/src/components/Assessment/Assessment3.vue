@@ -204,7 +204,7 @@
           <th>
             Aufrechterhaltung
             <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
-              <span class="tipptext">Er/sie hat seine/ihre Ernährungs-gewohnheiten bereits verändert.</span>
+              <span class="tipptext aufrechterhaltung">Er/sie hat seine/ihre Ernährungsgewohnheiten bereits verändert.</span>
             </div>
           </th>         
         </thead>
