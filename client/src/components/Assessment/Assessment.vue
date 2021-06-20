@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div> <!-- class="stickyunten"-->
+      <div>
         <button
           v-for="tab in tabs"
           :key="tab.id"
@@ -50,6 +50,7 @@ export default {
 .input-group-text {
   background-color: #9a884f !important;
   border: 1px solid #9a884f !important;
+  color: white;
 }
 .form-control {
   border: 1px solid #9a884f !important;

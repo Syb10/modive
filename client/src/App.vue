@@ -50,15 +50,18 @@
 }
 .input-group-text.inputForm{
   border-radius: 0.25rem 0 0 0.25rem !important;
+  color: white;
 }
 .form-control.textareaForm{
   border-radius: 0 0 0.25rem 0.25rem  !important;
 }
 .input-group-text.textareaForm{
   border-radius: 0.25rem 0.25rem 0 0  !important;
+  color: white;
 }
 .input-group-text.normal-white-space{
   white-space: normal;
+  color: white;
 }
 .checkbox {
   border-radius: 0 0.25rem 0.25rem 0 !important;
