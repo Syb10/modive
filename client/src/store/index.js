@@ -145,6 +145,7 @@ export default createStore({
         problemeNahrungsaufnahme: "",
         appetitBeeintraechtigung: "",
         weitereKoerperlicheBefunde: "",
+        diagnosestellung:"",
     }
   },
   getters: {

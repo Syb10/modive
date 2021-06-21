@@ -126,7 +126,8 @@ const patientSchema = new Schema(
         problemeNahrungsaufnahme: String,
         appetitBeeintraechtigung: String,
         weitereKoerperlicheBefunde: String,
-      }  
+      },
+      diagnosestellung: String,  
     },
     {timestamps:true},
 );

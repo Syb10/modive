@@ -34,6 +34,7 @@
 <script>
 import axios from "axios";
 import assessment from "../components/Assessment/Assessment.vue";
+import diagnosestellung from "../components/Diagnosestellung/Diagnosestellung.vue";
 import {mapFields} from "vuex-map-fields";
 import {mapGetters} from "vuex";
 
@@ -52,7 +53,8 @@ export default {
     }
   },
   components: {
-    assessment
+    assessment,
+    diagnosestellung,
   },
   computed: {
     ...mapFields([
@@ -193,6 +195,7 @@ export default {
       "problemeNahrungsaufnahme",
       "appetitBeeintraechtigung",
       "weitereKoerperlicheBefunde",
+      "diagnosestellung",
     ]),
     ...mapGetters([
       "recallMahlzeiten"
@@ -470,7 +473,8 @@ export default {
             "problemeNahrungsaufnahme": this.problemeNahrungsaufnahme,
             "appetitBeeintraechtigung": this.appetitBeeintraechtigung,
             "weitereKoerperlicheBefunde": this.weitereKoerperlicheBefunde,
-          }  
+          },
+          "diagnosestellung": this.diagnosestellung, 
         })
         .then(response => {
           console.log(response);
@@ -613,6 +617,7 @@ export default {
           this.problemeNahrungsaufnahme = "";
           this.appetitBeeintraechtigung = "";
           this.weitereKoerperlicheBefunde = "";
+          this.diagnosestellung = "";
         })
         .catch(error => {
           console.log(error);

@@ -61,7 +61,8 @@
         <li v-show="key === mykey.key">{{assessment4[myIndex].title}} : {{value}}</li>
       </div>
   </ul>
-
+  <p class="diagnosestellungAspekt">Diagnosestellung</p>
+  <p v-html="patient.diagnosestellung"></p>
 </template>
 
 <script>

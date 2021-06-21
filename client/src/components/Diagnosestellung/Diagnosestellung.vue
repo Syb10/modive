@@ -1,0 +1,131 @@
+<template>
+  <div> 
+    <div class="form-group mb-5" v-for="(item, indexI) in DynamicDiagnosestellung" :key="indexI">
+        <div class="mb-3" v-for="(i, index) in item" :key="index">
+          <label :for="i.id" class="input-group-text textareaForm normal-white-space">
+            {{indexI+1}}. {{i.title }}
+            <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
+              <span class="tipptext">{{i.myTipp}}</span>
+            </div>
+          </label>
+          <textarea
+            class="form-control textareaForm"
+            :id="i.id"
+            v-model="i.vmodel"
+          />
+        </div>
+        <div v-if="error" class="alert alert-danger">
+          Es müssen folgende Felder ausgefüllt werden! 
+          <ul v-for="(error, index) in errorList" :key="index">
+            <li v-if="error != ''">{{error}}</li>
+          </ul>    
+        </div>
+        <button class="btn btn-bluelight mb-3" @click.prevent="getDiagnosestellung(indexI, item[0].vmodel,item[1].vmodel, item[2].vmodel, item[3].vmodel)"><i class="fa fa-check"></i> bestätigen</button>
+        <p v-html="SatzDiagnosestellung[indexI][0].satz"></p>
+        <button class="btn btn-blue mt-3" @click.prevent="addNewProblem"><i class="fa fa-plus-circle"></i> Ernährungsproblem hinzufügen</button>
+        <button class="btn btn-red mt-3 ml-3" @click.prevent="deleteProblem(indexI)"><i class="fa fa-trash"></i> {{indexI+1}}. Ernährungsproblem löschen</button>  
+      </div>
+  </div>   
+</template>
+
+<script>
+import {mapFields} from "vuex-map-fields";
+export default {
+  name: "diagnosestellung",
+  data() {
+    return {    
+      DynamicDiagnosestellung:[
+        [
+          {title: "Ernährungsproblem", vmodel:"", id:"ernaehrungsproblem0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie Ernährungsgewohnheiten."},
+          {title: "Ursache", vmodel:"", id:"ursache0", myTipp:"Informationen hierzu finden Sie im Assessment, in den Kategorien Klient*innengeschichte, Ernährungsgewohnheiten, Verhalten & Umfeld."}, 
+          {title: "Symptome", vmodel:"",id:"symptome0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klinischer Status."},
+          {title: "Ressourcen", vmodel:"", id:"ressourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klient*innengeschichte, Verhalten & Umfeld."},
+        ]
+      ],
+      SatzDiagnosestellung:[
+        [
+          {satz:""}
+        ]
+      ],
+      counter:1,
+      item:[],
+      error: false,
+      errorList: [],
+    }
+  },
+  computed: {
+    ...mapFields([
+      "diagnosestellung"
+    ])
+  },
+  watch: {
+    SatzDiagnosestellung:{
+      handler(value) {
+        for(var i=0; i < value.length; i++){
+           this.item[i] = value[i][0].satz;           
+        }
+        var newValue = this.item.join('<br><br>');
+        this.diagnosestellung = newValue;
+      },
+      deep: true
+    },
+  },
+  methods: {
+      addNewProblem() {
+        this.DynamicDiagnosestellung.push([
+          {title: "Ernährungsproblem", vmodel:"", id:"ernaehrungsproblem"+this.counter, myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie Ernährungsgewohnheiten."},
+          {title: "Ätiologie/Ursache", vmodel:"", id:"ursache"+this.counter, myTipp:"Informationen hierzu finden Sie im Assessment, in den Kategorien Klient*innengeschichte, Ernährungsgewohnheiten, Verhalten & Umfeld."}, 
+          {title: "Zeichen und Symptome", vmodel:"", id:"symptome"+this.counter, myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klinischer Status."},
+          {title: "Ressourcen", vmodel:"", id:"ressourcen"+this.counter, myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klient*innengeschichte, Verhalten & Umfeld."},
+        ]);
+        this.counter++;
+        this.SatzDiagnosestellung.push([
+          {satz:""}
+        ]);
+      },
+      deleteProblem(index) {
+        this.DynamicDiagnosestellung.splice(index, 1);
+        this.SatzDiagnosestellung.splice(index,1);
+        this.item.splice(index, 1);
+      },
+      getDiagnosestellung(index, ernaehrungsproblem, ursache, symptome, ressourcen) {
+        if(ernaehrungsproblem != "" && ursache != "" && symptome != "" && ressourcen != ""){
+          this.error = false;
+          return this.SatzDiagnosestellung[index][0].satz = "Ernährungsproblem " + ernaehrungsproblem.bold() + " bedingt durch Ätiologie/Ursache "+ ursache.bold() +
+          " nachgewiesen durch Zeichen und Symptomen " + symptome.bold() + ". Unterstützend wirken sich Ressourcen " + ressourcen.bold() + " aus." 
+        } else {
+          ernaehrungsproblem ? this.errorList[0] = "" : this.errorList[0] = "Ernährungsproblem"
+          ursache ? this.errorList[1] = "" : this.errorList[1] = "Ätiologie/Ursache"
+          symptome ? this.errorList[2] = "" : this.errorList[2] = "Zeichen und Symptomen"
+          ressourcen ? this.errorList[3] = "" : this.errorList[3] = "Ressourcen"
+          this.error = true;
+        }
+      }
+  }
+}
+</script>
+
+<style scoped>
+.input-group-text {
+  background-color: #6eaead !important;
+  border: 1px solid #6eaead !important;
+  color: white;
+}
+.form-control {
+  border: 1px solid #6eaead !important;
+}
+.btn-blue{
+    background-color: #6eaead !important;
+    border: 1px solid #6eaead !important;
+    color: white !important;
+}
+.btn-bluelight{
+  border: 1px solid #6eaead !important;
+  color: #6eaead !important;
+}
+.btn-red{
+    background-color: #B75757 !important;
+    border: 1px solid #B75757 !important;
+    color: white !important;
+}
+</style>
