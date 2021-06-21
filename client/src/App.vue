@@ -92,6 +92,10 @@
   color: #9a884f;
   font-weight: bold;
 }
+.diagnosestellungAspekt{
+  color: #6eaead;
+  font-weight: bold;
+}
 .tipp {
   position: relative;
   display: inline-block;
