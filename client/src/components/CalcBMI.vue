@@ -2,13 +2,13 @@
   <div class="form-group">
     <div class="mb-4">
       <div class="input-group-prepend mr-5 mb-3">
-        <label for="bmi" class="input-group-text inputForm">
+        <label for="bmi" class="input-group-text inputForm assessmentColor">
           Body Mass Index (in kg/m&sup2;)
         </label>
         <input
           type="number"
           step="0.01"
-          class="form-control inputForm"
+          class="form-control inputForm assessmentBorder"
           id="bmi"
           v-model="myBMI"
         />

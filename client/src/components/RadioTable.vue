@@ -1,7 +1,7 @@
 <template>
   <tr>
-    <td  v-for="(item, index) in items" :key="`item-${index}`" :class="item.class">
-      {{item.title}}
+    <td  v-for="(item, index) in items" :key="`item-${index}`">
+      <span :class="item.class">{{item.title}}</span>
       <div v-if="item.value" class="input-group">
         <input
           type="radio"
@@ -35,9 +35,3 @@
     },
   };
 </script>
-
-<style scoped>
-.paddingLeft{
-  padding: .75rem .75rem .75rem 2.25rem;
-}
-</style>

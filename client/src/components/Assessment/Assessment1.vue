@@ -1,40 +1,40 @@
 <template>
     <div>
-      <button @click.prevent="scrollMeTo('klientengeschichte')" class="btn mt-1 mr-1 tab-button">Klient*innengeschichte</button>
-      <button @click.prevent="scrollMeTo('medizinischeAngaben')" class="btn mt-1 mr-1 tab-button">Medizinische/gesundheitliche Angaben</button>
-      <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button">Upload-Bereich für weitere Dokumente</button>
+      <button @click.prevent="scrollMeTo('klientengeschichte')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Klient*innengeschichte</button>
+      <button @click.prevent="scrollMeTo('medizinischeAngaben')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Medizinische/gesundheitliche Angaben</button>
+      <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Upload-Bereich für weitere Dokumente</button>
       <p class="assessmentAspekt mt-5" ref="klientengeschichte">Klient*innengeschichte</p>
       <InputForm
         v-model="vorname"
-        :content="{ title: 'Vorname', id: 'vorname', type: 'text' }"        
+        :content="{ title: 'Vorname', id: 'vorname', type: 'text', color:'assessmentColor', border:'assessmentBorder' }"        
       />
       <InputForm
         v-model="nachname"
-        :content="{ title: 'Nachname', id: 'nachname', type: 'text' }"        
+        :content="{ title: 'Nachname', id: 'nachname', type: 'text', color:'assessmentColor', border:'assessmentBorder' }"        
       />
       <InputForm
         v-model="geburtsdatum"
-        :content="{ title: 'Geburtsdatum', id: 'geburtsdatum', type:'date' }"
+        :content="{ title: 'Geburtsdatum', id: 'geburtsdatum', type:'date', color:'assessmentColor', border:'assessmentBorder' }"
       />
       <InputForm
         v-model="adresse"
-        :content="{ title: 'Adresse', id: 'adresse', type: 'text' }"        
+        :content="{ title: 'Adresse', id: 'adresse', type: 'text', color:'assessmentColor', border:'assessmentBorder' }"        
       />
       <InputForm
         v-model="telefonnummer"
-        :content="{ title: 'Telefonnummer', id: 'telefonnummer', type: 'text' }"        
+        :content="{ title: 'Telefonnummer', id: 'telefonnummer', type: 'text', color:'assessmentColor', border:'assessmentBorder' }"        
       />
       <InputForm
         v-model="email"
-        :content="{ title: 'E-Mail', id: 'email', type: 'email' }"        
+        :content="{ title: 'E-Mail', id: 'email', type: 'email', color:'assessmentColor', border:'assessmentBorder' }"        
       />
       <InputForm
         v-model="krankenkasse"
-        :content="{ title: 'Krankenkasse', id: 'krankenkasse', type: 'text' }"        
+        :content="{ title: 'Krankenkasse', id: 'krankenkasse', type: 'text', color:'assessmentColor', border:'assessmentBorder' }"        
       />
       <InputForm
         v-model="hausarzt"
-        :content="{ title: 'Hausarzt*in', id: 'hausarzt', type: 'text' }"        
+        :content="{ title: 'Hausarzt*in', id: 'hausarzt', type: 'text', color:'assessmentColor', border:'assessmentBorder' }"        
       />
       <RadioForm
         :items="[
@@ -43,15 +43,16 @@
           {title:'divers', id:'divers', name:'geschlecht'}
         ]"
         :title="'Geschlecht'"
+        :color ="'assessmentColor'"
         v-model="geschlecht"
       />
       <InputForm
         v-model="herkunft"
-        :content="{ title: 'Herkunft', id: 'herkunft', type:'text' }"
+        :content="{ title: 'Herkunft', id: 'herkunft', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
       />
       <InputForm
         v-model="muttersprache"
-        :content="{ title: 'Muttersprache', id: 'muttersprache', type:'text' }"
+        :content="{ title: 'Muttersprache', id: 'muttersprache', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
       />
       <RadioForm
         :items="[
@@ -62,6 +63,7 @@
           {title:'keine Angaben', id:'keineAngabenSchulischeBildung', name:'schulischeBildung'}
         ]"
         :title="'Höchster schulischer Abschluss'"
+        :color ="'assessmentColor'"
         v-model="schulischeBildung"
       />
       <RadioForm
@@ -74,11 +76,12 @@
           {title:'keine Angaben', id:'keineAngabenBeruflicheBildung', name:'beruflicheBildung'}
         ]"
         :title="'Höchster beruflicher Abschluss'"
+        :color ="'assessmentColor'"
         v-model="beruflicheBildung"
       />
       <InputForm
         v-model="beruf"
-        :content="{ title: 'Ausgeübter Beruf', id: 'beruf', type:'text' }"
+        :content="{ title: 'Ausgeübter Beruf', id: 'beruf', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
       />
       <CheckboxForm
         :checkboxs="[
@@ -87,6 +90,7 @@
           {title:'Schichtarbeit', id:'schichtarbeit'},
           {title:'keine Angaben', id:'keineAngabenArtDerArbeit'}
         ]"
+        :color ="'assessmentColor'"
         v-model="artDerArbeit"
         :style="marginSmall"
       />
@@ -100,6 +104,7 @@
           {title:'keine Angaben', id:'keineAngabenFamilienstand'}
         ]"
         :title="'Familienstand'"
+        :color ="'assessmentColor'"
         v-model="familienstand"
       />
       <CheckboxForm
@@ -114,14 +119,15 @@
           {title:'keine Angaben', id:'keineAngabenWohnsituation'}
         ]"
         :title="'Wohnsituation'"
+        :color ="'assessmentColor'"
         v-model="wohnsituation"
       />
       <InputForm
         v-model="wohnsituationAndere"
-        :content="{ title: 'andere', id: 'wohnsituationAndere', type:'text' }"
+        :content="{ title: 'andere', id: 'wohnsituationAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
         :style="marginSmall"
       />
-      <div class="form-inline mb-4">Der/die Klient*in lebt mit <input class="form-control mr-1 ml-1" v-model="personenImHaushalt" type="number" min="0"/> Personen in einem Haushalt.</div>
+      <div class="form-inline mb-4">Der/die Klient*in lebt mit <input class="form-control assessmentBorder mr-1 ml-1" v-model="personenImHaushalt" type="number" min="0"/> Personen in einem Haushalt.</div>
       <div>Tabakkonsum</div>
       <RadioForm
         :items="[
@@ -129,6 +135,7 @@
           {title:'nein', id:'neinaktuell', name:'aktuellGeraucht'},
         ]"
         :title="'Wird zum aktuellen Zeitpunkt geraucht?'"
+        :color ="'assessmentColor'"
         v-model="aktuellGeraucht"
       />
       <div v-if="aktuellGeraucht == 'nein'">
@@ -138,6 +145,7 @@
             {title:'nein', id:'neinjemals', name:'jemalsGeraucht'},
           ]"
           :title="'Wurde jemals geraucht?'"
+          :color ="'assessmentColor'"
           v-model="jemalsGeraucht"
           :style="marginSmall"
         />
@@ -145,17 +153,17 @@
       <div v-if="jemalsGeraucht == 'ja' || aktuellGeraucht == 'ja'">
         <InputForm
           v-model="anzahlZigaretten"
-          :content="{ title: 'Anzahl an Zigaretten/Tag', id: 'anzahlZigaretten', type:'number' }"
+          :content="{ title: 'Anzahl an Zigaretten/Tag', id: 'anzahlZigaretten', type:'number', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmall"
         />
         <InputForm
           v-model="anzahlTabakprodukte"
-          :content="{ title: 'Anzahl an Tabakprodukten/Tag', id: 'anzahlTabakprodukte', type:'number' }"
+          :content="{ title: 'Anzahl an Tabakprodukten/Tag', id: 'anzahlTabakprodukte', type:'number', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmaller"
         />
         <InputForm
           v-model="anzahlJahreRauchen"
-          :content="{ title: 'Anzahl an Jahren, in denen bisher geraucht wurde', id: 'anzahlJahreRauchen', type:'number' }"
+          :content="{ title: 'Anzahl an Jahren, in denen bisher geraucht wurde', id: 'anzahlJahreRauchen', type:'number', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmaller"
         />
       </div>
@@ -165,6 +173,7 @@
           {title:'nein', id:'neinBeeintraechtigungen', name:'beeintraechtigungen'},
         ]"
         :title="'Körperliche Beeinträchtigungen'"
+        :color ="'assessmentColor'"
         v-model="beeintraechtigungen"
       />
       <div v-if="beeintraechtigungen == 'ja'">
@@ -174,12 +183,13 @@
             {title:'Hörbehinderung', id:'hörbehinderung'},
           ]"
           :title="'Welche Körperliche Beeinträchtigungen sind vorhanden'"
+          :color ="'assessmentColor'"
           v-model="beeintraechtigungenVorhanden"
           :style="marginSmall"
         />
         <InputForm
           v-model="beeintraechtigungenVorhandenAndere"
-          :content="{ title: 'andere', id: 'beeintraechtigungenVorhandenAndere', type:'text' }"
+          :content="{ title: 'andere', id: 'beeintraechtigungenVorhandenAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmall"
         />
       </div>
@@ -189,6 +199,7 @@
           {title:'nein', id:'neinmobil', name:'beeintraechtigungen'},
         ]"
         :title="'mobil'"
+        :color ="'assessmentColor'"
         v-model="mobil"
       />
       <div v-if="mobil == 'nein'">
@@ -199,24 +210,25 @@
             {title:'an den Rollstuhl gebunden', id:'rollstuhl'},
           ]"
           :title="'Warum?'"
+          :color ="'assessmentColor'"
           v-model="mobileingeschraenkt"
           :style="marginSmall"
         />
         <InputForm
           v-model="mobileingeschraenktAndere"
-          :content="{ title: 'andere', id: 'mobileingeschraenktAndere', type:'text' }"
+          :content="{ title: 'andere', id: 'mobileingeschraenktAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmall"
         />
       </div>
       <TextareaForm
         v-model="kontakAktivitaet"
-        :content="{ title: 'Kontakt/Aktivität in sozialen Strukturen', id: 'kontakAktivitaet',}"
+        :content="{ title: 'Kontakt/Aktivität in sozialen Strukturen', id: 'kontakAktivitaet', color:'assessmentColor', border:'assessmentBorder'}"
         :isTipp="true"
         :myTipp="'z.B. Familienmitglieder, Gemeinschaften (z.B. Vereine, Kirchengemeinde)'"
       />
       <TextareaForm
         v-model="hobbies"
-        :content="{ title: 'Hobbies/Freizeitbeschäftigungen', id: 'hobbies',}"
+        :content="{ title: 'Hobbies/Freizeitbeschäftigungen', id: 'hobbies', color:'assessmentColor', border:'assessmentBorder'}"
       />
       <RadioForm
         :items="[
@@ -224,6 +236,7 @@
           {title:'nein', id:'neinUnterstuetzungMedizinischerVersorgung', name:'unterstuetzungMedizinischerVersorgung'},
         ]"
         :title="'Unterstützung bei medizinischer/pflegerischer Versorgung notwendig'"
+        :color ="'assessmentColor'"
         v-model="unterstuetzungMedizinischerVersorgung"
       />
       <div v-if="unterstuetzungMedizinischerVersorgung == 'ja'">
@@ -233,19 +246,20 @@
             {title:'Betreuungs-/Pflegepersonal', id:'betreuungspersonal'}
           ]"
           :title="'Durch wen?'"
+          :color ="'assessmentColor'"
           v-model="jaUnterstuetzungMedizinischerVersorgung"
           :style="marginSmall"
         />
         <InputForm
           v-model="jaUnterstuetzungMedizinischerVersorgungAndere"
-          :content="{ title: 'andere', id: 'jaUnterstuetzungMedizinischerVersorgungAndere', type:'text' }"
+          :content="{ title: 'andere', id: 'jaUnterstuetzungMedizinischerVersorgungAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmall"
         />
       </div>
       <p class="assessmentAspekt" ref="medizinischeAngaben">Medizinische/gesundheitliche Angaben</p>
       <TextareaForm
         v-model="medizinischeDiagnose"
-        :content="{ title: 'Medizinische Diagnose', id: 'medizinischeDiagnose'}"
+        :content="{ title: 'Medizinische Diagnose', id: 'medizinischeDiagnose', color:'assessmentColor', border:'assessmentBorder'}"
         :isTipp="true"
         :myTipp="'Grund für die Ernährungsberatung/ -therapie'"
       />
@@ -262,16 +276,17 @@
           {title:'Osteoporose', id:'osteoporose'},
         ]"
         :title="'Weitere Diagnosen'"
+        :color ="'assessmentColor'"
         v-model="weitereDiagnosen"
       />
       <InputForm
         v-model="weitereDiagnosenAndere"
-        :content="{ title: 'andere', id: 'weitereDiagnosenAndere', type:'text' }"
+        :content="{ title: 'andere', id: 'weitereDiagnosenAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
         :style="marginSmall"
       />
       <TextareaForm
         v-model="vergangeneDiagnosen"
-        :content="{ title: 'Vergangene Diagnosen', id: 'vergangeneDiagnosen'}"
+        :content="{ title: 'Vergangene Diagnosen', id: 'vergangeneDiagnosen', color:'assessmentColor', border:'assessmentBorder'}"
       />
       <CheckboxForm
         :checkboxs="[
@@ -288,11 +303,12 @@
           {title:'Zwangsstörungen', id:'zwangsstoerungen'},
         ]"
         :title="'Psychische Gesundheit'"
+        :color ="'assessmentColor'"
         v-model="psychischeGesundheit"
       />
       <InputForm
         v-model="psychischeGesundheitAndere"
-        :content="{ title: 'andere', id: 'psychischeGesundheitAndere', type:'text' }"
+        :content="{ title: 'andere', id: 'psychischeGesundheitAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
         :style="marginSmall"
       />
       <CheckboxForm
@@ -310,11 +326,12 @@
         :title="'Gesundheitszustand der Familie'"
         :isTipp = "true"
         :myTipp = "'Zustand und Erkrankungen, die Einfluss auf die Ernährung haben können'"
+        :color ="'assessmentColor'"
         v-model="gesundheitszustandDerFamilie"
       />
       <InputForm
         v-model="gesundheitszustandDerFamilieAndere"
-        :content="{ title: 'andere', id: 'gesundheitszustandDerFamilieAndere', type:'text' }"
+        :content="{ title: 'andere', id: 'gesundheitszustandDerFamilieAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
         :style="marginSmall"
       />
       <div v-if="geschlecht == 'weiblich' || geschlecht == 'divers'">

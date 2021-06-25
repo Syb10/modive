@@ -1,11 +1,11 @@
 <template>
     <div>
-      <button @click.prevent="scrollMeTo('zugangNahrungsmittel')" class="btn mt-1 mr-1 tab-button">Ernährungsbezogene Versorgung</button>
-      <button @click.prevent="scrollMeTo('wissen')" class="btn mt-1 mr-1 tab-button">Ernährungswissen, Überzeugungen, Einstellungen</button>
-      <button @click.prevent="scrollMeTo('verhalten')" class="btn mt-1 mr-1 tab-button">Verhalten und Verhaltensänderungen</button>
-      <button @click.prevent="scrollMeTo('aktivitaet')" class="btn mt-1 mr-1 tab-button">Körperliche Aktivität</button>
-      <button @click.prevent="scrollMeTo('lebensqualitaet')" class="btn mt-1 mr-1 tab-button">Lebensqualität</button>
-      <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button">Upload-Bereich für weitere Dokumente</button>
+      <button @click.prevent="scrollMeTo('zugangNahrungsmittel')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Ernährungsbezogene Versorgung</button>
+      <button @click.prevent="scrollMeTo('wissen')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Ernährungswissen, Überzeugungen, Einstellungen</button>
+      <button @click.prevent="scrollMeTo('verhalten')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Verhalten und Verhaltensänderungen</button>
+      <button @click.prevent="scrollMeTo('aktivitaet')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Körperliche Aktivität</button>
+      <button @click.prevent="scrollMeTo('lebensqualitaet')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Lebensqualität</button>
+      <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Upload-Bereich für weitere Dokumente</button>
       <p class="assessmentAspekt mt-5" ref="zugangNahrungsmittel">Ernährungsbezogene Versorgung</p>
       <CheckboxForm
         :checkboxs="[
@@ -15,11 +15,12 @@
           {title:'Familienmitglied', id:'plantFamilienmitglied'}
         ]"
         :title="'Wer plant die Mahlzeiten?'"
+        :color ="'assessmentColor'"
         v-model="plantMahlzeiten"
       />
       <InputForm
         v-model="plantMahlzeitenAndere"
-        :content="{ title: 'andere', id: 'plantMahlzeitenAndere', type:'text' }"
+        :content="{ title: 'andere', id: 'plantMahlzeitenAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
         :style="marginSmall"
       />
       <CheckboxForm
@@ -32,11 +33,12 @@
           {title:'Essen auf Rädern', id:'bereitetEssenAufRaedern'}
         ]"
         :title="'Wer bereitet die Mahlzeiten zu?'"
+        :color ="'assessmentColor'"
         v-model="bereitetMahlzeiten"
       />
       <InputForm
         v-model="bereitetMahlzeitenAndere"
-        :content="{ title: 'andere', id: 'bereitetMahlzeitenAndere', type:'text' }"
+        :content="{ title: 'andere', id: 'bereitetMahlzeitenAndere', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
         :style="marginSmall"
       />
       <CheckboxForm
@@ -48,11 +50,12 @@
           {title:'Einkaufsservice', id:'einkaufEinkaufsservice'}
         ]"
         :title="'Wer tätigt den Lebensmitteleinkauf?'"
+        :color ="'assessmentColor'"
         v-model="lebensmitteleinkauf"
       />
       <InputForm
         v-model="lebensmitteleinkaufAndere"
-        :content="{ title: 'andere', id: 'lebensmitteleinkaufAndere', type:'text' }"
+        :content="{ title: 'andere', id: 'lebensmitteleinkaufAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
         :style="marginSmall"
       />
       <RadioForm
@@ -62,19 +65,20 @@
           {title:'nein', id:'selbstversorgenNein', name:'selbstversorgen'},
         ]"
         :title="'Ist der/die Klient*in psychisch und physisch in der Lage, sich selbst zu versorgen?'"
+        :color ="'assessmentColor'"
         v-model="selbstversorgen"
       />
       <div v-if="selbstversorgen == 'ja, aber eingeschränkt'">
         <InputForm
           v-model="selbstversorgenEingeschraenkt"
-          :content="{ title: 'Welche Einschränkungen bestehen?', id: 'selbstversorgenEingeschraenkt', type:'text' }"
+          :content="{ title: 'Welche Einschränkungen bestehen?', id: 'selbstversorgenEingeschraenkt', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmall"
         />
       </div>
       <div v-if="selbstversorgen == 'nein'">
         <InputForm
           v-model="selbstversorgenNein"
-          :content="{ title: 'Warum nicht?', id: 'selbstversorgenNein', type:'text' }"
+          :content="{ title: 'Warum nicht?', id: 'selbstversorgenNein', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmall"
         />
       </div>
@@ -96,7 +100,7 @@
       </table>
       <TextareaForm
         v-model="begruendungMahlzeitZuzubereiten"
-        :content="{ title: 'Begründung', id: 'begruendungMahlzeitZuzubereiten',}"
+        :content="{ title: 'Begründung', id: 'begruendungMahlzeitZuzubereiten', color:'assessmentColor', border:'assessmentBorder'}"
       />
       <CheckboxForm
         :checkboxs="[
@@ -106,16 +110,17 @@
           {title:'Schule', id:'schule'}
         ]"
         :title="'Wo informiert sich der/die Klient*in über Ernährung?'"
+        :color ="'assessmentColor'"
         v-model="informationErnaehrung"
       />
       <InputForm
         v-model="informationErnaehrungAndere"
-        :content="{ title: 'andere', id: 'informationErnaehrungAndere', type:'text' }"
+        :content="{ title: 'andere', id: 'informationErnaehrungAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
         :style="marginSmall"
       />
       <TextareaForm
         v-model="orientierungErnaehrung"
-        :content="{ title: 'Woran orientiert sich der/die Klient*in bei seiner/ihrer Ernährung?', id: 'orientierungErnaehrung',}"
+        :content="{ title: 'Woran orientiert sich der/die Klient*in bei seiner/ihrer Ernährung?', id: 'orientierungErnaehrung', color:'assessmentColor', border:'assessmentBorder'}"
       />
       <p>Wie wichtig ist es dem/der Klient*in, diesen Empfehlungen zu folgen?</p>
       <table class="table table-striped table-bordered mb-5">
@@ -217,7 +222,7 @@
       </table>
       <TextareaForm
         v-model="begruendungErnaehrungsgewohnheitenVeraendern"
-        :content="{ title: 'Begründung', id: 'begruendungErnaehrungsgewohnheitenVeraendern',}"
+        :content="{ title: 'Begründung', id: 'begruendungErnaehrungsgewohnheitenVeraendern', color:'assessmentColor', border:'assessmentBorder'}"
       />
       <p class="assessmentAspekt" ref="aktivitaet">Körperliche Aktivität</p>
       <RadioForm
@@ -229,12 +234,13 @@
           {title:'2,0-2,4', myInnerTipp:'körperlich anstrengende berufliche Arbeit oder sehr aktive Freizeittätigkeit (z.B. Bauarbeiter*innen, Landwirt*innen, Waldarbeiter*innen, Bergarbeiter*innen, Leistungssportler*innen)', id:'5physicalActivityLevel', name:'physicalActivityLevel'},
         ]"
         :title="'Physical Activity Level (PAL)'"
+        :color ="'assessmentColor'"
         v-model="physicalActivityLevel"
         :isInnerTipp="true"
       />
       <TextareaForm
         v-model="weitereAnmerkungenAktivitaet"
-        :content="{ title: 'Weitere Anmerkungen zur körperlichen Aktivität', id: 'weitereAnmerkungenAktivitaet',}"
+        :content="{ title: 'Weitere Anmerkungen zur körperlichen Aktivität', id: 'weitereAnmerkungenAktivitaet', color:'assessmentColor', border:'assessmentBorder'}"
         :isTipp="true"
         :myTipp="'Alltagsaktivität und Sport inklusive Dauer und Häufigkeit'"
       />

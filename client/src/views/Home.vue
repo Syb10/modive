@@ -627,30 +627,3 @@ export default {
 };
 </script>
 
-<style scoped>
- #assessment{
-   background-color: #9a884f !important;
-   border: 1px solid #9a884f !important;
-   color: white !important;
- }
-  #diagnosestellung{
-   background-color: #6eaead !important;
-   border: 1px solid #6eaead !important;
-   color: white !important;
- }
- #planung{
-   background-color: #376f75 !important;
-   border: 1px solid #376f75 !important;
-   color: white !important;
- }
- #umsetzung{
-   background-color: #00303C !important;
-   border: 1px solid #00303C !important;
-   color: white !important;
- }
- #evaluation{
-   background-color: #72BF44 !important;
-   border: 1px solid #72BF44 !important;
-   color: white !important;
- }
-</style>

@@ -2,7 +2,7 @@
   <div class="form-group">
     <div class="mb-4">
       <div class="input-group-prepend mr-5 mb-3">
-        <label :for="content.id" class="input-group-text inputForm">
+        <label :for="content.id" class="input-group-text inputForm" :class="content.color">
           {{ content.title }}
           <div v-if="isTipp" class="tipp ml-3"> <i class="fa fa-info-circle"></i>
             <span class="tipptext">{{myTipp}}</span>
@@ -13,6 +13,7 @@
           :step="content.step"
           :min="content.min"
           class="form-control inputForm"
+          :class="content.border"
           :id="content.id"
           :value="modelValue"
           @input="$emit('update:modelValue', $event.target.value)"
@@ -31,7 +32,9 @@ export default {
       id: String,
       type: String,
       step: String,
-      min: String
+      min: String,
+      color: String,
+      border: String,
     },
     isTipp: Boolean,
     myTipp: String,

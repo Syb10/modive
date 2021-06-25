@@ -45,6 +45,84 @@
   color: #42b983;
 }
 
+
+/************************** 
+ style menu tab button
+ **************************/
+.tab-button{
+  border-radius: 0 !important;
+  opacity: 0.6;
+}
+.tab-button:hover{
+  opacity: 1;
+  
+}
+.tab-button.active{
+  opacity: 1;
+}
+.tab-button-assessment{
+  border: 1px solid #9a884f !important;
+  background-color: white !important;
+  color: #9a884f !important;
+}
+.tab-button-assessment:hover{
+  background-color: #9a884f !important;
+  color: white !important;  
+}
+.tab-button-assessment.active{
+  background-color: #9a884f !important;
+  color: white !important;
+}
+
+
+/************************** 
+ style menu color
+ **************************/
+#assessment{
+  background-color: #9a884f !important;
+  border: 1px solid #9a884f !important;
+  color: white !important;
+}
+#diagnosestellung{
+  background-color: #6eaead !important;
+  border: 1px solid #6eaead !important;
+  color: white !important;
+}
+#planung{
+  background-color: #376f75 !important;
+  border: 1px solid #376f75 !important;
+  color: white !important;
+}
+#umsetzung{
+  background-color: #00303C !important;
+  border: 1px solid #00303C !important;
+  color: white !important;
+}
+#evaluation{
+  background-color: #72BF44 !important;
+  border: 1px solid #72BF44 !important;
+  color: white !important;
+}
+
+/*******************************
+ style p-tag Headline
+ ********************************/
+.assessmentAspekt{
+  color: #9a884f;
+  font-weight: bold;
+}
+.diagnosestellungAspekt{
+  color: #6eaead;
+  font-weight: bold;
+}
+.planungAspekt{
+  color: #376f75;
+  font-weight: bold;
+}
+
+/******************************
+ style form 
+ *****************************/
 .form-control.inputForm{
   border-radius: 0 0.25rem 0.25rem 0 !important;
 }
@@ -66,36 +144,50 @@
 .checkbox {
   border-radius: 0 0.25rem 0.25rem 0 !important;
 }
-.tab-button{
-  border-radius: 0 !important;
-  opacity: 0.6;
+.assessmentColor {
+  background-color: #9a884f !important;
+  border: 1px solid #9a884f !important;
+  color: white;
 }
-.tab-button:hover{
-  opacity: 1;
-  
+.assessmentBorder {
+  border: 1px solid #9a884f !important;
 }
-.tab-button.active{
-  opacity: 1;
+.diagnosestellungColor {
+  background-color: #6eaead !important;
+  border: 1px solid #6eaead !important;
+  color: white;
+}
+.diagnosestellungBorder {
+  border: 1px solid #6eaead !important;
+}
+.planungColor {
+  background-color: #376f75 !important;
+  border: 1px solid #376f75 !important;
+  color: white;
+}
+.planungBorder {
+  border: 1px solid #376f75 !important;
+}
+.umsetzungColor {
+  background-color: #00303C !important;
+  border: 1px solid #00303C !important;
+  color: white;
+}
+.umsetzungBorder {
+  border: 1px solid #00303C !important;
+}
+.evaluationColor {
+  background-color: #72BF44 !important;
+  border: 1px solid #72BF44 !important;
+  color: white;
+}
+.evaluationBorder {
+  border: 1px solid #72BF44 !important;
 }
 
-.nachObenButton{
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 1;
-  /*background-color: #9a884f !important;*/
-}
-.nachObenButton i{
-  font-size: 2rem;
-}
-.assessmentAspekt{
-  color: #9a884f;
-  font-weight: bold;
-}
-.diagnosestellungAspekt{
-  color: #6eaead;
-  font-weight: bold;
-}
+/**********************
+ style tipp 
+ *********************/
 .tipp {
   position: relative;
   display: inline-block;
@@ -123,5 +215,53 @@
 }
 .tipp .tipptext.aufrechterhaltung {
   margin-left: -2500%;
+}
+
+/***********************
+ style button 
+ *************************/
+.nachObenButton{
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1;
+  /*background-color: #9a884f !important;*/
+}
+.nachObenButton i{
+  font-size: 2rem;
+} 
+td .btn{
+  margin: 5px;
+}
+.btn-gold{
+  background-color: #9a884f !important;
+  border: 1px solid #9a884f !important;
+  color: white !important;
+}
+.btn-red{
+  background-color: #B75757 !important;
+  border: 1px solid #B75757 !important;
+  color: white !important;
+}
+.btn-blue{
+  background-color: #6eaead !important;
+  border: 1px solid #6eaead !important;
+  color: white !important;
+}
+.btn-bluelight{
+  border: 1px solid #6eaead !important;
+  color: #6eaead !important;
+}
+.form-control.btnAndere{
+  display:inline !important;
+  width: 75%;
+}
+
+
+.paddingLeft{
+  padding: .75rem .75rem .75rem 2.25rem;
+}
+.marginRadioTableDynamic{
+  margin: 0.75rem;
 }
 </style>

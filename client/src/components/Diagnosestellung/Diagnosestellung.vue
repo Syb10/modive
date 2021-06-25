@@ -2,14 +2,14 @@
   <div> 
     <div class="form-group mb-5" v-for="(item, indexI) in DynamicDiagnosestellung" :key="indexI">
         <div class="mb-3" v-for="(i, index) in item" :key="index">
-          <label :for="i.id" class="input-group-text textareaForm normal-white-space">
+          <label :for="i.id" class="input-group-text textareaForm normal-white-space diagnosestellungColor">
             {{indexI+1}}. {{i.title }}
             <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
               <span class="tipptext">{{i.myTipp}}</span>
             </div>
           </label>
           <textarea
-            class="form-control textareaForm"
+            class="form-control textareaForm diagnosestellungBorder"
             :id="i.id"
             v-model="i.vmodel"
           />
@@ -104,28 +104,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.input-group-text {
-  background-color: #6eaead !important;
-  border: 1px solid #6eaead !important;
-  color: white;
-}
-.form-control {
-  border: 1px solid #6eaead !important;
-}
-.btn-blue{
-    background-color: #6eaead !important;
-    border: 1px solid #6eaead !important;
-    color: white !important;
-}
-.btn-bluelight{
-  border: 1px solid #6eaead !important;
-  color: #6eaead !important;
-}
-.btn-red{
-    background-color: #B75757 !important;
-    border: 1px solid #B75757 !important;
-    color: white !important;
-}
-</style>

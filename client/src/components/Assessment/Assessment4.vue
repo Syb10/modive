@@ -1,57 +1,57 @@
 <template>
     <div>
-        <button @click.prevent="scrollMeTo('anthropometrischeDaten')" class="btn mt-1 mr-1 tab-button">Anthropometrische Daten</button>
-        <button @click.prevent="scrollMeTo('koerperzusammensetzung')" class="btn mt-1 mr-1 tab-button">Körperzusammensetzung</button>
-        <button @click.prevent="scrollMeTo('biochemischeParameter')" class="btn mt-1 mr-1 tab-button">Biochemische Parameter, medizinische Tests/Maßnahmen</button>
-        <button @click.prevent="scrollMeTo('koerperlicheErscheinungen')" class="btn mt-1 mr-1 tab-button">Körperliche Erscheinungen</button>
-        <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button">Upload-Bereich für weitere Dokumente</button>
+        <button @click.prevent="scrollMeTo('anthropometrischeDaten')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Anthropometrische Daten</button>
+        <button @click.prevent="scrollMeTo('koerperzusammensetzung')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Körperzusammensetzung</button>
+        <button @click.prevent="scrollMeTo('biochemischeParameter')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Biochemische Parameter, medizinische Tests/Maßnahmen</button>
+        <button @click.prevent="scrollMeTo('koerperlicheErscheinungen')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Körperliche Erscheinungen</button>
+        <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Upload-Bereich für weitere Dokumente</button>
         <p class="assessmentAspekt mt-5" ref="anthropometrischeDaten">Anthropometrische Daten</p>
         <InputForm
           v-model="koerpergroesse"
-          :content="{title:'Körpergröße (in m)', id:'koerpergroesse', type:'number', step: '0.01'}"
+          :content="{title:'Körpergröße (in m)', id:'koerpergroesse', type:'number', step: '0.01', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <InputForm
           v-model="koerpergewicht"
-          :content="{title:'Körpergewicht (in kg)', id:'koerpergewicht', type:'number', step: '0.01'}"
+          :content="{title:'Körpergewicht (in kg)', id:'koerpergewicht', type:'number', step: '0.01', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <CalcBMI
           v-model="bmi"
         />
         <InputForm
           v-model="taillenumfang"
-          :content="{title:'Taillenumfang (in cm)', id:'taillenumfang', type:'number'}"
+          :content="{title:'Taillenumfang (in cm)', id:'taillenumfang', type:'number', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <InputForm
           v-model="hautfaltendicke"
-          :content="{title:'Hautfaltendicke', id:'hautfaltendicke', type:'text'}"
+          :content="{title:'Hautfaltendicke', id:'hautfaltendicke', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <p class="assessmentAspekt" ref="koerperzusammensetzung">Körperzusammensetzung</p>
         <InputForm
           v-model="fettfreieMasse"
-          :content="{title:'fettfreie Masse (FFM)', id:'fettfreieMasse', type:'text'}"
+          :content="{title:'fettfreie Masse (FFM)', id:'fettfreieMasse', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <InputForm
           v-model="fettmasse"
-          :content="{title:'Fettmasse (FM)', id:'fettmasse', type:'text'}"
+          :content="{title:'Fettmasse (FM)', id:'fettmasse', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <InputForm
           v-model="ruheenergieumsatz"
-          :content="{title:'Ruheenergieumsatz', id:'ruheenergieumsatz', type:'text'}"
+          :content="{title:'Ruheenergieumsatz', id:'ruheenergieumsatz', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <p class="assessmentAspekt" ref="biochemischeParameter">Biochemische Parameter, medizinische Tests/Maßnahmen</p>
         <TextareaForm
           v-model="chemieMetabolischeParameter"
-          :content="{ title: 'Chemie/metabolische Parameter in Blut und Urin', id: 'chemieMetabolischeParameter',}"
+          :content="{ title: 'Chemie/metabolische Parameter in Blut und Urin', id: 'chemieMetabolischeParameter', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <TextareaForm
           v-model="vitalzeichen"
-          :content="{ title: 'Vitalzeichen', id: 'vitalzeichen',}"
+          :content="{ title: 'Vitalzeichen', id: 'vitalzeichen', color:'assessmentColor', border:'assessmentBorder'}"
           :isTipp="true"
           :myTipp="'Blutdruck, Temperatur, Puls, Atmung, Bewusstsein'"
         />
         <TextareaForm
           v-model="weitereMessungen"
-          :content="{ title: 'weitere Messungen', id: 'weitereMessungen',}"
+          :content="{ title: 'weitere Messungen', id: 'weitereMessungen', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <p class="assessmentAspekt" ref="koerperlicheErscheinungen">Körperliche Erscheinungen</p>
         <RadioForm
@@ -61,19 +61,20 @@
             {title:'nein', id:'neinSchlucken', name:'schlucken'},
           ]"
           :title="'Fähigkeit zu schlucken'"
+          :color ="'assessmentColor'"
           v-model="schlucken"
         />
       <div v-if="schlucken == 'ja, aber eingeschränkt'">
         <InputForm
           v-model="schluckenJaAber"
-          :content="{title:'Welche Einschränkungen bestehen?', id:'schluckenJaAberBegruendung', type:'text'}"
+          :content="{title:'Welche Einschränkungen bestehen?', id:'schluckenJaAberBegruendung', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
           :style="marginSmall"
         />
       </div>
       <div v-if="schlucken == 'nein'">
         <InputForm
           v-model="schluckenNein"
-          :content="{title:'Warum nicht?', id:'schluckenNeinBegruendung', type:'text'}"
+          :content="{title:'Warum nicht?', id:'schluckenNeinBegruendung', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
           :style="marginSmall"
         />
       </div> 
@@ -83,12 +84,13 @@
             {title:'nein', id:'neinErbrechen', name:'erbrechen'},
           ]"
           :title="'Erbrechen'"
+          :color ="'assessmentColor'"
           v-model="erbrechen"
         />
       <div v-if="erbrechen == 'ja'">
         <InputForm
           v-model="erbrechenJa"
-          :content="{title:'Inwiefern?', id:'erbrechenJa', type:'text'}"
+          :content="{title:'Inwiefern?', id:'erbrechenJa', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
           :style="marginSmall"
         />
       </div> 
@@ -101,24 +103,25 @@
         :title="'Mundgesundheit'"
         :isTipp="true"
         :myTipp="'Zahnfleisch, Lippen, Zähne, Zunge'"
+        :color ="'assessmentColor'"
         v-model="mundgesundheit"
       />
       <InputForm
         v-model="mundgesundheitAndere"
-        :content="{ title: 'andere', id: 'mundgesundheitAndere', type:'text' }"
+        :content="{ title: 'andere', id: 'mundgesundheitAndere', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
         :style="marginSmall"
       />
       <TextareaForm
         v-model="problemeNahrungsaufnahme"
-        :content="{ title: 'Bei der Nutzung eines Zahnersatzes: Probleme bei der Nahrungsaufnahme', id: 'problemeNahrungsaufnahme',}"
+        :content="{ title: 'Bei der Nutzung eines Zahnersatzes: Probleme bei der Nahrungsaufnahme', id: 'problemeNahrungsaufnahme', color:'assessmentColor', border:'assessmentBorder'}"
       />
       <TextareaForm
         v-model="appetitBeeintraechtigung"
-        :content="{ title: 'Appetit und Beeinträchtigung', id: 'appetitBeeintraechtigung',}"
+        :content="{ title: 'Appetit und Beeinträchtigung', id: 'appetitBeeintraechtigung', color:'assessmentColor', border:'assessmentBorder'}"
       />
       <TextareaForm
         v-model="weitereKoerperlicheBefunde"
-        :content="{ title: 'weitere körperliche Befunde', id: 'weitereKoerperlicheBefunde',}"
+        :content="{ title: 'weitere körperliche Befunde', id: 'weitereKoerperlicheBefunde', color:'assessmentColor', border:'assessmentBorder'}"
         :isTipp="true"
         :myTipp="'z.B. Stuhlgang, Urin, Atmung'"
       />

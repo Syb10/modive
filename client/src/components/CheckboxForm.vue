@@ -8,8 +8,8 @@
     </label>   
     <div class="input-group mb-4">
       <div class="input-group-prepend mr-5 mb-3" v-for="(checkbox, index) in checkboxs" :key="index">
-        <label class="input-group-text inputForm" :for="checkbox.id">{{checkbox.title}}</label>
-        <div class="input-group-text checkbox">
+        <label class="input-group-text inputForm" :class="color" :for="checkbox.id">{{checkbox.title}}</label>
+        <div class="input-group-text checkbox" :class="color">
           <input
             type="checkbox"
             :id="checkbox.id"
@@ -35,6 +35,7 @@ export default {
     title:String,
     isTipp: Boolean,
     myTipp: String,
+    color: String,
     modelValue: []
   },
   emits: ["update:modelValue"],

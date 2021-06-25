@@ -8,13 +8,13 @@
     </label>
     <div class="input-group mb-4">
       <div class="input-group-prepend mr-5 mb-3" v-for="(item, index) in items" :key="index">
-        <label class="input-group-text inputForm normal-white-space" :for="item.id">
+        <label class="input-group-text inputForm normal-white-space" :class="color" :for="item.id">
           {{item.title}}
           <div v-if="isInnerTipp" class="tipp ml-3"> <i class="fa fa-info-circle"></i>
             <span class="tipptext">{{item.myInnerTipp}}</span>
           </div>
         </label>
-        <div class="input-group-text checkbox">
+        <div class="input-group-text checkbox" :class="color">
           <input
             type="radio"
             :id="item.id"
@@ -37,6 +37,7 @@ export default {
     isTipp: Boolean,
     isInnerTipp: Boolean,
     myTipp: String,
+    color: String,
     modelValue: []
   },
   emits: ["update:modelValue"],

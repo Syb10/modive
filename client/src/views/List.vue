@@ -71,24 +71,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .btn{
-    margin: 5px;
-  }
-  .btn-gold{
-    background-color: #9a884f !important;
-    border: 1px solid #9a884f !important;
-    color: white !important;
-  }
-  .btn-blue{
-    background-color: #6eaead !important;
-    border: 1px solid #6eaead !important;
-    color: white !important;
-  }
-  .btn-red{
-    background-color: #B75757 !important;
-    border: 1px solid #B75757 !important;
-    color: white !important;
-  }
-</style>

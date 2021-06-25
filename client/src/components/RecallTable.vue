@@ -3,7 +3,7 @@
     <p>{{n}}. 24-h-Recall</p>
     <InputForm  v-for="(recallMahlzeit, index) in recallMahlzeiten" :key="index"
         v-model="recallMahlzeit[n-1][0].datum"
-        :content="{ title: 'Datum', id: 'datumRecall'+n, type:'date' }"
+        :content="{ title: 'Datum', id: 'datumRecall'+n, type:'date', color:'assessmentColor', border:'assessmentBorder' }"
       />
     <table class="mb-3 table table-striped table-bordered">
         <thead>
@@ -18,22 +18,22 @@
         <tbody>
             <tr v-for="(recallMahlzeit, index) in recallMahlzeiten['table'][n-1]" :key="index">
                 <td>
-                    <input class="form-control" type="text" v-model="recallMahlzeit.mahlzeit"/>
+                    <input class="form-control assessmentBorder" type="text" v-model="recallMahlzeit.mahlzeit"/>
                 </td>
                 <td>
-                    <input class="form-control" type="text" v-model="recallMahlzeit.uhrzeit"/>
+                    <input class="form-control assessmentBorder" type="text" v-model="recallMahlzeit.uhrzeit"/>
                 </td>
                 <td>
-                    <input class="form-control" type="text" v-model="recallMahlzeit.wo"/>
+                    <input class="form-control assessmentBorder" type="text" v-model="recallMahlzeit.wo"/>
                 </td>
                 <td>
-                    <input class="form-control" type="text" v-model="recallMahlzeit.wer"/>
+                    <input class="form-control assessmentBorder" type="text" v-model="recallMahlzeit.wer"/>
                 </td>
                 <td>
-                    <input class="form-control" type="text" v-model="recallMahlzeit.lebensmittelGetraenke"/>
+                    <input class="form-control assessmentBorder" type="text" v-model="recallMahlzeit.lebensmittelGetraenke"/>
                 </td>
                 <td>
-                    <input class="form-control" type="text" v-model="recallMahlzeit.menge"/>
+                    <input class="form-control assessmentBorder" type="text" v-model="recallMahlzeit.menge"/>
                 </td>
                 <td>                   
                     <i class="fa fa-trash btn btn-red ml-3" @click.prevent="deleteRow({tableIndex:n-1, rowIndex:index})"></i>
@@ -108,16 +108,3 @@ import InputForm from "./InputForm.vue";
     },
   };
 </script>
-
-<style scoped>
-.btn-gold{
-    background-color: #9a884f !important;
-    border: 1px solid #9a884f !important;
-    color: white !important;
-}
-.btn-red{
-    background-color: #B75757 !important;
-    border: 1px solid #B75757 !important;
-    color: white !important;
-}
-</style>

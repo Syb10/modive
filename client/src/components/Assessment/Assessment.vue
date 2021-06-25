@@ -5,7 +5,7 @@
           v-for="tab in tabs"
           :key="tab.id"
           class="btn mb-5"
-          :class="['tab-button', {active:currentTab === tab.id}]"
+          :class="['tab-button tab-button-assessment', {active:currentTab === tab.id}]"
           @click.prevent="currentTab = tab.id"
         >
           <span v-show="currentTab === tab.id">{{tab.namelang}}</span>
@@ -45,28 +45,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.input-group-text {
-  background-color: #9a884f !important;
-  border: 1px solid #9a884f !important;
-  color: white;
-}
-.form-control {
-  border: 1px solid #9a884f !important;
-}
-.tab-button{
-  border: 1px solid #9a884f !important;
-  background-color: white !important;
-  color: #9a884f !important;
-}
-.tab-button:hover{
-  background-color: #9a884f !important;
-  color: white !important;
-  
-}
-.tab-button.active{
-  background-color: #9a884f !important;
-  color: white !important;
-}
-</style>

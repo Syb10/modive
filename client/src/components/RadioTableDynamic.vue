@@ -1,11 +1,11 @@
 <template>
-  <p v-if="subtitle" class="margin">
+  <p v-if="subtitle" class="marginRadioTableDynamic">
     {{subtitle}}
   </p> 
   <!--for dynamic Bilanzierung-->
   <tr v-show="isBilanzierung" v-for="(item, indexI) in DynamicBilanzierung" :key="`item-${indexI}`">
     <td v-for="(i, index) in item" :key="`item-${index}`">
-      <input v-if="i.input" class="form-control btnAndere" type="text" v-model="i.title"/>
+      <input v-if="i.input" class="form-control btnAndere assessmentBorder" type="text" v-model="i.title"/>
        <i v-if="i.button" class="fa fa-trash btn btn-red ml-3" @click.prevent="deleteRowBilanzierung(indexI)"></i>
       <div v-if="i.value" class="input-group">
         <input
@@ -18,11 +18,11 @@
       </div>
     </td>
   </tr>
-  <button v-if="isBilanzierung" class="btn btn-gold mb-3 margin" @click.prevent="addNewRowBilanzierung"><i class="fa fa-plus-circle"></i> Zeile hinzufügen</button> 
+  <button v-if="isBilanzierung" class="btn btn-gold mb-3 marginRadioTableDynamic" @click.prevent="addNewRowBilanzierung"><i class="fa fa-plus-circle"></i> Zeile hinzufügen</button> 
   <!--for dynamic Andere-->
   <tr v-show="isAndere" v-for="(item, indexI) in DynamicAndere" :key="`item-${indexI}`">
     <td v-for="(i, index) in item" :key="`i-${index}`">
-      <input v-if="i.input" class="form-control btnAndere" type="text" v-model="i.title"/>
+      <input v-if="i.input" class="form-control btnAndere assessmentBorder" type="text" v-model="i.title"/>
       <i v-if="i.button" class="fa fa-trash btn btn-red ml-3" @click.prevent="deleteRowAndere(indexI)"></i>
       <div v-if="i.value" class="input-group">
         <input
@@ -35,7 +35,7 @@
       </div>
     </td>
   </tr>
-  <button v-if="isAndere" class="btn btn-gold mb-3 margin" @click.prevent="addNewRowAndere"><i class="fa fa-plus-circle"></i> Zeile hinzufügen</button> 
+  <button v-if="isAndere" class="btn btn-gold mb-3 marginRadioTableDynamic" @click.prevent="addNewRowAndere"><i class="fa fa-plus-circle"></i> Zeile hinzufügen</button> 
 </template>
 
 <script>
@@ -136,26 +136,3 @@
     }
   };
 </script>
-
-<style scoped>
-.btn-gold{
-    background-color: #9a884f !important;
-    border: 1px solid #9a884f !important;
-    color: white !important;
-}
-.btn-red{
-    background-color: #B75757 !important;
-    border: 1px solid #B75757 !important;
-    color: white !important;
-}
-.margin{
-  margin: 0.75rem;
-}
-.paddingLeft{
-  padding: .75rem .75rem .75rem 2.25rem;
-}
-.form-control.btnAndere{
-  display:inline !important;
-  width: 75%;
-}
-</style>

@@ -1,9 +1,9 @@
 <template>
     <div>
-      <button @click.prevent="scrollMeTo('ernaehrungsprotokolle')" class="btn mt-1 mr-1 tab-button">Upload-Bereich für Ernährungsprotokolle</button>
-      <button @click.prevent="scrollMeTo('ernaehrungsgewohnheiten')" class="btn mt-1 mr-1 tab-button">Essgewohnheiten</button>
-      <button @click.prevent="scrollMeTo('kostformMedikamente')" class="btn mt-1 mr-1 tab-button">Diätetische Kostform und Medikamente</button>
-      <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button">Upload-Bereich für weitere Dokumente</button>
+      <button @click.prevent="scrollMeTo('ernaehrungsprotokolle')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Upload-Bereich für Ernährungsprotokolle</button>
+      <button @click.prevent="scrollMeTo('ernaehrungsgewohnheiten')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Essgewohnheiten</button>
+      <button @click.prevent="scrollMeTo('kostformMedikamente')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Diätetische Kostform und Medikamente</button>
+      <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Upload-Bereich für weitere Dokumente</button>
       <p class="assessmentAspekt mt-5" ref="ernaehrungsprotokolle">Upload-Bereich für Ernährungsprotokolle und weitere Ernährungserhebungsmethoden</p>
       <p class="assessmentAspekt" ref="ernaehrungsgewohnheiten">Essgewohnheiten</p>
       <label class="mt-5">
@@ -14,26 +14,27 @@
       </label>
       <InputForm
         v-model.number="anzahlRecall"
-        :content="{ title: 'Wie viele 24-h-Recalls sollen erfasst werden?', id: 'anzahlRecall', type:'number', min:'0' }"
+        :content="{ title: 'Wie viele 24-h-Recalls sollen erfasst werden?', id: 'anzahlRecall', type:'number', min:'0', color:'assessmentColor', border:'assessmentBorder' }"
       />
       <RecallTable :anzahl="anzahlRecall"/>
       <TextareaForm
         v-model="weitereAnmerkungenRecall"
-        :content="{ title: 'Weitere Anmerkungen zum 24-h-Recall', id: 'weitereAnmerkungenRecall'}"
+        :content="{ title: 'Weitere Anmerkungen zum 24-h-Recall', id: 'weitereAnmerkungenRecall', color:'assessmentColor', border:'assessmentBorder'}"
       />
       <TextareaForm
         v-model="vorlieben"
-        :content="{ title: 'Vorlieben für Lebensmittel, Speisen und Getränke', id: 'vorlieben'}"
+        :content="{ title: 'Vorlieben für Lebensmittel, Speisen und Getränke', id: 'vorlieben', color:'assessmentColor', border:'assessmentBorder'}"
       />
       <TextareaForm
         v-model="abneigungen"
-        :content="{ title: 'Abneigungen für Lebensmittel, Speisen und Getränke', id: 'abneigungen'}"
+        :content="{ title: 'Abneigungen für Lebensmittel, Speisen und Getränke', id: 'abneigungen', color:'assessmentColor', border:'assessmentBorder'}"
       />
       <RadioForm
         :items="[
           {title:'ja', id:'jaRecall', name:'isRecall'},
           {title:'nein', id:'neinRecall', name:'isRecall'},
         ]"
+        :color="'assessmentColor'"
         :title="'Wurde ein 24-h-Recall durchgeführt?'"
         v-model="isRecall"
       />
@@ -44,12 +45,13 @@
             {title:'nein', id:'neinAnzahlMahlzeitenRecall', name:'anzahlMahlzeitenRecall'},
           ]"
           :title="'Entspricht die im 24-h-Recall angegebene Anzahl an Mahlzeiten der gewöhnlichen Anzahl an Mahlzeiten?'"
+          :color="'assessmentColor'"
           v-model="anzahlMahlzeitenRecall"
         />
         <div v-if="anzahlMahlzeitenRecall == 'nein'">
           <InputForm
             v-model="mahlzeitenNormalerweise"
-            :content="{ title: 'Wie viele Mahlzeiten werden normalerweise verzehrt?', id: 'MahlzeitenNormalerweise', type:'number' }"
+            :content="{ title: 'Wie viele Mahlzeiten werden normalerweise verzehrt?', id: 'MahlzeitenNormalerweise', type:'number', color:'assessmentColor', border:'assessmentBorder' }"
           />
           <CheckboxForm
             :checkboxs="[
@@ -60,6 +62,7 @@
               {title:'Spätmahlzeiten', id:'saetmahlzeitenWeggelassen'}
             ]"
             :title="'Welche Mahlzeiten werden meist weggelassen?'"
+            :color="'assessmentColor'"
             v-model="mahlzeitenWeggelassen"
           />
           <CheckboxForm
@@ -71,11 +74,12 @@
               {title:'Spätmahlzeiten', id:'saetmahlzeitenZusaetzlich'}
             ]"
             :title="'Welche Mahlzeiten kommen meist zusätzlich dazu?'"
+            :color="'assessmentColor'"
             v-model="mahlzeitenZusaetzlich"
           />
           <InputForm
             v-model="mahlzeitenZusaetzlichAndere"
-            :content="{ title: 'andere', id: 'mahlzeitenZusaetzlichAndere', type:'text' }"
+            :content="{ title: 'andere', id: 'mahlzeitenZusaetzlichAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
             :style="marginSmall"
           />
         </div>
@@ -88,12 +92,13 @@
         :title="'Wird eigenständig eine bestimmte Diät oder Ernährungsweise durchgeführt?'"
         :isTipp="true"
         :myTipp="'z.B. aus kulturellen oder religiösen Gründen'"
+        :color="'assessmentColor'"
         v-model="eigenstaendigeDiaet"
       />
       <div v-if="eigenstaendigeDiaet == 'ja'">
         <InputForm
             v-model="eigenstaendigeDiaetJa"
-            :content="{ title: 'Welche', id: 'eigenstaendigeDiaetJa', type:'text' }"
+            :content="{ title: 'Welche', id: 'eigenstaendigeDiaetJa', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
             :style="marginSmall"
           />
       </div>
@@ -103,12 +108,13 @@
           {title:'nein', id:'neinMahlzeitenAusserHaus', name:'mahlzeitenAusserHaus'},
         ]"
         :title="'Werden Mahlzeiten außer Haus verzehrt?'"
+        :color="'assessmentColor'"
         v-model="mahlzeitenAusserHaus"
       />
       <div v-if="mahlzeitenAusserHaus == 'ja'">
         <TextareaForm
           v-model="mahlzeitenAusserHausJa"
-          :content="{title: 'Welche und wo', id: 'mahlzeitenAusserHausJa'}"
+          :content="{title: 'Welche und wo', id: 'mahlzeitenAusserHausJa', color:'assessmentColor', border:'assessmentBorder'}"
           :style="marginSmall"
         />
       </div>
@@ -119,6 +125,7 @@
           {title:'nein', id:'neinDiaetischeKostform', name:'diaetischeKostform'},
         ]"
         :title="'Wird/wurde eine diätetische Kostform angewendet?'"
+        :color="'assessmentColor'"
         v-model="diaetischeKostform"
       />
       <div v-if="diaetischeKostform =='ja'">
@@ -141,12 +148,13 @@
               {title:'konsistenzmodifiziert (z.B. passiert)', id:'konsistenzmodifiziert'},
             ]"
             :title="'Welche?'"
+            :color="'assessmentColor'"
             :style="marginSmall"
             v-model="diaetischeKostformJa"
           />
           <InputForm
             v-model="diaetischeKostformJaAndere"
-            :content="{ title: 'andere', id: 'diaetischeKostformJaAndere', type:'text' }"
+            :content="{ title: 'andere', id: 'diaetischeKostformJaAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
             :style="marginSmall"
           />
       </div>
@@ -156,12 +164,13 @@
           {title:'nein', id:'neinEnteraleErnaehrung', name:'enteraleErnaehrung'},
         ]"
         :title="'Wird eine enterale, parenterale Ernährung oder Zusatznahrung eingesetzt?'"
+        :color="'assessmentColor'"
         v-model="enteraleErnaehrung"
       />
       <div v-if="enteraleErnaehrung=='ja'">
         <InputForm
           v-model="enteraleErnaehrungJa"
-          :content="{ title: 'Welche?', id: 'enteraleErnaehrungJa', type:'text' }"
+          :content="{ title: 'Welche?', id: 'enteraleErnaehrungJa', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmall"
         />
       </div>
@@ -171,12 +180,13 @@
           {title:'nein', id:'neinMedikamente', name:'medikamente'},
         ]"
         :title="'Medikamente (insbesondere mit diätetischem Bezug)/Supplemente'"
+        :color="'assessmentColor'"
         v-model="medikamente"
       />
       <div v-if="medikamente=='ja'">
         <InputForm
           v-model="medikamenteJa"
-          :content="{ title: 'Welche?', id: 'medikamenteJa', type:'text' }"
+          :content="{ title: 'Welche?', id: 'medikamenteJa', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmall"
           :isTipp="true"
           :myTipp="'z.B. verschreibungspflichtige, rezeptfreie Medikamente, Nahrungsergänzungsmittel und Pflanzenbestandteile, Komplementär-/Alternativmedizin'"
@@ -270,12 +280,10 @@
           <RadioTable
             :items="Ballaststoffe"
             v-model="ballaststoffe"
-            :paddingLeft="paddingLeft"
           />
           <RadioTable
             :items="Zucker"
             v-model="zucker"
-            :paddingLeft="paddingLeft"
           />
           <RadioTable
             :items="Gesamtfett"
@@ -284,22 +292,18 @@
           <RadioTable
             :items="GesättigteFettsäuren"
             v-model="gesaettigteFettsaeuren"
-            :paddingLeft="paddingLeft"
           />
           <RadioTable
             :items="EinfachUngesättigteFettsäuren"
             v-model="einfachGesaettigte"
-            :paddingLeft="paddingLeft"
           />
           <RadioTable
             :items="MehrfachUngesättigteFettsäuren"
             v-model="mehrfachGesaettigte"
-            :paddingLeft="paddingLeft"
           />
           <RadioTable
             :items="Cholesterin"
             v-model="cholesterin"
-            :paddingLeft="paddingLeft"
           />
         </tbody>
       </table>
@@ -346,9 +350,6 @@ export default {
         },
         marginSmaller: {
           margin: '-1rem 0 0 0',
-        },
-        paddingLeft: {
-          padding: '.75rem .75rem .75rem 2.25rem',
         },
         Getränke:[
           {title: "Getränke"},
