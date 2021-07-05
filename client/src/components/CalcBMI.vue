@@ -1,7 +1,7 @@
 <template>
   <div class="form-group">
     <div class="mb-4">
-      <div class="input-group-prepend mr-5 mb-3">
+      <div class="input-group-prepend mb-3">
         <label for="bmi" class="input-group-text inputForm assessmentColor">
           Body Mass Index (in kg/m&sup2;)
         </label>
