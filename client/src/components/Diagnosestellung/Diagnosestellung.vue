@@ -1,12 +1,13 @@
 <template>
-  <div> 
-    <div class="form-group mb-5" v-for="(item, indexI) in DynamicDiagnosestellung" :key="indexI">
+  <div class="mb-5"> 
+    <div class="form-group mb-5 position-relative" v-for="(item, indexI) in DynamicDiagnosestellung" :key="indexI">
         <div class="mb-3" v-for="(i, index) in item" :key="index">
           <label :for="i.id" class="input-group-text textareaForm normal-white-space diagnosestellungColor">
             {{indexI+1}}. {{i.title }}
             <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
               <span class="tipptext">{{i.myTipp}}</span>
             </div>
+            <i v-if="index == 0" class="fa fa-trash trash-right" @click.prevent="deleteProblem(indexI)"></i>
           </label>
           <textarea
             class="form-control textareaForm diagnosestellungBorder"
@@ -21,10 +22,12 @@
           </ul>    
         </div>
         <button class="btn btn-bluelight mb-3" @click.prevent="getDiagnosestellung(indexI, item[0].vmodel,item[1].vmodel, item[2].vmodel, item[3].vmodel)"><i class="fa fa-check"></i> bestätigen</button>
-        <p v-html="SatzDiagnosestellung[indexI][0].satz"></p>
-        <button class="btn btn-blue mt-3" @click.prevent="addNewProblem"><i class="fa fa-plus-circle"></i> Ernährungsproblem hinzufügen</button>
-        <button class="btn btn-red mt-3 ml-3" @click.prevent="deleteProblem(indexI)"><i class="fa fa-trash"></i> {{indexI+1}}. Ernährungsproblem löschen</button>  
+        <div>
+          PASR-Statement:
+          <p v-html="SatzDiagnosestellung[indexI][0].satz"></p>
+        </div>        
       </div>
+      <button class="btn btn-blue mb-3" @click.prevent="addNewProblem"><i class="fa fa-plus-circle"></i> Ernährungsproblem hinzufügen</button>
   </div>   
 </template>
 
