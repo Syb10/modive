@@ -73,7 +73,19 @@
   background-color: #9a884f !important;
   color: white !important;
 }
-
+.tab-button-planung{
+  border: 1px solid #376f75 !important;
+  background-color: white !important;
+  color: #376f75 !important;
+}
+.tab-button-planung:hover{
+  background-color: #376f75 !important;
+  color: white !important;  
+}
+.tab-button-planung.active{
+  background-color: #376f75 !important;
+  color: white !important;
+}
 
 /************************** 
  style menu color
@@ -252,16 +264,31 @@ td .btn{
   border: 1px solid #6eaead !important;
   color: #6eaead !important;
 }
+.btn-darkblue{
+  background-color: #376f75 !important;
+  border: 1px solid #376f75 !important;
+  color: white !important;
+}
 .form-control.btnAndere{
   display:inline !important;
   width: 75%;
 }
+.trash-right{
+  position: absolute;
+  right: 2%;
+  font-size: 1.2rem !important;
+}
 
-
+.position-relative{
+  position: relative;
+}
 .paddingLeft{
   padding: .75rem .75rem .75rem 2.25rem;
 }
 .marginRadioTableDynamic{
   margin: 0.75rem;
+}
+.label-prio{
+  display: inline !important
 }
 </style>
