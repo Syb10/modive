@@ -9,7 +9,8 @@
     <div class="input-group mb-4">
       <div class="input-group-prepend mr-5 mb-3" v-for="(item, index) in items" :key="index">
         <label class="input-group-text inputForm normal-white-space" :class="color" :for="item.id">
-          {{item.title}}
+          <div v-if="!item.titlekurz">{{item.title}}</div>
+          <div v-if="item.titlekurz">{{item.titlekurz}}</div>
           <div v-if="isInnerTipp" class="tipp ml-3"> <i class="fa fa-info-circle"></i>
             <span class="tipptext">{{item.myInnerTipp}}</span>
           </div>

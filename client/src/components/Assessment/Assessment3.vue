@@ -227,11 +227,11 @@
       <p class="assessmentAspekt" ref="aktivitaet">Körperliche Aktivität</p>
       <RadioForm
         :items="[
-          {title:'1,2-1,3', myInnerTipp:'ausschließlich sitzende oder liegende Tätigkeiten (z.B. gebrechliche, immobile, bettlägerige Menschen)', id:'1physicalActivityLevel', name:'physicalActivityLevel'},
-          {title:'1,4-1,5', myInnerTipp:'ausschließlich sitzende Tätigkeit mit wenig oder keiner anstrengenden Freizeitaktivität (z.B. Büroangestellte, Feinmechaniker*innen)', id:'2physicalActivityLevel', name:'physicalActivityLevel'},
-          {title:'1,6-1,7', myInnerTipp:'sitzende Tätigkeit, zeitweilig auch zusätzlicher Energieaufwand für gehende und stehende Tätigkeiten, wenig oder keine anstrengende Freizeitaktivität (z.B. Laborant*innen, Studierende, Fließbandarbeiter*innen)', id:'3physicalActivityLevel', name:'physicalActivityLevel'},
-          {title:'1,8-1,9', myInnerTipp:'überwiegend gehende und stehende Arbeit (z.B. Verkäufer*innen, Kellner*innen, Mechaniker*innen, Handwerker*innen)', id:'4physicalActivityLevel', name:'physicalActivityLevel'},
-          {title:'2,0-2,4', myInnerTipp:'körperlich anstrengende berufliche Arbeit oder sehr aktive Freizeittätigkeit (z.B. Bauarbeiter*innen, Landwirt*innen, Waldarbeiter*innen, Bergarbeiter*innen, Leistungssportler*innen)', id:'5physicalActivityLevel', name:'physicalActivityLevel'},
+          {titlekurz:'1,2-1,3', title:'1,2-1,3 ausschließlich sitzende oder liegende Tätigkeiten', myInnerTipp:'ausschließlich sitzende oder liegende Tätigkeiten (z.B. gebrechliche, immobile, bettlägerige Menschen)', id:'1physicalActivityLevel', name:'physicalActivityLevel'},
+          {titlekurz:'1,4-1,5', title:'1,4-1,5 ausschließlich sitzende Tätigkeit mit wenig oder keiner anstrengenden Freizeitaktivität', myInnerTipp:'ausschließlich sitzende Tätigkeit mit wenig oder keiner anstrengenden Freizeitaktivität (z.B. Büroangestellte, Feinmechaniker*innen)', id:'2physicalActivityLevel', name:'physicalActivityLevel'},
+          {titlekurz:'1,6-1,7', title:'1,6-1,7 sitzende Tätigkeit, zeitweilig auch zusätzlicher Energieaufwand für gehende und stehende Tätigkeiten, wenig oder keine anstrengende Freizeitaktivität', myInnerTipp:'sitzende Tätigkeit, zeitweilig auch zusätzlicher Energieaufwand für gehende und stehende Tätigkeiten, wenig oder keine anstrengende Freizeitaktivität (z.B. Laborant*innen, Studierende, Fließbandarbeiter*innen)', id:'3physicalActivityLevel', name:'physicalActivityLevel'},
+          {titlekurz:'1,8-1,9', title:'1,8-1,9 überwiegend gehende und stehende Arbeit', myInnerTipp:'überwiegend gehende und stehende Arbeit (z.B. Verkäufer*innen, Kellner*innen, Mechaniker*innen, Handwerker*innen)', id:'4physicalActivityLevel', name:'physicalActivityLevel'},
+          {titlekurz:'2,0-2,4', title:'2,0-2,4 körperlich anstrengende berufliche Arbeit oder sehr aktive Freizeittätigkeit', myInnerTipp:'körperlich anstrengende berufliche Arbeit oder sehr aktive Freizeittätigkeit (z.B. Bauarbeiter*innen, Landwirt*innen, Waldarbeiter*innen, Bergarbeiter*innen, Leistungssportler*innen)', id:'5physicalActivityLevel', name:'physicalActivityLevel'},
         ]"
         :title="'Physical Activity Level (PAL)'"
         :color ="'assessmentColor'"
