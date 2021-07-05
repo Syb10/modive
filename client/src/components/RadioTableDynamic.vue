@@ -36,6 +36,14 @@
     </td>
   </tr>
   <button v-if="isAndere" class="btn btn-gold mb-3 marginRadioTableDynamic" @click.prevent="addNewRowAndere"><i class="fa fa-plus-circle"></i> Zeile hinzufügen</button> 
+  <!--for dynamic Monitoring-->
+  <tr v-show="isMonitoring" v-for="(item, indexI) in DynamicMonitoring" :key="`item-${indexI}`">
+    <td v-for="(i, index) in item" :key="`i-${index}`">
+      <input v-if="i.input" class="form-control planungBorder" type="text" v-model="i.title"/>
+      <i v-if="i.button" class="fa fa-trash btn btn-red ml-3" @click.prevent="deleteRowMonitoring(indexI)"></i>
+    </td>
+  </tr>
+  <button v-if="isMonitoring" class="btn btn-darkblue mb-3 marginRadioTableDynamic" @click.prevent="addNewRowMonitoring"><i class="fa fa-plus-circle"></i> Zeile hinzufügen</button> 
 </template>
 
 <script>
@@ -60,6 +68,13 @@
             {value:"sehr unwichtig", id:this.subtitle+"0sehrUnwichtig", name:this.subtitle+"0"},
           ]
         ],
+        DynamicMonitoring:[
+          [
+            {title:"", input:true},
+            {title:"", input:true},
+            {button:true}
+          ]
+        ],
         counter:1
       }
     },
@@ -68,6 +83,7 @@
       modelValue:[],
       isBilanzierung:Boolean,
       isAndere:Boolean,
+      isMonitoring: Boolean,
     },
     emits:["update:modelValue"],
     watch: {
@@ -105,7 +121,24 @@
           this.$emit("update:modelValue", newValue)
         },
         deep: true
-      } 
+      },
+      DynamicMonitoring:{
+        handler(value) {
+          var item=[]
+          //titel und v-model(wert) aus DynamicMonitoring an das v-model uebergeben aus Planung der Intervention
+          for(var i=0; i < value.length; i++){
+            if(i== value.length-1) {
+              //wenn es das letzte Paar ist kein Komma hinten
+              item.push(value[i][0].title,"/", value[i][1].title);
+            } else{
+              item.push(value[i][0].title,"/", value[i][1].title,", ");
+            }           
+          }
+          var newValue = item.join('')
+          this.$emit("update:modelValue", newValue)
+        },
+        deep: true
+      }, 
     },
     methods: {
       addNewRowBilanzierung() {
@@ -127,11 +160,22 @@
         ]);
         this.counter++;
       },
+      addNewRowMonitoring() {
+        this.DynamicMonitoring.push([
+          {title: "", input:true},
+          {title: "", input:true},
+          {button:true}
+        ]);
+        this.counter++;
+      },
       deleteRowBilanzierung(index) {
         this.DynamicBilanzierung.splice(index, 1);
       },
       deleteRowAndere(index) {
         this.DynamicAndere.splice(index, 1);
+      },
+      deleteRowMonitoring(index) {
+        this.DynamicMonitoring.splice(index, 1);
       },
     }
   };
