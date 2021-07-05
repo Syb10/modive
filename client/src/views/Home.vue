@@ -35,6 +35,7 @@
 import axios from "axios";
 import assessment from "../components/Assessment/Assessment.vue";
 import diagnosestellung from "../components/Diagnosestellung/Diagnosestellung.vue";
+import planung from "../components/Planung/Planung.vue";
 import {mapFields} from "vuex-map-fields";
 import {mapGetters} from "vuex";
 
@@ -55,6 +56,7 @@ export default {
   components: {
     assessment,
     diagnosestellung,
+    planung,
   },
   computed: {
     ...mapFields([
@@ -196,6 +198,23 @@ export default {
       "appetitBeeintraechtigung",
       "weitereKoerperlicheBefunde",
       "diagnosestellung",
+      "priorisierung",
+      "zieleKlient",
+      "leitlinien",
+      "zieleIntervention",
+      "interventionsform",
+      "interventionsformAndere",
+      "weitereAnmerkungenIntervention",
+      "monitoring",
+      "dauerEinzelberatung",
+      "frequenzInterventionen",
+      "zeitraumIntervention",
+      "inhaltIntervention",
+      "materialien",
+      "weitereBerufsgruppen",
+      "weitereBerufsgruppenAndere",
+      "angehoerige",
+      "weitereAnmerkungenInterventionNochmal",
     ]),
     ...mapGetters([
       "recallMahlzeiten"
@@ -325,6 +344,16 @@ export default {
         return this.zweiZusammen(this.mundgesundheit, this.mundgesundheitAndere);
       }
     },
+    alleInterventionsform:{
+      get() {
+        return this.zweiZusammen(this.interventionsform, this.interventionsformAndere);
+      }
+    },
+    alleWeitereBerufsgruppen: {
+      get() {
+        return this.zweiZusammen(this.weitereBerufsgruppen, this.weitereBerufsgruppenAndere);
+      }
+    },
   },
   methods: {
     zweiZusammen(value1, value2) {
@@ -410,7 +439,6 @@ export default {
             "Medikamente": this.alleMedikamente,
           },
           bilanzierung:{
-            //"isBilanzierung": this.isBilanzierung,
             "Getränke" : this.getraenke,
             "Gemüse": this.gemuese,
             "Obst": this.obst,
@@ -474,7 +502,24 @@ export default {
             "appetitBeeintraechtigung": this.appetitBeeintraechtigung,
             "weitereKoerperlicheBefunde": this.weitereKoerperlicheBefunde,
           },
-          "diagnosestellung": this.diagnosestellung, 
+          "diagnosestellung": this.diagnosestellung,
+          "priorisierung": this.priorisierung, 
+          planung: {            
+            "zieleKlient": this.zieleKlient,
+            "leitlinien": this.leitlinien,
+            "zieleIntervention": this.zieleIntervention,
+            "interventionsform": this.alleInterventionsform,
+            "weitereAnmerkungenIntervention": this.weitereAnmerkungenIntervention,
+            "monitoring": this.monitoring,
+            "dauerEinzelberatung": this.dauerEinzelberatung,
+            "frequenzInterventionen": this.frequenzInterventionen,
+            "zeitraumIntervention": this.zeitraumIntervention,
+            "inhaltIntervention": this.inhaltIntervention,
+            "materialien": this.materialien,
+            "weitereBerufsgruppen": this.alleWeitereBerufsgruppen,
+            "angehoerige": this.angehoerige,
+            "weitereAnmerkungenInterventionNochmal": this.weitereAnmerkungenInterventionNochmal,
+          },
         })
         .then(response => {
           console.log(response);
@@ -618,6 +663,23 @@ export default {
           this.appetitBeeintraechtigung = "";
           this.weitereKoerperlicheBefunde = "";
           this.diagnosestellung = "";
+          this.priorisierung = "";
+          this.zieleKlient = "";
+          this.leitlinien = "";
+          this.zieleIntervention = "";
+          this.interventionsform = "";
+          this.interventionsformAndere = "";
+          this.weitereAnmerkungenIntervention = "";
+          this.monitoring = "";
+          this.dauerEinzelberatung = "";
+          this.frequenzInterventionen = "";
+          this.zeitraumIntervention = "";
+          this.inhaltIntervention = "";
+          this.materialien = "";
+          this.weitereBerufsgruppen = "";
+          this.weitereBerufsgruppenAndere = "";
+          this.angehoerige = "";
+          this.weitereAnmerkungenInterventionNochmal = "";
         })
         .catch(error => {
           console.log(error);

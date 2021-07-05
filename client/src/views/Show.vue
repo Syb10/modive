@@ -42,7 +42,7 @@
       </div>
   </ul>
   <div>
-    <p>Bilanzierung</p>
+    <p v-if="patient.bilanzierung">Bilanzierung</p>
     <ul v-for="(value, key) in patient.bilanzierung" :key="key">
       <div v-for="(mykey, myIndex) in bilanzierung" :key="myIndex">
         <li v-show="key === mykey.key">{{bilanzierung[myIndex].title}} : {{value}}</li>
@@ -63,6 +63,16 @@
   </ul>
   <p class="diagnosestellungAspekt">Diagnosestellung</p>
   <p v-html="patient.diagnosestellung"></p>
+  <p class="planungAspekt">Planung der Intervention</p>
+  <ul>
+    <li v-if="patient.priorisierung">Priorisierung der PASR-Statements</li>
+    <div v-html="patient.priorisierung"></div>
+  </ul>
+  <ul v-for="(value, key) in patient.planung" :key="key">
+      <div v-for="(mykey, myIndex) in planung" :key="myIndex">
+        <li v-show="key === mykey.key">{{planung[myIndex].title}} : {{value}}</li>
+      </div>
+  </ul>
 </template>
 
 <script>
@@ -184,7 +194,23 @@
           {key: "problemeNahrungsaufnahme", title:"Bei der Nutzung eines Zahnersatzes: Probleme bei der Nahrungsaufnahme"},
           {key: "appetitBeeintraechtigung", title:"Appetit und Beeinträchtigung"},
           {key: "weitereKoerperlicheBefunde", title:"weitere körperliche Befunde"},
-        ]
+        ],
+        planung:[
+          {key: "zieleKlient", title:"Ziel(e) der/des Klient*in"},
+          {key: "leitlinien", title:"verwendete Leitlinien oder Literatur"},
+          {key: "zieleIntervention", title:"Ziel(e) der Intervention"},
+          {key: "interventionsform", title:"Interventionsform"},
+          {key: "weitereAnmerkungenIntervention", title:"weitere Anmerkungen"},
+          {key: "monitoring", title:"Monitoring- und Outcome Parameter/Frequenz der Überprüfung"},
+          {key: "dauerEinzelberatung", title:"Dauer der Einzelberatung in Minuten"},
+          {key: "frequenzInterventionen", title:"Frequenz der Interventionen"},
+          {key: "zeitraumIntervention", title:"Zeitraum der gesamten Intervention"},
+          {key: "inhaltIntervention", title:"Inhalt der Intervention"},
+          {key: "materialien", title:"verwendete Materialien"},
+          {key: "weitereBerufsgruppen", title:"Einbezug weiterer Berufsgruppen (Mulitdisziplinarität)"},
+          {key: "angehoerige", title:"Einbezug von Angehörigen"},
+          {key: "weitereAnmerkungenInterventionNochmal", title:"weitere Anmerkungen"},
+        ],
       }
     },
     created() {
