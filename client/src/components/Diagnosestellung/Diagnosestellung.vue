@@ -40,8 +40,8 @@ export default {
       DynamicDiagnosestellung:[
         [
           {title: "Ernährungsproblem", vmodel:"", id:"ernaehrungsproblem0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie Ernährungsgewohnheiten."},
-          {title: "Ursache", vmodel:"", id:"ursache0", myTipp:"Informationen hierzu finden Sie im Assessment, in den Kategorien Klient*innengeschichte, Ernährungsgewohnheiten, Verhalten & Umfeld."}, 
-          {title: "Symptome", vmodel:"",id:"symptome0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klinischer Status."},
+          {title: "Ätiologie/Ursache", vmodel:"", id:"ursache0", myTipp:"Informationen hierzu finden Sie im Assessment, in den Kategorien Klient*innengeschichte, Ernährungsgewohnheiten, Verhalten & Umfeld."}, 
+          {title: "Zeichen und Symptome", vmodel:"",id:"symptome0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klinischer Status."},
           {title: "Ressourcen", vmodel:"", id:"ressourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klient*innengeschichte, Verhalten & Umfeld."},
         ]
       ],
@@ -95,7 +95,7 @@ export default {
         if(ernaehrungsproblem != "" && ursache != "" && symptome != "" && ressourcen != ""){
           this.error = false;
           return this.SatzDiagnosestellung[index][0].satz = "Ernährungsproblem " + ernaehrungsproblem.bold() + " bedingt durch Ätiologie/Ursache "+ ursache.bold() +
-          " nachgewiesen durch Zeichen und Symptomen " + symptome.bold() + ". Unterstützend wirken sich Ressourcen " + ressourcen.bold() + " aus." 
+          " nachgewiesen durch Zeichen und Symptomen " + symptome.bold() + ". Unterstützend/Hemmend wirken sich Ressourcen " + ressourcen.bold() + " aus." 
         } else {
           ernaehrungsproblem ? this.errorList[0] = "" : this.errorList[0] = "Ernährungsproblem"
           ursache ? this.errorList[1] = "" : this.errorList[1] = "Ätiologie/Ursache"
