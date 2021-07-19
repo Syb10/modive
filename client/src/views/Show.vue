@@ -73,6 +73,17 @@
         <li v-show="key === mykey.key">{{planung[myIndex].title}} : {{value}}</li>
       </div>
   </ul>
+  <p class="umsetzungAspekt">Umsetzung der Intervention</p>
+  <ul>
+    <li v-if="patient.entwicklungEinzelberatung">Einzelberatung mit Klient*in</li>
+    <div v-html="patient.entwicklungEinzelberatung"></div>
+    <li v-if="patient.entwicklungSicherstellungErnaehrung">Sicherstellung der Ernährung</li>
+    <div v-html="patient.entwicklungSicherstellungErnaehrung"></div>
+    <li v-if="patient.entwicklungEinzelberatung">Sonstiges</li>
+    <div v-html="patient.sonstigesUmsetung"></div>
+    <li v-if="patient.entwicklungEinzelberatung">Entwicklung der Monitoring-Parameter</li>
+    <div v-html="patient.entwicklungMonitoringParameter"></div>
+  </ul>
 </template>
 
 <script>

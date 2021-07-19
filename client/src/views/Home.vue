@@ -36,6 +36,7 @@ import axios from "axios";
 import assessment from "../components/Assessment/Assessment.vue";
 import diagnosestellung from "../components/Diagnosestellung/Diagnosestellung.vue";
 import planung from "../components/Planung/Planung.vue";
+import umsetzung from "../components/Umsetzung/Umsetzung.vue";
 import {mapFields} from "vuex-map-fields";
 import {mapGetters} from "vuex";
 
@@ -57,6 +58,7 @@ export default {
     assessment,
     diagnosestellung,
     planung,
+    umsetzung,
   },
   computed: {
     ...mapFields([
@@ -215,6 +217,12 @@ export default {
       "weitereBerufsgruppenAndere",
       "angehoerige",
       "weitereAnmerkungenInterventionNochmal",
+      "entwicklungEinzelberatung",
+      "sicherstellungErnaehrung",
+      "entwicklungSicherstellungErnaehrung",
+      "sonstigesUmsetung",
+      "entwicklungMonitoring",
+      "entwicklungMonitoringParameter",
     ]),
     ...mapGetters([
       "recallMahlzeiten"
@@ -520,6 +528,10 @@ export default {
             "angehoerige": this.angehoerige,
             "weitereAnmerkungenInterventionNochmal": this.weitereAnmerkungenInterventionNochmal,
           },
+          "entwicklungEinzelberatung": this.entwicklungEinzelberatung,
+          "entwicklungSicherstellungErnaehrung": this.entwicklungSicherstellungErnaehrung,
+          "sonstigesUmsetung": this.sonstigesUmsetung,        
+          "entwicklungMonitoringParameter": this.entwicklungMonitoringParameter,
         })
         .then(response => {
           console.log(response);
@@ -680,6 +692,12 @@ export default {
           this.weitereBerufsgruppenAndere = "";
           this.angehoerige = "";
           this.weitereAnmerkungenInterventionNochmal = "";
+          this.entwicklungEinzelberatung = "";
+          this.sicherstellungErnaehrung = "";
+          this.entwicklungSicherstellungErnaehrung = "";
+          this.sonstigesUmsetung = "";
+          this.entwicklungMonitoring = {table:[]};
+          this.entwicklungMonitoringParameter = "";
         })
         .catch(error => {
           console.log(error);

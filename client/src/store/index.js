@@ -163,6 +163,14 @@ export default createStore({
         weitereBerufsgruppenAndere: "",
         angehoerige: "",
         weitereAnmerkungenInterventionNochmal: "",
+        entwicklungEinzelberatung: "",
+        sicherstellungErnaehrung: "",
+        entwicklungSicherstellungErnaehrung: "",
+        sonstigesUmsetung: "",
+        entwicklungMonitoring: {
+          table:[]
+        },
+        entwicklungMonitoringParameter: "",
     }
   },
   getters: {
@@ -172,6 +180,9 @@ export default createStore({
     },
     recallMahlzeiten(state) {
       return state.form.recallMahlzeiten
+    },
+    entwicklungMonitoring(state) {
+      return state.form.entwicklungMonitoring
     }
   },
   mutations: {
@@ -207,6 +218,22 @@ export default createStore({
     addDatum(state, payload) {
       console.log("hallo Datum?")
       state.form.recallMahlzeiten['table'][payload.tableIndex].datum = payload.datum;
+    },
+    addTableMonitoring(state) {
+      state.form.entwicklungMonitoring['table'].push([{
+        datum: "",
+        ergebnisse:"", 
+      }]);
+    },
+    addNewRowMonitoring(state, index) {
+      state.form.entwicklungMonitoring['table'][index].push({
+        datum:"",
+        ergebnisse:"", 
+      });
+    },
+    deleteTableMonitoring(state,index) {
+      console.log("lösche Tabelle index " + index);
+      state.form.entwicklungMonitoring['table'].splice(index, 1);
     },
   },
   actions: {

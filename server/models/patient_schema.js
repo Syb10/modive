@@ -145,6 +145,10 @@ const patientSchema = new Schema(
         angehoerige: String,
         weitereAnmerkungenInterventionNochmal: String,
       },
+      entwicklungEinzelberatung: String,
+      entwicklungSicherstellungErnaehrung: String,
+      sonstigesUmsetung: String,        
+      entwicklungMonitoringParameter: String,
     },
     {timestamps:true},
 );
