@@ -131,6 +131,14 @@
   color: #376f75;
   font-weight: bold;
 }
+.umsetzungAspekt{
+  color: #00303C;
+  font-weight: bold;
+}
+.evaluationAspekt{
+  color: #72BF44;
+  font-weight: bold; 
+}
 
 /******************************
  style form 
@@ -267,6 +275,11 @@ td .btn{
 .btn-darkblue{
   background-color: #376f75 !important;
   border: 1px solid #376f75 !important;
+  color: white !important;
+}
+.btn-umsetzung{
+  background-color: #00303C !important;
+  border: 1px solid #00303C !important;
   color: white !important;
 }
 .form-control.btnAndere{
