@@ -227,9 +227,9 @@ import {mapFields} from "vuex-map-fields";
           for(var i=0; i < value.length; i++){
             if(i== value.length-1) {
               //wenn es das letzte Paar ist kein Komma hinten
-              item.push(i+1+". "+value[i].title,":", value[i].vmodel);
+              item.push(i+1+". "+value[i].title,": ", value[i].vmodel);
             } else{
-              item.push(i+1+". "+value[i].title,":", value[i].vmodel,", ");
+              item.push(i+1+". "+value[i].title,": ", value[i].vmodel,", ");
             }           
           }
           var newValue = item.join('')
@@ -243,9 +243,9 @@ import {mapFields} from "vuex-map-fields";
           for(var i=0; i < value.length; i++){
             if(i== value.length-1) {
               //wenn es das letzte Paar ist kein Komma hinten
-              item.push(i+1+". "+value[i].title,":", value[i].vmodel);
+              item.push(i+1+". "+value[i].title,": ", value[i].vmodel);
             } else{
-              item.push(i+1+". "+value[i].title,":", value[i].vmodel,", ");
+              item.push(i+1+". "+value[i].title,": ", value[i].vmodel,", ");
             }           
           }
           var newValue = item.join('')
