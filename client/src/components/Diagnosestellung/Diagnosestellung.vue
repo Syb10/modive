@@ -15,11 +15,11 @@
             v-model="i.vmodel"
           />
         </div>
-        <div v-if="error" class="alert alert-danger">
+        <div v-if="error[indexI]" class="alert alert-danger">
           Es müssen folgende Felder ausgefüllt werden! 
-          <ul v-for="(error, index) in errorList" :key="index">
+          <ul v-for="(error, index) in errorList[indexI]" :key="index">
             <li v-if="error != ''">{{error}}</li>
-          </ul>    
+          </ul>
         </div>
         <button class="btn btn-bluelight mb-3" @click.prevent="getDiagnosestellung(indexI, item[0].vmodel,item[1].vmodel, item[2].vmodel, item[3].vmodel)"><i class="fa fa-check"></i> bestätigen</button>
         <div>
@@ -39,10 +39,10 @@ export default {
     return {    
       DynamicDiagnosestellung:[
         [
-          {title: "Ernährungsproblem", vmodel:"", id:"ernaehrungsproblem0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie Ernährungsgewohnheiten."},
-          {title: "Ätiologie/Ursache", vmodel:"", id:"ursache0", myTipp:"Informationen hierzu finden Sie im Assessment, in den Kategorien Klient*innengeschichte, Ernährungsgewohnheiten, Verhalten & Umfeld."}, 
-          {title: "Zeichen und Symptome", vmodel:"",id:"symptome0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klinischer Status."},
-          {title: "Ressourcen", vmodel:"", id:"ressourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klient*innengeschichte, Verhalten & Umfeld."},
+          {title: "Diätetisches Problem", vmodel:"", id:"ernaehrungsproblem0", myTipp:"Informationen hierzu finden Sie im Assessment in der Kategorie Ernährungsgewohnheiten."},
+          {title: "Ätiologie/Ursache", vmodel:"", id:"ursache0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."}, 
+          {title: "Zeichen und Symptome", vmodel:"",id:"symptome0", myTipp:"Informationen hierzu finden Sie im Assessment, in den Kategorien Klinischer Status und Ernährungsgewohnheiten."},
+          {title: "Ressourcen", vmodel:"", id:"ressourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},
         ]
       ],
       SatzDiagnosestellung:[
@@ -52,8 +52,8 @@ export default {
       ],
       counter:1,
       item:[],
-      error: false,
-      errorList: [],
+      error: [false],
+      errorList: [[]],
     }
   },
   computed: {
@@ -85,6 +85,7 @@ export default {
         this.SatzDiagnosestellung.push([
           {satz:""}
         ]);
+        this.errorList.push([]);
       },
       deleteProblem(index) {
         this.DynamicDiagnosestellung.splice(index, 1);
@@ -93,15 +94,16 @@ export default {
       },
       getDiagnosestellung(index, ernaehrungsproblem, ursache, symptome, ressourcen) {
         if(ernaehrungsproblem != "" && ursache != "" && symptome != "" && ressourcen != ""){
-          this.error = false;
+          this.error[index] = false;
+          this.errorList[index] = [];
           return this.SatzDiagnosestellung[index][0].satz = "Ernährungsproblem " + ernaehrungsproblem.bold() + " bedingt durch Ätiologie/Ursache "+ ursache.bold() +
           " nachgewiesen durch Zeichen und Symptomen " + symptome.bold() + ". Unterstützend/Hemmend wirken sich Ressourcen " + ressourcen.bold() + " aus." 
         } else {
-          ernaehrungsproblem ? this.errorList[0] = "" : this.errorList[0] = "Ernährungsproblem"
-          ursache ? this.errorList[1] = "" : this.errorList[1] = "Ätiologie/Ursache"
-          symptome ? this.errorList[2] = "" : this.errorList[2] = "Zeichen und Symptomen"
-          ressourcen ? this.errorList[3] = "" : this.errorList[3] = "Ressourcen"
-          this.error = true;
+          ernaehrungsproblem ? this.errorList[index][0] = "" : this.errorList[index][0] = "Ernährungsproblem"
+          ursache ? this.errorList[index][1] = "" : this.errorList[index][1] = "Ätiologie/Ursache"
+          symptome ? this.errorList[index][2] = "" : this.errorList[index][2] = "Zeichen und Symptomen"
+          ressourcen ? this.errorList[index][3] = "" : this.errorList[index][3] = "Ressourcen"
+          this.error[index] = true;
         }
       }
   }
