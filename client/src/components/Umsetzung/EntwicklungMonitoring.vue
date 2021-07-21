@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="entwicklung == 0" class="alert alert-danger">In der Planung wurden noch keine Monitoring-Parameter erfasst</p>
+    <p v-if="entwicklung == 0" class="alert alert-danger">In der Planung der Intervention wurden noch keine Monitoring-Parameter erfasst</p>
     <div v-for="(item, indexI) in entwicklungMonitoring['table']" :key="indexI">
       <p>{{entwicklung[indexI]}}</p>
       <div v-for="(i, index) in item" :key="index">
@@ -10,7 +10,7 @@
         />
         <InputForm
           v-model="i.ergebnisse"
-          :content="{ title: 'Ergebnisse/Entwicklung', id: 'ergebnisse'+indexI+index, type:'text', color:'umsetzungColor', border:'umsetzungBorder'}"
+          :content="{ title: 'Wert', id: 'ergebnisse'+indexI+index, type:'text', color:'umsetzungColor', border:'umsetzungBorder'}"
           :style="marginSmaller"
         />
       </div>

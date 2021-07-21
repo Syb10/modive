@@ -26,7 +26,7 @@
       v-model="sonstigesUmsetung"
       :content="{ title: 'Sonstiges', id: 'sonstigesUmsetung', type:'text', color:'umsetzungColor', border:'umsetzungBorder'}"
     />
-    <p class="umsetzungAspekt">Entwicklung der Monitoring-Parameter</p>
+    <p class="umsetzungAspekt">Monitoring-Parameter</p>
     <EntwicklungMonitoring
       v-model="entwicklungMonitoringParameter"
       :anzahl="anzahl"
