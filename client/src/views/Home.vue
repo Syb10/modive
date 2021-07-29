@@ -2,7 +2,7 @@
   <div class="home">
     <form>
       <div>
-        <div class="stickyoben">
+        <div>
           <button
             v-for="tab in tabs"
             :key="tab.id"
@@ -37,6 +37,7 @@ import assessment from "../components/Assessment/Assessment.vue";
 import diagnosestellung from "../components/Diagnosestellung/Diagnosestellung.vue";
 import planung from "../components/Planung/Planung.vue";
 import umsetzung from "../components/Umsetzung/Umsetzung.vue";
+import evaluation from "../components/Evaluation/Evaluation.vue";
 import {mapFields} from "vuex-map-fields";
 import {mapGetters} from "vuex";
 
@@ -59,6 +60,7 @@ export default {
     diagnosestellung,
     planung,
     umsetzung,
+    evaluation,
   },
   computed: {
     ...mapFields([
@@ -223,6 +225,10 @@ export default {
       "sonstigesUmsetung",
       "entwicklungMonitoring",
       "entwicklungMonitoringParameter",
+      "evaluationEntwicklungMonitoringParameter",
+      "evaluationZieleKlient",
+      "evaluationZieleIntervention",
+      "evaluationWeitersVorgehen",
     ]),
     ...mapGetters([
       "recallMahlzeiten"
@@ -532,6 +538,10 @@ export default {
           "entwicklungSicherstellungErnaehrung": this.entwicklungSicherstellungErnaehrung,
           "sonstigesUmsetung": this.sonstigesUmsetung,        
           "entwicklungMonitoringParameter": this.entwicklungMonitoringParameter,
+          "evaluationEntwicklungMonitoringParameter": this.evaluationEntwicklungMonitoringParameter,
+          "evaluationZieleKlient": this.evaluationZieleKlient,
+          "evaluationZieleIntervention": this.evaluationZieleIntervention,
+          "evaluationWeitersVorgehen": this.evaluationWeitersVorgehen,
         })
         .then(response => {
           console.log(response);
@@ -698,6 +708,10 @@ export default {
           this.sonstigesUmsetung = "";
           this.entwicklungMonitoring = {table:[]};
           this.entwicklungMonitoringParameter = "";
+          this.evaluationEntwicklungMonitoringParameter = "";
+          this.evaluationZieleKlient = "";
+          this.evaluationZieleIntervention = "";
+          this.evaluationWeitersVorgehen = "";
         })
         .catch(error => {
           console.log(error);

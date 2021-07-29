@@ -149,6 +149,10 @@ const patientSchema = new Schema(
       entwicklungSicherstellungErnaehrung: String,
       sonstigesUmsetung: String,        
       entwicklungMonitoringParameter: String,
+      evaluationEntwicklungMonitoringParameter: String,
+      evaluationZieleKlient: String,
+      evaluationZieleIntervention: String,
+      evaluationWeitersVorgehen: String,
     },
     {timestamps:true},
 );

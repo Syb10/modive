@@ -171,6 +171,10 @@ export default createStore({
           table:[]
         },
         entwicklungMonitoringParameter: "",
+        evaluationEntwicklungMonitoringParameter: "",
+        evaluationZieleKlient: "",
+        evaluationZieleIntervention: "",
+        evaluationWeitersVorgehen: "",
     }
   },
   getters: {
