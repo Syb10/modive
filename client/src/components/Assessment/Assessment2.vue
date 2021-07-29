@@ -51,7 +51,7 @@
         <div v-if="anzahlMahlzeitenRecall == 'nein'">
           <InputForm
             v-model="mahlzeitenNormalerweise"
-            :content="{ title: 'Wie viele Mahlzeiten werden normalerweise verzehrt?', id: 'MahlzeitenNormalerweise', type:'number', color:'assessmentColor', border:'assessmentBorder' }"
+            :content="{ title: 'Wie viele Mahlzeiten werden normalerweise verzehrt?', id: 'MahlzeitenNormalerweise', type:'number', min:'0', color:'assessmentColor', border:'assessmentBorder' }"
           />
           <CheckboxForm
             :checkboxs="[

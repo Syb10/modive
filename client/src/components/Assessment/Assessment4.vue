@@ -8,18 +8,18 @@
         <p class="assessmentAspekt mt-5" ref="anthropometrischeDaten">Anthropometrische Daten</p>
         <InputForm
           v-model="koerpergroesse"
-          :content="{title:'Körpergröße (in m)', id:'koerpergroesse', type:'number', step: '0.01', color:'assessmentColor', border:'assessmentBorder'}"
+          :content="{title:'Körpergröße (in m)', id:'koerpergroesse', type:'number', min:'0', step: '0.01', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <InputForm
           v-model="koerpergewicht"
-          :content="{title:'Körpergewicht (in kg)', id:'koerpergewicht', type:'number', step: '0.01', color:'assessmentColor', border:'assessmentBorder'}"
+          :content="{title:'Körpergewicht (in kg)', id:'koerpergewicht', type:'number', min:'0', step: '0.01', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <CalcBMI
           v-model="bmi"
         />
         <InputForm
           v-model="taillenumfang"
-          :content="{title:'Taillenumfang (in cm)', id:'taillenumfang', type:'number', color:'assessmentColor', border:'assessmentBorder'}"
+          :content="{title:'Taillenumfang (in cm)', id:'taillenumfang', type:'number', min:'0', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <InputForm
           v-model="hautfaltendicke"

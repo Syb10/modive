@@ -153,17 +153,17 @@
       <div v-if="jemalsGeraucht == 'ja' || aktuellGeraucht == 'ja'">
         <InputForm
           v-model="anzahlZigaretten"
-          :content="{ title: 'Anzahl an Zigaretten/Tag', id: 'anzahlZigaretten', type:'number', color:'assessmentColor', border:'assessmentBorder' }"
+          :content="{ title: 'Anzahl an Zigaretten/Tag', id: 'anzahlZigaretten', type:'number', min:'0', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmall"
         />
         <InputForm
           v-model="anzahlTabakprodukte"
-          :content="{ title: 'Anzahl an Tabakprodukten/Tag', id: 'anzahlTabakprodukte', type:'number', color:'assessmentColor', border:'assessmentBorder' }"
+          :content="{ title: 'Anzahl an Tabakprodukten/Tag', id: 'anzahlTabakprodukte', type:'number', min:'0', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmaller"
         />
         <InputForm
           v-model="anzahlJahreRauchen"
-          :content="{ title: 'Anzahl an Jahren, in denen bisher geraucht wurde', id: 'anzahlJahreRauchen', type:'number', color:'assessmentColor', border:'assessmentBorder' }"
+          :content="{ title: 'Anzahl an Jahren, in denen bisher geraucht wurde', id: 'anzahlJahreRauchen', type:'number', min:'0', color:'assessmentColor', border:'assessmentBorder' }"
           :style="marginSmaller"
         />
       </div>
@@ -341,6 +341,7 @@
             {title:'nein', id:'neinSchwangerschaft', name:'schwangerschaft'},
           ]"
           :title="'Schwangerschaft'"
+          :color ="'assessmentColor'"
           v-model="schwangerschaft"
         />
         <RadioForm
@@ -349,6 +350,7 @@
             {title:'nein', id:'neinStillzeit', name:'stillzeit'},
           ]"
           :title="'Stillzeit'"
+          :color ="'assessmentColor'"
           v-model="stillzeit"
         />
       </div>
