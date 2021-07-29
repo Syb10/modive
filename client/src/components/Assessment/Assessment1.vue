@@ -6,15 +6,15 @@
       <p class="assessmentAspekt mt-5" ref="klientengeschichte">Klient*innengeschichte</p>
       <InputForm
         v-model="vorname"
-        :content="{ title: 'Vorname', id: 'vorname', type: 'text', color:'assessmentColor', border:'assessmentBorder' }"        
+        :content="{ title: 'Vorname *', id: 'vorname', type: 'text', color:'assessmentColor', border:'assessmentBorder' }"        
       />
       <InputForm
         v-model="nachname"
-        :content="{ title: 'Nachname', id: 'nachname', type: 'text', color:'assessmentColor', border:'assessmentBorder' }"        
+        :content="{ title: 'Nachname *', id: 'nachname', type: 'text', color:'assessmentColor', border:'assessmentBorder' }"        
       />
       <InputForm
         v-model="geburtsdatum"
-        :content="{ title: 'Geburtsdatum', id: 'geburtsdatum', type:'date', color:'assessmentColor', border:'assessmentBorder' }"
+        :content="{ title: 'Geburtsdatum *', id: 'geburtsdatum', type:'date', color:'assessmentColor', border:'assessmentBorder' }"
       />
       <InputForm
         v-model="adresse"

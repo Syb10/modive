@@ -18,6 +18,13 @@
           <component :is="currentTab"></component>
         </keep-alive>
       </div>
+      <p>* Pflichtfeld</p>
+      <div v-if="error" class="alert alert-danger">
+          Es müssen folgende Felder ausgefüllt werden! 
+          <ul v-for="(error, index) in errorList" :key="index">
+            <li v-if="error != ''">{{error}}</li>
+          </ul>
+        </div>
       <div class="form-group">
         <button
           type="submit"
@@ -52,7 +59,9 @@ export default {
         {id:"planung", name: "Planung der Intervention"},
         {id:"umsetzung", name:"Umsetzung der Intervention"},
         {id:"evaluation", name:"Outcome Evaluation"}
-      ]
+      ],
+      error: false,
+      errorList: [],
     }
   },
   components: {
@@ -545,6 +554,8 @@ export default {
         })
         .then(response => {
           console.log(response);
+          this.error = false;
+          this.errorList = [];
           this.$router.push('/List');
           this.vorname = "";
           this.nachname = "";
@@ -714,7 +725,15 @@ export default {
           this.evaluationWeitersVorgehen = "";
         })
         .catch(error => {
+          this.error = true;
           console.log(error);
+          if(this.vorname == "" && this.nachname == "" && this.geburtstag == ""){
+            this.errorList[3] = "Es ist ein unbekannter Fehler aufgetreten.";
+          } else {
+            this.vorname ? this.errorList[0] = "" : this.errorList[0] = "Vorname"
+            this.nachname ? this.errorList[1] = "" : this.errorList[1] = "Nachname"
+            this.geburtstag ? this.errorList[2] = "" : this.errorList[2] = "Geburtsdatum"
+          }
         });
     },
   },
