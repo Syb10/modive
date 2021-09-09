@@ -28,7 +28,7 @@
     />
     <p class="planungAspekt" ref="interventionsplan">Interventionsplan</p>
     <label>
-      Ziel(e) der Intervention
+      Ziel(e) der gesamten Intervention
       <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
         <span class="tipptext">Die Ziele leiten sich aus den PASR-Statements unter Einbezug der Ziele der/des Klient*in ab. Es können ernährungsbezogene Ziele (z.B. aus den Bereichen Wissenszuwachs, Verhaltensänderung) und/oder gesundheitsbezogene Ziele (medizinische Ziele, gesundheitsökonomische Ziele, subjekt-orientierte Ziele) festgelegt werden.</span>
       </div>
@@ -57,7 +57,7 @@
     ]"
     :title="'Interventionsform'"
     :color ="'planungColor'"
-    v-model="interventionsform"
+    v-model="MyInterventionsform"
   />
   <InputForm
     v-model="interventionsformAndere"
@@ -68,43 +68,20 @@
     v-model="weitereAnmerkungenIntervention"
     :content="{ title: 'weitere Anmerkungen zur Interventionsform', id: 'weitereAnmerkungenIntervention', color:'planungColor', border:'planungBorder'}"
     :isTipp="true"
-    :myTipp="'Durchführung online oder in Präsenz'"
+    :myTipp="'z.B. Durchführung online oder in Präsenz'"
   />
-  <table class="table table-striped table-bordered mb-4">
-    <thead>
-      <th>Monitoring- und Outcome Parameter</th>
-      <th>Frequenz der Überprüfung</th>
-    </thead>
-    <tbody>
-      <RadioTableDynamic
-        v-model="monitoring"
-        :isMonitoring="true"
-      />
-    </tbody>
-  </table>
   <p>Zeitplanung</p>
   <InputForm
-    v-model="dauerEinzelberatung"
-    :content="{ title: 'Dauer der Einzelberatung in Minuten', id: 'dauerEinzelberatung', type:'number', min:0, color:'planungColor', border:'planungBorder' }"
+    v-model="zeitraumIntervention"
+    :content="{ title: 'Zeitraum der gesamten Intervention', id: 'zeitraumIntervention', type:'text', color:'planungColor', border:'planungBorder' }"
+    
   />
   <InputForm
     v-model="frequenzInterventionen"
     :content="{ title: 'Frequenz der Interventionen', id: 'frequenzInterventionen', type:'text', color:'planungColor', border:'planungBorder' }"
     :style="marginSmaller"
-  />
-  <InputForm
-    v-model="zeitraumIntervention"
-    :content="{ title: 'Zeitraum der gesamten Intervention', id: 'zeitraumIntervention', type:'text', color:'planungColor', border:'planungBorder' }"
-    :style="marginSmaller"
-  />
-  <TextareaForm
-    v-model="inhaltIntervention"
-    :content="{ title: 'Inhalt der Intervention', id: 'inhaltIntervention', color:'planungColor', border:'planungBorder'}"
-  />
-  <TextareaForm
-    v-model="materialien"
-    :content="{ title: 'verwendete Materialien', id: 'materialien', color:'planungColor', border:'planungBorder'}"
-  />
+  /> 
+  <PlanungTermine v-if="/\bEinzelberatung\b/.test(MyInterventionsform)"/>
   <CheckboxForm
     :checkboxs="[
       {title:'Ärzt*innen', id:'arzt'},
@@ -134,6 +111,18 @@
     v-model="weitereAnmerkungenInterventionNochmal"
     :content="{ title: 'weitere Anmerkungen', id: 'weitereAnmerkungenInterventionNochmal', color:'planungColor', border:'planungBorder'}"
   />
+  <table class="table table-striped table-bordered mb-4">
+    <thead>
+      <th>Monitoring- und Outcome Parameter</th>
+      <th>Frequenz der Überprüfung</th>
+    </thead>
+    <tbody>
+      <RadioTableDynamic
+        v-model="monitoring"
+        :isMonitoring="true"
+      />
+    </tbody>
+  </table>
 </template>
 
 <script>
@@ -143,7 +132,10 @@ import InputForm from "../InputForm.vue";
 import RadioTableDynamic from "../RadioTableDynamic.vue";
 import RadioForm from "../RadioForm.vue";
 import Prio from "./Prio.vue";
+import PlanungTermine from "./PlanungTermine.vue";
 import {mapFields} from "vuex-map-fields";
+import {mapState} from "vuex";
+
   export default {
     name:"planung",
     components: {
@@ -153,10 +145,10 @@ import {mapFields} from "vuex-map-fields";
         RadioTableDynamic,
         RadioForm,
         Prio,
+        PlanungTermine,
     },
     data() {
       return{
-        testprio:[],
         ZieleKlient:[
           {title: "Ziel", vmodel:"", id:"ziel0"},
         ],
@@ -173,8 +165,11 @@ import {mapFields} from "vuex-map-fields";
         }
       }
     },
+    props: {
+      isEdit: Boolean,
+    },
     computed: {
-      ...mapFields([
+      ...mapState("p",[
         "priorisierung",
         "zieleKlient",
         "leitlinien",
@@ -182,17 +177,59 @@ import {mapFields} from "vuex-map-fields";
         "interventionsform",
         "interventionsformAndere",
         "weitereAnmerkungenIntervention",
-        "monitoring",
-        "dauerEinzelberatung",
-        "frequenzInterventionen",
         "zeitraumIntervention",
-        "inhaltIntervention",
-        "materialien",
+        "frequenzInterventionen",
+
         "weitereBerufsgruppen",
         "weitereBerufsgruppenAndere",
         "angehoerige",
         "weitereAnmerkungenInterventionNochmal",
+        "monitoring"
       ]),
+      ...mapFields([
+        //"priorisierung",
+        //"zieleKlient",
+        //"leitlinien",
+        //"zieleIntervention",
+        //"interventionsform",
+        //"interventionsformAndere",
+        //"weitereAnmerkungenIntervention",
+        //"frequenzInterventionen",
+        //"zeitraumIntervention",
+        //"dauerEinzelberatung",
+        //"inhaltIntervention",
+        //"materialien",
+        //"weitereBerufsgruppen",
+        //"weitereBerufsgruppenAndere",
+        //"angehoerige",
+        //"weitereAnmerkungenInterventionNochmal",
+        //"monitoring",
+      ]),
+      MyInterventionsform:{
+        get() {
+          var value=[];
+          if(this.isEdit){
+            if(this.editKlient.planung) {
+              value = this.editKlient.planung.interventionsform ? this.editKlient.planung.interventionsform : []
+            }
+          } else {
+            value = this.$store.state.p.interventionsform
+          }
+          return value
+        },
+        set(value) {
+          if(this.isEdit){
+            if(this.editKlient.planung) {
+              this.editKlient.planung.interventionsform = value
+            } else {
+              this.editKlient.planung = {};
+              this.editKlient.planung.interventionsform = value
+            } 
+          } else {
+            this.$store.state.p.interventionsform = value 
+          }
+        }
+      },
     },
     methods: {
       //https://stackoverflow.com/questions/42645964/vue-js-anchor-to-div-within-the-same-component
