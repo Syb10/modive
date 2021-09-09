@@ -21,7 +21,7 @@
             <li v-if="error != ''">{{error}}</li>
           </ul>
         </div>
-        <button class="btn btn-bluelight mb-3" @click.prevent="getDiagnosestellung(indexI, item[0].vmodel,item[1].vmodel, item[2].vmodel, item[3].vmodel)"><i class="fa fa-check"></i> bestätigen</button>
+        <button class="btn btn-bluelight mb-3" @click.prevent="getDiagnosestellung(indexI, item[0].vmodel,item[1].vmodel, item[2].vmodel, item[3].vmodel, item[4].vmodel)"><i class="fa fa-check"></i> bestätigen</button>
         <div>
           PASR-Statement:
           <p v-html="SatzDiagnosestellung[indexI][0].satz"></p>
@@ -42,7 +42,8 @@ export default {
           {title: "Diätetisches Problem", vmodel:"", id:"ernaehrungsproblem0", myTipp:"Informationen hierzu finden Sie im Assessment in der Kategorie Ernährungsgewohnheiten."},
           {title: "Ätiologie/Ursache", vmodel:"", id:"ursache0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."}, 
           {title: "Zeichen und Symptome", vmodel:"",id:"symptome0", myTipp:"Informationen hierzu finden Sie im Assessment, in den Kategorien Klinischer Status und Ernährungsgewohnheiten."},
-          {title: "Ressourcen", vmodel:"", id:"ressourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},
+          {title: "positive Ressourcen", vmodel:"", id:"positiveRessourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},
+          {title: "negative Ressourcen", vmodel:"", id:"negativeRessourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},
         ]
       ],
       SatzDiagnosestellung:[
@@ -56,9 +57,25 @@ export default {
       errorList: [[]],
     }
   },
+  props:{
+    isEdit: Boolean,
+  },
   computed: {
+    MyDiagnosestellung:{
+      get() {
+        return this.isEdit ? this.editKlient.diagnosestellung : this.diagnosestellung
+      },
+      set(value) {
+        if(this.isEdit){
+          this.editKlient.diagnosestellung = value
+        } else {
+          this.diagnosestellung = value 
+        }
+      }
+    },
     ...mapFields([
-      "diagnosestellung"
+      "diagnosestellung",
+      "editKlient",
     ])
   },
   watch: {
@@ -68,7 +85,7 @@ export default {
            this.item[i] = value[i][0].satz;           
         }
         var newValue = this.item.join('<br><br>');
-        this.diagnosestellung = newValue;
+        this.MyDiagnosestellung = newValue;
       },
       deep: true
     },
@@ -76,10 +93,11 @@ export default {
   methods: {
       addNewProblem() {
         this.DynamicDiagnosestellung.push([
-          {title: "Ernährungsproblem", vmodel:"", id:"ernaehrungsproblem"+this.counter, myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie Ernährungsgewohnheiten."},
+          {title: "Diätetisches Problem", vmodel:"", id:"ernaehrungsproblem"+this.counter, myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie Ernährungsgewohnheiten."},
           {title: "Ätiologie/Ursache", vmodel:"", id:"ursache"+this.counter, myTipp:"Informationen hierzu finden Sie im Assessment, in den Kategorien Klient*innengeschichte, Ernährungsgewohnheiten, Verhalten & Umfeld."}, 
           {title: "Zeichen und Symptome", vmodel:"", id:"symptome"+this.counter, myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klinischer Status."},
-          {title: "Ressourcen", vmodel:"", id:"ressourcen"+this.counter, myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klient*innengeschichte, Verhalten & Umfeld."},
+          {title: "positive Ressourcen", vmodel:"", id:"positiveRessourcen"+this.counter, myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klient*innengeschichte, Verhalten & Umfeld."},
+          {title: "negative Ressourcen", vmodel:"", id:"negativeRessourcen"+this.counter, myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in den Kategorien Klient*innengeschichte, Verhalten & Umfeld."},
         ]);
         this.counter++;
         this.SatzDiagnosestellung.push([
@@ -92,17 +110,18 @@ export default {
         this.SatzDiagnosestellung.splice(index,1);
         this.item.splice(index, 1);
       },
-      getDiagnosestellung(index, ernaehrungsproblem, ursache, symptome, ressourcen) {
-        if(ernaehrungsproblem != "" && ursache != "" && symptome != "" && ressourcen != ""){
+      getDiagnosestellung(index, ernaehrungsproblem, ursache, symptome, pRessourcen, nRessourcen) {
+        if(ernaehrungsproblem != "" && ursache != "" && symptome != "" && pRessourcen != "" && nRessourcen != ""){
           this.error[index] = false;
           this.errorList[index] = [];
-          return this.SatzDiagnosestellung[index][0].satz = "Ernährungsproblem " + ernaehrungsproblem.bold() + " bedingt durch Ätiologie/Ursache "+ ursache.bold() +
-          " nachgewiesen durch Zeichen und Symptomen " + symptome.bold() + ". Unterstützend/Hemmend wirken sich Ressourcen " + ressourcen.bold() + " aus." 
+          return this.SatzDiagnosestellung[index][0].satz = "Diätetisches Problem " + ernaehrungsproblem.bold() + " bedingt durch Ätiologie/Ursache "+ ursache.bold() +
+          " nachgewiesen durch Zeichen und Symptomen " + symptome.bold() + ". Unterstützend wirken sich die Ressourcen " + pRessourcen.bold() + " aus. Hemmend wirken sich die Ressourcen " + nRessourcen.bold() + " aus." 
         } else {
           ernaehrungsproblem ? this.errorList[index][0] = "" : this.errorList[index][0] = "Ernährungsproblem"
           ursache ? this.errorList[index][1] = "" : this.errorList[index][1] = "Ätiologie/Ursache"
           symptome ? this.errorList[index][2] = "" : this.errorList[index][2] = "Zeichen und Symptomen"
-          ressourcen ? this.errorList[index][3] = "" : this.errorList[index][3] = "Ressourcen"
+          pRessourcen ? this.errorList[index][3] = "" : this.errorList[index][3] = "positive Ressourcen"
+          nRessourcen ? this.errorList[index][4] = "" : this.errorList[index][4] = "negative Ressourcen"
           this.error[index] = true;
         }
       }
