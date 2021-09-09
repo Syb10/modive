@@ -64,6 +64,8 @@
             {title:"", vmodel:"", input:true, button:true},
             {value:"sehr wichtig", id:this.subtitle+"0sehrWichtig", name:this.subtitle+"0"},
             {value:"wichtig", id:this.subtitle+"0wichtig", name:this.subtitle+"0"},
+            {value:"eher wichtig", id:this.subtitle+"0eherWichtig", name:this.subtitle+"0"},
+            {value:"eher unwichtig", id:this.subtitle+"0eherUnwichtig", name:this.subtitle+"0"},
             {value:"unwichtig", id:this.subtitle+"0unwichtig", name:this.subtitle+"0"},
             {value:"sehr unwichtig", id:this.subtitle+"0sehrUnwichtig", name:this.subtitle+"0"},
           ]
@@ -155,6 +157,8 @@
           {title: "", vmodel:"", input:true, button:true},
           {value:"sehr wichtig", id:this.subtitle+this.counter+"sehrWichtig", name:this.subtitle+this.counter},
           {value:"wichtig", id:this.subtitle+this.counter+"wichtig", name:this.subtitle+this.counter},
+          {value:"eher wichtig", id:this.subtitle+this.counter+"eherWichtig", name:this.subtitle+this.counter},
+          {value:"eher unwichtig", id:this.subtitle+this.counter+"eherUnwichtig", name:this.subtitle+this.counter},
           {value:"unwichtig", id:this.subtitle+this.counter+"unwichtig", name:this.subtitle+this.counter},
           {value:"sehr unwichtig", id:this.subtitle+this.counter+"sehrUnwichtig", name:this.subtitle+this.counter},
         ]);
