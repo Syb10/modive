@@ -20,7 +20,7 @@
         {title:'ja', id:'jaZielerreichungKlient'+index, name:'zielerreichungKlient'+index},
         {title:'nein', id:'neinZielerreichungKlient'+index, name:'zielerreichungKlient'+index},
       ]"
-      :title="'Wurde das gesetzt Ziel erreicht?'"
+      :title="'Wurde das gesetzte Ziel erreicht?'"
       :color ="'evaluationColor'"
       v-model="zielerreichungKlient[index]"
       />
@@ -42,7 +42,7 @@
         {title:'ja', id:'jaZielerreichungIntervention'+index, name:'zielerreichungIntervention'+index},
         {title:'nein', id:'neinZielerreichungIntervention'+index, name:'zielerreichungIntervention'+index},
       ]"
-      :title="'Wurde das gesetzt Ziel erreicht?'"
+      :title="'Wurde das gesetzte Ziel erreicht?'"
       :color ="'evaluationColor'"
       v-model="zielerreichungIntervention[index]"
       />
