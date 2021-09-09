@@ -14,7 +14,7 @@
             type="checkbox"
             :id="checkbox.id"
             :value="checkbox.title"
-            v-model="myData"
+            v-model="value"
           />
         </div>
       </div>
@@ -25,11 +25,6 @@
 <script>
 export default {
   name: "CheckboxForm",
-  data() {
-    return {
-      myData:[]
-    }
-  },
   props: {
     checkboxs: [],
     title:String,
@@ -39,10 +34,14 @@ export default {
     modelValue: []
   },
   emits: ["update:modelValue"],
-  watch: {
-    myData (value) {
-      var newValue = value.join(', ')
-      this.$emit("update:modelValue", newValue)
+   computed: {
+    value: {
+      get() {
+        return this.modelValue
+      },
+      set(value) {
+        this.$emit("update:modelValue", value)
+      }
     }
   }
 };
