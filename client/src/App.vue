@@ -237,6 +237,26 @@
   margin-left: -2500%;
 }
 
+/********************************
+ style pop up termin bestaetigt  
+ *******************************/
+.popup {
+  position: relative;
+  display: inline-block;
+}
+.popup .popuptext {
+  background-color: #376f75;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 2;
+  min-width: 250px;
+  margin-left: 10px;
+  top: -20px;
+}
+
 /***********************
  style button 
  *************************/
@@ -263,6 +283,10 @@ td .btn{
   border: 1px solid #B75757 !important;
   color: white !important;
 }
+.btn-redlight{
+  border: 1px solid #B75757 !important;
+  color: #B75757 !important;
+}
 .btn-blue{
   background-color: #6eaead !important;
   border: 1px solid #6eaead !important;
@@ -276,6 +300,10 @@ td .btn{
   background-color: #376f75 !important;
   border: 1px solid #376f75 !important;
   color: white !important;
+}
+.btn-darkbluelight{
+  border: 1px solid #376f75 !important;
+  color: #376f75 !important;
 }
 .btn-umsetzung{
   background-color: #00303C !important;
