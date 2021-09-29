@@ -56,8 +56,10 @@ export default {
     deletePatient(id) {
       let apiURL = `http://localhost:9000/api/${id}`;
       let indexOfArrayItem = this.patienten.findIndex(i => i._id === id);
+      let vorname = this.patienten[indexOfArrayItem].Vorname;
+      let nachname = this.patienten[indexOfArrayItem].Nachname;
 
-      if(window.confirm("Patient wirklich löschen?")) {
+      if(window.confirm(nachname +", " + vorname + " wirklich löschen?")) {
         axios.delete(apiURL).then(() => {
             this.patienten.splice(indexOfArrayItem, 1);
         }).catch(error => {
