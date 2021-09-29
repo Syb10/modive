@@ -14,8 +14,9 @@
           v-model="koerpergewicht"
           :content="{title:'Körpergewicht (in kg)', id:'koerpergewicht', type:'number', min:'0', step: '0.01', color:'assessmentColor', border:'assessmentBorder'}"
         />
-        <CalcBMI
+        <InputForm
           v-model="bmi"
+          :content="{title:'gBody Mass Index (in kg/m&sup2;)', id:'bmi', type:'number', min:'0', step: '0.01', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <InputForm
           v-model="taillenumfang"
@@ -131,11 +132,11 @@
 
 <script>
 import InputForm from "../InputForm.vue";
-import CalcBMI from "../CalcBMI.vue";
 import TextareaForm from "../TextareaForm.vue";
 import RadioForm from "../RadioForm.vue";
 import CheckboxForm from "../CheckboxForm.vue";
-import {mapFields} from "vuex-map-fields";
+import {mapGetters} from "vuex";
+
 export default {
     name: "assessment4",
     data() {
@@ -150,35 +151,174 @@ export default {
     },
     components: {
         InputForm,
-        CalcBMI,
         TextareaForm,
         RadioForm,
         CheckboxForm,
     },
     computed: {
-        ...mapFields([
-            "koerpergroesse",
-            "koerpergewicht",
-            "bmi",
-            "taillenumfang",
-            "hautfaltendicke",
-            "fettfreieMasse",
-            "fettmasse",
-            "ruheenergieumsatz",
-            "chemieMetabolischeParameter",
-            "vitalzeichen",
-            "weitereMessungen",
-            "schlucken",
-            "schluckenJaAber",
-            "schluckenNein",
-            "erbrechen",
-            "erbrechenJa",
-            "mundgesundheit",
-            "mundgesundheitAndere",
-            "problemeNahrungsaufnahme",
-            "appetitBeeintraechtigung",
-            "weitereKoerperlicheBefunde",
-        ]),
+      ...mapGetters("a4",[
+        "bmi"
+      ]),
+      koerpergroesse:{
+        get() {
+          return this.$store.state.a4.koerpergroesse
+        },
+        set(value) {
+          this.$store.commit("a4/koerpergroesse", value)
+        }
+      },
+      koerpergewicht:{
+        get() {
+          return this.$store.state.a4.koerpergewicht
+        },
+        set(value) {
+          this.$store.commit("a4/koerpergewicht", value)
+        }
+      },
+      taillenumfang:{
+        get() {
+          return this.$store.state.a4.taillenumfang
+        },
+        set(value) {
+          this.$store.commit("a4/taillenumfang", value)
+        }
+      },
+      hautfaltendicke:{
+        get() {
+          return this.$store.state.a4.hautfaltendicke
+        },
+        set(value) {
+          this.$store.commit("a4/hautfaltendicke", value)
+        }
+      },
+      fettfreieMasse:{
+        get() {
+          return this.$store.state.a4.fettfreieMasse
+        },
+        set(value) {
+          this.$store.commit("a4/fettfreieMasse", value)
+        }
+      },
+      fettmasse:{
+        get() {
+          return this.$store.state.a4.fettmasse
+        },
+        set(value) {
+          this.$store.commit("a4/fettmasse", value)
+        }
+      },
+      ruheenergieumsatz:{
+        get() {
+          return this.$store.state.a4.ruheenergieumsatz
+        },
+        set(value) {
+          this.$store.commit("a4/ruheenergieumsatz", value)
+        }
+      },
+      chemieMetabolischeParameter:{
+        get() {
+          return this.$store.state.a4.chemieMetabolischeParameter
+        },
+        set(value) {
+          this.$store.commit("a4/chemieMetabolischeParameter", value)
+        }
+      },
+      vitalzeichen:{
+        get() {
+          return this.$store.state.a4.vitalzeichen
+        },
+        set(value) {
+          this.$store.commit("a4/vitalzeichen", value)
+        }
+      },
+      weitereMessungen:{
+        get() {
+          return this.$store.state.a4.weitereMessungen
+        },
+        set(value) {
+          this.$store.commit("a4/weitereMessungen", value)
+        }
+      },
+      schlucken:{
+        get() {
+          return this.$store.state.a4.schlucken
+        },
+        set(value) {
+          this.$store.commit("a4/schlucken", value)
+        }
+      },
+      schluckenJaAber:{
+        get() {
+          return this.$store.state.a4.schluckenJaAber
+        },
+        set(value) {
+          this.$store.commit("a4/schluckenJaAber", value)
+        }
+      },
+      schluckenNein:{
+        get() {
+          return this.$store.state.a4.schluckenNein
+        },
+        set(value) {
+          this.$store.commit("a4/schluckenNein", value)
+        }
+      },
+      erbrechen:{
+        get() {
+          return this.$store.state.a4.erbrechen
+        },
+        set(value) {
+          this.$store.commit("a4/erbrechen", value)
+        }
+      },
+      erbrechenJa:{
+        get() {
+          return this.$store.state.a4.erbrechenJa
+        },
+        set(value) {
+          this.$store.commit("a4/erbrechenJa", value)
+        }
+      },
+      mundgesundheit:{
+        get() {
+          return this.$store.state.a4.mundgesundheit
+        },
+        set(value) {
+          this.$store.commit("a4/mundgesundheit", value)
+        }
+      },
+      mundgesundheitAndere:{
+        get() {
+          return this.$store.state.a4.mundgesundheitAndere
+        },
+        set(value) {
+          this.$store.commit("a4/mundgesundheitAndere", value)
+        }
+      },
+      problemeNahrungsaufnahme:{
+        get() {
+          return this.$store.state.a4.problemeNahrungsaufnahme
+        },
+        set(value) {
+          this.$store.commit("a4/problemeNahrungsaufnahme", value)
+        }
+      },
+      appetitBeeintraechtigung:{
+        get() {
+          return this.$store.state.a4.appetitBeeintraechtigung
+        },
+        set(value) {
+          this.$store.commit("a4/appetitBeeintraechtigung", value)
+        }
+      },
+      weitereKoerperlicheBefunde:{
+        get() {
+          return this.$store.state.a4.weitereKoerperlicheBefunde
+        },
+        set(value) {
+          this.$store.commit("a4/weitereKoerperlicheBefunde", value)
+        }
+      },
     },
     methods: {
       //https://stackoverflow.com/questions/42645964/vue-js-anchor-to-div-within-the-same-component

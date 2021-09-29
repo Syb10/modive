@@ -37,6 +37,9 @@ export default {
       ]
     }
   },
+  props:{
+    isEdit: Boolean,
+  },
   components: {
     assessment1,
     assessment2,

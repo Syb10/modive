@@ -81,18 +81,18 @@
       />
       <InputForm
         v-model="beruf"
-        :content="{ title: 'Ausgeübter Beruf', id: 'beruf', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
+        :content="{ title: 'Ausgeübter Beruf/Tätigkeit', id: 'beruf', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
       />
       <CheckboxForm
         :checkboxs="[
           {title:'Vollzeit', id:'vollzeit'},
           {title:'Teilzeit', id:'teilzeit'},
           {title:'Schichtarbeit', id:'schichtarbeit'},
-          {title:'keine Angaben', id:'keineAngabenArtDerArbeit'}
         ]"
+        :title="'Weitere Angaben zum ausgeübten Beruf'"
         :color ="'assessmentColor'"
         v-model="artDerArbeit"
-        :style="marginSmall"
+        :style="marginSmaller"
       />
       <CheckboxForm
         :checkboxs="[
@@ -110,13 +110,11 @@
       <CheckboxForm
         :checkboxs="[
           {title:'alleine lebend', id:'alleine'},
+          {title:'mit Partner*in lebend', id:'partner'},
           {title:'mit der Familie lebend', id:'familie'},
           {title:'mit pflegender Person lebend', id:'pflegenderPerson'},
           {title:'in einer Wohngemeinschaft lebend', id:'wohngemeinschaft'},
           {title:'in einer Pflegeeinrichtung lebend', id:'pflegeeinrichtung'},
-          {title:'in der Stadt lebend', id:'stadt'},
-          {title:'auf dem Land lebend', id:'land'},
-          {title:'keine Angaben', id:'keineAngabenWohnsituation'}
         ]"
         :title="'Wohnsituation'"
         :color ="'assessmentColor'"
@@ -128,6 +126,10 @@
         :style="marginSmall"
       />
       <div class="form-inline mb-4">Der/die Klient*in lebt mit <input class="form-control assessmentBorder mr-1 ml-1" v-model="personenImHaushalt" type="number" min="0"/> Personen in einem Haushalt.</div>
+      <TextareaForm
+        v-model="weitereAnmerkungenZurWohnsituation"
+        :content="{ title: 'Weitere Anmerkungen zur Wohnsituation', id: 'weitereAnmerkungenZurWohnsituation', color:'assessmentColor', border:'assessmentBorder'}"
+      />
       <div>Tabakkonsum</div>
       <RadioForm
         :items="[
@@ -195,14 +197,14 @@
       </div>
       <RadioForm
         :items="[
-          {title:'ja', id:'jamobil', name:'beeintraechtigungen'},
-          {title:'nein', id:'neinmobil', name:'beeintraechtigungen'},
+          {title:'eingeschränkt', id:'eingeschraenkt', name:'mobil'},
+          {title:'nicht eingeschränkt', id:'nichtEingeschraenkt', name:'mobil'},
         ]"
-        :title="'mobil'"
+        :title="'Mobilität'"
         :color ="'assessmentColor'"
         v-model="mobil"
       />
-      <div v-if="mobil == 'nein'">
+      <div v-if="mobil == 'eingeschränkt'">
         <CheckboxForm
           :checkboxs="[
             {title:'ans Haus gebunden', id:'haus'},
@@ -220,16 +222,6 @@
           :style="marginSmall"
         />
       </div>
-      <TextareaForm
-        v-model="kontakAktivitaet"
-        :content="{ title: 'Kontakt/Aktivität in sozialen Strukturen', id: 'kontakAktivitaet', color:'assessmentColor', border:'assessmentBorder'}"
-        :isTipp="true"
-        :myTipp="'z.B. Familienmitglieder, Gemeinschaften (z.B. Vereine, Kirchengemeinde)'"
-      />
-      <TextareaForm
-        v-model="hobbies"
-        :content="{ title: 'Hobbies/Freizeitbeschäftigungen', id: 'hobbies', color:'assessmentColor', border:'assessmentBorder'}"
-      />
       <RadioForm
         :items="[
           {title:'ja', id:'jaUnterstuetzungMedizinischerVersorgung', name:'unterstuetzungMedizinischerVersorgung'},
@@ -256,10 +248,20 @@
           :style="marginSmall"
         />
       </div>
+      <TextareaForm
+        v-model="kontakAktivitaet"
+        :content="{ title: 'Kontakt/Aktivität in sozialen Strukturen', id: 'kontakAktivitaet', color:'assessmentColor', border:'assessmentBorder'}"
+        :isTipp="true"
+        :myTipp="'z.B. Familienmitglieder, Gemeinschaften (z.B. Vereine, Kirchengemeinde)'"
+      />
+      <TextareaForm
+        v-model="hobbies"
+        :content="{ title: 'Hobbies/Freizeitbeschäftigungen', id: 'hobbies', color:'assessmentColor', border:'assessmentBorder'}"
+      />
       <p class="assessmentAspekt" ref="medizinischeAngaben">Medizinische/gesundheitliche Angaben</p>
       <TextareaForm
         v-model="medizinischeDiagnose"
-        :content="{ title: 'Medizinische Diagnose', id: 'medizinischeDiagnose', color:'assessmentColor', border:'assessmentBorder'}"
+        :content="{ title: 'Hauptdiagnose', id: 'medizinischeDiagnose', color:'assessmentColor', border:'assessmentBorder'}"
         :isTipp="true"
         :myTipp="'Grund für die Ernährungsberatung/ -therapie'"
       />
@@ -275,7 +277,7 @@
           {title:'Lebensmittelunverträglichkeiten', id:'lebensmittelunverträglichkeiten'},
           {title:'Osteoporose', id:'osteoporose'},
         ]"
-        :title="'Weitere Diagnosen'"
+        :title="'Nebendiagnosen'"
         :color ="'assessmentColor'"
         v-model="weitereDiagnosen"
       />
@@ -334,6 +336,10 @@
         :content="{ title: 'andere', id: 'gesundheitszustandDerFamilieAndere', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
         :style="marginSmall"
       />
+      <TextareaForm
+        v-model="weitereAnmerkungenZumGesundheitszustandDerFamilie"
+        :content="{ title: 'Weitere Anmerkungen zum Gesundheitszustand der Familie', id: 'weitereAnmerkungenZumGesundheitszustandDerFamilie', color:'assessmentColor', border:'assessmentBorder'}"
+      />
       <div v-if="geschlecht == 'weiblich' || geschlecht == 'divers'">
         <RadioForm
           :items="[
@@ -363,7 +369,7 @@ import InputForm from "../InputForm.vue";
 import CheckboxForm from "../CheckboxForm.vue";
 import RadioForm from "../RadioForm.vue";
 import TextareaForm from "../TextareaForm.vue";
-import {mapFields} from "vuex-map-fields";
+import moment from 'moment';
 
 export default {
   name: 'assessment1',
@@ -388,56 +394,388 @@ export default {
     scrollMeTo(refName) {
       var element = this.$refs[refName];
       element.scrollIntoView({behavior: 'smooth'});
-    }
+    },
+    changeDate(value){
+      return moment(value).locale('de').format('L');
+    },
   },
   computed: {
-    ...mapFields([
-      "vorname",
-      "nachname",
-      "geburtsdatum",
-      "adresse",
-      "telefonnummer",
-      "email",
-      "krankenkasse",
-      "hausarzt",
-      "geschlecht",
-      "herkunft",
-      "muttersprache",
-      "schulischeBildung",
-      "beruflicheBildung",
-      "beruf",
-      "artDerArbeit",
-      "familienstand", 
-      "wohnsituation",
-      "wohnsituationAndere",
-      "personenImHaushalt",
-      "aktuellGeraucht",
-      "jemalsGeraucht",
-      "anzahlZigaretten",
-      "anzahlTabakprodukte",
-      "anzahlJahreRauchen",
-      "beeintraechtigungen",
-      "beeintraechtigungenVorhanden",
-      "beeintraechtigungenVorhandenAndere",
-      "mobil",
-      "mobileingeschraenkt",
-      "mobileingeschraenktAndere",
-      "kontakAktivitaet",
-      "hobbies",
-      "unterstuetzungMedizinischerVersorgung",
-      "jaUnterstuetzungMedizinischerVersorgung",
-      "jaUnterstuetzungMedizinischerVersorgungAndere",
-      "medizinischeDiagnose",
-      "weitereDiagnosen",
-      "weitereDiagnosenAndere",
-      "vergangeneDiagnosen",
-      "psychischeGesundheit",
-      "psychischeGesundheitAndere",
-      "gesundheitszustandDerFamilie",
-      "gesundheitszustandDerFamilieAndere",
-      "schwangerschaft",
-      "stillzeit"
-    ]),
+    vorname:{
+      get() {
+        return this.$store.state.vorname
+      },
+      set(value) {
+        this.$store.commit("vorname", value)
+      }
+    },
+    nachname:{
+      get() {
+        return this.$store.state.nachname
+      },
+      set(value) {
+        this.$store.commit("nachname", value)
+      }
+    },
+    geburtsdatum: {
+      get() {
+        return this.$store.state.geburtsdatum
+      },
+      set(value) {
+        this.$store.commit("geburtsdatum", value)
+      }
+    },
+    adresse: {
+      get() {
+        return this.$store.state.a1.adresse
+      },
+      set(value) {
+        this.$store.commit("a1/adresse", value)
+      }
+    }, 
+    telefonnummer: {
+      get() {
+        return this.$store.state.a1.telefonnummer
+      },
+      set(value) {
+        this.$store.commit("a1/telefonnummer", value)
+      }
+    },
+    email: {
+      get() {
+        return this.$store.state.a1.email
+      },
+      set(value) {
+        this.$store.commit("a1/email", value)
+      }
+    },
+    krankenkasse: {
+      get() {
+       return this.$store.state.a1.krankenkasse
+      },
+      set(value) {
+        this.$store.commit("a1/krankenkasse",value)
+      }
+    },
+    hausarzt:{
+      get() {
+        return this.$store.state.a1.hausarzt
+      },
+      set(value) {
+        this.$store.commit("a1/hausarzt", value)
+      }
+    },
+    geschlecht:{
+      get() {
+        return this.$store.state.a1.geschlecht
+      },
+      set(value) {
+        this.$store.commit("a1/geschlecht", value)
+      }
+    },
+    herkunft:{
+      get() {
+        return this.$store.state.a1.herkunft
+      },
+      set(value) {
+        this.$store.commit("a1/herkunft", value)
+      }
+    },
+    muttersprache:{
+      get() {
+        return this.$store.state.a1.muttersprache
+      },
+      set(value) {
+        this.$store.commit("a1/muttersprache", value) 
+        }
+    },
+    schulischeBildung:{
+      get() {
+        return this.$store.state.a1.schulischeBildung
+      },
+      set(value) {
+        this.$store.commit("a1/schulischeBildung", value)
+      }
+    },
+    beruflicheBildung:{
+      get() {
+        return this.$store.state.a1.beruflicheBildung
+      },
+      set(value) {
+        this.$store.commit("a1/beruflicheBildung", value) 
+      }
+    },
+    beruf:{
+      get() {
+        return this.$store.state.a1.beruf
+      },
+      set(value) {
+        this.$store.commit("a1/beruf", value)
+      }
+    },
+    artDerArbeit:{
+      get() {
+        return this.$store.state.a1.artarbeit
+      },
+      set(value) {
+        this.$store.commit("a1/artarbeit", value)
+      }
+    },
+    familienstand:{
+      get() {
+        return this.$store.state.a1.familienstand
+      },
+      set(value) {
+        this.$store.commit("a1/familienstand", value)
+      }
+    },
+    wohnsituation:{
+      get() {
+        return this.$store.state.a1.wohnsituation
+      },
+      set(value) {
+         this.$store.commit("a1/wohnsituation", value)
+      }
+    },
+    wohnsituationAndere:{
+      get() {
+        return this.$store.state.a1.wohnsituationAndere
+      },
+      set(value) {
+        this.$store.commit("a1/wohnsituationAndere", value)
+      }
+    },
+    personenImHaushalt:{
+      get() {
+        return this.$store.state.a1.personenImHaushalt
+      },
+      set(value) {
+        this.$store.commit("a1/personenImHaushalt", value) 
+        }
+    },
+    weitereAnmerkungenZurWohnsituation: {
+      get() {
+        return this.$store.state.a1.weitereAnmerkungenZurWohnsituation
+      },
+      set(value) {
+        this.$store.commit("a1/weitereAnmerkungenZurWohnsituation", value)
+      }
+    },
+    aktuellGeraucht:{
+      get() {
+        return this.$store.state.a1.aktuellGeraucht
+      },
+      set(value) {
+        this.$store.commit("a1/aktuellGeraucht", value)
+      }
+    },
+    jemalsGeraucht:{
+      get() {
+        return this.$store.state.a1.jemalsGeraucht
+      },
+      set(value) {
+        this.$store.commit("a1/jemalsGeraucht", value)
+      }
+    },
+    anzahlZigaretten:{
+      get() {
+        return this.$store.state.a1.anzahlZigaretten
+      },
+      set(value) {
+        this.$store.commit("a1/anzahlZigaretten", value)
+      }
+    },
+    anzahlTabakprodukte:{
+      get() {
+        return this.$store.state.a1.anzahlTabakprodukte
+      },
+      set(value) {
+        this.$store.commit("a1/anzahlTabakprodukte", value)
+      }
+    },
+    anzahlJahreRauchen:{
+      get() {
+        return this.$store.state.a1.anzahlJahreRauchen
+      },
+      set(value) {
+        this.$store.commit("a1/anzahlJahreRauchen", value)
+      }
+    },
+    beeintraechtigungen:{
+      get() {
+        return this.$store.state.a1.beeintraechtigungen
+      },
+      set(value) {
+        this.$store.commit("a1/beeintraechtigungen", value)
+      }
+    },
+    beeintraechtigungenVorhanden:{
+      get() {
+        return this.$store.state.a1.beeintraechtigungenVorhanden
+      },
+      set(value) {
+        this.$store.commit("a1/beeintraechtigungenVorhanden", value)
+      }
+    },
+    beeintraechtigungenVorhandenAndere:{
+      get() {
+        return this.$store.state.a1.beeintraechtigungenVorhandenAndere
+      },
+      set(value) {
+        this.$store.commit("a1/beeintraechtigungenVorhandenAndere", value)
+      }
+    },
+    mobil:{
+      get() {
+        return this.$store.state.a1.mobil
+      },
+      set(value) {
+        this.$store.commit("a1/mobil", value)
+      }
+    },
+    mobileingeschraenkt:{
+      get() {
+        return this.$store.state.a1.mobileingeschraenkt
+      },
+      set(value) {
+        this.$store.commit("a1/mobileingeschraenkt", value)
+      }
+    },
+    mobileingeschraenktAndere:{
+      get() {
+        return this.$store.state.a1.mobileingeschraenktAndere
+      },
+      set(value) {
+        this.$store.commit("a1/mobileingeschraenktAndere", value)
+      }
+    },
+    unterstuetzungMedizinischerVersorgung:{
+      get() {
+        return this.$store.state.a1.unterstuetzungMedizinischerVersorgung
+      },
+      set(value) {
+        this.$store.commit("a1/unterstuetzungMedizinischerVersorgung", value)
+      }
+    },
+    jaUnterstuetzungMedizinischerVersorgung:{
+      get() {
+        return this.$store.state.a1.jaUnterstuetzungMedizinischerVersorgung
+      },
+      set(value) {
+        this.$store.commit("a1/jaUnterstuetzungMedizinischerVersorgung", value)
+      }
+    },
+    jaUnterstuetzungMedizinischerVersorgungAndere:{
+      get() {
+        return this.$store.state.a1.jaUnterstuetzungMedizinischerVersorgungAndere
+      },
+      set(value) {
+        this.$store.commit("a1/jaUnterstuetzungMedizinischerVersorgungAndere", value)
+      }
+    },
+    kontakAktivitaet:{
+      get() {
+        return this.$store.state.a1.kontakAktivitaet
+      },
+      set(value) {
+        this.$store.commit("a1/kontakAktivitaet", value)
+      }
+    },
+    hobbies:{
+      get() {
+        return this.$store.state.a1.hobbies
+      },
+      set(value) {
+        this.$store.commit("a1/hobbies", value)
+      }
+    },
+    medizinischeDiagnose:{
+      get() {
+        return this.$store.state.a1.medizinischeDiagnose
+      },
+      set(value) {
+        this.$store.commit("a1/medizinischeDiagnose", value)
+      }
+    },
+    weitereDiagnosen:{
+      get() {
+        return this.$store.state.a1.weitereDiagnosen
+      },
+      set(value) {
+        this.$store.commit("a1/weitereDiagnosen", value)
+      }
+    },
+    weitereDiagnosenAndere:{
+      get() {
+        return this.$store.state.a1.weitereDiagnosenAndere
+      },
+      set(value) {
+        this.$store.commit("a1/weitereDiagnosenAndere", value)
+      }
+    },
+    vergangeneDiagnosen:{
+      get() {
+        return this.$store.state.a1.vergangeneDiagnosen
+      },
+      set(value) {
+        this.$store.commit("a1/vergangeneDiagnosen", value)
+      }
+    },
+    psychischeGesundheit:{
+      get() {
+        return this.$store.state.a1.psychischeGesundheit
+      },
+      set(value) {
+        this.$store.commit("a1/psychischeGesundheit", value)
+      }
+    },
+    psychischeGesundheitAndere:{
+      get() {
+        return this.$store.state.a1.psychischeGesundheitAndere
+      },
+      set(value) {
+        this.$store.commit("a1/psychischeGesundheitAndere", value)
+      }
+    },
+    gesundheitszustandDerFamilie:{
+      get() {
+        return this.$store.state.a1.gesundheitszustandDerFamilie
+      },
+      set(value) {
+        this.$store.commit("a1/gesundheitszustandDerFamilie", value)
+      }
+    },
+    gesundheitszustandDerFamilieAndere:{
+      get() {
+        return this.$store.state.a1.gesundheitszustandDerFamilieAndere
+      },
+      set(value) {
+        this.$store.commit("a1/gesundheitszustandDerFamilieAndere", value)
+      }
+    },
+    weitereAnmerkungenZumGesundheitszustandDerFamilie: {
+      get() {
+        return this.$store.state.a1.weitereAnmerkungenZumGesundheitszustandDerFamilie
+      },
+      set(value) {
+        this.$store.commit("a1/weitereAnmerkungenZumGesundheitszustandDerFamilie", value)
+      }
+    },
+    schwangerschaft:{
+      get() {
+        return this.$store.state.a1.schwangerschaft
+      },
+      set(value) {
+        this.$store.commit("a1/schwangerschaft", value)
+      }
+    },
+    stillzeit:{
+      get() {
+        return this.$store.state.a1.stillzeit
+      },
+      set(value) {
+        this.$store.commit("a1/stillzeit", value)
+      }
+    },
   }
 };
 </script>

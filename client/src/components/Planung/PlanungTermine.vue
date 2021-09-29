@@ -1,6 +1,5 @@
 <template>
   <div>
-   <!-- <p>zeitplanung {{zeitplanung}}</p>-->
     <div v-for="(item, index) in zeitplanung" :key="index" :class="[(index == zeitplanung.length-1) ? 'mb-3' : 'mb-5']">
       <p @click.prevent="show(index)"> Planung {{index+1}}. Termin <i v-if="isShow[index]" class="fa fa-chevron-up"></i><i v-if="!isShow[index]" class="fa fa-chevron-down"></i></p>
       <div v-if="isShow[index]">
@@ -62,7 +61,6 @@ import {mapState, mapMutations} from "vuex";
       ...mapState("p",[
         "zeitplanung"
       ])
-
     },
     methods: {
       ...mapMutations("p",{

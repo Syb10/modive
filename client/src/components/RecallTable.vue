@@ -1,39 +1,35 @@
 <template>
   <div v-for="(n, index) in anzahl" :key="index" class="mb-4">
     <p>{{n}}. 24-h-Recall</p>
-    <InputForm  v-for="(recallMahlzeit, index) in recallMahlzeiten" :key="index"
-        v-model="recallMahlzeit[n-1][0].datum"
+    <InputForm
+        v-model="recall[n-1][0].datum"
         :content="{ title: 'Datum', id: 'datumRecall'+n, type:'date', color:'assessmentColor', border:'assessmentBorder' }"
       />
     <table class="mb-3 table table-striped table-bordered">
         <thead>
             <th>Mahlzeit</th>
             <th>Uhrzeit</th>
-            <th>Wo wurde gegessen</th>
-            <th>Mit wem wurde gegessen</th>
-            <th>Lebensmittel und Getänke</th>
-            <th>Menge</th>
+            <th>Wo wurde gegessen?</th>
+            <th>Mit wem wurde gegessen?</th>
+            <th>Lebensmittel und Getränke mit Mengenangaben</th>
             <th>Löschen</th>
         </thead>
         <tbody>
-            <tr v-for="(recallMahlzeit, index) in recallMahlzeiten['table'][n-1]" :key="index">
+            <tr v-for="(item, index) in recall[n-1]" :key="index">
                 <td>
-                    <input class="form-control assessmentBorder" type="text" v-model="recallMahlzeit.mahlzeit"/>
+                    <input class="form-control assessmentBorder" type="text" v-model="item.mahlzeit"/>
                 </td>
                 <td>
-                    <input class="form-control assessmentBorder" type="text" v-model="recallMahlzeit.uhrzeit"/>
+                    <input class="form-control assessmentBorder" type="text" v-model="item.uhrzeit"/>
                 </td>
                 <td>
-                    <input class="form-control assessmentBorder" type="text" v-model="recallMahlzeit.wo"/>
+                    <input class="form-control assessmentBorder" type="text" v-model="item.wo"/>
                 </td>
                 <td>
-                    <input class="form-control assessmentBorder" type="text" v-model="recallMahlzeit.wer"/>
+                    <input class="form-control assessmentBorder" type="text" v-model="item.wer"/>
                 </td>
                 <td>
-                    <input class="form-control assessmentBorder" type="text" v-model="recallMahlzeit.lebensmittelGetraenke"/>
-                </td>
-                <td>
-                    <input class="form-control assessmentBorder" type="text" v-model="recallMahlzeit.menge"/>
+                    <textarea class="form-control assessmentBorder" v-model="item.lebensmittelGetraenke"/>
                 </td>
                 <td>                   
                     <i class="fa fa-trash btn btn-red ml-3" @click.prevent="deleteRow({tableIndex:n-1, rowIndex:index})"></i>
@@ -46,22 +42,18 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations} from "vuex";
+import {mapState, mapMutations} from "vuex";
 import InputForm from "./InputForm.vue";
 
   export default {
     name: "RecallTable",
-     data() {
-      return {
-      }
-    },
     components: {
-      InputForm
+     InputForm
     },
     computed: {
-      ...mapGetters({
-        recallMahlzeiten: "recallMahlzeiten"
-      })
+      ...mapState("a2",[
+        "recall",
+      ])
     },
     props: {
       anzahl: Number
@@ -77,7 +69,6 @@ import InputForm from "./InputForm.vue";
           //nur die differenz dazu
           for(var i = min; i < max; i++){
             this.addTable();
-            //this.addNewRow(i);
           }
         } else if (newValue < oldValue) {
           min = newValue;
@@ -92,18 +83,16 @@ import InputForm from "./InputForm.vue";
           // am Anfang ist oldValue undefined
           for(var k = min; k < max; k++){
             this.addTable();
-            //this.addNewRow(k);
           }
         }
       },
     },
     methods: {
-      ...mapMutations({
-        addTable: "addTable",
-        deleteTable: "deleteTable",
-        addNewRow: "addNewRow",
-        deleteRow: "deleteRow",
-        addDatum: "addDatum"
+      ...mapMutations("a2",{
+        addTable: "addTableRecall",
+        deleteTable: "deleteTableRecall",
+        addNewRow: "addNewRowRecall",
+        deleteRow: "deleteRowRecall",
       })
     },
   };

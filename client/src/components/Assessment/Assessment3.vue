@@ -189,7 +189,6 @@
           />
           <RadioTableDynamic
             :subtitle="'...andere'"
-            v-model="wichtigkeitAndere"
             :isAndere="true"
           /> 
         </tbody>
@@ -300,7 +299,7 @@
           />
         </tbody>
       </table>
-      <p><b>Lebensqualität: {{whoWert}} Punkte ({{whoProzent}}%) <i class="fa fa-arrow-right"></i> {{whoAuswertung}}</b></p> 
+      <p><b>Lebensqualität: {{whoWert}} Punkte ({{whoProzent}}%) <i class="fa fa-arrow-right"></i> {{whoAuswertung}}</b></p>
       <p>Upload-Bereich</p>
       <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in Verhalten und Umfeld (Behavioral-Environmental)</p>
     </div>
@@ -313,7 +312,7 @@ import InputForm from "../InputForm.vue";
 import TextareaForm from "../TextareaForm.vue";
 import RadioTable from "../RadioTable.vue";
 import RadioTableDynamic from "../RadioTableDynamic.vue";
-import {mapFields} from "vuex-map-fields";
+import {mapGetters} from "vuex";
 export default {
     name: "assessment3",
     components: {
@@ -457,70 +456,274 @@ export default {
       }
     },
     computed: {
-      ...mapFields([
-        "plantMahlzeiten",
-        "plantMahlzeitenAndere",
-        "bereitetMahlzeiten",
-        "bereitetMahlzeitenAndere",
-        "weitereAnmerkungenMahlzeiten",
-        "lebensmitteleinkauf",
-        "lebensmitteleinkaufAndere",
-        "selbstversorgen",
-        "selbstversorgenEingeschraenkt",
-        "selbstversorgenNein",
-        "einfachheitMahlzeitZuzubereiten",
-        "begruendungMahlzeitZuzubereiten",
-        "informationErnaehrung",
-        "informationErnaehrungAndere",
-        "weitereAnmerkungenInformationsquellen",
-        "orientierungErnaehrung",
-        "wichtigkeitDerEmpfehlung",
-        "wichtigkeitDerFrische",
-        "wichtigkeitDesGeschmacks",
-        "wichtigkeitDerGesundheit",
-        "wichtigkeitEinesGeringenPreises",
-        "wichtigkeitDerRegionalitaet",
-        "wichtigkeitDerSaisonalitaet",
-        "wichtigkeitAndere",
-        "wichtigkeitAndereValue",
-        "ernaehrungsgewohnheitenVeraendern",
-        "begruendungErnaehrungsgewohnheitenVeraendern",
-        "physicalActivityLevel",
-        "weitereAnmerkungenAktivitaet",
-        "whoLaune",
-        "whoRuhig",
-        "whoAktiv",
-        "whoAusgeruht",
-        "whoInteressieren",
+      plantMahlzeiten:{
+        get() {
+          return this.$store.state.a3.plantMahlzeiten
+        },
+        set(value) {
+          this.$store.commit("a3/plantMahlzeiten", value)
+        }
+      },
+      plantMahlzeitenAndere:{
+        get() {
+          return this.$store.state.a3.plantMahlzeitenAndere
+        },
+        set(value) {
+          this.$store.commit("a3/plantMahlzeitenAndere", value)
+        }
+      },
+      bereitetMahlzeiten:{
+        get() {
+          return this.$store.state.a3.bereitetMahlzeiten
+        },
+        set(value) {
+          this.$store.commit("a3/bereitetMahlzeiten", value)
+        }
+      },
+      bereitetMahlzeitenAndere:{
+        get() {
+         return this.$store.state.a3.bereitetMahlzeitenAndere
+        },
+        set(value) {
+          this.$store.commit("a3/bereitetMahlzeitenAndere", value)
+        }
+      },
+      weitereAnmerkungenMahlzeiten:{
+        get() {
+         return this.$store.state.a3.weitereAnmerkungenMahlzeiten
+        },
+        set(value) {
+          this.$store.commit("a3/weitereAnmerkungenMahlzeiten", value)
+        }
+      },
+      lebensmitteleinkauf:{
+        get() {
+          return this.$store.state.a3.lebensmitteleinkauf
+        },
+        set(value) {
+         this.$store.commit("a3/lebensmitteleinkauf", value)
+        }
+      },
+      lebensmitteleinkaufAndere:{
+        get() {
+          return this.$store.state.a3.lebensmitteleinkaufAndere
+        },
+        set(value) {
+          this.$store.commit("a3/lebensmitteleinkaufAndere", value)
+        }
+      },
+      selbstversorgen:{
+        get() {
+          return this.$store.state.a3.selbstversorgen
+        },
+        set(value) {
+          this.$store.commit("a3/selbstversorgen", value)
+        }
+      },
+      selbstversorgenEingeschraenkt:{
+        get() {
+          return this.$store.state.a3.selbstversorgenEingeschraenkt
+        },
+        set(value) {
+          this.$store.commit("a3/selbstversorgenEingeschraenkt", value)
+        }
+      },
+      selbstversorgenNein:{
+        get() {
+          return this.$store.state.a3.selbstversorgenNein
+        },
+        set(value) {
+          this.$store.commit("a3/selbstversorgenNein", value)
+        }
+      },
+      einfachheitMahlzeitZuzubereiten:{
+        get() {
+         return this.$store.state.a3.einfachheitMahlzeitZuzubereiten
+        },
+        set(value) {
+          this.$store.commit("a3/einfachheitMahlzeitZuzubereiten", value)
+        }
+      },
+      begruendungMahlzeitZuzubereiten:{
+        get() {
+          return this.$store.state.a3.begruendungMahlzeitZuzubereiten
+        },
+        set(value) {
+          this.$store.commit("a3/begruendungMahlzeitZuzubereiten", value)
+        }
+      },
+      informationErnaehrung:{
+        get() {
+         return this.$store.state.a3.informationErnaehrung
+        },
+        set(value) {
+          this.$store.commit("a3/informationErnaehrung", value)
+        }
+      },
+      informationErnaehrungAndere:{
+        get() {
+          return this.$store.state.a3.informationErnaehrungAndere
+        },
+        set(value) {
+          this.$store.commit("a3/informationErnaehrungAndere", value)
+        }
+      },
+      weitereAnmerkungenInformationsquellen:{
+        get() {
+          return this.$store.state.a3.weitereAnmerkungenInformationsquellen
+        },
+        set(value) {
+          this.$store.commit("a3/weitereAnmerkungenInformationsquellen", value)
+        }
+      },
+      orientierungErnaehrung:{
+        get() {
+          return this.$store.state.a3.orientierungErnaehrung
+        },
+        set(value) {
+          this.$store.commit("a3/orientierungErnaehrung", value)
+        }
+      },
+      wichtigkeitDerEmpfehlung:{
+        get() {
+          return this.$store.state.a3.wichtigkeitDerEmpfehlung
+        },
+        set(value) {
+          this.$store.commit("a3/wichtigkeitDerEmpfehlung", value)
+        }
+      },
+      wichtigkeitDerFrische:{
+        get() {
+          return this.$store.state.a3.wichtigkeitDerFrische
+        },
+        set(value) {
+         this.$store.commit("a3/wichtigkeitDerFrische", value)
+        }
+      },
+      wichtigkeitDesGeschmacks:{
+        get() {
+          return this.$store.state.a3.wichtigkeitDesGeschmacks
+        },
+        set(value) {
+          this.$store.commit("a3/wichtigkeitDesGeschmacks", value)
+        }
+      },
+      wichtigkeitDerGesundheit:{
+        get() {
+          return this.$store.state.a3.wichtigkeitDerGesundheit
+        },
+        set(value) {
+          this.$store.commit("a3/wichtigkeitDerGesundheit", value)
+        }
+      },
+      wichtigkeitEinesGeringenPreises:{
+        get() {
+         return this.$store.state.a3.wichtigkeitEinesGeringenPreises
+        },
+        set(value) {
+          this.$store.commit("a3/wichtigkeitEinesGeringenPreises", value)
+        }
+      },
+      wichtigkeitDerRegionalitaet:{
+        get() {
+          return this.$store.state.a3.wichtigkeitDerRegionalitaet
+        },
+        set(value) {
+          this.$store.commit("a3/wichtigkeitDerRegionalitaet", value)
+        }
+      },
+      wichtigkeitDerSaisonalitaet:{
+        get() {
+          return this.$store.state.a3.wichtigkeitDerSaisonalitaet
+        },
+        set(value) {
+          this.$store.commit("a3/wichtigkeitDerSaisonalitaet", value)
+        }
+      },
+      ernaehrungsgewohnheitenVeraendern:{
+        get() {
+          return this.$store.state.a3.ernaehrungsgewohnheitenVeraendern
+        },
+        set(value) {
+          this.$store.commit("a3/ernaehrungsgewohnheitenVeraendern", value)
+        }
+      },
+      begruendungErnaehrungsgewohnheitenVeraendern:{
+        get() {
+         return this.$store.state.a3.begruendungErnaehrungsgewohnheitenVeraendern
+        },
+        set(value) {
+          this.$store.commit("a3/begruendungErnaehrungsgewohnheitenVeraendern", value)
+        }
+      },
+      physicalActivityLevel:{
+        get() {
+          return this.$store.state.a3.physicalActivityLevel
+        },
+        set(value) {
+          this.$store.commit("a3/physicalActivityLevel", value)
+        }
+      },
+      weitereAnmerkungenAktivitaet:{
+        get() {
+          return this.$store.state.a3.weitereAnmerkungenAktivitaet
+        },
+        set(value) {
+          this.$store.commit("a3/weitereAnmerkungenAktivitaet", value)
+        }
+      },
+      whoLaune:{
+        get() {
+          return this.$store.state.a3.whoLaune
+        },
+        set(value) {
+          this.$store.commit("a3/whoLaune", value)
+        }
+      },
+      whoRuhig:{
+        get() {
+          return this.$store.state.a3.whoRuhig
+        },
+        set(value) {
+          this.$store.commit("a3/whoRuhig", value)
+        }
+      },
+      whoAktiv:{
+        get() {
+          return this.$store.state.a3.whoAktiv
+        },
+        set(value) {
+          this.$store.commit("a3/whoAktiv", value)
+        }
+      },
+      whoAusgeruht:{
+        get() {
+          return this.$store.state.a3.whoAusgeruht
+        },
+        set(value) {
+          this.$store.commit("a3/whoAusgeruht", value)
+        }
+      },
+      whoInteressieren:{
+        get() {
+          return this.$store.state.a3.whoInteressieren
+        },
+        set(value) {
+          this.$store.commit("a3/whoInteressieren", value)
+        }
+      },
+      ...mapGetters("a3",[
+        "whoWert",
+        "whoProzent",
+        "whoAuswertung",
       ]),
-      whoWert() {
-        var value = 0;
-         if(this.whoLaune) value += this.whoLaune == 10 ? 0 : this.whoLaune
-         if(this.whoRuhig) value += this.whoRuhig == 10 ? 0: this.whoRuhig
-         if(this.whoAktiv) value += this.whoAktiv == 10 ? 0: this.whoAktiv
-         if(this.whoAusgeruht) value += this.whoAusgeruht == 10 ? 0: this.whoAusgeruht
-         if(this.whoInteressieren) value += this.whoInteressieren == 10 ? 0: this.whoInteressieren
-        return value
-      },
-      whoProzent() {
-        return this.whoWert*4
-      },
-      whoAuswertung() {
-        var value=""
-        if(this.whoWert < 7) value = "Das Vorhandensein einer klinischen Depression ist sehr wahrscheinlich"
-        if(this.whoWert >= 7 && this.whoWert < 10) value = "deutlich eingeschränktes Wohlbefinden"
-        if(this.whoWert >= 10 && this.whoWert < 13) value = "Hinweis auf ein reduziertes Wohlbefinden"
-        if(this.whoWert >=13 && this.whoWert < 19) value = "ein insgesamt zufriedenstellendes Wohlbefinden"
-        if(this.whoWert >= 19) value = "ein sehr gutes Wohlbefinden"
-        return value
-      },
     },
     methods: {
       //https://stackoverflow.com/questions/42645964/vue-js-anchor-to-div-within-the-same-component
       scrollMeTo(refName) {
         var element = this.$refs[refName];
         element.scrollIntoView({behavior: 'smooth'});
-      }
+      },
     }
 };
 </script>

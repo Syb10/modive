@@ -5,8 +5,8 @@
       <button @click.prevent="scrollMeTo('kostformMedikamente')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Diätetische Kostform und Medikamente</button>
       <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Upload-Bereich für weitere Dokumente</button>
       <p class="assessmentAspekt mt-5" ref="ernaehrungsprotokolle">Upload-Bereich für Ernährungsprotokolle und weitere Ernährungserhebungsmethoden</p>
-      <p class="assessmentAspekt" ref="ernaehrungsgewohnheiten">Essgewohnheiten</p>
-      <label class="mt-5">
+      <p class="assessmentAspekt mt-5" ref="ernaehrungsgewohnheiten">Essgewohnheiten</p>
+      <label>
         24-h-Recall
         <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
           <span class="tipptext">Um die Ernährungsgewohnheiten zu erheben, ist es empfehlenswert, zwei 24-h-Recalls durchzuführen - von einem Werk- und einem Wochenendtag</span>
@@ -17,28 +17,11 @@
         :content="{ title: 'Wie viele 24-h-Recalls sollen erfasst werden?', id: 'anzahlRecall', type:'number', min:'0', color:'assessmentColor', border:'assessmentBorder' }"
       />
       <RecallTable :anzahl="anzahlRecall"/>
-      <TextareaForm
-        v-model="weitereAnmerkungenRecall"
-        :content="{ title: 'Weitere Anmerkungen zum 24-h-Recall', id: 'weitereAnmerkungenRecall', color:'assessmentColor', border:'assessmentBorder'}"
-      />
-      <TextareaForm
-        v-model="vorlieben"
-        :content="{ title: 'Vorlieben für Lebensmittel, Speisen und Getränke', id: 'vorlieben', color:'assessmentColor', border:'assessmentBorder'}"
-      />
-      <TextareaForm
-        v-model="abneigungen"
-        :content="{ title: 'Abneigungen für Lebensmittel, Speisen und Getränke', id: 'abneigungen', color:'assessmentColor', border:'assessmentBorder'}"
-      />
-      <RadioForm
-        :items="[
-          {title:'ja', id:'jaRecall', name:'isRecall'},
-          {title:'nein', id:'neinRecall', name:'isRecall'},
-        ]"
-        :color="'assessmentColor'"
-        :title="'Wurde ein 24-h-Recall durchgeführt?'"
-        v-model="isRecall"
-      />
-      <div v-if="isRecall == 'ja'">
+      <div v-if="anzahlRecall > 0">
+        <TextareaForm
+          v-model="weitereGetraenke"
+          :content="{ title: 'Weitere Getränke mit Mengenangaben', id: 'weitereGetraenke', color:'assessmentColor', border:'assessmentBorder'}"
+        />
         <RadioForm
           :items="[
             {title:'ja', id:'jaAnzahlMahlzeitenRecall', name:'anzahlMahlzeitenRecall'},
@@ -84,6 +67,161 @@
           />
         </div>
       </div>
+      <TextareaForm
+        v-model="weitereAnmerkungenRecall"
+        :content="{ title: 'Weitere Anmerkungen zur durchgeführten Ernährungserhebungsmethode', id: 'weitereAnmerkungenRecall', color:'assessmentColor', border:'assessmentBorder'}"
+      />
+      
+      <p @click.prevent="showBilanzierung">Geschätzte Bilanzierung nach Lebensmittelgruppen, Energie, Makro- und Mikronährstoffen <i v-if="isBilanzierung" class="fa fa-chevron-up"></i><i v-if="!isBilanzierung" class="fa fa-chevron-down"></i></p>
+      <table v-if="isBilanzierung" class="table table-striped table-bordered">
+        <thead>
+          <th>Lebensmittelgruppen</th>
+          <th>weniger</th>
+          <th>entprechend der Ernährungsempfehlung</th>
+          <th>mehr</th>
+        </thead>
+        <tbody>
+          <RadioTable
+            :items="Getränke"
+            v-model="getraenke"
+          />
+          <RadioTable
+            :items="Gemüse"
+            v-model="gemuese"
+          />
+          <RadioTable
+            :items="Obst"
+            v-model="obst"
+          />
+          <RadioTable
+            :items="Getreideprodukte"
+            v-model="getreideprodukte"
+          />
+          <RadioTable
+            :items="Milch"
+            v-model="milch"
+          />
+          <RadioTable
+            :items="Fleisch"
+            v-model="fleisch"
+          />
+          <RadioTable
+            :items="Fisch"
+            v-model="fisch"
+          />
+          <RadioTable
+            :items="Ei"
+            v-model="ei"
+          />
+          <RadioTable
+            :items="Fette"
+            v-model="fette"
+          />
+          <RadioTable
+            :items="Süßigkeiten"
+            v-model="suessigkeiten"
+          />
+          <RadioTable
+            :items="PikanteSnacks"
+            v-model="pikanteSnacks"
+          />
+        </tbody>
+      </table>
+      <table  v-if="isBilanzierung" class="table table-striped table-bordered">
+        <thead>
+          <th>Energie</th>
+          <th>weniger</th>
+          <th>entprechend der Ernährungsempfehlung</th>
+          <th>mehr</th>
+        </thead>
+        <tbody>
+          <RadioTable
+            :items="Energie"
+            v-model="energie"
+          />
+        </tbody>
+      </table>
+      <table  v-if="isBilanzierung" class="table table-striped table-bordered">
+        <thead>
+          <th>Wasser</th>
+          <th>weniger</th>
+          <th>entprechend der Ernährungsempfehlung</th>
+          <th>mehr</th>
+        </thead>
+        <tbody>
+          <RadioTable
+            :items="Wasser"
+            v-model="wasser"
+          />
+        </tbody>
+      </table>
+      <table  v-if="isBilanzierung" class="table table-striped table-bordered">
+        <thead>
+          <th>Makronährstoffe</th>
+          <th>weniger</th>
+          <th>entprechend der Ernährungsempfehlung</th>
+          <th>mehr</th>
+        </thead>
+        <tbody>
+          <RadioTable
+            :items="Eiweiß"
+            v-model="eiweiss"
+          />
+          <RadioTable
+            :items="Kohlenhydrate"
+            v-model="kohlenhydrate"
+          />
+          <RadioTable
+            :items="Zucker"
+            v-model="zucker"
+          />
+          <RadioTable
+            :items="Ballaststoffe"
+            v-model="ballaststoffe"
+          />
+          <RadioTable
+            :items="Gesamtfett"
+            v-model="gesamtfett"
+          />
+          <RadioTable
+            :items="GesättigteFettsäuren"
+            v-model="gesaettigteFettsaeuren"
+          />
+          <RadioTable
+            :items="EinfachUngesättigteFettsäuren"
+            v-model="einfachUngesaettigte"
+          />
+          <RadioTable
+            :items="MehrfachUngesättigteFettsäuren"
+            v-model="mehrfachUngesaettigte"
+          />
+          <RadioTable
+            :items="Cholesterin"
+            v-model="cholesterin"
+          />
+        </tbody>
+      </table>
+      <table  v-if="isBilanzierung" class="table table-striped table-bordered">
+        <thead>
+          <th>Mikronährstoffe</th>
+          <th>weniger</th>
+          <th>entprechend der Ernährungsempfehlung</th>
+          <th>mehr</th>
+        </thead>
+        <tbody>
+          <Vitamine/>
+          <Mineralstoffe/>
+        </tbody>
+      </table>
+      <TextareaForm
+        class="mt-5"
+        v-model="vorlieben"
+        :content="{ title: 'Vorlieben für Lebensmittel, Speisen und Getränke', id: 'vorlieben', color:'assessmentColor', border:'assessmentBorder'}"
+      />
+      <TextareaForm
+        v-model="abneigungen"
+        :content="{ title: 'Abneigungen für Lebensmittel, Speisen und Getränke', id: 'abneigungen', color:'assessmentColor', border:'assessmentBorder'}"
+      />
       <RadioForm
         :items="[
           {title:'ja', id:'jaEigenstaendigeDiaet', name:'eigenstaendigeDiaet'},
@@ -114,7 +252,7 @@
       <div v-if="mahlzeitenAusserHaus == 'ja'">
         <TextareaForm
           v-model="mahlzeitenAusserHausJa"
-          :content="{title: 'Welche und wo', id: 'mahlzeitenAusserHausJa', color:'assessmentColor', border:'assessmentBorder'}"
+          :content="{title: 'Wie häufig, welche und wo', id: 'mahlzeitenAusserHausJa', color:'assessmentColor', border:'assessmentBorder'}"
           :style="marginSmall"
         />
       </div>
@@ -192,154 +330,19 @@
           :myTipp="'z.B. verschreibungspflichtige, rezeptfreie Medikamente, Nahrungsergänzungsmittel und Pflanzenbestandteile, Komplementär-/Alternativmedizin'"
         />
       </div>
-      <p @click.prevent="showBilanzierung">Geschätzte Bilanzierung nach Lebensmittelgruppen, Energie, Makro- und Mikronährstoffen <i v-if="isBilanzierung" class="fa fa-chevron-up"></i><i v-if="!isBilanzierung" class="fa fa-chevron-down"></i></p>
-      <table v-if="isBilanzierung" class="table table-striped table-bordered">
-        <thead>
-          <th>Lebensmittelgruppen</th>
-          <th>weniger</th>
-          <th>entprechend der Ernährungsempfehlung</th>
-          <th>mehr</th>
-        </thead>
-        <tbody>
-          <RadioTable
-            :items="Getränke"
-            v-model="getraenke"
-          />
-          <RadioTable
-            :items="Gemüse"
-            v-model="gemuese"
-          />
-          <RadioTable
-            :items="Obst"
-            v-model="obst"
-          />
-          <RadioTable
-            :items="Getreideprodukte"
-            v-model="getreideprodukte"
-          />
-          <RadioTable
-            :items="Milch"
-            v-model="milch"
-          />
-          <RadioTable
-            :items="Fleisch"
-            v-model="fleisch"
-          />
-          <RadioTable
-            :items="Fisch"
-            v-model="fisch"
-          />
-          <RadioTable
-            :items="Ei"
-            v-model="ei"
-          />
-          <RadioTable
-            :items="Fette"
-            v-model="fette"
-          />
-          <RadioTable
-            :items="Süßigkeiten"
-            v-model="suessigkeiten"
-          />
-          <RadioTable
-            :items="PikanteSnacks"
-            v-model="pikanteSnacks"
-          />
-        </tbody>
-      </table>
-      <table  v-if="isBilanzierung" class="table table-striped table-bordered">
-        <thead>
-          <th>Energie</th>
-          <th>weniger</th>
-          <th>entprechend der Ernährungsempfehlung</th>
-          <th>mehr</th>
-        </thead>
-        <tbody>
-          <RadioTable
-            :items="Energie"
-            v-model="energie"
-          />
-        </tbody>
-      </table>
-      <table  v-if="isBilanzierung" class="table table-striped table-bordered">
-        <thead>
-          <th>Makronährstoffe</th>
-          <th>weniger</th>
-          <th>entprechend der Ernährungsempfehlung</th>
-          <th>mehr</th>
-        </thead>
-        <tbody>
-          <RadioTable
-            :items="Eiweiß"
-            v-model="eiweiss"
-          />
-          <RadioTable
-            :items="Kohlenhydrate"
-            v-model="kohlenhydrate"
-          />
-          <RadioTable
-            :items="Ballaststoffe"
-            v-model="ballaststoffe"
-          />
-          <RadioTable
-            :items="Zucker"
-            v-model="zucker"
-          />
-          <RadioTable
-            :items="Gesamtfett"
-            v-model="gesamtfett"
-          />
-          <RadioTable
-            :items="GesättigteFettsäuren"
-            v-model="gesaettigteFettsaeuren"
-          />
-          <RadioTable
-            :items="EinfachUngesättigteFettsäuren"
-            v-model="einfachGesaettigte"
-          />
-          <RadioTable
-            :items="MehrfachUngesättigteFettsäuren"
-            v-model="mehrfachGesaettigte"
-          />
-          <RadioTable
-            :items="Cholesterin"
-            v-model="cholesterin"
-          />
-        </tbody>
-      </table>
-      <table  v-if="isBilanzierung" class="table table-striped table-bordered">
-        <thead>
-          <th>Mikronährstoffe</th>
-          <th>weniger</th>
-          <th>entprechend der Ernährungsempfehlung</th>
-          <th>mehr</th>
-        </thead>
-        <tbody>
-          <RadioTableDynamic
-            :subtitle="'Vitamine'"
-            v-model="vitamine"
-            :isBilanzierung="true"
-          />
-          <RadioTableDynamic
-            :subtitle="'Mineralstoffe'"
-            v-model="mineralstoffe"
-            :isBilanzierung="true"
-          />
-        </tbody>
-      </table>
       <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in Ernährungsgewohnheiten (Diet History)</p>
     </div>
 </template>
 
 <script>
-import {mapFields} from "vuex-map-fields";
 import RecallTable from "../RecallTable.vue";
 import TextareaForm from "../TextareaForm.vue";
 import RadioForm from "../RadioForm.vue";
 import InputForm from "../InputForm.vue";
 import CheckboxForm from "../CheckboxForm.vue";
 import RadioTable from "../RadioTable.vue";
-import RadioTableDynamic from "../RadioTableDynamic.vue";
+import Vitamine from "../Vitamine.vue";
+import Mineralstoffe from "../Mineralstoffe.vue";
 
 export default {
     name: "assessment2",
@@ -351,6 +354,7 @@ export default {
         marginSmaller: {
           margin: '-1rem 0 0 0',
         },
+        isBilanzierung: false,
         Getränke:[
           {title: "Getränke"},
           {value: "weniger",id:"getraenkeWeniger",name:"getraenke"},
@@ -423,6 +427,12 @@ export default {
           {value: "entsprechend der Ernährungsempfehlung",id:"energieEntsprechend",name:"energie"},
           {value: "mehr",id:"energieMehr",name:"energie"}
         ],
+        Wasser:[
+          {title: "Wasser (ml)"},
+          {value: "weniger",id:"wasserWeniger",name:"wasser"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"wasserEntsprechend",name:"wasser"},
+          {value: "mehr",id:"wasserMehr",name:"wasser"}
+        ],
         Eiweiß:[
           {title: "Eiweiß"},
           {value: "weniger",id:"eiweissWeniger",name:"eiweiss"},
@@ -435,17 +445,17 @@ export default {
           {value: "entsprechend der Ernährungsempfehlung",id:"kohlenhydrateEntsprechend",name:"kohlenhydrate"},
           {value: "mehr",id:"kohlenhydrateMehr",name:"kohlenhydrate"}
         ],
-        Ballaststoffe:[
-          {title: "Ballaststoffe", class:"paddingLeft"},
-          {value: "weniger",id:"ballaststoffeWeniger",name:"ballaststoffe"},
-          {value: "entsprechend der Ernährungsempfehlung",id:"ballaststoffeEntsprechend",name:"ballaststoffe"},
-          {value: "mehr",id:"ballaststoffeMehr",name:"ballaststoffe"}
-        ],
         Zucker:[
           {title: "Zucker", class:"paddingLeft"},
           {value: "weniger",id:"zuckerWeniger",name:"zucker"},
           {value: "entsprechend der Ernährungsempfehlung",id:"zuckerEntsprechend",name:"zucker"},
           {value: "mehr",id:"zuckerMehr",name:"zucker"}
+        ],
+        Ballaststoffe:[
+          {title: "Ballaststoffe"},
+          {value: "weniger",id:"ballaststoffeWeniger",name:"ballaststoffe"},
+          {value: "entsprechend der Ernährungsempfehlung",id:"ballaststoffeEntsprechend",name:"ballaststoffe"},
+          {value: "mehr",id:"ballaststoffeMehr",name:"ballaststoffe"}
         ],
         Gesamtfett:[
           {title: "Gesamtfett"},
@@ -486,56 +496,354 @@ export default {
       InputForm,
       CheckboxForm,
       RadioTable,
-      RadioTableDynamic,
+      Vitamine,
+      Mineralstoffe,
     },  
     computed: {
-      ...mapFields([
-          "anzahlRecall",
-          "weitereAnmerkungenRecall",
-          "vorlieben",
-          "abneigungen",
-          "isRecall",
-          "anzahlMahlzeitenRecall",
-          "mahlzeitenNormalerweise",
-          "mahlzeitenWeggelassen",
-          "mahlzeitenZusaetzlich",
-          "mahlzeitenZusaetzlichAndere",
-          "eigenstaendigeDiaet",
-          "eigenstaendigeDiaetJa",
-          "mahlzeitenAusserHaus",
-          "mahlzeitenAusserHausJa",
-          "diaetischeKostform",
-          "diaetischeKostformJa",
-          "diaetischeKostformJaAndere",
-          "enteraleErnaehrung",
-          "enteraleErnaehrungJa",
-          "medikamente",
-          "medikamenteJa",
-          "isBilanzierung",
-          "getraenke",
-          "gemuese",
-          "obst",
-          "getreideprodukte",
-          "milch",
-          "fleisch",
-          "fisch",
-          "ei",
-          "fette",
-          "suessigkeiten",
-          "pikanteSnacks",
-          "energie",
-          "eiweiss",
-          "kohlenhydrate",
-          "ballaststoffe",
-          "zucker",
-          "gesamtfett",
-          "gesaettigteFettsaeuren",
-          "einfachGesaettigte",
-          "mehrfachGesaettigte",
-          "cholesterin",
-          "vitamine",
-          "mineralstoffe"
-      ]),
+      anzahlRecall:{
+        get() {
+          return this.$store.state.a2.anzahlRecall
+        },
+        set(value) {
+          this.$store.commit("a2/anzahlRecall", value)
+        }
+      },
+      weitereGetraenke: {
+        get() {
+          return this.$store.state.a2.weitereGetraenke
+        },
+        set(value) {
+          this.$store.commit("a2/weitereGetraenke", value)
+        }
+      },
+      anzahlMahlzeitenRecall:{
+        get() {
+          return this.$store.state.a2.anzahlMahlzeitenRecall
+        },
+        set(value) {
+          this.$store.commit("a2/anzahlMahlzeitenRecall", value)
+        }
+      },
+      mahlzeitenNormalerweise:{
+        get() {
+          return this.$store.state.a2.mahlzeitenNormalerweise
+        },
+        set(value) {
+          this.$store.commit("a2/mahlzeitenNormalerweise", value)
+        }
+      },
+      mahlzeitenWeggelassen:{
+        get() {
+          return this.$store.state.a2.mahlzeitenWeggelassen
+        },
+        set(value) {
+          this.$store.commit("a2/mahlzeitenWeggelassen", value)
+        }
+      },
+      mahlzeitenZusaetzlich:{
+        get() {
+          return this.$store.state.a2.mahlzeitenZusaetzlich
+        },
+        set(value) {
+          this.$store.commit("a2/mahlzeitenZusaetzlich", value)
+        }
+      },
+      mahlzeitenZusaetzlichAndere:{
+        get() {
+          return this.$store.state.a2.mahlzeitenZusaetzlichAndere
+        },
+        set(value) {
+          this.$store.commit("a2/mahlzeitenZusaetzlichAndere", value)
+        }
+      },
+      weitereAnmerkungenRecall:{
+        get() {
+          return this.$store.state.a2.weitereAnmerkungenRecall
+        },
+        set(value) {
+         this.$store.commit("a2/weitereAnmerkungenRecall", value)
+        }
+      },
+      getraenke:{
+        get() {
+          return this.$store.state.a2.getraenke
+        },
+        set(value) {
+          this.$store.commit("a2/getraenke", value)
+        }
+      },
+      gemuese:{
+        get() {
+          return this.$store.state.a2.gemuese
+        },
+        set(value) {
+          this.$store.commit("a2/gemuese", value)
+        }
+      },
+      obst:{
+        get() {
+          return this.$store.state.a2.obst
+        },
+        set(value) {
+          this.$store.commit("a2/obst", value)
+        }
+      },
+      getreideprodukte:{
+        get() {
+          return this.$store.state.a2.getreideprodukte
+        },
+        set(value) {
+          this.$store.commit("a2/getreideprodukte", value)
+        }
+      },
+      milch:{
+        get() {
+         return this.$store.state.a2.milch
+        },
+        set(value) {
+          this.$store.commit("a2/milch", value)
+        }
+      },
+      fleisch:{
+        get() {
+         return this.$store.state.a2.fleisch
+        },
+        set(value) {
+         this.$store.commit("a2/fleisch", value)
+        }
+      },
+      fisch:{
+        get() {
+          return this.$store.state.a2.fisch
+        },
+        set(value) {
+          this.$store.commit("a2/fisch", value)
+        }
+      },
+      ei:{
+        get() {
+         return this.$store.state.a2.ei
+        },
+        set(value) {
+          this.$store.commit("a2/ei", value)
+        }
+      },
+      fette:{
+        get() {
+         return this.$store.state.a2.fette
+        },
+        set(value) {
+         this.$store.commit("a2/fette", value)
+        }
+      },
+      suessigkeiten:{
+        get() {
+          return this.$store.state.a2.suessigkeiten
+        },
+        set(value) {
+          this.$store.commit("a2/suessigkeiten", value)
+        }
+      },
+      pikanteSnacks:{
+        get() {
+          return this.$store.state.a2.pikanteSnacks
+        },
+        set(value) {
+          this.$store.commit("a2/pikanteSnacks", value)
+        }
+      },
+      energie:{
+        get() {
+         return this.$store.state.a2.energie
+        },
+        set(value) {
+          this.$store.commit("a2/energie", value)
+        }
+      },
+      wasser:{
+        get() {
+          return this.$store.state.a2.wasser
+        },
+        set(value) {
+          this.$store.commit("a2/wasser", value)
+        }
+      },
+      eiweiss:{
+        get() {
+          return this.$store.state.a2.eiweiss
+        },
+        set(value) {
+          this.$store.commit("a2/eiweiss", value)
+        }
+      },
+      kohlenhydrate:{
+        get() {
+          return this.$store.state.a2.kohlenhydrate
+        },
+        set(value) {
+          this.$store.commit("a2/kohlenhydrate", value)
+        }
+      },
+      zucker:{
+        get() {
+          return this.$store.state.a2.zucker
+        },
+        set(value) {
+          this.$store.commit("a2/zucker", value)
+        }
+      },
+      ballaststoffe:{
+        get() {
+          return this.$store.state.a2.ballaststoffe
+        },
+        set(value) {
+         this.$store.commit("a2/ballaststoffe", value)
+        }
+      },
+      gesamtfett:{
+        get() {
+          return this.$store.state.a2.gesamtfett
+        },
+        set(value) {
+          this.$store.commit("a2/gesamtfett", value)
+        }
+      },
+      gesaettigteFettsaeuren:{
+        get() {
+          return this.$store.state.a2.gesaettigteFettsaeuren
+        },
+        set(value) {
+          this.$store.commit("a2/gesaettigteFettsaeuren", value)
+        }
+      },
+      einfachUngesaettigte:{
+        get() {
+          return this.$store.state.a2.einfachUngesaettigte
+        },
+        set(value) {
+          this.$store.commit("a2/einfachUngesaettigte", value)
+        }
+      },
+      mehrfachUngesaettigte:{
+        get() {
+          return this.$store.state.a2.mehrfachUngesaettigte
+        },
+        set(value) {
+          this.$store.commit("a2/mehrfachUngesaettigte", value)
+        }
+      },
+      cholesterin:{
+        get() {
+         return this.$store.state.a2.cholesterin
+        },
+        set(value) {
+         this.$store.commit("a2/cholesterin", value)
+        }
+      },
+      vorlieben:{
+        get() {
+          return this.$store.state.a2.vorlieben
+        },
+        set(value) {
+          this.$store.commit("a2/vorlieben", value)
+        }
+      },
+      abneigungen:{
+        get() {
+          return this.$store.state.a2.abneigungen
+        },
+        set(value) {
+          this.$store.commit("a2/abneigungen",value)
+        }
+      },
+      eigenstaendigeDiaet:{
+        get() {
+          return this.$store.state.a2.eigenstaendigeDiaet
+        },
+        set(value) {
+          this.$store.commit("a2/eigenstaendigeDiaet", value)
+        }
+      },
+      eigenstaendigeDiaetJa:{
+        get() {
+          return this.$store.state.a2.eigenstaendigeDiaetJa
+        },
+        set(value) {
+         this.$store.commit("a2/eigenstaendigeDiaetJa", value)
+        }
+      },
+      mahlzeitenAusserHaus:{
+        get() {
+          return this.$store.state.a2.mahlzeitenAusserHaus
+        },
+        set(value) {
+          this.$store.commit("a2/mahlzeitenAusserHaus", value)
+        }
+      },
+      mahlzeitenAusserHausJa:{
+        get() {
+          return this.$store.state.a2.mahlzeitenAusserHausJa
+        },
+        set(value) {
+          this.$store.commit("a2/mahlzeitenAusserHausJa", value)
+        }
+      },
+      diaetischeKostform:{
+        get() {
+          return this.$store.state.a2.diaetischeKostform
+        },
+        set(value) {
+         this.$store.commit("a2/diaetischeKostform", value)
+        }
+      },
+      diaetischeKostformJa:{
+        get() {
+          return this.$store.state.a2.diaetischeKostformJa
+        },
+        set(value) {
+          this.$store.commit("a2/diaetischeKostformJa", value)
+        }
+      },
+      diaetischeKostformJaAndere:{
+        get() {
+          return this.$store.state.a2.diaetischeKostformJaAndere
+        },
+        set(value) {
+          this.$store.commit("a2/diaetischeKostformJaAndere", value)
+        }
+      },
+      enteraleErnaehrung:{
+        get() {
+          return this.$store.state.a2.enteraleErnaehrung
+        },
+        set(value) {
+          this.$store.commit("a2/enteraleErnaehrung", value)
+        }
+      },
+      enteraleErnaehrungJa:{
+        get() {
+          return this.$store.state.a2.enteraleErnaehrungJa
+        },
+        set(value) {
+          this.$store.commit("a2/enteraleErnaehrungJa", value)
+        }
+      },
+      medikamente:{
+        get() {
+          return this.$store.state.a2.medikamente
+        },
+        set(value) {
+          this.$store.commit("a2/medikamente", value)
+        }
+      },
+      medikamenteJa:{
+        get() {
+          return this.$store.state.a2.medikamenteJa
+        },
+        set(value) {
+          this.$store.commit("a2/medikamenteJa", value)
+        }
+      },
     },
     methods: {
       showBilanzierung() {

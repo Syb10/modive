@@ -3,34 +3,26 @@
     <p class="umsetzungAspekt">Verlaufsdokumentation</p>
     <div v-if="/\bEinzelberatung\b/.test(interventionsform)">
       <p>Einzelberatung mit Klient*in</p>
-      <Einzelberatung
-        v-model="entwicklungEinzelberatung"
-      />
+      <Einzelberatung/>
     </div>
     <RadioForm
       :items="[
         {title:'ja', id:'jaSicherstellungErnaehrung', name:'sicherstellungErnaehrung'},
         {title:'nein', id:'neinSicherstellungErnaehrung', name:'sicherstellungErnaehrung'},
       ]"
-      :title="'Sicherstellung der Ernährung'"
+      :title="'Zusatznahrung'"
       :color ="'umsetzungColor'"
-      v-model="sicherstellungErnaehrung"
+      v-model="zusatznahrung"
     />
-    <div v-if="sicherstellungErnaehrung == 'ja'">
-      <p style="margin:-2rem 0 0.5rem 0">Zusatznahrung</p>
-      <SicherstellungErnaehrung
-        v-model="entwicklungSicherstellungErnaehrung"
-      />        
+    <div v-if="zusatznahrung == 'ja'">
+      <Zusatznahrung />        
     </div>
     <InputForm
       v-model="sonstigesUmsetung"
       :content="{ title: 'Sonstiges', id: 'sonstigesUmsetung', type:'text', color:'umsetzungColor', border:'umsetzungBorder'}"
     />
     <p class="umsetzungAspekt">Monitoring-Parameter</p>
-    <EntwicklungMonitoring
-      v-model="entwicklungMonitoringParameter"
-      :anzahl="anzahl"
-    />
+    <EntwicklungMonitoring/>
   </div>    
 </template>
 
@@ -38,9 +30,9 @@
 import InputForm from "../InputForm.vue";
 import RadioForm from "../RadioForm.vue";
 import Einzelberatung from "./Einzelberatung.vue";
-import SicherstellungErnaehrung from "./SicherstellungErnaehrung.vue";
+import Zusatznahrung from "./Zusatznahrung.vue";
 import EntwicklungMonitoring from "./EntwicklungMonitoring.vue";
-import {mapFields} from "vuex-map-fields";
+
   export default {
     name:"umsetzung",
     data () {
@@ -57,24 +49,28 @@ import {mapFields} from "vuex-map-fields";
       InputForm,
       RadioForm,
       Einzelberatung,
-      SicherstellungErnaehrung,
+      Zusatznahrung,
       EntwicklungMonitoring,
     },
     computed: {
-      ...mapFields([
-        "interventionsform",
-        "entwicklungEinzelberatung",
-        "sicherstellungErnaehrung",
-        "entwicklungSicherstellungErnaehrung",
-        "sonstigesUmsetung",
-        "monitoring",
-        "entwicklungMonitoringParameter",
-      ]),
-      anzahl() {
-        if(this.monitoring != undefined) {
-          return this.monitoring.split(',').length;
+      interventionsform(){
+        return this.$store.state.p.interventionsform
+      },
+      zusatznahrung: {
+        get() {
+          return this.$store.state.u.zusatznahrung
+        },
+        set(value) {
+          this.$store.commit("u/zusatznahrung", value)
         }
-        return 0
+      },
+      sonstigesUmsetung: {
+        get() {
+          return this.$store.state.u.sonstigesUmsetung
+        },
+        set(value) {
+          this.$store.commit("u/sonstigesUmsetung", value)
+        }
       },
     },
   };
