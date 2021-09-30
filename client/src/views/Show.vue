@@ -1,4 +1,5 @@
 <template>
+  <p @click.prevent="back" class="mb-5"><i class="fa fa-arrow-left"></i> zurück</p>
   <p class="float-right"> erstellt am: {{changeDate(patient.createdAt)}} {{changeTime(patient.createdAt)}} / zuletzt bearbeitet am: {{changeDate(patient.updatedAt)}} {{changeTime(patient.updatedAt)}}</p>
   <h3> {{ patient.Nachname }}, {{ patient.Vorname }} </h3>
   <h5> Geburtsdatum: {{  changeDate(patient.Geburtsdatum) }}</h5>
@@ -229,9 +230,11 @@
 <script>
   import axios from "axios"
   import moment from 'moment';
+  import {navMixin} from "../mixins/navMixin.js";
 
   export default {
     name: "Show",
+    mixins:[navMixin],
     data () {
       return {
         patient: [],
@@ -392,8 +395,8 @@
           {key: "FrequenzInterventionen", title:"Frequenz der Interventionen"},
         ],
         zeitplanung:[
-          {key: "dauerEinzelberatung", title: "Dauer der geplanten Einzelberatung"},
-          {key: "inhaltIntervention", title: "Inhalt der geplanten Intervention"},
+          {key: "dauerEinzelberatung", title: "Dauer der geplanten Einzelberatung (in Minuten)"},
+          {key: "inhaltIntervention", title: "Inhalt der geplanten Einzelberatung"},
           {key: "materialien", title: "geplante Materialien"},
           {key: "weitereAnmerkungenInterventionPlanung", title: "weitere Anmerkungen"},
         ],
@@ -403,11 +406,11 @@
           {key: "WeitereAnmerkungenInterventionNochmal", title:"weitere Anmerkungen"},
         ],
         einzelberatung: [
-          {key:"datum", title:"Datum der Intervention"},
-          {key:"dauer", title:"Dauer der Intervention"},
-          {key:"inhalt", title:"Inhalt der Intervention"},
+          {key:"datum", title:"Datum der Einzelberatung"},
+          {key:"dauer", title:"Dauer der Einzelberatung (in Minuten)"},
+          {key:"inhalt", title:"Inhalt der Einzelberatung"},
           {key:"materialien", title:"verwendete Materialien"},
-          {key:"ergebnis", title:"Ergebnis der Intervention"},
+          {key:"ergebnis", title:"Ergebnis der Einzelberatung"},
           {key:"probleme", title:"Probleme in der Umsetzung"},
           {key:"anmerkungen", title:"weitere Anmerkungen"}
         ],

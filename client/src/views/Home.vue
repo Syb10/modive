@@ -29,9 +29,16 @@
         <button
           type="submit"
           @click.prevent="addPatient"
-          class="btn btn-primary"
+          class="btn btn-primary mb-3 mr-3"
         >
-          Daten senden
+        speichern und beenden
+        </button>
+        <button
+          type="submit"
+          @click.prevent="savePatient"
+          class="btn btn-primary mb-3"
+        >
+        speichern
         </button>
       </div>
     </form>
@@ -671,6 +678,203 @@ export default {
           }
         });
     },
+    savePatient() {
+      const apiURL = "http://localhost:9000/api";
+      axios
+        .post(apiURL, {
+          "Vorname": this.vorname,
+          "Nachname": this.nachname,
+          "Geburtsdatum": this.geburtsdatum,
+          assessment1:{
+            "Adresse":this.adresse,
+            "Telefonnummer": this.telefonnummer,
+            "Email": this.email,
+            "Krankenkasse": this.krankenkasse,
+            "Hausarzt": this.hausarzt,
+            "Geschlecht" : this.geschlecht,
+            "Herkunft": this.herkunft,
+            "Muttersprache": this.muttersprache,
+            "SchulischeBildung": this.schulischeBildung,
+            "BeruflicheBildung": this.beruflicheBildung,
+            "Beruf": this.beruf, 
+            "weitereAngabenBeruf": this.artarbeit,
+            "Familienstand": this.familienstand,
+            "Wohnsituation": [this.wohnsituation, this.wohnsituationAndere],
+            "PersonenImHaushalt": this.personenImHaushalt,
+            "WeitereAnmerkungenZurWohnsituation": this.weitereAnmerkungenZurWohnsituation,
+            "aktuellGeraucht": this.aktuellGeraucht,
+            "jemalsGeraucht" : this.jemalsGeraucht,
+            "AnzahlZigaretten": this.anzahlZigaretten,
+            "AnzahlTabakprodukte": this.anzahlTabakprodukte,
+            "AnzahlJahreRauchen": this.anzahlJahreRauchen,
+            "Beeintraechtigungen": [this.beeintraechtigungen, this.beeintraechtigungenVorhanden, this.beeintraechtigungenVorhandenAndere],
+            "mobil":[this.mobil, this.mobileingeschraenkt, this.mobileingeschraenktAndere],
+            "UnterstuetzungMedizinischerVersorgung": [this.unterstuetzungMedizinischerVersorgung, this.jaUnterstuetzungMedizinischerVersorgung, this.jaUnterstuetzungMedizinischerVersorgungAndere],
+            "KontakAktivitaet": this.kontakAktivitaet,
+            "Hobbies" : this.hobbies,
+            "MedizinischeDiagnose": this.medizinischeDiagnose,
+            "weitereDiagnosen": [this.weitereDiagnosen, this.weitereDiagnosenAndere],
+            "vergangeneDiagnosen": this.vergangeneDiagnosen,
+            "PsychischeGesundheit": [this.psychischeGesundheit, this.psychischeGesundheitAndere],
+            "GesundheitszustandDerFamilie": [this.gesundheitszustandDerFamilie, this.gesundheitszustandDerFamilieAndere],
+            "WeitereAnmerkungenZumGesundheitszustandDerFamilie": this.weitereAnmerkungenZumGesundheitszustandDerFamilie,
+            "Schwangerschaft": this.schwangerschaft,
+            "Stillzeit": this.stillzeit
+          },
+          "Recall": this.recall,
+          "anzahlRecall": this.anzahlRecall,
+          assessment2: {
+            "weitereGetraenke": this.weitereGetraenke,
+            "AnzahlMahlzeitenRecall": this.anzahlMahlzeitenRecall,
+            "MahlzeitenNormalerweise": this.mahlzeitenNormalerweise,
+            "MahlzeitenWeggelassen": this.mahlzeitenWeggelassen,
+            "MahlzeitenZusaetzlich": [this.mahlzeitenZusaetzlich, this.mahlzeitenZusaetzlichAndere],
+            "weitereAnmerkungenRecall": this.weitereAnmerkungenRecall,
+            "Vorlieben": this.vorlieben,
+            "Abneigungen": this.abneigungen,
+            "EigenstaendigeDiaet": [this.eigenstaendigeDiaet, this.eigenstaendigeDiaetJa],
+            "MahlzeitenAusserHaus": [this.mahlzeitenAusserHaus, this.mahlzeitenAusserHausJa],
+            "DiaetischeKostform": [this.diaetischeKostform, this.diaetischeKostformJa, this.diaetischeKostformJaAndere],
+            "EnteraleErnaehrung": [this.enteraleErnaehrung, this.enteraleErnaehrungJa],
+            "Medikamente": [this.medikamente, this.medikamenteJa],
+          },
+          bilanzierung:{
+            "Getraenke": this.getraenke,
+            "Gemuese": this.gemuese,
+            "Obst": this.obst,
+            "Getreideprodukte": this.getreideprodukte,
+            "Milch": this.milch,
+            "Fleisch": this.fleisch,
+            "Fisch" : this.fisch,
+            "Ei": this.ei,
+            "Fette": this.fette,
+            "Suessigkeiten": this.suessigkeiten,
+            "PikanteSnacks": this.pikanteSnacks,
+            "Energie": this.energie,
+            "Wasser": this.wasser,
+            "Eiweiss": this.eiweiss,
+            "Kohlenhydrate": this.kohlenhydrate,
+            "Zucker": this.zucker,
+            "Ballaststoffe": this.ballaststoffe,
+            "Gesamtfett": this.gesamtfett,
+            "GesaettigteFettsaeuren": this.gesaettigteFettsaeuren,
+            "EinfachUngesaettigte": this.einfachUngesaettigte,
+            "MehrfachUngesaettigte": this.mehrfachUngesaettigte,
+            "Cholesterin": this.cholesterin,
+            "CounterVitamine": this.counterVitamine,
+            "CounterMineralstoffe": this.counterMineralstoffe,
+          },
+          "Vitamine": this.vitamine,
+          "Mineralstoffe": this.mineralstoffe,
+          assessment3: {
+            "PlantMahlzeiten": [this.plantMahlzeiten, this.plantMahlzeitenAndere],
+            "BereitetMahlzeiten": [this.bereitetMahlzeiten, this.bereitetMahlzeitenAndere],
+            "weitereAnmerkungenMahlzeiten": this.weitereAnmerkungenMahlzeiten,
+            "Lebensmitteleinkauf": [this.lebensmitteleinkauf, this.lebensmitteleinkaufAndere],
+            "Selbstversorgen": [this.selbstversorgen, this.selbstversorgenEingeschraenkt, this.selbstversorgenNein],
+            "EinfachheitMahlzeitZuzubereiten" : [this.einfachheitMahlzeitZuzubereiten, this.begruendungMahlzeitZuzubereiten],
+            "InformationErnaehrung": [this.informationErnaehrung, this.informationErnaehrungAndere],
+            "weitereAnmerkungenInformationsquellen": this.weitereAnmerkungenInformationsquellen,
+            "OrientierungErnaehrung": this.orientierungErnaehrung,
+            "WichtigkeitDerEmpfehlung": this.wichtigkeitDerEmpfehlung,
+            "ErnaehrungsgewohnheitenVeraendern": [ this.ernaehrungsgewohnheitenVeraendern, this.begruendungErnaehrungsgewohnheitenVeraendern],
+            "PhysicalActivityLevel":  this.physicalActivityLevel,
+            "WeitereAnmerkungenAktivitaet":  this.weitereAnmerkungenAktivitaet,
+            "WhoLaune": this.whoLaune,
+            "WhoRuhig": this.whoRuhig,
+            "WhoAktiv": this.whoAktiv,
+            "WhoAusgeruht": this.whoAusgeruht,
+            "WhoInteressieren": this.whoInteressieren,
+            "WhoWert": this.whoWert,
+            "WhoProzent": this.whoProzent,
+            "WhoAuswertung": this.whoAuswertung,
+          },
+          wichtigkeit: {
+            "WichtigkeitDerFrische" : this.wichtigkeitDerFrische,
+            "WichtigkeitDesGeschmacks": this.wichtigkeitDesGeschmacks,
+            "WichtigkeitDerGesundheit": this.wichtigkeitDerGesundheit,
+            "WichtigkeitEinesGeringenPreises": this.wichtigkeitEinesGeringenPreises,
+            "WichtigkeitDerRegionalitaet": this.wichtigkeitDerRegionalitaet,
+            "WichtigkeitDerSaisonalitaet": this.wichtigkeitDerSaisonalitaet,
+            "CounterAndere": this.counterAndere,
+          },
+          "WichtigkeitAndere": this.wichtigkeitAndere,
+          assessment4:{
+            "Koerpergroesse": this.koerpergroesse,
+            "Koerpergewicht": this.koerpergewicht,
+            "Bmi": this.bmi,
+            "Taillenumfang": this.taillenumfang,
+            "Hautfaltendicke": this.hautfaltendicke,
+            "FettfreieMasse": this.fettfreieMasse,
+            "Fettmasse": this.fettmasse,
+            "Ruheenergieumsatz": this.ruheenergieumsatz,
+            "ChemieMetabolischeParameter": this.chemieMetabolischeParameter,
+            "Vitalzeichen": this.vitalzeichen,
+            "WeitereMessungen": this.weitereMessungen,
+            "Schlucken": [this.schlucken, this.schluckenJaAber, this.schluckenNein],
+            "Erbrechen": [this.erbrechen, this.erbrechenJa],
+            "Mundgesundheit": [this.mundgesundheit, this.mundgesundheitAndere],
+            "ProblemeNahrungsaufnahme": this.problemeNahrungsaufnahme,
+            "AppetitBeeintraechtigung": this.appetitBeeintraechtigung,
+            "WeitereKoerperlicheBefunde": this.weitereKoerperlicheBefunde,
+          },
+          "Diagnosestellung": this.diagnosestellung,
+          "PASR": this.pasr,
+          "Counter": this.counter,
+          "Error": this.error,
+          "ErrorList": this.errorList,
+          "Priorisierung": this.priorisierung,            
+          "ZieleKlient": this.zieleKlient,
+          "ZieleIntervention": this.zieleIntervention,
+          planung: {
+            "CounterKlient": this.counterKlient,
+            "Leitlinien": this.leitlinien,
+            "CounterIntervention": this.counterIntervention,
+            "Interventionsform": [this.interventionsform, this.interventionsformAndere],
+            "WeitereAnmerkungenInterventionform": this.weitereAnmerkungenInterventionform,
+            "ZeitraumIntervention": this.zeitraumIntervention,
+            "FrequenzInterventionen": this.frequenzInterventionen,
+            "Zeitplanung": this.zeitplanung,
+            "WeitereBerufsgruppen": [this.weitereBerufsgruppen, this.weitereBerufsgruppenAndere],
+            "Angehoerige": this.angehoerige,
+            "WeitereAnmerkungenInterventionNochmal": this.weitereAnmerkungenInterventionNochmal,
+            "Monitoring": this.monitoring,
+            "JoinMonitoring": this.joinMonitoring,
+          },
+          "EntwicklungEinzelberatung": this.einzelberatung,
+          "Zusatznahrung": this.zusatznahrung,
+          "EntwicklungZusatznahrung": this.zusatznahrungJa,
+          "SonstigesUmsetung": this.sonstigesUmsetung,        
+          "EntwicklungMonitoring": this.entwicklungMonitoring,
+          evaluation: {
+            "EvaluationEntwicklungMonitoring": this.evaluationEntwicklungMonitoring,
+            "ZielerreichungKlient": this.zielerreichungKlient,
+            "BegruendungZielerreichungKlient": this.begruendungZielerreichungKlient,
+            "ZielerreichungIntervention": this.zielerreichungIntervention,
+            "BegruendungZielerreichungIntervention": this.begruendungZielerreichungIntervention,
+            "EvaluationZieleKlient": this.evaluationZieleKlient,
+            "EvaluationZieleIntervention": this.evaluationZieleIntervention,
+            "EvaluationWeitersVorgehen": this.evaluationWeitersVorgehen,
+          }
+        })
+        .then(response => {
+          console.log(response);
+          this.error = false;
+          this.errorList = [];
+          this.$router.push(`/Edit/${response.data._id}`);
+        })
+        .catch(error => {
+          this.error = true;
+          console.log(error);
+          if(this.vorname == "" && this.nachname == "" && this.geburtstag == ""){
+            this.errorList[3] = "Es ist ein unbekannter Fehler aufgetreten.";
+          } else {
+            this.vorname ? this.errorList[0] = "" : this.errorList[0] = "Vorname"
+            this.nachname ? this.errorList[1] = "" : this.errorList[1] = "Nachname"
+            this.geburtstag ? this.errorList[2] = "" : this.errorList[2] = "Geburtsdatum"
+          }
+        });
+    }
   },
 };
 </script>
