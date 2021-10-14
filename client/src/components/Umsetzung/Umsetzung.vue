@@ -1,10 +1,41 @@
 <template>
   <div>
     <p class="umsetzungAspekt">Verlaufsdokumentation</p>
-    <div v-if="/\bEinzelberatung\b/.test(interventionsform)">
-      <p>Einzelberatung mit Klient*in</p>
-      <Einzelberatung/>
-    </div>
+    <UmsetzungTermine v-if="/\bEinzelberatung\b/.test(interventionsform)"
+      :headline="'Einzelberatung mit Klient*in'"
+      :title="'Einzelberatung'"
+      :value="einzelberatung"
+      :addNewRow="addNewRowEinzelberatung"
+      :deleteRow="deleteRowEinzelberatung"
+    />
+    <UmsetzungTermine v-if="/\Gruppenschulung\b/.test(interventionsform)"
+      :headline="'Gruppenschulung mit Klient*in'"
+      :title="'Gruppenschulung'"
+      :value="gruppenschulung"
+      :addNewRow="addNewRowGruppenschulung"
+      :deleteRow="deleteRowGruppenschulung"
+    />
+    <UmsetzungTermine v-if="/\bEinkaufstraining\b/.test(interventionsform)"
+      :headline="'Einkaufstraining mit Klient*in'"
+      :title="'Einkaufstraining'"
+      :value="einkaufstraining"
+      :addNewRow="addNewRowEinkaufstraining"
+      :deleteRow="deleteRowEinkaufstraining"
+    />
+    <UmsetzungTermine v-if="/\Lehrküche\b/.test(interventionsform)"
+      :headline="'Lehrküche mit Klient*in'"
+      :title="'Lehrküche'"
+      :value="lehrkueche"
+      :addNewRow="addNewRowLehrkueche"
+      :deleteRow="deleteRowLehrkueche"
+    />
+    <UmsetzungTermine v-if="interventionsformAndere"
+      :headline="interventionsformAndere + ' mit Klient*in'"
+      :title="interventionsformAndere"
+      :value="andereInterventionsform"
+      :addNewRow="addNewRowAndereInterventionsform"
+      :deleteRow="deleteRowAndereInterventionsform"
+    />
     <RadioForm
       :items="[
         {title:'ja', id:'jaSicherstellungErnaehrung', name:'sicherstellungErnaehrung'},
@@ -29,9 +60,10 @@
 <script>
 import InputForm from "../InputForm.vue";
 import RadioForm from "../RadioForm.vue";
-import Einzelberatung from "./Einzelberatung.vue";
+import UmsetzungTermine from "./UmsetzungTermine.vue";
 import Zusatznahrung from "./Zusatznahrung.vue";
 import EntwicklungMonitoring from "./EntwicklungMonitoring.vue";
+import {mapState, mapMutations} from "vuex";
 
   export default {
     name:"umsetzung",
@@ -48,14 +80,20 @@ import EntwicklungMonitoring from "./EntwicklungMonitoring.vue";
     components:{
       InputForm,
       RadioForm,
-      Einzelberatung,
+      UmsetzungTermine,
       Zusatznahrung,
       EntwicklungMonitoring,
     },
     computed: {
-      interventionsform(){
-        return this.$store.state.p.interventionsform
-      },
+      ...mapState("p",[
+        "interventionsform",
+        "interventionsformAndere",
+        "einzelberatung",
+        "gruppenschulung",
+        "einkaufstraining",
+        "lehrkueche",
+        "andereInterventionsform",
+      ]),
       zusatznahrung: {
         get() {
           return this.$store.state.u.zusatznahrung
@@ -73,5 +111,19 @@ import EntwicklungMonitoring from "./EntwicklungMonitoring.vue";
         }
       },
     },
+    methods: {
+      ...mapMutations("p",[
+        "addNewRowEinzelberatung",
+        "deleteRowEinzelberatung",
+        "addNewRowGruppenschulung",
+        "deleteRowGruppenschulung",
+        "addNewRowEinkaufstraining",
+        "deleteRowEinkaufstraining",
+        "addNewRowLehrkueche",
+        "deleteRowLehrkueche",
+        "addNewRowAndereInterventionsform",
+        "deleteRowAndereInterventionsform",
+      ]),
+    }
   };
 </script>

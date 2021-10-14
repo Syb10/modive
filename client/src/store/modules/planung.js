@@ -12,12 +12,44 @@ export default {
       weitereAnmerkungenInterventionform: "",
       zeitraumIntervention: "",
       frequenzInterventionen: "",
-      zeitplanung:[
+      planungEinzelberatung:[
         {
-          dauerEinzelberatung: "",
-          inhaltIntervention: "",
+          dauer: "",
+          inhalt: "",
           materialien: "",
-          weitereAnmerkungenInterventionPlanung: "",
+          weitereAnmerkungen: "",
+        }
+      ],
+      planungGruppenschulung:[
+        {
+          dauer: "",
+          inhalt: "",
+          materialien: "",
+          weitereAnmerkungen: "",
+        }
+      ],
+      planungEinkaufstraining:[
+        {
+          dauer: "",
+          inhalt: "",
+          materialien: "",
+          weitereAnmerkungen: "",
+        }
+      ],
+      planungLehrkueche:[
+        {
+          dauer: "",
+          inhalt: "",
+          materialien: "",
+          weitereAnmerkungen: "",
+        }
+      ],
+      planungAndereInterventionsform:[
+        {
+          dauer: "",
+          inhalt: "",
+          materialien: "",
+          weitereAnmerkungen: "",
         }
       ],
       weitereBerufsgruppen: [],
@@ -33,6 +65,50 @@ export default {
 
       //gehoert zur Umsetzung
       einzelberatung: [
+        {
+          datum: "",
+          dauer:"",
+          inhalt: "",
+          materialien: "",
+          ergebnis:"",
+          probleme:"",
+          anmerkungen:"",
+        }
+      ],
+      gruppenschulung: [
+        {
+          datum: "",
+          dauer:"",
+          inhalt: "",
+          materialien: "",
+          ergebnis:"",
+          probleme:"",
+          anmerkungen:"",
+        }
+      ],
+      einkaufstraining: [
+        {
+          datum: "",
+          dauer:"",
+          inhalt: "",
+          materialien: "",
+          ergebnis:"",
+          probleme:"",
+          anmerkungen:"",
+        }
+      ],
+      lehrkueche: [
+        {
+          datum: "",
+          dauer:"",
+          inhalt: "",
+          materialien: "",
+          ergebnis:"",
+          probleme:"",
+          anmerkungen:"",
+        }
+      ],
+      andereInterventionsform: [
         {
           datum: "",
           dauer:"",
@@ -111,12 +187,12 @@ export default {
       frequenzInterventionen(state, value) {
         state.frequenzInterventionen = value
       },
-      addNewRowZeitplanung(state) {
-        state.zeitplanung.push({
-          dauerEinzelberatung: "",
-          inhaltIntervention: "",
+      addNewRowPlanungEinzelberatung(state) {
+        state.planungEinzelberatung.push({
+          dauer: "",
+          inhalt: "",
           materialien: "",
-          weitereAnmerkungenInterventionPlanung: "",
+          weitereAnmerkungen: "",
         });
         state.einzelberatung.push({
           datum: "",
@@ -128,8 +204,8 @@ export default {
           anmerkungen: "",
         });
       },
-      deleteRowZeitplanung(state,index) {
-        state.zeitplanung.splice(index, 1);
+      deleteRowPlanungEinzelberatung(state,index) {
+        state.planungEinzelberatung.splice(index, 1);
         state.einzelberatung.splice(index, 1);
       },
       addNewRowEinzelberatung(state) {
@@ -159,26 +235,306 @@ export default {
           });
         }
         // wenn Inhalte aus der Planung noch nicht in der Umsetzung sind, werden diese dazu getan
-        var dauerPlanung = payload.value.dauerEinzelberatung;
+        var dauerPlanung = payload.value.dauer;
         var dauerUmsetzung = state.einzelberatung[payload.index].dauer;
-        var inhaltPlanung = payload.value.inhaltIntervention;
+        var inhaltPlanung = payload.value.inhalt;
         var inhaltUmsetzung = state.einzelberatung[payload.index].inhalt;
         var materialienPlanung = payload.value.materialien;
         var materialienUmsetzung = state.einzelberatung[payload.index].materialien;
-        var anmerkungenPlanung = payload.value.weitereAnmerkungenInterventionPlanung;
+        var anmerkungenPlanung = payload.value.weitereAnmerkungen;
         var anmerkungenUmsetzung = state.einzelberatung[payload.index].anmerkungen;
 
         if(!dauerUmsetzung.includes(dauerPlanung)) {
-          state.einzelberatung[payload.index].dauer += payload.value.dauerEinzelberatung;
+          state.einzelberatung[payload.index].dauer += payload.value.dauer;
         }
         if(!inhaltUmsetzung.includes(inhaltPlanung)) {
-          state.einzelberatung[payload.index].inhalt += payload.value.inhaltIntervention;
+          state.einzelberatung[payload.index].inhalt += payload.value.inhalt;
         }
         if(!materialienUmsetzung.includes(materialienPlanung)) {
         state.einzelberatung[payload.index].materialien += payload.value.materialien;
         }
         if(!anmerkungenUmsetzung.includes(anmerkungenPlanung)) {
-        state.einzelberatung[payload.index].anmerkungen += payload.value.weitereAnmerkungenInterventionPlanung;
+        state.einzelberatung[payload.index].anmerkungen += payload.value.weitereAnmerkungen;
+        } 
+      },
+      addNewRowPlanungGruppenschulung(state) {
+        state.planungGruppenschulung.push({
+          dauer: "",
+          inhalt: "",
+          materialien: "",
+          weitereAnmerkungen: "",
+        });
+        state.gruppenschulung.push({
+          datum: "",
+          dauer: "",
+          inhalt: "",
+          materialien: "",
+          ergebnis:"",
+          probleme:"",
+          anmerkungen: "",
+        });
+      },
+      deleteRowPlanungGruppenschulung(state,index) {
+        state.planungGruppenschulung.splice(index, 1);
+        state.gruppenschulung.splice(index, 1);
+      },
+      addNewRowGruppenschulung(state) {
+        state.gruppenschulung.push({
+          datum: "",
+          dauer:"",
+          inhalt: "",
+          materialien:"",
+          ergebnis:"",
+          probleme:"",
+          anmerkungen:"",
+        });
+      },
+      deleteRowGruppenschulung(state, index) {
+        state.gruppenschulung.splice(index, 1);
+      },
+      updateGruppenschulung(state, payload) {
+        if(state.gruppenschulung[payload.index] == undefined) {
+          state.gruppenschulung.push({
+            datum: "",
+            dauer:"",
+            inhalt: "",
+            materialien:"",
+            ergebnis:"",
+            probleme:"",
+            anmerkungen:"",
+          });
+        }
+        // wenn Inhalte aus der Planung noch nicht in der Umsetzung sind, werden diese dazu getan
+        var dauerPlanung = payload.value.dauer;
+        var dauerUmsetzung = state.gruppenschulung[payload.index].dauer;
+        var inhaltPlanung = payload.value.inhalt;
+        var inhaltUmsetzung = state.gruppenschulung[payload.index].inhalt;
+        var materialienPlanung = payload.value.materialien;
+        var materialienUmsetzung = state.gruppenschulung[payload.index].materialien;
+        var anmerkungenPlanung = payload.value.weitereAnmerkungen;
+        var anmerkungenUmsetzung = state.gruppenschulung[payload.index].anmerkungen;
+
+        if(!dauerUmsetzung.includes(dauerPlanung)) {
+          state.gruppenschulung[payload.index].dauer += payload.value.dauer;
+        }
+        if(!inhaltUmsetzung.includes(inhaltPlanung)) {
+          state.gruppenschulung[payload.index].inhalt += payload.value.inhalt;
+        }
+        if(!materialienUmsetzung.includes(materialienPlanung)) {
+        state.gruppenschulung[payload.index].materialien += payload.value.materialien;
+        }
+        if(!anmerkungenUmsetzung.includes(anmerkungenPlanung)) {
+        state.gruppenschulung[payload.index].anmerkungen += payload.value.weitereAnmerkungen;
+        } 
+      },
+      addNewRowPlanungEinkaufstraining(state) {
+        state.planungEinkaufstraining.push({
+          dauer: "",
+          inhalt: "",
+          materialien: "",
+          weitereAnmerkungen: "",
+        });
+        state.einkaufstraining.push({
+          datum: "",
+          dauer: "",
+          inhalt: "",
+          materialien: "",
+          ergebnis:"",
+          probleme:"",
+          anmerkungen: "",
+        });
+      },
+      deleteRowPlanungEinkaufstraining(state,index) {
+        state.planungEinkaufstraining.splice(index, 1);
+        state.einkaufstraining.splice(index, 1);
+      },
+      addNewRowEinkaufstraining(state) {
+        state.einkaufstraining.push({
+          datum: "",
+          dauer:"",
+          inhalt: "",
+          materialien:"",
+          ergebnis:"",
+          probleme:"",
+          anmerkungen:"",
+        });
+      },
+      deleteRowEinkaufstraining(state, index) {
+        state.einkaufstraining.splice(index, 1);
+      },
+      updateEinkaufstraining(state, payload) {
+        if(state.einkaufstraining[payload.index] == undefined) {
+          state.einkaufstraining.push({
+            datum: "",
+            dauer:"",
+            inhalt: "",
+            materialien:"",
+            ergebnis:"",
+            probleme:"",
+            anmerkungen:"",
+          });
+        }
+        // wenn Inhalte aus der Planung noch nicht in der Umsetzung sind, werden diese dazu getan
+        var dauerPlanung = payload.value.dauer;
+        var dauerUmsetzung = state.einkaufstraining[payload.index].dauer;
+        var inhaltPlanung = payload.value.inhalt;
+        var inhaltUmsetzung = state.einkaufstraining[payload.index].inhalt;
+        var materialienPlanung = payload.value.materialien;
+        var materialienUmsetzung = state.einkaufstraining[payload.index].materialien;
+        var anmerkungenPlanung = payload.value.weitereAnmerkungen;
+        var anmerkungenUmsetzung = state.einkaufstraining[payload.index].anmerkungen;
+
+        if(!dauerUmsetzung.includes(dauerPlanung)) {
+          state.einkaufstraining[payload.index].dauer += payload.value.dauer;
+        }
+        if(!inhaltUmsetzung.includes(inhaltPlanung)) {
+          state.einkaufstraining[payload.index].inhalt += payload.value.inhalt;
+        }
+        if(!materialienUmsetzung.includes(materialienPlanung)) {
+        state.einkaufstraining[payload.index].materialien += payload.value.materialien;
+        }
+        if(!anmerkungenUmsetzung.includes(anmerkungenPlanung)) {
+        state.einkaufstraining[payload.index].anmerkungen += payload.value.weitereAnmerkungen;
+        } 
+      },
+      addNewRowPlanungLehrkueche(state) {
+        state.planungLehrkueche.push({
+          dauer: "",
+          inhalt: "",
+          materialien: "",
+          weitereAnmerkungen: "",
+        });
+        state.lehrkueche.push({
+          datum: "",
+          dauer: "",
+          inhalt: "",
+          materialien: "",
+          ergebnis:"",
+          probleme:"",
+          anmerkungen: "",
+        });
+      },
+      deleteRowPlanungLehrkueche(state,index) {
+        state.planungLehrkueche.splice(index, 1);
+        state.lehrkueche.splice(index, 1);
+      },
+      addNewRowLehrkueche(state) {
+        state.lehrkueche.push({
+          datum: "",
+          dauer:"",
+          inhalt: "",
+          materialien:"",
+          ergebnis:"",
+          probleme:"",
+          anmerkungen:"",
+        });
+      },
+      deleteRowLehrkueche(state, index) {
+        state.lehrkueche.splice(index, 1);
+      },
+      updateLehrkueche(state, payload) {
+        if(state.lehrkueche[payload.index] == undefined) {
+          state.lehrkueche.push({
+            datum: "",
+            dauer:"",
+            inhalt: "",
+            materialien:"",
+            ergebnis:"",
+            probleme:"",
+            anmerkungen:"",
+          });
+        }
+        // wenn Inhalte aus der Planung noch nicht in der Umsetzung sind, werden diese dazu getan
+        var dauerPlanung = payload.value.dauer;
+        var dauerUmsetzung = state.lehrkueche[payload.index].dauer;
+        var inhaltPlanung = payload.value.inhalt;
+        var inhaltUmsetzung = state.lehrkueche[payload.index].inhalt;
+        var materialienPlanung = payload.value.materialien;
+        var materialienUmsetzung = state.lehrkueche[payload.index].materialien;
+        var anmerkungenPlanung = payload.value.weitereAnmerkungen;
+        var anmerkungenUmsetzung = state.lehrkueche[payload.index].anmerkungen;
+
+        if(!dauerUmsetzung.includes(dauerPlanung)) {
+          state.lehrkueche[payload.index].dauer += payload.value.dauer;
+        }
+        if(!inhaltUmsetzung.includes(inhaltPlanung)) {
+          state.lehrkueche[payload.index].inhalt += payload.value.inhalt;
+        }
+        if(!materialienUmsetzung.includes(materialienPlanung)) {
+        state.lehrkueche[payload.index].materialien += payload.value.materialien;
+        }
+        if(!anmerkungenUmsetzung.includes(anmerkungenPlanung)) {
+        state.lehrkueche[payload.index].anmerkungen += payload.value.weitereAnmerkungen;
+        } 
+      },
+      addNewRowPlanungAndereInterventionsform(state) {
+        state.planungAndereInterventionsform.push({
+          dauer: "",
+          inhalt: "",
+          materialien: "",
+          weitereAnmerkungen: "",
+        });
+        state.andereInterventionsform.push({
+          datum: "",
+          dauer: "",
+          inhalt: "",
+          materialien: "",
+          ergebnis:"",
+          probleme:"",
+          anmerkungen: "",
+        });
+      },
+      deleteRowPlanungAndereInterventionsform(state,index) {
+        state.planungAndereInterventionsform.splice(index, 1);
+        state.andereInterventionsform.splice(index, 1);
+      },
+      addNewRowAndereInterventionsform(state) {
+        state.andereInterventionsform.push({
+          datum: "",
+          dauer:"",
+          inhalt: "",
+          materialien:"",
+          ergebnis:"",
+          probleme:"",
+          anmerkungen:"",
+        });
+      },
+      deleteRowAndereInterventionsform(state, index) {
+        state.andereInterventionsform.splice(index, 1);
+      },
+      updateAndereInterventionsform(state, payload) {
+        if(state.andereInterventionsform[payload.index] == undefined) {
+          state.andereInterventionsform.push({
+            datum: "",
+            dauer:"",
+            inhalt: "",
+            materialien:"",
+            ergebnis:"",
+            probleme:"",
+            anmerkungen:"",
+          });
+        }
+        // wenn Inhalte aus der Planung noch nicht in der Umsetzung sind, werden diese dazu getan
+        var dauerPlanung = payload.value.dauer;
+        var dauerUmsetzung = state.andereInterventionsform[payload.index].dauer;
+        var inhaltPlanung = payload.value.inhalt;
+        var inhaltUmsetzung = state.andereInterventionsform[payload.index].inhalt;
+        var materialienPlanung = payload.value.materialien;
+        var materialienUmsetzung = state.andereInterventionsform[payload.index].materialien;
+        var anmerkungenPlanung = payload.value.weitereAnmerkungen;
+        var anmerkungenUmsetzung = state.andereInterventionsform[payload.index].anmerkungen;
+
+        if(!dauerUmsetzung.includes(dauerPlanung)) {
+          state.andereInterventionsform[payload.index].dauer += payload.value.dauer;
+        }
+        if(!inhaltUmsetzung.includes(inhaltPlanung)) {
+          state.andereInterventionsform[payload.index].inhalt += payload.value.inhalt;
+        }
+        if(!materialienUmsetzung.includes(materialienPlanung)) {
+        state.andereInterventionsform[payload.index].materialien += payload.value.materialien;
+        }
+        if(!anmerkungenUmsetzung.includes(anmerkungenPlanung)) {
+        state.andereInterventionsform[payload.index].anmerkungen += payload.value.weitereAnmerkungen;
         } 
       },
       weitereBerufsgruppen(state, value) {

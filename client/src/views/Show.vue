@@ -151,17 +151,61 @@
         <li v-if="key === mykey.key">{{planung1[myIndex].title}}: {{value}}</li>
       </div>
     </div> 
-    <li v-if="!isObjectEmpty(myZeitplanung)">Zeitplanung:</li>
-      <div v-for="(item, indexI) in myZeitplanung" :key="indexI">
-        {{indexI+1}}. Termin:
-        <ul>
-          <div v-for="(mykey,myIndex) in zeitplanung" :key="myIndex">
-            <div v-for="(i, key) in item" :key="key">
-              <li v-if="key === mykey.key">{{zeitplanung[myIndex].title}}: {{i}}</li>
-            </div>
-          </div> 
-        </ul>  
-      </div>
+    <li v-if="!isObjectEmpty(myPlanungEinzelberatung)">Planung Einzelberatung:</li>
+    <div v-for="(item, indexI) in myPlanungEinzelberatung" :key="indexI">
+      {{indexI+1}}. Einzelberatung:
+      <ul>
+        <div v-for="(mykey,myIndex) in planungEinzelberatung" :key="myIndex">
+          <div v-for="(i, key) in item" :key="key">
+            <li v-if="key === mykey.key">{{planungEinzelberatung[myIndex].title}}: {{i}}</li>
+          </div>
+        </div> 
+      </ul>  
+    </div>
+    <li v-if="!isObjectEmpty(myPlanungGruppenschulung)">Planung Gruppenschulung:</li>
+    <div v-for="(item, indexI) in myPlanungGruppenschulung" :key="indexI">
+      {{indexI+1}}. Gruppenschulung:
+      <ul>
+        <div v-for="(mykey,myIndex) in planungGruppenschulung" :key="myIndex">
+          <div v-for="(i, key) in item" :key="key">
+            <li v-if="key === mykey.key">{{planungGruppenschulung[myIndex].title}}: {{i}}</li>
+          </div>
+        </div> 
+      </ul>  
+    </div>
+    <li v-if="!isObjectEmpty(myPlanungEinkaufstraining)">Planung Einkaufstraining:</li>
+    <div v-for="(item, indexI) in myPlanungEinkaufstraining" :key="indexI">
+      {{indexI+1}}. Einkaufstraining:
+      <ul>
+        <div v-for="(mykey,myIndex) in planungEinkaufstraining" :key="myIndex">
+          <div v-for="(i, key) in item" :key="key">
+            <li v-if="key === mykey.key">{{planungEinkaufstraining[myIndex].title}}: {{i}}</li>
+          </div>
+        </div> 
+      </ul>  
+    </div>
+    <li v-if="!isObjectEmpty(myPlanungLehrkueche)">Planung Lehrküche:</li>
+    <div v-for="(item, indexI) in myPlanungEinzelberatung" :key="indexI">
+      {{indexI+1}}. Lehrküche:
+      <ul>
+        <div v-for="(mykey,myIndex) in planungLehrkueche" :key="myIndex">
+          <div v-for="(i, key) in item" :key="key">
+            <li v-if="key === mykey.key">{{planungLehrkueche[myIndex].title}}: {{i}}</li>
+          </div>
+        </div> 
+      </ul>  
+    </div>
+    <li v-if="!isObjectEmpty(myPlanungAndereInterventionsform)">Planung {{myInterventionsformAndere}}:</li>
+    <div v-for="(item, indexI) in myPlanungAndereInterventionsform" :key="indexI">
+      {{indexI+1}}. {{myInterventionsformAndere}}:
+      <ul>
+        <div v-for="(mykey,myIndex) in planungAndereInterventionsform" :key="myIndex">
+          <div v-for="(i, key) in item" :key="key">
+            <li v-if="key === mykey.key">{{planungAndereInterventionsform[myIndex].title}}: {{i}}</li>
+          </div>
+        </div> 
+      </ul>  
+    </div>
     <div v-for="(mykey, myIndex) in planung2" :key="myIndex">
       <div v-for="(value, key) in myPlanung" :key="key">
         <li v-if="key === mykey.key">{{planung2[myIndex].title}}: {{value}}</li>
@@ -176,13 +220,57 @@
   </ul>
   <p class="umsetzungAspekt">Umsetzung der Intervention</p>
   <ul>
-    <li v-if="!isObjectEmpty(myEntwicklungEinzelberatung)">Einzelberatung mit Klient*in</li>
-    <div v-for="(item, indexI) in myEntwicklungEinzelberatung" :key="indexI">
-      {{indexI+1}}. Termin:
+    <li v-if="!isObjectEmpty(myUmsetzungEinzelberatung)">Einzelberatung mit Klient*in</li>
+    <div v-for="(item, indexI) in myUmsetzungEinzelberatung" :key="indexI">
+      {{indexI+1}}. Einzelberatung:
       <ul>
         <div v-for="(mykey,myIndex) in einzelberatung" :key="myIndex">
           <div v-for="(i, key) in item" :key="key">
-            <li v-if="key === mykey.key">{{einzelberatung[myIndex].title}}: <span v-if="einzelberatung[myIndex].title == 'Datum der Intervention'">{{changeDate(i)}}</span><span v-if="einzelberatung[myIndex].title != 'Datum der Intervention'">{{i}}</span></li>
+            <li v-if="key === mykey.key">{{einzelberatung[myIndex].title}}: <span v-if="einzelberatung[myIndex].title == 'Datum der Einzelberatung'">{{changeDate(i)}}</span><span v-if="einzelberatung[myIndex].title != 'Datum der Einzelberatung'">{{i}}</span></li>
+          </div>
+        </div> 
+      </ul>  
+    </div>
+    <li v-if="!isObjectEmpty(myUmsetzungGruppenschulung)">Gruppenschulung mit Klient*in</li>
+    <div v-for="(item, indexI) in myUmsetzungGruppenschulung" :key="indexI">
+      {{indexI+1}}. Gruppenschulung:
+      <ul>
+        <div v-for="(mykey,myIndex) in gruppenschulung" :key="myIndex">
+          <div v-for="(i, key) in item" :key="key">
+            <li v-if="key === mykey.key">{{gruppenschulung[myIndex].title}}: <span v-if="gruppenschulung[myIndex].title == 'Datum der Gruppenschulung'">{{changeDate(i)}}</span><span v-if="gruppenschulung[myIndex].title != 'Datum der Gruppenschulung'">{{i}}</span></li>
+          </div>
+        </div> 
+      </ul>  
+    </div>
+    <li v-if="!isObjectEmpty(myUmsetzungEinkaufstraining)">Einkaufstraining mit Klient*in</li>
+    <div v-for="(item, indexI) in myUmsetzungEinkaufstraining" :key="indexI">
+      {{indexI+1}}. Einkaufstraining:
+      <ul>
+        <div v-for="(mykey,myIndex) in einkaufstraining" :key="myIndex">
+          <div v-for="(i, key) in item" :key="key">
+            <li v-if="key === mykey.key">{{einkaufstraining[myIndex].title}}: <span v-if="einkaufstraining[myIndex].title == 'Datum des Einkaufstraining'">{{changeDate(i)}}</span><span v-if="einkaufstraining[myIndex].title != 'Datum des Einkaufstraining'">{{i}}</span></li>
+          </div>
+        </div> 
+      </ul>  
+    </div>
+    <li v-if="!isObjectEmpty(myUmsetzungLehrkueche)">Lehrküche mit Klient*in</li>
+    <div v-for="(item, indexI) in myUmsetzungLehrkueche" :key="indexI">
+      {{indexI+1}}. Lehrküche:
+      <ul>
+        <div v-for="(mykey,myIndex) in lehrkueche" :key="myIndex">
+          <div v-for="(i, key) in item" :key="key">
+            <li v-if="key === mykey.key">{{lehrkueche[myIndex].title}}: <span v-if="lehrkueche[myIndex].title == 'Datum der Lehrküche'">{{changeDate(i)}}</span><span v-if="lehrkueche[myIndex].title != 'Datum der Lehrküche'">{{i}}</span></li>
+          </div>
+        </div> 
+      </ul>  
+    </div>
+    <li v-if="!isObjectEmpty(myUmsetzungAndereInterventionsform)">{{myInterventionsformAndere}} mit Klient*in</li>
+    <div v-for="(item, indexI) in myUmsetzungAndereInterventionsform" :key="indexI">
+      {{indexI+1}}. {{myInterventionsformAndere}}:
+      <ul>
+        <div v-for="(mykey,myIndex) in andereInterventionsform" :key="myIndex">
+          <div v-for="(i, key) in item" :key="key">
+            <li v-if="key === mykey.key">{{andereInterventionsform[myIndex].title}}: <span v-if="andereInterventionsform[myIndex].title == 'Datum der '+ myInterventionsformAndere">{{changeDate(i)}}</span><span v-if="andereInterventionsform[myIndex].title != 'Datum der '+ myInterventionsformAndere">{{i}}</span></li>
           </div>
         </div> 
       </ul>  
@@ -251,9 +339,18 @@
         myPlanung:[],
         myZieleKlient: [],
         myZieleIntervention: [],
-        myZeitplanung:[],
+        myPlanungEinzelberatung:[],
+        myPlanungGruppenschulung:[],
+        myPlanungEinkaufstraining:[],
+        myPlanungLehrkueche:[],
+        myPlanungAndereInterventionsform:[],
         myMonitoring: [],
-        myEntwicklungEinzelberatung: [],
+        myUmsetzungEinzelberatung: [],
+        myUmsetzungGruppenschulung: [],
+        myUmsetzungEinkaufstraining: [],
+        myUmsetzungLehrkueche: [],
+        myUmsetzungAndereInterventionsform: [],
+        myInterventionsformAndere: "",
         myZusatznahrung: [],
         myEntwicklungMonitoring: [],
         myEvaluationEntwicklungMonitoring: [],
@@ -394,11 +491,35 @@
           {key: "ZeitraumIntervention", title:"Zeitraum der gesamten Intervention"},
           {key: "FrequenzInterventionen", title:"Frequenz der Interventionen"},
         ],
-        zeitplanung:[
-          {key: "dauerEinzelberatung", title: "Dauer der geplanten Einzelberatung (in Minuten)"},
-          {key: "inhaltIntervention", title: "Inhalt der geplanten Einzelberatung"},
+        planungEinzelberatung:[
+          {key: "dauer", title: "Dauer der geplanten Einzelberatung (in Minuten)"},
+          {key: "inhalt", title: "Inhalt der geplanten Einzelberatung"},
           {key: "materialien", title: "geplante Materialien"},
-          {key: "weitereAnmerkungenInterventionPlanung", title: "weitere Anmerkungen"},
+          {key: "weitereAnmerkungen", title: "weitere Anmerkungen"},
+        ],
+        planungGruppenschulung:[
+          {key: "dauer", title: "Dauer der geplanten Gruppenschulung (in Minuten)"},
+          {key: "inhalt", title: "Inhalt der geplanten Gruppenschulung"},
+          {key: "materialien", title: "geplante Materialien"},
+          {key: "weitereAnmerkungen", title: "weitere Anmerkungen"},
+        ],
+        planungEinkaufstraining:[
+          {key: "dauer", title: "Dauer des geplanten Einkaufstraining (in Minuten)"},
+          {key: "inhalt", title: "Inhalt des geplanten Einkaufstraining"},
+          {key: "materialien", title: "geplante Materialien"},
+          {key: "weitereAnmerkungen", title: "weitere Anmerkungen"},
+        ],
+        planungLehrkueche:[
+          {key: "dauer", title: "Dauer der geplanten Lehrküche (in Minuten)"},
+          {key: "inhalt", title: "Inhalt der geplanten Lehrküche"},
+          {key: "materialien", title: "geplante Materialien"},
+          {key: "weitereAnmerkungen", title: "weitere Anmerkungen"},
+        ],
+        planungAndereInterventionsform:[
+          {key: "dauer", title: "Dauer (in Minuten)"},
+          {key: "inhalt", title: "Inhalt"},
+          {key: "materialien", title: "geplante Materialien"},
+          {key: "weitereAnmerkungen", title: "weitere Anmerkungen"},
         ],
         planung2:[
           {key: "WeitereBerufsgruppen", title:"Einbezug weiterer Berufsgruppen (Mulitdisziplinarität)"},
@@ -411,6 +532,42 @@
           {key:"inhalt", title:"Inhalt der Einzelberatung"},
           {key:"materialien", title:"verwendete Materialien"},
           {key:"ergebnis", title:"Ergebnis der Einzelberatung"},
+          {key:"probleme", title:"Probleme in der Umsetzung"},
+          {key:"anmerkungen", title:"weitere Anmerkungen"}
+        ],
+        gruppenschulung: [
+          {key:"datum", title:"Datum der Gruppenschulung"},
+          {key:"dauer", title:"Dauer der Gruppenschulung (in Minuten)"},
+          {key:"inhalt", title:"Inhalt der Gruppenschulung"},
+          {key:"materialien", title:"verwendete Materialien"},
+          {key:"ergebnis", title:"Ergebnis der Gruppenschulung"},
+          {key:"probleme", title:"Probleme in der Umsetzung"},
+          {key:"anmerkungen", title:"weitere Anmerkungen"}
+        ],
+        einkaufstraining: [
+          {key:"datum", title:"Datum des Einkaufstraining"},
+          {key:"dauer", title:"Dauer des Einkaufstraining (in Minuten)"},
+          {key:"inhalt", title:"Inhalt des Einkaufstraining"},
+          {key:"materialien", title:"verwendete Materialien"},
+          {key:"ergebnis", title:"Ergebnis des Einkaufstraining"},
+          {key:"probleme", title:"Probleme in der Umsetzung"},
+          {key:"anmerkungen", title:"weitere Anmerkungen"}
+        ],
+        lehrkueche: [
+          {key:"datum", title:"Datum der Lehrküche"},
+          {key:"dauer", title:"Dauer der Lehrküche (in Minuten)"},
+          {key:"inhalt", title:"Inhalt der Lehrküche"},
+          {key:"materialien", title:"verwendete Materialien"},
+          {key:"ergebnis", title:"Ergebnis der Lehrküche"},
+          {key:"probleme", title:"Probleme in der Umsetzung"},
+          {key:"anmerkungen", title:"weitere Anmerkungen"}
+        ],
+        andereInterventionsform: [
+          {key:"datum", title:"Datum"},
+          {key:"dauer", title:"Dauer der (in Minuten)"},
+          {key:"inhalt", title:"Inhalt"},
+          {key:"materialien", title:"verwendete Materialien"},
+          {key:"ergebnis", title:"Ergebnis"},
           {key:"probleme", title:"Probleme in der Umsetzung"},
           {key:"anmerkungen", title:"weitere Anmerkungen"}
         ],
@@ -578,10 +735,34 @@
             zieleIntervention.push(res.data.ZieleIntervention[i])
           }
         }
-        var zeitplanung = []
-        for(const i in res.data.planung.Zeitplanung) {
-          if(res.data.planung.Zeitplanung[i].dauerEinzelberatung != '' || res.data.planung.Zeitplanung[i].inhaltIntervention != '' || res.data.planung.Zeitplanung[i].materialien != '' || res.data.planung.Zeitplanung[i].weitereAnmerkungenInterventionPlanung != ''){
-            zeitplanung.push(res.data.planung.Zeitplanung[i])
+        var planungEinzelberatung = []
+        for(const i in res.data.planung.PlanungEinzelberatung) {
+          if(res.data.planung.PlanungEinzelberatung[i].dauer != '' || res.data.planung.PlanungEinzelberatung[i].inhalt != '' || res.data.planung.PlanungEinzelberatung[i].materialien != '' || res.data.planung.PlanungEinzelberatung[i].weitereAnmerkungen != ''){
+            planungEinzelberatung.push(res.data.planung.PlanungEinzelberatung[i])
+          }
+        }
+        var planungGruppenschulung = []
+        for(const i in res.data.planung.PlanungGruppenschulung) {
+          if(res.data.planung.PlanungGruppenschulung[i].dauer != '' || res.data.planung.PlanungGruppenschulung[i].inhalt != '' || res.data.planung.PlanungGruppenschulung[i].materialien != '' || res.data.planung.PlanungGruppenschulung[i].weitereAnmerkungen != ''){
+            planungGruppenschulung.push(res.data.planung.PlanungGruppenschulung[i])
+          }
+        }
+        var planungEinkaufstraining = []
+        for(const i in res.data.planung.PlanungEinkaufstraining) {
+          if(res.data.planung.PlanungEinkaufstraining[i].dauer != '' || res.data.planung.PlanungEinkaufstraining[i].inhalt != '' || res.data.planung.PlanungEinkaufstraining[i].materialien != '' || res.data.planung.PlanungEinkaufstraining[i].weitereAnmerkungen != ''){
+            planungEinkaufstraining.push(res.data.planung.PlanungEinkaufstraining[i])
+          }
+        }
+        var planungLehrkueche = []
+        for(const i in res.data.planung.PlanungLehrkueche) {
+          if(res.data.planung.PlanungLehrkueche[i].dauer != '' || res.data.planung.PlanungLehrkueche[i].inhalt != '' || res.data.planung.PlanungLehrkueche[i].materialien != '' || res.data.planung.PlanungLehrkueche[i].weitereAnmerkungen != ''){
+            planungLehrkueche.push(res.data.planung.PlanungLehrkueche[i])
+          }
+        }
+        var planungAndereInterventionsform = []
+        for(const i in res.data.planung.PlanungAndereInterventionsform) {
+          if(res.data.planung.PlanungAndereInterventionsform[i].dauer != '' || res.data.planung.PlanungAndereInterventionsform[i].inhalt != '' || res.data.planung.PlanungAndereInterventionsform[i].materialien != '' || res.data.planung.PlanungAndereInterventionsform[i].weitereAnmerkungen != ''){
+            planungAndereInterventionsform.push(res.data.planung.PlanungAndereInterventionsform[i])
           }
         }
         var monitoring = []
@@ -591,9 +772,33 @@
           }
         }
         var einzelberatung = []
-        for(const i in res.data.EntwicklungEinzelberatung) {
-          if(res.data.EntwicklungEinzelberatung[i].datum != '' || res.data.EntwicklungEinzelberatung[i].dauer != '' || res.data.EntwicklungEinzelberatung[i].inhalt != '' || res.data.EntwicklungEinzelberatung[i].materialien != '' || res.data.EntwicklungEinzelberatung[i].ergebnis != '' || res.data.EntwicklungEinzelberatung[i].probleme != '' || res.data.EntwicklungEinzelberatung[i].anmerkungen != ''){
-            einzelberatung.push(res.data.EntwicklungEinzelberatung[i])
+        for(const i in res.data.UmsetzungEinzelberatung) {
+          if(res.data.UmsetzungEinzelberatung[i].datum != '' || res.data.UmsetzungEinzelberatung[i].dauer != '' || res.data.UmsetzungEinzelberatung[i].inhalt != '' || res.data.UmsetzungEinzelberatung[i].materialien != '' || res.data.UmsetzungEinzelberatung[i].ergebnis != '' || res.data.UmsetzungEinzelberatung[i].probleme != '' || res.data.UmsetzungEinzelberatung[i].anmerkungen != ''){
+            einzelberatung.push(res.data.UmsetzungEinzelberatung[i])
+          }
+        }
+        var gruppenschulung = []
+        for(const i in res.data.UmsetzungGruppenschulung) {
+          if(res.data.UmsetzungGruppenschulung[i].datum != '' || res.data.UmsetzungGruppenschulung[i].dauer != '' || res.data.UmsetzungGruppenschulung[i].inhalt != '' || res.data.UmsetzungGruppenschulung[i].materialien != '' || res.data.UmsetzungGruppenschulung[i].ergebnis != '' || res.data.UmsetzungGruppenschulung[i].probleme != '' || res.data.UmsetzungGruppenschulung[i].anmerkungen != ''){
+            gruppenschulung.push(res.data.UmsetzungGruppenschulung[i])
+          }
+        }
+        var einkaufstraining = []
+        for(const i in res.data.UmsetzungEinkaufstraining) {
+          if(res.data.UmsetzungEinkaufstraining[i].datum != '' || res.data.UmsetzungEinkaufstraining[i].dauer != '' || res.data.UmsetzungEinkaufstraining[i].inhalt != '' || res.data.UmsetzungEinkaufstraining[i].materialien != '' || res.data.UmsetzungEinkaufstraining[i].ergebnis != '' || res.data.UmsetzungEinkaufstraining[i].probleme != '' || res.data.UmsetzungEinkaufstraining[i].anmerkungen != ''){
+            einkaufstraining.push(res.data.UmsetzungEinkaufstraining[i])
+          }
+        }
+        var lehrkueche = []
+        for(const i in res.data.UmsetzungLehrkueche) {
+          if(res.data.UmsetzungLehrkueche[i].datum != '' || res.data.UmsetzungLehrkueche[i].dauer != '' || res.data.UmsetzungLehrkueche[i].inhalt != '' || res.data.UmsetzungLehrkueche[i].materialien != '' || res.data.UmsetzungLehrkueche[i].ergebnis != '' || res.data.UmsetzungLehrkueche[i].probleme != '' || res.data.UmsetzungLehrkueche[i].anmerkungen != ''){
+            lehrkueche.push(res.data.UmsetzungLehrkueche[i])
+          }
+        }
+        var andereInterventionsform = []
+        for(const i in res.data.UmsetzungAndereInterventionsform) {
+          if(res.data.UmsetzungAndereInterventionsform[i].datum != '' || res.data.UmsetzungAndereInterventionsform[i].dauer != '' || res.data.UmsetzungAndereInterventionsform[i].inhalt != '' || res.data.UmsetzungAndereInterventionsform[i].materialien != '' || res.data.UmsetzungAndereInterventionsform[i].ergebnis != '' || res.data.UmsetzungAndereInterventionsform[i].probleme != '' || res.data.UmsetzungAndereInterventionsform[i].anmerkungen != ''){
+            andereInterventionsform.push(res.data.UmsetzungAndereInterventionsform[i])
           }
         }
         var zusatznahrung = []
@@ -626,9 +831,18 @@
         this.myPlanung = planung;
         this.myZieleKlient = zieleKlient;
         this.myZieleIntervention = zieleIntervention;
-        this.myZeitplanung = zeitplanung;
+        this.myPlanungEinzelberatung = planungEinzelberatung;
+        this.myPlanungGruppenschulung = planungGruppenschulung;
+        this.myPlanungEinkaufstraining = planungEinkaufstraining;
+        this.myPlanungLehrkueche = planungLehrkueche;
+        this.myPlanungAndereInterventionsform = planungAndereInterventionsform;
         this.myMonitoring = monitoring;
-        this.myEntwicklungEinzelberatung = einzelberatung;
+        this.myUmsetzungEinzelberatung = einzelberatung;
+        this.myUmsetzungGruppenschulung = gruppenschulung;
+        this.myUmsetzungEinkaufstraining = einkaufstraining;
+        this.myUmsetzungLehrkueche = lehrkueche;
+        this.myUmsetzungAndereInterventionsform = andereInterventionsform;
+        this.myInterventionsformAndere = res.data.planung.Interventionsform[1];
         this.myZusatznahrung = zusatznahrung;
         this.myEntwicklungMonitoring = entwicklungMonitoring;
         this.myEvaluationEntwicklungMonitoring = evaluationEntwicklungMonitoring;

@@ -266,13 +266,21 @@ export default {
       "weitereAnmerkungenInterventionform",
       "zeitraumIntervention",
       "frequenzInterventionen",
-      "zeitplanung",
+      "planungEinzelberatung",
+      "planungGruppenschulung",
+      "planungEinkaufstraining",
+      "planungLehrkueche",
+      "planungAndereInterventionsform",
       "weitereBerufsgruppen",
       "weitereBerufsgruppenAndere",
       "angehoerige",
       "weitereAnmerkungenInterventionNochmal",
       "monitoring",
       "einzelberatung",
+      "gruppenschulung",
+      "einkaufstraining",
+      "lehrkueche",
+      "andereInterventionsform",
       "entwicklungMonitoring",
     ]),
     ...mapGetters("p",[
@@ -454,14 +462,22 @@ export default {
             "WeitereAnmerkungenInterventionform": this.weitereAnmerkungenInterventionform,
             "ZeitraumIntervention": this.zeitraumIntervention,
             "FrequenzInterventionen": this.frequenzInterventionen,
-            "Zeitplanung": this.zeitplanung,
+            "PlanungEinzelberatung": this.planungEinzelberatung,
+            "PlanungGruppenschulung": this.planungGruppenschulung,
+            "PlanungEinkaufstraining": this.planungEinkaufstraining,
+            "PlanungLehrkueche": this.planungLehrkueche,
+            "PlanungAndereInterventionsform": this.planungAndereInterventionsform,
             "WeitereBerufsgruppen": [this.weitereBerufsgruppen, this.weitereBerufsgruppenAndere],
             "Angehoerige": this.angehoerige,
             "WeitereAnmerkungenInterventionNochmal": this.weitereAnmerkungenInterventionNochmal,
             "Monitoring": this.monitoring,
             "JoinMonitoring": this.joinMonitoring,
           },
-          "EntwicklungEinzelberatung": this.einzelberatung,
+          "UmsetzungEinzelberatung": this.einzelberatung,
+          "UmsetzungGruppenschulung": this.gruppenschulung,
+          "UmsetzungEinkaufstraining": this.einkaufstraining,
+          "UmsetzungLehrkueche": this.lehrkueche,
+          "UmsetzungAndereInterventionsform": this.andereInterventionsform,
           "Zusatznahrung": this.zusatznahrung,
           "EntwicklungZusatznahrung": this.zusatznahrungJa,
           "SonstigesUmsetung": this.sonstigesUmsetung,        
@@ -648,13 +664,21 @@ export default {
           this.$store.state.p.weitereAnmerkungenInterventionform = "";
           this.$store.state.p.zeitraumIntervention = "";
           this.$store.state.p.frequenzInterventionen = "";
-          this.$store.state.p.zeitplanung = [{dauerEinzelberatung: "",inhaltIntervention: "",materialien: "",weitereAnmerkungenInterventionPlanung: "",}];
+          this.$store.state.p.planungEinzelberatung = [{dauer: "",inhalt: "",materialien: "",weitereAnmerkungen: "",}];
+          this.$store.state.p.planungGruppenschulung = [{dauer: "",inhalt: "",materialien: "",weitereAnmerkungen: "",}];
+          this.$store.state.p.planungEinkaufstraining = [{dauer: "",inhalt: "",materialien: "",weitereAnmerkungen: "",}];
+          this.$store.state.p.planungLehrkueche = [{dauer: "",inhalt: "",materialien: "",weitereAnmerkungen: "",}];
+          this.$store.state.p.planungAndereInterventionsform = [{dauer: "",inhalt: "",materialien: "",weitereAnmerkungen: "",}];
           this.$store.state.p.weitereBerufsgruppen = [];
           this.$store.state.p.weitereBerufsgruppenAndere = "";
           this.$store.state.p.angehoerige = "";
           this.$store.state.p.weitereAnmerkungenInterventionNochmal = "";
           this.$store.state.p.monitoring = [[{title:"", input:true},{title:"", input:true},{button:true}]];
           this.$store.state.p.einzelberatung = [{datum: "",dauer:"",inhalt: "",materialien: "",ergebnis:"",probleme:"",anmerkungen:"",}];
+          this.$store.state.p.gruppenschulung = [{datum: "",dauer:"",inhalt: "",materialien: "",ergebnis:"",probleme:"",anmerkungen:"",}];
+          this.$store.state.p.einkaufstraining = [{datum: "",dauer:"",inhalt: "",materialien: "",ergebnis:"",probleme:"",anmerkungen:"",}];
+          this.$store.state.p.lehrkueche = [{datum: "",dauer:"",inhalt: "",materialien: "",ergebnis:"",probleme:"",anmerkungen:"",}];
+          this.$store.state.p.andereInterventionsform = [{datum: "",dauer:"",inhalt: "",materialien: "",ergebnis:"",probleme:"",anmerkungen:"",}];
           this.$store.state.u.zusatznahrung = "";
           this.$store.state.u.zusatznahrungJa = [{datum: "",produktbezeichnung:"",verzehrshaeufigkeit:"",menge:""}];
           this.$store.state.u.sonstigesUmsetung = "";
@@ -834,14 +858,22 @@ export default {
             "WeitereAnmerkungenInterventionform": this.weitereAnmerkungenInterventionform,
             "ZeitraumIntervention": this.zeitraumIntervention,
             "FrequenzInterventionen": this.frequenzInterventionen,
-            "Zeitplanung": this.zeitplanung,
+            "PlanungEinzelberatung": this.planungEinzelberatung,
+            "PlanungGruppenschulung": this.planungGruppenschulung,
+            "PlanungEinkaufstraining": this.planungEinkaufstraining,
+            "PlanungLehrkueche": this.planungLehrkueche,
+            "PlanungAndereInterventionsform": this.planungAndereInterventionsform,
             "WeitereBerufsgruppen": [this.weitereBerufsgruppen, this.weitereBerufsgruppenAndere],
             "Angehoerige": this.angehoerige,
             "WeitereAnmerkungenInterventionNochmal": this.weitereAnmerkungenInterventionNochmal,
             "Monitoring": this.monitoring,
             "JoinMonitoring": this.joinMonitoring,
           },
-          "EntwicklungEinzelberatung": this.einzelberatung,
+          "UmsetzungEinzelberatung": this.einzelberatung,
+          "UmsetzungGruppenschulung": this.gruppenschulung,
+          "UmsetzungEinkaufstraining": this.einkaufstraining,
+          "UmsetzungLehrkueche": this.lehrkueche,
+          "UmsetzungAndereInterventionsform": this.andereInterventionsform,
           "Zusatznahrung": this.zusatznahrung,
           "EntwicklungZusatznahrung": this.zusatznahrungJa,
           "SonstigesUmsetung": this.sonstigesUmsetung,        

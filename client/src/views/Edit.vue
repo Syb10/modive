@@ -257,14 +257,22 @@ import {navMixin} from "../mixins/navMixin.js";
         this.$store.state.p.weitereAnmerkungenInterventionform = res.data.planung.WeitereAnmerkungenInterventionform;
         this.$store.state.p.zeitraumIntervention = res.data.planung.ZeitraumIntervention;
         this.$store.state.p.frequenzInterventionen = res.data.planung.FrequenzInterventionen;
-        this.$store.state.p.zeitplanung = res.data.planung.Zeitplanung;
+        this.$store.state.p.planungEinzelberatung = res.data.planung.PlanungEinzelberatung;
+        this.$store.state.p.planungGruppenschulung = res.data.planung.PlanungGruppenschulung;
+        this.$store.state.p.planungEinkaufstraining = res.data.planung.PlanungEinkaufstraining;
+        this.$store.state.p.planungLehrkueche = res.data.planung.PlanungLehrkueche;
+        this.$store.state.p.planungAndereInterventionsform = res.data.planung.PlanungAndereInterventionsform;
         this.$store.state.p.weitereBerufsgruppen = res.data.planung.WeitereBerufsgruppen[0];
         this.$store.state.p.weitereBerufsgruppenAndere = res.data.planung.WeitereBerufsgruppen[1];
         this.$store.state.p.angehoerige = res.data.planung.Angehoerige;
         this.$store.state.p.weitereAnmerkungenInterventionNochmal = res.data.planung.WeitereAnmerkungenInterventionNochmal;
         this.$store.state.p.monitoring = res.data.planung.Monitoring;
 
-        this.$store.state.p.einzelberatung = res.data.EntwicklungEinzelberatung;
+        this.$store.state.p.einzelberatung = res.data.UmsetzungEinzelberatung;
+        this.$store.state.p.gruppenschulung = res.data.UmsetzungGruppenschulung;
+        this.$store.state.p.einkaufstraining = res.data.UmsetzungEinkaufstraining;
+        this.$store.state.p.lehrkueche = res.data.UmsetzungLehrkueche;
+        this.$store.state.p.andereInterventionsform = res.data.UmsetzungAndereInterventionsform;
         this.$store.state.u.zusatznahrung = res.data.Zusatznahrung;
         this.$store.state.u.zusatznahrungJa = res.data.EntwicklungZusatznahrung;
         this.$store.state.u.sonstigesUmsetung = res.data.SonstigesUmsetung;        
@@ -467,13 +475,21 @@ import {navMixin} from "../mixins/navMixin.js";
         "weitereAnmerkungenInterventionform",
         "zeitraumIntervention",
         "frequenzInterventionen",
-        "zeitplanung",
+        "planungEinzelberatung",
+        "planungGruppenschulung",
+        "planungEinkaufstraining",
+        "planungLehrkueche",
+        "planungAndereInterventionsform",
         "weitereBerufsgruppen",
         "weitereBerufsgruppenAndere",
         "angehoerige",
         "weitereAnmerkungenInterventionNochmal",
         "monitoring",
         "einzelberatung",
+        "gruppenschulung",
+        "einkaufstraining",
+        "lehrkueche",
+        "andereInterventionsform",
         "entwicklungMonitoring",
       ]),
       ...mapGetters("p",[
@@ -654,14 +670,22 @@ import {navMixin} from "../mixins/navMixin.js";
             "WeitereAnmerkungenInterventionform": this.weitereAnmerkungenInterventionform,
             "ZeitraumIntervention": this.zeitraumIntervention,
             "FrequenzInterventionen": this.frequenzInterventionen,
-            "Zeitplanung": this.zeitplanung,
+            "PlanungEinzelberatung": this.planungEinzelberatung,
+            "PlanungGruppenschulung": this.planungGruppenschulung,
+            "PlanungEinkaufstraining": this.planungEinkaufstraining,
+            "PlanungLehrkueche": this.planungLehrkueche,
+            "PlanungAndereInterventionsform": this.planungAndereInterventionsform,
             "WeitereBerufsgruppen": [this.weitereBerufsgruppen, this.weitereBerufsgruppenAndere],
             "Angehoerige": this.angehoerige,
             "WeitereAnmerkungenInterventionNochmal": this.weitereAnmerkungenInterventionNochmal,
             "Monitoring": this.monitoring,
             "JoinMonitoring": this.joinMonitoring,
           },
-          "EntwicklungEinzelberatung": this.einzelberatung,
+          "UmsetzungEinzelberatung": this.einzelberatung,
+          "UmsetzungGruppenschulung": this.gruppenschulung,
+          "UmsetzungEinkaufstraining": this.einkaufstraining,
+          "UmsetzungLehrkueche": this.lehrkueche,
+          "UmsetzungAndereInterventionsform": this.andereInterventionsform,
           "Zusatznahrung": this.zusatznahrung,
           "EntwicklungZusatznahrung": this.zusatznahrungJa,
           "SonstigesUmsetung": this.sonstigesUmsetung,        
@@ -846,13 +870,21 @@ import {navMixin} from "../mixins/navMixin.js";
           this.$store.state.p.weitereAnmerkungenInterventionform = "";
           this.$store.state.p.zeitraumIntervention = "";
           this.$store.state.p.frequenzInterventionen = "";
-          this.$store.state.p.zeitplanung = [{dauerEinzelberatung: "",inhaltIntervention: "",materialien: "",weitereAnmerkungenInterventionPlanung: "",}];
+          this.$store.state.p.planungEinzelberatung = [{dauer: "",inhalt: "",materialien: "",weitereAnmerkungen: "",}];
+          this.$store.state.p.planungGruppenschulung = [{dauer: "",inhalt: "",materialien: "",weitereAnmerkungen: "",}];
+          this.$store.state.p.planungEinkaufstraining = [{dauer: "",inhalt: "",materialien: "",weitereAnmerkungen: "",}];
+          this.$store.state.p.planungLehrkueche = [{dauer: "",inhalt: "",materialien: "",weitereAnmerkungen: "",}];
+          this.$store.state.p.planungAndereInterventionsform = [{dauer: "",inhalt: "",materialien: "",weitereAnmerkungen: "",}];
           this.$store.state.p.weitereBerufsgruppen = [];
           this.$store.state.p.weitereBerufsgruppenAndere = "";
           this.$store.state.p.angehoerige = "";
           this.$store.state.p.weitereAnmerkungenInterventionNochmal = "";
           this.$store.state.p.monitoring = [[{title:"", input:true},{title:"", input:true},{button:true}]];
           this.$store.state.p.einzelberatung = [{datum: "",dauer:"",inhalt: "",materialien: "",ergebnis:"",probleme:"",anmerkungen:"",}];
+          this.$store.state.p.gruppenschulung = [{datum: "",dauer:"",inhalt: "",materialien: "",ergebnis:"",probleme:"",anmerkungen:"",}];
+          this.$store.state.p.einkaufstraining = [{datum: "",dauer:"",inhalt: "",materialien: "",ergebnis:"",probleme:"",anmerkungen:"",}];
+          this.$store.state.p.lehrkueche = [{datum: "",dauer:"",inhalt: "",materialien: "",ergebnis:"",probleme:"",anmerkungen:"",}];
+          this.$store.state.p.andereInterventionsform = [{datum: "",dauer:"",inhalt: "",materialien: "",ergebnis:"",probleme:"",anmerkungen:"",}];
           this.$store.state.u.zusatznahrung = "";
           this.$store.state.u.zusatznahrungJa = [{datum: "",produktbezeichnung:"",verzehrshaeufigkeit:"",menge:""}];
           this.$store.state.u.sonstigesUmsetung = "";
@@ -1024,14 +1056,22 @@ import {navMixin} from "../mixins/navMixin.js";
             "WeitereAnmerkungenInterventionform": this.weitereAnmerkungenInterventionform,
             "ZeitraumIntervention": this.zeitraumIntervention,
             "FrequenzInterventionen": this.frequenzInterventionen,
-            "Zeitplanung": this.zeitplanung,
+            "PlanungEinzelberatung": this.planungEinzelberatung,
+            "PlanungGruppenschulung": this.planungGruppenschulung,
+            "PlanungEinkaufstraining": this.planungEinkaufstraining,
+            "PlanungLehrkueche": this.planungLehrkueche,
+            "PlanungAndereInterventionsform": this.planungAndereInterventionsform,
             "WeitereBerufsgruppen": [this.weitereBerufsgruppen, this.weitereBerufsgruppenAndere],
             "Angehoerige": this.angehoerige,
             "WeitereAnmerkungenInterventionNochmal": this.weitereAnmerkungenInterventionNochmal,
             "Monitoring": this.monitoring,
             "JoinMonitoring": this.joinMonitoring,
           },
-          "EntwicklungEinzelberatung": this.einzelberatung,
+          "UmsetzungEinzelberatung": this.einzelberatung,
+          "UmsetzungGruppenschulung": this.gruppenschulung,
+          "UmsetzungEinkaufstraining": this.einkaufstraining,
+          "UmsetzungLehrkueche": this.lehrkueche,
+          "UmsetzungAndereInterventionsform": this.andereInterventionsform,
           "Zusatznahrung": this.zusatznahrung,
           "EntwicklungZusatznahrung": this.zusatznahrungJa,
           "SonstigesUmsetung": this.sonstigesUmsetung,        

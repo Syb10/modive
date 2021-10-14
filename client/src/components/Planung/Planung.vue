@@ -78,7 +78,41 @@
       :content="{ title: 'Frequenz der Interventionen', id: 'frequenzInterventionen', type:'text', color:'planungColor', border:'planungBorder' }"
       :style="marginSmaller"
     /> 
-    <PlanungTermine v-if="/\bEinzelberatung\b/.test(interventionsform)"/>
+    <PlanungTermine v-if="/\bEinzelberatung\b/.test(interventionsform)"
+      :title="'Einzelberatung'"
+      :value="planungEinzelberatung"
+      :addNewRow="addNewRowPlanungEinzelberatung"
+      :deleteRow="deleteRowPlanungEinzelberatung"
+      :update="updateEinzelberatung"
+    />
+    <PlanungTermine v-if="/\bGruppenschulung\b/.test(interventionsform)"
+      :title="'Gruppenschulung'"
+      :value="planungGruppenschulung"
+      :addNewRow="addNewRowPlanungGruppenschulung"
+      :deleteRow="deleteRowPlanungGruppenschulung"
+      :update="updateGruppenschulung"
+    />
+    <PlanungTermine v-if="/\bEinkaufstraining\b/.test(interventionsform)"
+      :title="'Einkaufstraining'"
+      :value="planungEinkaufstraining"
+      :addNewRow="addNewRowPlanungEinkaufstraining"
+      :deleteRow="deleteRowPlanungEinkaufstraining"
+      :update="updateEinkaufstraining"
+    />
+    <PlanungTermine v-if="/\bLehrküche\b/.test(interventionsform)"
+      :title="'Lehrküche'"
+      :value="planungLehrkueche"
+      :addNewRow="addNewRowPlanungLehrkueche"
+      :deleteRow="deleteRowPlanungLehrkueche"
+      :update="updateLehrkueche"
+    />
+    <PlanungTermine v-if="interventionsformAndere"
+      :title="interventionsformAndere"
+      :value="planungAndereInterventionsform"
+      :addNewRow="addNewRowPlanungAndereInterventionsform"
+      :deleteRow="deleteRowPlanungAndereInterventionsform"
+      :update="updateAndereInterventionsform"
+    />
     <CheckboxForm
       :checkboxs="[
         {title:'Ärzt*innen', id:'arzt'},
@@ -130,7 +164,7 @@ import RadioTableDynamic from "../RadioTableDynamic.vue";
 import RadioForm from "../RadioForm.vue";
 import Prio from "./Prio.vue";
 import PlanungTermine from "./PlanungTermine.vue";
-import {mapMutations} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
   export default {
     name:"planung",
@@ -154,6 +188,13 @@ import {mapMutations} from "vuex";
       }
     },
     computed: {
+      ...mapState("p",[
+        "planungEinzelberatung",
+        "planungGruppenschulung",
+        "planungEinkaufstraining",
+        "planungLehrkueche",
+        "planungAndereInterventionsform",
+      ]),
       zieleKlient(){
         return this.$store.state.p.zieleKlient
       },
@@ -258,6 +299,21 @@ import {mapMutations} from "vuex";
         "deleteZielKlient",
         "addNewZielIntervention",
         "deleteZielIntervention",
+        "addNewRowPlanungEinzelberatung",
+        "deleteRowPlanungEinzelberatung",
+        "updateEinzelberatung",
+        "addNewRowPlanungGruppenschulung",
+        "deleteRowPlanungGruppenschulung",
+        "updateGruppenschulung",
+        "addNewRowPlanungEinkaufstraining",
+        "deleteRowPlanungEinkaufstraining",
+        "updateEinkaufstraining",
+        "addNewRowPlanungLehrkueche",
+        "deleteRowPlanungLehrkueche",
+        "updateLehrkueche",
+        "addNewRowPlanungAndereInterventionsform",
+        "deleteRowPlanungAndereInterventionsform",
+        "updateAndereInterventionsform",
       ]),
     },
   }
