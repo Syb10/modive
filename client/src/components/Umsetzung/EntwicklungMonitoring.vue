@@ -14,9 +14,9 @@
             :content="{ title: 'Wert', id: 'ergebnisse'+indexI+index, type:'text', color:'umsetzungColor', border:'umsetzungBorder'}"
             :style="marginSmaller"
           />
-          <button class="btn btn-redlight mb-3 " @click.prevent="deleteRow({indexI:indexI, index: index})"><i class="fa fa-trash"></i> Datum löschen</button> 
+          <button class="btn btn-redlight mb-3 " @click.prevent="deleteRow({indexI:indexI, index: index})"><i class="fa fa-trash"></i> Eintrag löschen</button> 
         </div>
-        <button class="btn btn-umsetzung mb-5 " @click.prevent="addNewRow(indexI)"><i class="fa fa-plus-circle"></i> Datum hinzufügen</button> 
+        <button class="btn btn-umsetzung mb-5 " @click.prevent="addNewRow(indexI)"><i class="fa fa-plus-circle"></i> Eintrag hinzufügen</button> 
       </div>
     </div>  
   </div>

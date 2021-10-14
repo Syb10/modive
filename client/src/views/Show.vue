@@ -467,9 +467,9 @@
           {key:"WhoInteressieren", title:"...war der Alltag des/der Klient*in voller Dinge, die er/se interessieren"},
         ],
         assessment4:[
-          {key: "Koerpergroesse", title:"Körpergröße"},
-          {key: "Koerpergewicht", title:"Körpergewicht"},
-          {key: "Bmi", title:"BMI"},
+          {key: "Koerpergroesse", title:"Körpergröße (in m)"},
+          {key: "Koerpergewicht", title:"Körpergewicht (in kg)"},
+          {key: "Bmi", title:"BMI (in kg/m²)"},
           {key: "Taillenumfang", title:"Taillenumfang"},
           {key: "Hautfaltendicke", title:"Hautfaltendicke"},
           {key: "FettfreieMasse", title:"fettfreie Masse (FFM)"},
