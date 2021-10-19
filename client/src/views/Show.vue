@@ -1,5 +1,5 @@
 <template>
-  <p @click.prevent="back" class="mb-5"><i class="fa fa-arrow-left"></i> zurück</p>
+  <p @click.prevent="resetKlient" class="mb-5"><i class="fa fa-arrow-left"></i> zurück</p>
   <p class="float-right"> erstellt am: {{changeDate(patient.createdAt)}} {{changeTime(patient.createdAt)}} / zuletzt bearbeitet am: {{changeDate(patient.updatedAt)}} {{changeTime(patient.updatedAt)}}</p>
   <h3> {{ patient.Nachname }}, {{ patient.Vorname }} </h3>
   <h5> Geburtsdatum: {{  changeDate(patient.Geburtsdatum) }}</h5>
