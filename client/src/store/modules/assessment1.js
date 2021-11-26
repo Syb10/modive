@@ -45,6 +45,7 @@ export default {
     weitereAnmerkungenZumGesundheitszustandDerFamilie: "",
     schwangerschaft: "",
     stillzeit: "",   
+    uploadAssessment1:[],
   },
   mutations: {
     adresse(state, value) {
@@ -178,6 +179,9 @@ export default {
     },
     stillzeit(state, value) {
       state.stillzeit = value
+    },
+    uploadAssessment1(state, value) {
+      state.uploadAssessment1 = value
     },
   }
 }

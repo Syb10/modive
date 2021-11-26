@@ -21,6 +21,7 @@ export default {
     problemeNahrungsaufnahme: "",
     appetitBeeintraechtigung: "",
     weitereKoerperlicheBefunde: "",
+    uploadAssessment4: [],
   },
   getters:{
     bmi(state) {
@@ -89,6 +90,9 @@ export default {
     },
     weitereKoerperlicheBefunde(state, value) {
       state.weitereKoerperlicheBefunde = value
+    },
+    uploadAssessment4(state, value) {
+      state.uploadAssessment4 = value
     },
   }
 }

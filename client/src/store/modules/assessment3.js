@@ -43,6 +43,8 @@ export default {
     whoAktiv: 0,
     whoAusgeruht: 0,
     whoInteressieren: 0,
+    uploadLebensqualitaet: [],
+    uploadAssessment3: [], 
   },
   getters: {
     whoWert(state) {
@@ -178,6 +180,12 @@ export default {
     },
     whoInteressieren(state, value) {
       state.whoInteressieren = value
+    },
+    uploadLebensqualitaet(state, value){
+      state.uploadLebensqualitaet = value
+    },
+    uploadAssessment3(state, value) {
+      state.uploadAssessment3 = value
     },
   }
 }

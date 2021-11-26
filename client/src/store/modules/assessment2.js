@@ -1,6 +1,7 @@
 export default {
   namespaced: true,
   state: {
+    uploadErnahrungsprotokoll: [],
     anzahlRecall: 0,
     recall:[],
     weitereGetraenke: "",
@@ -65,8 +66,12 @@ export default {
     enteraleErnaehrungJa: "",
     medikamente: "",
     medikamenteJa: "",
+    uploadAssessment2:[],
   },
   mutations: {
+    uploadErnahrungsprotokoll(state, value){
+      state.uploadErnahrungsprotokoll = value
+    },
     anzahlRecall(state, value) {
       state.anzahlRecall = value
     },
@@ -248,6 +253,9 @@ export default {
     },
     medikamenteJa(state, value) {
       state.medikamenteJa = value
+    },
+    uploadAssessment2(state, value) {
+      state.uploadAssessment2 = value
     },
   }
 }

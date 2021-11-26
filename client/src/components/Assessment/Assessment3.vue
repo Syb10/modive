@@ -301,7 +301,15 @@
       </table>
       <p><b>Lebensqualität: {{whoWert}} Punkte ({{whoProzent}}%) <i class="fa fa-arrow-right"></i> {{whoAuswertung}}</b></p>
       <p>Upload-Bereich</p>
-      <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in Verhalten und Umfeld (Behavioral-Environmental)</p>
+      <UploadFile
+        v-model="uploadLebensqualitaet"
+        :color ="'btn-gold'"
+      />
+      <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in Verhalten und Umfeld</p>
+      <UploadFile
+        v-model="uploadAssessment3"
+        :color ="'btn-gold'"
+      />
     </div>
 </template>
 
@@ -312,6 +320,7 @@ import InputForm from "../InputForm.vue";
 import TextareaForm from "../TextareaForm.vue";
 import RadioTable from "../RadioTable.vue";
 import RadioTableDynamic from "../RadioTableDynamic.vue";
+import UploadFile from "../UploadFile.vue";
 import {mapGetters} from "vuex";
 export default {
     name: "assessment3",
@@ -322,6 +331,7 @@ export default {
       TextareaForm,
       RadioTable,
       RadioTableDynamic,
+      UploadFile,
     },
     data() {
       return {
@@ -710,6 +720,22 @@ export default {
         },
         set(value) {
           this.$store.commit("a3/whoInteressieren", value)
+        }
+      },
+      uploadLebensqualitaet: {
+        get() {
+          return this.$store.state.a3.uploadLebensqualitaet
+        },
+        set(value) {
+          this.$store.commit("a3/uploadLebensqualitaet", value)
+        }
+      },
+      uploadAssessment3: {
+        get() {
+          return this.$store.state.a3.uploadAssessment3
+        },
+        set(value) {
+          this.$store.commit("a3/uploadAssessment3", value)
         }
       },
       ...mapGetters("a3",[

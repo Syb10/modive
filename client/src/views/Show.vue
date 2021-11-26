@@ -11,10 +11,18 @@
           {{assessment1[myIndex].title}}: {{value}}
         </li>
       </div>
-    </div>  
+    </div>
+    <li v-if="!isObjectEmpty(myUploadAssessment1)">weitere Dokumente:</li> 
+    <ShowUploadFile
+      v-model="myUploadAssessment1"
+    />
   </ul>
   <p class="assessmentAspekt">Ernährungsgewohnheiten</p>
   <ul>
+    <li v-if="!isObjectEmpty(myUploadErnahrungsprotokoll)">Ernährungsprotokolle und weitere Ernährungserhebungsmethoden:</li> 
+    <ShowUploadFile
+      v-model="myUploadErnahrungsprotokoll"
+    />
     <li v-if="!isObjectEmpty(myRecall)">24-h-Recall:</li>
     <div  v-for="(item, indexI) in myRecall" :key="indexI">
       {{changeDate(item[0].datum)}}
@@ -66,7 +74,11 @@
       <div v-for="(value, key, index) in myAssessment2" :key="index">
         <li v-if="key === mykey.key">{{assessment22[myIndex].title}}: {{value}}</li>
       </div>
-    </div>  
+    </div>
+    <li v-if="!isObjectEmpty(myUploadAssessment2)">weitere Dokumente:</li> 
+    <ShowUploadFile
+      v-model="myUploadAssessment2"
+    />  
   </ul>
   <p class="assessmentAspekt">Verhalten und Umfeld</p>
   <ul>
@@ -106,7 +118,15 @@
         </div>
       </div>
       <li>Lebensqualität: {{myAssessment3.WhoWert}} Punkte ({{myAssessment3.WhoProzent}}%) <i class="fa fa-arrow-right"></i> {{myAssessment3.WhoAuswertung}}</li>
-    </ul>  
+    </ul>
+    <li v-if="!isObjectEmpty(myUploadLebensqualitaet)">Dokumente zur Lebensqualität:</li> 
+    <ShowUploadFile
+      v-model="myUploadLebensqualitaet"
+    /> 
+    <li v-if="!isObjectEmpty(myUploadAssessment3)">weitere Dokumente:</li> 
+    <ShowUploadFile
+      v-model="myUploadAssessment3"
+    />   
   </ul>
   <p class="assessmentAspekt">Klinischer Status</p>
   <ul>
@@ -114,7 +134,11 @@
       <div v-for="(value, key) in myAssessment4" :key="key">
         <li v-show="key === mykey.key">{{assessment4[myIndex].title}}: {{value}}</li>
       </div>
-    </div>  
+    </div>
+    <li v-if="!isObjectEmpty(myUploadAssessment4)">weitere Dokumente:</li> 
+    <ShowUploadFile
+      v-model="myUploadAssessment4"
+    />  
   </ul>
   <p class="diagnosestellungAspekt">Diagnosestellung</p>
   <ul>
@@ -319,23 +343,33 @@
   import axios from "axios"
   import moment from 'moment';
   import {navMixin} from "../mixins/navMixin.js";
+  import ShowUploadFile from "../components/ShowUploadFile.vue";
 
   export default {
     name: "Show",
     mixins:[navMixin],
+    components:{
+      ShowUploadFile,
+    },
     data () {
       return {
         patient: [],
         myAssessment1: [],
+        myUploadAssessment1:[],
         myAssessment2: [],
+        myUploadErnahrungsprotokoll:[],
         myRecall: [],
         myBilanzierung: [],
         myVitamine: [],
         myMineralstoffe: [],
+        myUploadAssessment2:[],
         myAssessment3: [],
         myWichtigkeit: [],
         myWichtigkeitAndere:[],
+        myUploadLebensqualitaet:[],
+        myUploadAssessment3:[],
         myAssessment4: [],
+        myUploadAssessment4:[],
         myPlanung:[],
         myZieleKlient: [],
         myZieleIntervention: [],
@@ -819,15 +853,21 @@
         }
         this.patient = res.data;
         this.myAssessment1 = assessment1;
+        this.myUploadAssessment1 = res.data.assessment1.UploadAssessment1;
         this.myAssessment2 = assessment2;
+        this.myUploadErnahrungsprotokoll = res.data.assessment2.UploadErnahrungsprotokoll;
         this.myRecall = res.data.Recall;
         this.myBilanzierung = bilanzierung;
         this.myVitamine = vitamine;
         this.myMineralstoffe = mineralstoffe;
+        this.myUploadAssessment2 = res.data.assessment2.UploadAssessment2;
         this.myAssessment3 = assessment3;
         this.myWichtigkeit = wichtigkeit;
         this.myWichtigkeitAndere = wichtigkeitAndere;
+        this.myUploadLebensqualitaet = res.data.assessment3.UploadLebensqualitaet;
+        this.myUploadAssessment3 = res.data.assessment3.UploadAssessment3;
         this.myAssessment4 = assessment4;
+        this.myUploadAssessment4 = res.data.assessment4.UploadAssessment4;
         this.myPlanung = planung;
         this.myZieleKlient = zieleKlient;
         this.myZieleIntervention = zieleIntervention;

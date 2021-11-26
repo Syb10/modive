@@ -5,6 +5,10 @@
       <button @click.prevent="scrollMeTo('kostformMedikamente')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Diätetische Kostform und Medikamente</button>
       <button @click.prevent="scrollMeTo('upload')" class="btn mt-1 mr-1 tab-button tab-button-assessment">Upload-Bereich für weitere Dokumente</button>
       <p class="assessmentAspekt mt-5" ref="ernaehrungsprotokolle">Upload-Bereich für Ernährungsprotokolle und weitere Ernährungserhebungsmethoden</p>
+      <UploadFile
+        v-model="uploadErnahrungsprotokoll"
+        :color ="'btn-gold'"
+      />
       <p class="assessmentAspekt mt-5" ref="ernaehrungsgewohnheiten">Essgewohnheiten</p>
       <label>
         24-h-Recall
@@ -330,7 +334,11 @@
           :myTipp="'z.B. verschreibungspflichtige, rezeptfreie Medikamente, Nahrungsergänzungsmittel und Pflanzenbestandteile, Komplementär-/Alternativmedizin'"
         />
       </div>
-      <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in Ernährungsgewohnheiten (Diet History)</p>
+      <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in Ernährungsgewohnheiten</p>
+      <UploadFile
+        v-model="uploadAssessment2"
+        :color ="'btn-gold'"
+      />
     </div>
 </template>
 
@@ -343,6 +351,7 @@ import CheckboxForm from "../CheckboxForm.vue";
 import RadioTable from "../RadioTable.vue";
 import Vitamine from "../Vitamine.vue";
 import Mineralstoffe from "../Mineralstoffe.vue";
+import UploadFile from "../UploadFile.vue";
 
 export default {
     name: "assessment2",
@@ -498,8 +507,17 @@ export default {
       RadioTable,
       Vitamine,
       Mineralstoffe,
+      UploadFile,
     },  
     computed: {
+      uploadErnahrungsprotokoll:{
+        get() {
+          return this.$store.state.a2.uploadErnahrungsprotokoll
+        },
+        set(value) {
+          this.$store.commit("a2/uploadErnahrungsprotokoll", value)
+        }
+      },
       anzahlRecall:{
         get() {
           return this.$store.state.a2.anzahlRecall
@@ -844,6 +862,14 @@ export default {
           this.$store.commit("a2/medikamenteJa", value)
         }
       },
+      uploadAssessment2: {
+        get() {
+          return this.$store.state.a2.uploadAssessment2
+        },
+        set(value) {
+          this.$store.commit("a2/uploadAssessment2", value)
+        }
+      }
     },
     methods: {
       showBilanzierung() {

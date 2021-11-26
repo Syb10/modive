@@ -1,7 +1,7 @@
 <template>
   <div>
     <p @click.prevent="resetKlient" class="mb-5"><i class="fa fa-arrow-left"></i> zurück</p>
-    <form>
+    <form enctype="multipart/form-data">
       <div>
         <h4>Bearbeitung von Klient*in {{nachname}}, {{vorname}}</h4> 
         <div>
@@ -131,7 +131,9 @@ import {navMixin} from "../mixins/navMixin.js";
         this.$store.state.a1.weitereAnmerkungenZumGesundheitszustandDerFamilie = res.data.assessment1.WeitereAnmerkungenZumGesundheitszustandDerFamilie;
         this.$store.state.a1.schwangerschaft = res.data.assessment1.Schwangerschaft;
         this.$store.state.a1.stillzeit = res.data.assessment1.Stillzeit;
+        this.$store.state.a1.uploadAssessment1 = res.data.assessment1.UploadAssessment1;
 
+        this.$store.state.a2.uploadErnahrungsprotokoll = res.data.assessment2.UploadErnahrungsprotokoll;
         this.$store.state.a2.anzahlRecall = res.data.anzahlRecall;
         this.$store.state.a2.recall = res.data.Recall;
         this.$store.state.a2.weitereGetraenke = res.data.assessment2.weitereGetraenke;
@@ -141,6 +143,7 @@ import {navMixin} from "../mixins/navMixin.js";
         this.$store.state.a2.mahlzeitenZusaetzlich = res.data.assessment2.MahlzeitenZusaetzlich[0];
         this.$store.state.a2.mahlzeitenZusaetzlichAndere = res.data.assessment2.MahlzeitenZusaetzlich[1];
         this.$store.state.a2.weitereAnmerkungenRecall = res.data.assessment2.weitereAnmerkungenRecall;
+        this.$store.state.a2.uploadAssessment2 = res.data.assessment2.UploadAssessment2;
 
         this.$store.state.a2.getraenke = res.data.bilanzierung.Getraenke;
         this.$store.state.a2.gemuese = res.data.bilanzierung.Gemuese;
@@ -217,6 +220,8 @@ import {navMixin} from "../mixins/navMixin.js";
         this.$store.state.a3.whoAktiv = res.data.assessment3.WhoAktiv;
         this.$store.state.a3.whoAusgeruht = res.data.assessment3.WhoAusgeruht;
         this.$store.state.a3.whoInteressieren = res.data.assessment3.WhoInteressieren;
+        this.$store.state.a3.uploadLebensqualitaet = res.data.assessment3.UploadLebensqualitaet;
+        this.$store.state.a3.uploadAssessment3 = res.data.assessment3.UploadAssessment3;
 
         this.$store.state.a4.koerpergroesse = res.data.assessment4.Koerpergroesse;
         this.$store.state.a4.koerpergewicht = res.data.assessment4.Koerpergewicht;
@@ -238,6 +243,7 @@ import {navMixin} from "../mixins/navMixin.js";
         this.$store.state.a4.problemeNahrungsaufnahme = res.data.assessment4.ProblemeNahrungsaufnahme;
         this.$store.state.a4.appetitBeeintraechtigung = res.data.assessment4.AppetitBeeintraechtigung;
         this.$store.state.a4.weitereKoerperlicheBefunde = res.data.assessment4.WeitereKoerperlicheBefunde;
+        this.$store.state.a4.uploadAssessment4 = res.data.assessment4.UploadAssessment4;
 
         this.$store.state.d.diagnosestellung = res.data.Diagnosestellung;
         this.$store.state.d.pasr = res.data.PASR;

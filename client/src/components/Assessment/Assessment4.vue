@@ -126,7 +126,11 @@
         :isTipp="true"
         :myTipp="'z.B. Stuhlgang, Urin, Atmung'"
       />
-       <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in Klinischer Status (Clinical Status)</p>  
+       <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in Klinischer Status</p>
+       <UploadFile
+        v-model="uploadAssessment4"
+        :color ="'btn-gold'"
+      />
     </div>
 </template>
 
@@ -135,6 +139,7 @@ import InputForm from "../InputForm.vue";
 import TextareaForm from "../TextareaForm.vue";
 import RadioForm from "../RadioForm.vue";
 import CheckboxForm from "../CheckboxForm.vue";
+import UploadFile from "../UploadFile.vue";
 import {mapGetters} from "vuex";
 
 export default {
@@ -154,6 +159,7 @@ export default {
         TextareaForm,
         RadioForm,
         CheckboxForm,
+        UploadFile,
     },
     computed: {
       ...mapGetters("a4",[
@@ -317,6 +323,14 @@ export default {
         },
         set(value) {
           this.$store.commit("a4/weitereKoerperlicheBefunde", value)
+        }
+      },
+      uploadAssessment4: {
+        get() {
+          return this.$store.state.a4.uploadAssessment4
+        },
+        set(value) {
+          this.$store.commit("a4/uploadAssessment4", value)
         }
       },
     },

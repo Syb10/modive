@@ -48,11 +48,13 @@ const patientSchema = new Schema(
         GesundheitszustandDerFamilie: Array,
         WeitereAnmerkungenZumGesundheitszustandDerFamilie: String,
         Schwangerschaft: String,
-        Stillzeit: String
+        Stillzeit: String,
+        UploadAssessment1: Array,
       },
       Recall: Array,
       anzahlRecall: Number,
       assessment2: {
+        UploadErnahrungsprotokoll: Array,
         weitereGetraenke: String,
         AnzahlMahlzeitenRecall: String,
         MahlzeitenNormalerweise: String,
@@ -66,6 +68,7 @@ const patientSchema = new Schema(
         DiaetischeKostform: Array,
         EnteraleErnaehrung: Array,
         Medikamente: Array,
+        UploadAssessment2: Array,
       },
       bilanzierung:{
         Getraenke : String,
@@ -117,6 +120,8 @@ const patientSchema = new Schema(
         WhoWert: Number,
         WhoProzent: Number,
         WhoAuswertung: String,
+        UploadLebensqualitaet: Array,
+        UploadAssessment3: Array,
       },
       wichtigkeit: {
         WichtigkeitDerFrische: String,
@@ -146,6 +151,7 @@ const patientSchema = new Schema(
         ProblemeNahrungsaufnahme: String,
         AppetitBeeintraechtigung: String,
         WeitereKoerperlicheBefunde: String,
+        UploadAssessment4: Array,
       },
       Diagnosestellung: Array,
       PASR: Array,

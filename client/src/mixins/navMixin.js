@@ -52,8 +52,10 @@ export const navMixin = {
       "weitereAnmerkungenZumGesundheitszustandDerFamilie",
       "schwangerschaft",
       "stillzeit",
+      "uploadAssessment1",
     ]),
     ...mapState("a2",[
+      "uploadErnahrungsprotokoll",
       "anzahlRecall",
       "recall",
       "weitereGetraenke",
@@ -103,6 +105,7 @@ export const navMixin = {
       "enteraleErnaehrungJa",
       "medikamente",
       "medikamenteJa",
+      "uploadAssessment2",
     ]),
     ...mapState("a3",[
       "plantMahlzeiten",
@@ -139,6 +142,8 @@ export const navMixin = {
       "whoAktiv",
       "whoAusgeruht",
       "whoInteressieren",
+      "uploadLebensqualitaet",
+      "uploadAssessment3",
     ]),
     ...mapGetters("a3",[
       "whoWert",
@@ -166,6 +171,7 @@ export const navMixin = {
       "problemeNahrungsaufnahme",
       "appetitBeeintraechtigung",
       "weitereKoerperlicheBefunde",
+      "uploadAssessment4",
     ]),
     ...mapGetters("a4",[
       "bmi"
@@ -265,11 +271,13 @@ export const navMixin = {
           "GesundheitszustandDerFamilie": [this.gesundheitszustandDerFamilie, this.gesundheitszustandDerFamilieAndere],
           "WeitereAnmerkungenZumGesundheitszustandDerFamilie": this.weitereAnmerkungenZumGesundheitszustandDerFamilie,
           "Schwangerschaft": this.schwangerschaft,
-          "Stillzeit": this.stillzeit
+          "Stillzeit": this.stillzeit,
+          "UploadAssessment1" : this.uploadAssessment1,
         },
         "Recall": this.recall,
         "anzahlRecall": this.anzahlRecall,
         assessment2: {
+          "UploadErnahrungsprotokoll": this.uploadErnahrungsprotokoll,
           "weitereGetraenke": this.weitereGetraenke,
           "AnzahlMahlzeitenRecall": this.anzahlMahlzeitenRecall,
           "MahlzeitenNormalerweise": this.mahlzeitenNormalerweise,
@@ -283,6 +291,7 @@ export const navMixin = {
           "DiaetischeKostform": [this.diaetischeKostform, this.diaetischeKostformJa],
           "EnteraleErnaehrung": [this.enteraleErnaehrung, this.enteraleErnaehrungJa],
           "Medikamente": [this.medikamente, this.medikamenteJa],
+          "UploadAssessment2": this.uploadAssessment2,
         },
         bilanzierung:{
           "Getraenke": this.getraenke,
@@ -334,6 +343,8 @@ export const navMixin = {
           "WhoWert": this.whoWert,
           "WhoProzent": this.whoProzent,
           "WhoAuswertung": this.whoAuswertung,
+          "UploadLebensqualitaet": this.uploadLebensqualitaet,
+          "UploadAssessment3": this.uploadAssessment3,
         },
         wichtigkeit: {
           "WichtigkeitDerFrische" : this.wichtigkeitDerFrische,
@@ -363,6 +374,7 @@ export const navMixin = {
           "ProblemeNahrungsaufnahme": this.problemeNahrungsaufnahme,
           "AppetitBeeintraechtigung": this.appetitBeeintraechtigung,
           "WeitereKoerperlicheBefunde": this.weitereKoerperlicheBefunde,
+          "UploadAssessment4": this.uploadAssessment4,
         },
         "Diagnosestellung": this.diagnosestellung,
         "PASR": this.pasr,
@@ -464,6 +476,8 @@ export const navMixin = {
       this.$store.state.a1.weitereAnmerkungenZumGesundheitszustandDerFamilie = "";
       this.$store.state.a1.schwangerschaft = "";
       this.$store.state.a1.stillzeit = "";
+      this.$store.state.a1.uploadAssessment1 = [];
+      this.$store.state.a2.uploadErnahrungsprotokoll = [];
       this.$store.state.a2.anzahlRecall = 0;
       this.$store.state.a2.recall = [];
       this.$store.state.a2.weitereGetraenke= "";
@@ -512,6 +526,7 @@ export const navMixin = {
       this.$store.state.a2.enteraleErnaehrungJa = "";
       this.$store.state.a2.medikamente = "";
       this.$store.state.a2.medikamenteJa = "";
+      this.$store.state.a2.uploadAssessment2 = [];
       this.$store.state.a3.plantMahlzeiten = [];
       this.$store.state.a3.plantMahlzeitenAndere = "";
       this.$store.state.a3.bereitetMahlzeiten = [];
@@ -546,6 +561,8 @@ export const navMixin = {
       this.$store.state.a3.whoAktiv = 0;
       this.$store.state.a3.whoAusgeruht = 0;
       this.$store.state.a3.whoInteressieren = 0;
+      this.$store.state.a3.uploadLebensqualitaet = [];
+      this.$store.state.a3.uploadAssessment3 = [];
       this.$store.state.a4.koerpergroesse = "";
       this.$store.state.a4.koerpergewicht = "";
       this.$store.state.a4.taillenumfang = "";
@@ -566,6 +583,7 @@ export const navMixin = {
       this.$store.state.a4.problemeNahrungsaufnahme = "";
       this.$store.state.a4.appetitBeeintraechtigung = "";
       this.$store.state.a4.weitereKoerperlicheBefunde = "";
+      this.$store.state.a3.uploadAssessment4 = [];
       this.$store.state.d.diagnosestellung = [[{title: "Diätetisches Problem", vmodel:"", id:"diaetetischesProblem0", myTipp:"Informationen hierzu finden Sie im Assessment in der Kategorie Ernährungsgewohnheiten."},{title: "Ätiologie/Ursache", vmodel:"", id:"ursache0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},{title: "Zeichen und Symptome", vmodel:"",id:"symptome0", myTipp:"Informationen hierzu finden Sie im Assessment, in den Kategorien Klinischer Status und Ernährungsgewohnheiten."},{title: "positive Ressourcen", vmodel:"", id:"positiveRessourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},{title: "negative Ressourcen", vmodel:"", id:"negativeRessourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},]];
       this.$store.state.d.pasr = [];
       this.$store.state.d.counter = 1;

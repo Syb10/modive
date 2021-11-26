@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <form>
+    <form enctype="multipart/form-data">
       <div>
         <div>
           <button

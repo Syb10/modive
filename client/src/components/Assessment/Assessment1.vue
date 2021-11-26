@@ -360,7 +360,11 @@
           v-model="stillzeit"
         />
       </div>
-      <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in der Klient*innengeschichte/Krankengeschichte (Client History)</p>  
+      <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in der Klient*innengeschichte/Krankengeschichte</p>  
+      <UploadFile
+        v-model="uploadAssessment1"
+        :color ="'btn-gold'"
+      />
     </div>
 </template>
 
@@ -369,6 +373,7 @@ import InputForm from "../InputForm.vue";
 import CheckboxForm from "../CheckboxForm.vue";
 import RadioForm from "../RadioForm.vue";
 import TextareaForm from "../TextareaForm.vue";
+import UploadFile from "../UploadFile.vue";
 import moment from 'moment';
 
 export default {
@@ -378,6 +383,7 @@ export default {
     CheckboxForm,
     RadioForm,
     TextareaForm,
+    UploadFile,
   },
   data() {
     return {
@@ -774,6 +780,14 @@ export default {
       },
       set(value) {
         this.$store.commit("a1/stillzeit", value)
+      }
+    },
+    uploadAssessment1:{
+      get() {
+        return this.$store.state.a1.uploadAssessment1
+      },
+      set(value) {
+        this.$store.commit("a1/uploadAssessment1", value)
       }
     },
   }
