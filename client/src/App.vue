@@ -1,14 +1,34 @@
 <template>
   <div>
-    <div id="nav" ref="nav">
-      <router-link to="/">Formular</router-link> |
-      <router-link to="/list">Klienten-Liste</router-link>
-    </div>
+    <!--Bootstrap header-->
+    <header class="nav shadowheader"  ref="nav">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+            <img src="./assets/logo.png" alt="logo" width="40"/>
+          </a>
+
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <router-link to="/" class="nav-link">Formular</router-link>
+            <router-link to="/list" class="nav-link">Klienten-Liste</router-link>
+          </ul>
+        </div>
+      </div>
+    </header>
     <div class="container mt-5">
       <router-view/>
     </div>
     <button @click.prevent="scrollMeTo('nav')" class="nachObenButton btn"><i class="fa fa-arrow-circle-up"></i></button>
   </div>
+  <!--Bootstrap footer-->
+  <footer class="py-3 mt-5 shadowfooter">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Impressum</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+    </ul>
+    <p class="text-center text-muted">© 2021</p>
+  </footer>
 </template>
 
 <script>
@@ -32,20 +52,26 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+.nav {
+  padding: 1rem;
 }
 
-#nav a {
-  font-weight: bold;
+.nav a {
+  color: #6c757d;
+}
+.nav a:hover {
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.nav a.router-link-exact-active {
+  color: #2c3e50;
 }
-
-
+.shadowheader{
+  box-shadow: 0 5px 5px #dee2e6;
+}
+.shadowfooter{
+  box-shadow: 0 -5px 5px #dee2e6;
+}
 /************************** 
  style menu tab button
  **************************/
