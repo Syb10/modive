@@ -45,12 +45,12 @@
         </span>
         <!--Word-->
         <span v-if="!uploading" @click.prevent="`http://localhost:9000/uploads/${file.filename}`">
-          <img v-if="file.type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'" class="uploadFile" :src="'http://localhost:9000/uploads/word.png'" alt="bildWord"/>
+          <img v-if="file.type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || file.type == 'application/msword'" class="uploadFile" :src="'http://localhost:9000/uploads/word.png'" alt="bildWord"/>
         </span>
         <!--Excel-->
         <span v-if="!uploading">
           <a :href="`http://localhost:9000/uploads/${file.filename}`">
-            <img v-if="file.type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'" class="uploadFile" :src="'http://localhost:9000/uploads/excel.png'" alt="bildExcel"/>
+            <img v-if="file.type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'|| file.type == 'application/vnd.ms-excel'" class="uploadFile" :src="'http://localhost:9000/uploads/excel.png'" alt="bildExcel"/>
           </a>
         </span>
          
@@ -189,7 +189,7 @@ import VueEasyLightbox from 'vue-easy-lightbox'
         ];
 
           if(!allowedTypes.includes(file.type)){
-          return "erlaubte Dateien: png, jpg, pdf, docx, xlsx"; 
+          return "erlaubte Dateien: png, jpg, pdf, doc, docx, xls, xlsx"; 
         }
         return ""
       },
