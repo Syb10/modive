@@ -30,7 +30,7 @@ export default {
     return {
       currentTab: "assessment1",
       tabs: [
-        {id:"assessment1", namelang:"1. Patient*innenhistorie/Krankengeschichte", namekurz:"1."},
+        {id:"assessment1", namelang:"1. Klient*innenhistorie/Krankengeschichte", namekurz:"1."},
         {id:"assessment2", namelang:"2. Ernährungsgewohnheiten", namekurz:"2."},
         {id:"assessment3", namelang:"3. Verhalten und Umfeld", namekurz:"3."},
         {id:"assessment4", namelang:"4. Klinischer Status", namekurz:"4."}
