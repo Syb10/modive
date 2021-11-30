@@ -260,6 +260,10 @@
         :myTipp="'Alltagsaktivität und Sport inklusive Dauer und Häufigkeit'"
       />
       <p class="assessmentAspekt" ref="lebensqualitaet">Lebensqualität</p>
+      <UploadFile
+        v-model="uploadLebensqualitaet"
+        :color ="'btn-gold'"
+      />
       <label>
         WHO Wellbeing Index
         <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
@@ -300,11 +304,6 @@
         </tbody>
       </table>
       <p><b>Lebensqualität: {{whoWert}} Punkte ({{whoProzent}}%) <i class="fa fa-arrow-right"></i> {{whoAuswertung}}</b></p>
-      <p>Upload-Bereich</p>
-      <UploadFile
-        v-model="uploadLebensqualitaet"
-        :color ="'btn-gold'"
-      />
       <p class="assessmentAspekt" ref="upload">Upload-Bereich für weitere Dokumente in Verhalten und Umfeld</p>
       <UploadFile
         v-model="uploadAssessment3"
