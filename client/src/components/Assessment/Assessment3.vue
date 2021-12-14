@@ -151,10 +151,10 @@
           />
         </tbody>
       </table>
-      <p>Wie wichtig sind dem/der Klient*in die folgenden Punkte beim Lebensmitteleinkauf? Für...</p>
+      <p>Wie wichtig sind dem/der Klient*in die folgenden Punkte beim Lebensmitteleinkauf?</p>
       <table class="table table-striped table-bordered mb-5">
         <thead>
-          <th>Für...</th>
+          <th></th>
           <th>sehr wichtig</th>
           <th>wichtig</th>
           <th>eher wichtig</th>
@@ -188,7 +188,7 @@
             v-model="wichtigkeitDerSaisonalitaet"
           />
           <RadioTableDynamic
-            :subtitle="'...andere'"
+            :subtitle="'andere'"
             :isAndere="true"
           /> 
         </tbody>
@@ -272,7 +272,7 @@
       </label>
       <table class="table table-striped table-bordered">
         <thead>
-          <th>In den letzten zwei Wochen...</th>
+          <th>In den letzten zwei Wochen</th>
           <th>die ganze Zeit</th>
           <th>meistens</th>
           <th>etwas mehr als die Hälfte der Zeit</th>
@@ -357,7 +357,7 @@ export default {
           {value:"sehr unwichtig", id:"sehrUnwichtigEmpfehlung", name:"empfehlung"},
         ],
         frische:[
-          {title:"...Frische"},
+          {title:"Frische"},
           {value:"sehr wichtig", id:"sehrWichtigFrische", name:"frische"},
           {value:"wichtig", id:"wichtigFrische", name:"frische"},
           {value:"eher wichtig", id:"eherWichtigFrische", name:"frische"},
@@ -366,7 +366,7 @@ export default {
           {value:"sehr unwichtig", id:"sehrUnwichtigFrische", name:"frische"},
         ],
         geschmack: [
-          {title:"...Geschmack"},
+          {title:"Geschmack"},
           {value:"sehr wichtig", id:"sehrWichtigGeschmack", name:"geschmack"},
           {value:"wichtig", id:"wichtigGeschmack", name:"geschmack"},
           {value:"eher wichtig", id:"eherWichtigGeschmack", name:"geschmack"},
@@ -375,7 +375,7 @@ export default {
           {value:"sehr unwichtig", id:"sehrUnwichtigGeschmack", name:"geschmack"},
         ],
         gesundheit:[
-          {title:"...Gesundheit"},
+          {title:"Gesundheit"},
           {value:"sehr wichtig", id:"sehrWichtigGesundheit", name:"gesundheit"},
           {value:"wichtig", id:"wichtigGesundheit", name:"gesundheit"},
           {value:"eher wichtig", id:"eherWichtigGesundheit", name:"gesundheit"},
@@ -384,7 +384,7 @@ export default {
           {value:"sehr unwichtig", id:"sehrUnwichtigGesundheit", name:"gesundheit"},
         ],
         preis:[
-          {title:"...Preis"},
+          {title:"Preis"},
           {value:"sehr wichtig", id:"sehrWichtigPreis", name:"preis"},
           {value:"wichtig", id:"wichtigPreis", name:"preis"},
           {value:"eher wichtig", id:"eherWichtigPreis", name:"preis"},
@@ -393,7 +393,7 @@ export default {
           {value:"sehr unwichtig", id:"sehrUnwichtigPreis", name:"preis"},
         ],
         regionalitaet:[
-          {title:"...Regionalität"},
+          {title:"Regionalität"},
           {value:"sehr wichtig", id:"sehrWichtigRegionalitaet", name:"regionalitaet"},
           {value:"wichtig", id:"wichtigRegionalitaet", name:"regionalitaet"},
           {value:"eher wichtig", id:"eherWichtigRegionalitaet", name:"regionalitaet"},
@@ -402,7 +402,7 @@ export default {
           {value:"sehr unwichtig", id:"sehrUnwichtigRegionalitaet", name:"regionalitaet"},
         ],
         saisonalitaet:[
-          {title:"...Saisonalität"},
+          {title:"Saisonalität"},
           {value:"sehr wichtig", id:"sehrWichtigSaisonalitaet", name:"saisonalitaet"},
           {value:"wichtig", id:"wichtigSaisonalitaet", name:"saisonalitaet"},
           {value:"eher wichtig", id:"eherWichtigSaisonalitaet", name:"saisonalitaet"},
@@ -418,7 +418,7 @@ export default {
           {value:"Aufrechterhaltung", id:"aufrechterhaltung", name:"veraendern"},
         ],
         laune:[
-          {title:"...war der/die Klient*in froh und guter Laune."},
+          {title:"war der/die Klient*in froh und guter Laune."},
           {value:5, id:"5Laune", name:"laune"},
           {value:4, id:"4Laune", name:"laune"},
           {value:3, id:"3Laune", name:"laune"},
@@ -427,7 +427,7 @@ export default {
           {value:10, id:"0Laune", name:"laune"},
         ],
         ruhig:[
-          {title:"...hat sich der/die Klient*in ruhig und entspannt gefühlt."},
+          {title:"hat sich der/die Klient*in ruhig und entspannt gefühlt."},
           {value:5, id:"5Ruhig", name:"ruhig"},
           {value:4, id:"4Ruhig", name:"ruhig"},
           {value:3, id:"3Ruhig", name:"ruhig"},
@@ -436,7 +436,7 @@ export default {
           {value:10, id:"0Ruhig", name:"ruhig"},
         ],
         aktiv:[
-          {title:"...hat sich der/die Klient*in energisch und aktiv gefühlt."},
+          {title:"hat sich der/die Klient*in energisch und aktiv gefühlt."},
           {value:5, id:"5Aktiv", name:"aktiv"},
           {value:4, id:"4Aktiv", name:"aktiv"},
           {value:3, id:"3Aktiv", name:"aktiv"},
@@ -445,7 +445,7 @@ export default {
           {value:10, id:"0Aktiv", name:"aktiv"},
         ],
         ausgeruht:[
-          {title:"...hat sich der/die Klient*in beim Aufwachen frisch und ausgeruht gefühlt."},
+          {title:"hat sich der/die Klient*in beim Aufwachen frisch und ausgeruht gefühlt."},
           {value:5, id:"5Ausgeruht", name:"ausgeruht"},
           {value:4, id:"4Ausgeruht", name:"ausgeruht"},
           {value:3, id:"3Ausgeruht", name:"ausgeruht"},
@@ -454,7 +454,7 @@ export default {
           {value:10, id:"0Ausgeruht", name:"ausgeruht"},
         ],
         interessieren:[
-          {title:"...war der Alltag des/der Klient*in voller Dinge, die er/sie interessieren."},
+          {title:"war der Alltag des/der Klient*in voller Dinge, die ihn/sie interessieren."},
           {value:5, id:"5Interessieren", name:"interessieren"},
           {value:4, id:"4Interessieren", name:"interessieren"},
           {value:3, id:"3Interessieren", name:"interessieren"},

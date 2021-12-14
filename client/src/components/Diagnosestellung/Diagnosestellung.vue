@@ -27,7 +27,7 @@
           <p v-html="pasr[indexI]"></p>
         </div>        
       </div>
-      <button class="btn btn-blue mb-3" @click.prevent="addNewProblem"><i class="fa fa-plus-circle"></i> Ernährungsproblem hinzufügen</button>  
+      <button class="btn btn-blue mb-3" @click.prevent="addNewProblem"><i class="fa fa-plus-circle"></i> Diätetisches Problem hinzufügen</button>  
   </div>   
 </template>
 

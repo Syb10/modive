@@ -17,7 +17,7 @@
         <InputForm
           :content="{ title: 'Passwort wiederholen', id: 'passwort2', type:'password', color:'loginColor', border:'loginBorder' }"
         />
-      <button class="btn btn-primary" @click.prevent="login">registrieren</button>
+      <button class="btn btn-grey" @click.prevent="login">registrieren</button>
     </form>
   </div>
 </template>

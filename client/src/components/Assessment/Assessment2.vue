@@ -81,7 +81,7 @@
         <thead>
           <th>Lebensmittelgruppen</th>
           <th>weniger</th>
-          <th>entprechend der Ernährungsempfehlung</th>
+          <th>entsprechend der Ernährungsempfehlung</th>
           <th>mehr</th>
         </thead>
         <tbody>
@@ -135,7 +135,7 @@
         <thead>
           <th>Energie</th>
           <th>weniger</th>
-          <th>entprechend der Ernährungsempfehlung</th>
+          <th>entsprechend der Ernährungsempfehlung</th>
           <th>mehr</th>
         </thead>
         <tbody>
@@ -149,7 +149,7 @@
         <thead>
           <th>Wasser</th>
           <th>weniger</th>
-          <th>entprechend der Ernährungsempfehlung</th>
+          <th>entsprechend der Ernährungsempfehlung</th>
           <th>mehr</th>
         </thead>
         <tbody>
@@ -163,7 +163,7 @@
         <thead>
           <th>Makronährstoffe</th>
           <th>weniger</th>
-          <th>entprechend der Ernährungsempfehlung</th>
+          <th>entsprechend der Ernährungsempfehlung</th>
           <th>mehr</th>
         </thead>
         <tbody>
@@ -209,7 +209,7 @@
         <thead>
           <th>Mikronährstoffe</th>
           <th>weniger</th>
-          <th>entprechend der Ernährungsempfehlung</th>
+          <th>entsprechend der Ernährungsempfehlung</th>
           <th>mehr</th>
         </thead>
         <tbody>
@@ -224,7 +224,7 @@
       />
       <TextareaForm
         v-model="abneigungen"
-        :content="{ title: 'Abneigungen für Lebensmittel, Speisen und Getränke', id: 'abneigungen', color:'assessmentColor', border:'assessmentBorder'}"
+        :content="{ title: 'Abneigungen gegen Lebensmittel, Speisen und Getränke', id: 'abneigungen', color:'assessmentColor', border:'assessmentBorder'}"
       />
       <RadioForm
         :items="[
@@ -240,7 +240,7 @@
       <div v-if="eigenstaendigeDiaet == 'ja'">
         <InputForm
             v-model="eigenstaendigeDiaetJa"
-            :content="{ title: 'Welche', id: 'eigenstaendigeDiaetJa', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
+            :content="{ title: 'Welche?', id: 'eigenstaendigeDiaetJa', type:'text', color:'assessmentColor', border:'assessmentBorder' }"
             :style="marginSmall"
           />
       </div>
@@ -256,7 +256,7 @@
       <div v-if="mahlzeitenAusserHaus == 'ja'">
         <TextareaForm
           v-model="mahlzeitenAusserHausJa"
-          :content="{title: 'Wie häufig, welche und wo', id: 'mahlzeitenAusserHausJa', color:'assessmentColor', border:'assessmentBorder'}"
+          :content="{title: 'Wie häufig?, welche? und wo?', id: 'mahlzeitenAusserHausJa', color:'assessmentColor', border:'assessmentBorder'}"
           :style="marginSmall"
         />
       </div>

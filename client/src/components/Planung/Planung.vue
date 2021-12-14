@@ -5,7 +5,7 @@
     <button @click.prevent="scrollMeTo('interventionsplan')" class="btn mt-1 mr-1 tab-button tab-button-planung">Interventionsplan</button> 
     <p class="planungAspekt mt-5" ref="priorisierung">Priorisierung der PASR-Statements</p>
     <Prio/>
-    <p class="planungAspekt" ref="zieleKlient">Ziel(e) der/des Klient*in</p>
+    <p class="planungAspekt" ref="zieleKlient">Ziel(e) des/der Klient*in</p>
     <div class="form-group mb-5 position-relative">
       <div class="mb-3" v-for="(ziel, index) in zieleKlient" :key="index">
         <label :for="ziel.id" class="input-group-text textareaForm normal-white-space planungColor">
@@ -28,7 +28,7 @@
     <label>
       Ziel(e) der gesamten Intervention
       <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
-        <span class="tipptext">Die Ziele leiten sich aus den PASR-Statements unter Einbezug der Ziele der/des Klient*in ab. Es können ernährungsbezogene Ziele (z.B. aus den Bereichen Wissenszuwachs, Verhaltensänderung) und/oder gesundheitsbezogene Ziele (medizinische Ziele, gesundheitsökonomische Ziele, subjekt-orientierte Ziele) festgelegt werden.</span>
+        <span class="tipptext">Die Ziele leiten sich aus den PASR-Statements unter Einbezug der Ziele des/der Klient*in ab. Es können ernährungsbezogene Ziele (z.B. aus den Bereichen Wissenszuwachs, Verhaltensänderung) und/oder gesundheitsbezogene Ziele (medizinische Ziele, gesundheitsökonomische Ziele, subjekt-orientierte Ziele) festgelegt werden.</span>
       </div>
     </label>
     <div class="form-group mb-5 position-relative">
@@ -144,7 +144,7 @@
     />
     <table class="table table-striped table-bordered mb-4">
       <thead>
-        <th>Monitoring- und Outcome Parameter</th>
+        <th>Monitoring- und Outcome-Parameter</th>
         <th>Frequenz der Überprüfung</th>
       </thead>
       <tbody>

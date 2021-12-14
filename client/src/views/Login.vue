@@ -12,7 +12,7 @@
         />
 
 
-      <button class="w-100 btn btn-primary" @click.prevent="login">anmelden</button>
+      <button class="w-100 btn btn-grey" @click.prevent="login">anmelden</button>
     </form>
   </div>
 </template>

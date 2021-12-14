@@ -94,7 +94,7 @@
           <li v-show="key === mykey.key">{{wichtigkeit[myIndex].title}}: {{value}}</li>
         </div>
       </div>
-      <li v-if="!isObjectEmpty(myWichtigkeitAndere)">...andere:</li>
+      <li v-if="!isObjectEmpty(myWichtigkeitAndere)">andere:</li>
       <ul>
         <div v-for="(i, index) in myWichtigkeitAndere" :key="index">
           <li>{{i[0]}}: {{i[1]}}</li>
@@ -108,7 +108,7 @@
     </div>
     <li v-if="myAssessment3.WhoProzent">WHO Wellbeing Index:</li>
     <ul v-if="myAssessment3.WhoProzent">
-      <li>In den letzten zwei Wochen...</li>
+      <li>In den letzten zwei Wochen</li>
       <div v-for="(mykey, myIndex) in wellbeing" :key="myIndex">
         <div v-for="(value, key, index) in myAssessment3" :key="index">
           <li v-show="key === mykey.key">
@@ -235,7 +235,7 @@
         <li v-if="key === mykey.key">{{planung2[myIndex].title}}: {{value}}</li>
       </div>
     </div>
-    <li v-if="!isObjectEmpty(myMonitoring)">Monitoring- und Outcome Parameter / Frequenz der Überprüfung:</li>
+    <li v-if="!isObjectEmpty(myMonitoring)">Monitoring- und Outcome-Parameter / Frequenz der Überprüfung:</li>
     <ul> 
       <div v-for="(item, index) in myMonitoring" :key="index">
         <li>{{item[0]}} / {{item[1]}}</li>
@@ -294,7 +294,7 @@
       <ul>
         <div v-for="(mykey,myIndex) in andereInterventionsform" :key="myIndex">
           <div v-for="(i, key) in item" :key="key">
-            <li v-if="key === mykey.key">{{andereInterventionsform[myIndex].title}}: <span v-if="andereInterventionsform[myIndex].title == 'Datum der '+ myInterventionsformAndere">{{changeDate(i)}}</span><span v-if="andereInterventionsform[myIndex].title != 'Datum der '+ myInterventionsformAndere">{{i}}</span></li>
+            <li v-if="key === mykey.key">{{andereInterventionsform[myIndex].title}}: <span v-if="andereInterventionsform[myIndex].title == 'Datum'">{{changeDate(i)}}</span><span v-if="andereInterventionsform[myIndex].title != 'Datum'">{{i}}</span></li>
           </div>
         </div> 
       </ul>  
@@ -321,7 +321,7 @@
   </ul>
   <p class="evaluationAspekt">Outcome Evaluation</p>
   <ul>
-    <li v-if="!isObjectEmpty(myEvaluationEntwicklungMonitoring)">Entwicklung der Monitoring- und Outcome Parameter</li>
+    <li v-if="!isObjectEmpty(myEvaluationEntwicklungMonitoring)">Entwicklung der Monitoring- und Outcome-Parameter</li>
     <ul>
       <div v-for="(item, indexI) in myEvaluationEntwicklungMonitoring" :key="indexI">
         <li>{{item[0][0]}} / {{item[0][1]}} <i class="fa fa-arrow-right"></i> {{item[1]}}</li>
@@ -481,12 +481,12 @@
           {key: "WichtigkeitDerEmpfehlung", title:"Wie wichtig ist es dem/der Klient*in, diesen Empfehlungen zu folgen"},
         ],
         wichtigkeit: [
-          {key: "WichtigkeitDerFrische", title:"...Frische"},
-          {key: "WichtigkeitDesGeschmacks", title:"...Geschmacks"},
-          {key: "WichtigkeitDerGesundheit", title:"...Gesundheit"},
-          {key: "WichtigkeitEinesGeringenPreises", title:"...Preis"},
-          {key: "WichtigkeitDerRegionalitaet", title:"...Regionalität"},
-          {key: "WichtigkeitDerSaisonalitaet", title:"...Saisonalität"},
+          {key: "WichtigkeitDerFrische", title:"Frische"},
+          {key: "WichtigkeitDesGeschmacks", title:"Geschmacks"},
+          {key: "WichtigkeitDerGesundheit", title:"Gesundheit"},
+          {key: "WichtigkeitEinesGeringenPreises", title:"Preis"},
+          {key: "WichtigkeitDerRegionalitaet", title:"Regionalität"},
+          {key: "WichtigkeitDerSaisonalitaet", title:"Saisonalität"},
         ],
         assessment32:[
           {key: "ErnaehrungsgewohnheitenVeraendern", title:"Kann sich der/die Klient*in vorstellen, begleitet durch die gemeinsamen Treffen, die Ernährungsgewohnheiten zu verändern?"},
@@ -494,11 +494,11 @@
           {key: "WeitereAnmerkungenAktivitaet", title:"Weitere Anmerkungen Aktivität"},
         ],
         wellbeing: [
-          {key:"WhoLaune", title:"...war der/die Klient*in froh und guter Laune"},
-          {key:"WhoRuhig", title:"...hat sich der/die Klient*in ruhig und entspannt gefühlt"},
-          {key:"WhoAktiv", title:"...hat sich der/die Klient*in energisch und aktiv gefühlt"},
-          {key:"WhoAusgeruht", title:"...hat sich der/die Klient*in beim Aufwachen frisch und ausgeruht gefühlt"},
-          {key:"WhoInteressieren", title:"...war der Alltag des/der Klient*in voller Dinge, die er/se interessieren"},
+          {key:"WhoLaune", title:"war der/die Klient*in froh und guter Laune"},
+          {key:"WhoRuhig", title:"hat sich der/die Klient*in ruhig und entspannt gefühlt"},
+          {key:"WhoAktiv", title:"hat sich der/die Klient*in energisch und aktiv gefühlt"},
+          {key:"WhoAusgeruht", title:"hat sich der/die Klient*in beim Aufwachen frisch und ausgeruht gefühlt"},
+          {key:"WhoInteressieren", title:"war der Alltag des/der Klient*in voller Dinge, die ihn/sie interessieren"},
         ],
         assessment4:[
           {key: "Koerpergroesse", title:"Körpergröße (in m)"},
@@ -598,7 +598,7 @@
         ],
         andereInterventionsform: [
           {key:"datum", title:"Datum"},
-          {key:"dauer", title:"Dauer der (in Minuten)"},
+          {key:"dauer", title:"Dauer (in Minuten)"},
           {key:"inhalt", title:"Inhalt"},
           {key:"materialien", title:"verwendete Materialien"},
           {key:"ergebnis", title:"Ergebnis"},

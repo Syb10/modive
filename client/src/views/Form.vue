@@ -29,14 +29,14 @@
         <button
           type="submit"
           @click.prevent="addPatient"
-          class="btn btn-primary mb-3 mr-3"
+          class="btn btn-grey mb-3 mr-3"
         >
         speichern und beenden
         </button>
         <button
           type="submit"
           @click.prevent="savePatient"
-          class="btn btn-primary mb-3"
+          class="btn btn-grey mb-3"
         >
         speichern
         </button>

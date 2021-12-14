@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="evaluationAspekt">Entwicklung der Monitoring- und Outcome Parameter</p>
+    <p class="evaluationAspekt">Entwicklung der Monitoring- und Outcome-Parameter</p>
     <p v-if="entwicklung == 0" class="alert alert-danger">In der Umsetzung der Intervention wurden noch keine Monitoring-Parameter erfasst</p>
     <div v-if="entwicklung != 0">
       <div v-for="(i, indexI) in joinMonitoring" :key="indexI">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <p class="evaluationAspekt">Zielerreichung</p>
-    <p>Ziel(e) der/des Klient*in</p>
+    <p>Ziel(e) des/der Klient*in</p>
     <p v-if="getZieleKlient == ''" class="alert alert-danger">In der Planung der Intervention wurden noch kein(e) Ziel(e) der/des Klient*in erfasst</p>
     <ol>
       <div v-for="(item, index) in getZieleKlient" :key="index">

@@ -74,16 +74,7 @@ import {mapState, mapMutations} from "vuex";
       InputForm,
       TextareaForm,
     },
-    computed: {
-      ...mapState("p",[
-        "einzelberatung",
-      ]),
-    },
     methods: {
-      ...mapMutations("p",{
-        addNewRow: "addNewRowEinzelberatung",
-        deleteRow: "deleteRowEinzelberatung",
-      }),
       show(index) {
         this.isShow[index] = !this.isShow[index];
       },

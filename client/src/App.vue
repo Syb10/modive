@@ -10,13 +10,13 @@
 
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <router-link to="/" class="nav-link">Home</router-link>
-            <router-link v-if="isLogged" to="/form" class="nav-link">Formular</router-link>
-            <router-link v-if="isLogged" to="/list" class="nav-link">Klienten-Liste</router-link>
+            <router-link v-if="isLogged" to="/form" class="nav-link">Eingabemaske</router-link>
+            <router-link v-if="isLogged" to="/list" class="nav-link">Klient*innen-Übersicht</router-link>
           </ul>
           <div class="text-end">
-            <button v-if="!isLogged" class="btn btn-primary mt-1 mr-2"><router-link to="/register"  class="navbutton">Registrierung</router-link></button>
-            <button v-if="!isLogged" class="btn btn-primary mt-1"><router-link to="/login" class="navbutton">Anmeldung</router-link></button>
-            <button v-if="isLogged" class="btn btn-primary mt-1" @click.prevent="logout">abmelden</button>
+            <button v-if="!isLogged" class="btn btn-grey mt-1 mr-2"><router-link to="/register"  class="navbutton">Registrierung</router-link></button>
+            <button v-if="!isLogged" class="btn btn-grey mt-1"><router-link to="/login" class="navbutton">Anmeldung</router-link></button>
+            <button v-if="isLogged" class="btn btn-grey mt-1" @click.prevent="logout">abmelden</button>
           </div> 
         </div>
       </div>
@@ -218,12 +218,12 @@ import {authMixin} from "./mixins/authMixin.js";
   border-radius: 0 0.25rem 0.25rem 0 !important;
 }
 .loginColor{
-  background-color: #007bff !important;
-  border: 1px solid #007bff !important;
+  background-color: #889194 !important;
+  border: 1px solid #889194 !important;
   color: white;
 }
 .loginBorder {
-  border: 1px solid #007bff !important;
+  border: 1px solid #889194 !important;
 }
 .assessmentColor {
   background-color: #9a884f !important;
@@ -321,6 +321,11 @@ import {authMixin} from "./mixins/authMixin.js";
 /***********************
  style button 
  *************************/
+ .btn-grey {
+   background-color: #889194 !important;
+   border: 1px solid #889194 !important;
+   color: white !important;
+ }
 .nachObenButton{
   position: fixed;
   right: 1rem;

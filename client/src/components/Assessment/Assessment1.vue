@@ -34,7 +34,7 @@
       />
       <InputForm
         v-model="hausarzt"
-        :content="{ title: 'Hausarzt*in', id: 'hausarzt', type: 'text', color:'assessmentColor', border:'assessmentBorder' }"        
+        :content="{ title: 'Hausärzt*in', id: 'hausarzt', type: 'text', color:'assessmentColor', border:'assessmentBorder' }"        
       />
       <RadioForm
         :items="[
@@ -60,7 +60,7 @@
           {title:'Hauptschulabschluss/vergleichbarer Abschluss', id:'hauptschule', name:'schulischeBildung'},
           {title:'Realschulabschluss/vergleichbarer Abschluss', id:'realschule', name:'schulischeBildung'},
           {title:'Fachhochschulreife/Abitur', id:'abitur', name:'schulischeBildung'},
-          {title:'keine Angaben', id:'keineAngabenSchulischeBildung', name:'schulischeBildung'}
+          {title:'keine Angabe', id:'keineAngabenSchulischeBildung', name:'schulischeBildung'}
         ]"
         :title="'Höchster schulischer Abschluss'"
         :color ="'assessmentColor'"
@@ -73,7 +73,7 @@
           {title:'Bachelor/Diplom', id:'bachelor', name:'beruflicheBildung'},
           {title:'Master', id:'master', name:'beruflicheBildung'},
           {title:'Promotion', id:'promotion', name:'beruflicheBildung'},
-          {title:'keine Angaben', id:'keineAngabenBeruflicheBildung', name:'beruflicheBildung'}
+          {title:'keine Angabe', id:'keineAngabenBeruflicheBildung', name:'beruflicheBildung'}
         ]"
         :title="'Höchster beruflicher Abschluss'"
         :color ="'assessmentColor'"
@@ -101,7 +101,7 @@
           {title:'verheiratet/eingetragene Partnerschaft', id:'verheiratet'},
           {title:'verwitwet/eingetragene*r Lebenspartner*in verstorben', id:'verwitwet'},
           {title:'geschieden/eingetragene Lebenspartnerschaft aufgehoben', id:'geschieden'},
-          {title:'keine Angaben', id:'keineAngabenFamilienstand'}
+          {title:'keine Angabe', id:'keineAngabenFamilienstand'}
         ]"
         :title="'Familienstand'"
         :color ="'assessmentColor'"
@@ -184,7 +184,7 @@
             {title:'Sehbehinderung', id:'sehbehinderung'},
             {title:'Hörbehinderung', id:'hörbehinderung'},
           ]"
-          :title="'Welche Körperliche Beeinträchtigungen sind vorhanden'"
+          :title="'Welche körperliche Beeinträchtigungen sind vorhanden'"
           :color ="'assessmentColor'"
           v-model="beeintraechtigungenVorhanden"
           :style="marginSmall"
@@ -271,7 +271,7 @@
           {title:'Allergien', id:'allergien'},
           {title:'Diabetes mellitus', id:'diabetes'},
           {title:'gastrointestinale/neuro-endokrine Erkrankungen', id:'gastrointestinaleErkrankungen'},
-          {title:'genetische Erkrankungen die den Ernährungsstatus beeinflussen können', id:'genetischeErkrankungen'},
+          {title:'genetische Erkrankungen, die den Ernährungsstatus beeinflussen können', id:'genetischeErkrankungen'},
           {title:'Herz-Kreislauf-Erkrankungen', id:'herzKreislaufErkrankungen'},
           {title:'Krebs', id:'krebs'},
           {title:'Lebensmittelunverträglichkeiten', id:'lebensmittelunverträglichkeiten'},
@@ -295,11 +295,11 @@
           {title:'Abhängigkeitserkrankungen', id:'abhaengigkeitserkrankungen'},
           {title:'Affektive Erkrankungen (z.B. Depression)', id:'affektiveErkrankungen'},
           {title:'Angststörungen', id:'angststoerungen'},
-          {title:'Essstörung', id:'Essstoerung'},
           {title:'Anpassungs- und (posttraumatische) Belastungsstörungen', id:'anpassungsBelastungsstoerungen'},
-          {title:'Demenz', id:'demenz'},
-          {title:'Persönlichkeitsstörungen (z.B. Borderline)', id:'persoenlichkeitsstoerungen'},
           {title:'Aufmerksamkeitsdefizit-/Hyperaktivitätsstörung (ADHS)', id:'adhs'},
+          {title:'Demenz', id:'demenz'},
+          {title:'Essstörung', id:'Essstoerung'},
+          {title:'Persönlichkeitsstörungen (z.B. Borderline)', id:'persoenlichkeitsstoerungen'},
           {title:'Schizophrenie', id:'schizophrenie'},
           {title:'Schlafstörungen', id:'schlafstoerungen'},
           {title:'Zwangsstörungen', id:'zwangsstoerungen'},
@@ -319,7 +319,7 @@
           {title:'Allergien', id:'allergienFamilie'},
           {title:'Diabetes mellitus', id:'diabetesFamilie'},
           {title:'gastrointestinale/neuro-endokrine Erkrankungen', id:'gastrointestinaleErkrankungenFamilie'},
-          {title:'genetische Erkrankungen die den Ernährungsstatus beeinflussen können', id:'genetischeErkrankungenFamilie'},
+          {title:'genetische Erkrankungen, die den Ernährungsstatus beeinflussen können', id:'genetischeErkrankungenFamilie'},
           {title:'Herz-Kreislauf-Erkrankungen', id:'herzKreislaufErkrankungenFamilie'},
           {title:'Krebs', id:'krebsFamilie'},
           {title:'Lebensmittelunverträglichkeiten', id:'lebensmittelunverträglichkeitenFamilie'},

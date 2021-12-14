@@ -24,9 +24,9 @@
         />
         <button class=" btn btn-redlight mb-3" @click.prevent="deleteRow(index)"><i class="fa fa-trash"></i> {{index+1}}. Zusatznahrung löschen</button> 
       </div>
-      <button v-if="index == zusatznahrung.length-1" class="btn btn-umsetzung mb-5" @click.prevent="addNewRow()"><i class="fa fa-plus-circle"></i> {{index+2}}. Datum hinzufügen</button>    
+      <button v-if="index == zusatznahrung.length-1" class="btn btn-umsetzung mb-5" @click.prevent="addNewRow()"><i class="fa fa-plus-circle"></i> {{index+2}}. Zusatznahrung hinzufügen</button>    
     </div>
-    <button v-if="zusatznahrung.length == 0" class="btn btn-umsetzung mb-5" @click.prevent="addNewRow()"><i class="fa fa-plus-circle"></i> 1. Datum hinzufügen</button>    
+    <button v-if="zusatznahrung.length == 0" class="btn btn-umsetzung mb-5" @click.prevent="addNewRow()"><i class="fa fa-plus-circle"></i> 1. Zusatznahrung hinzufügen</button>    
   </div>
 </template>
 

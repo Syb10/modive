@@ -50,7 +50,7 @@
     </div>
     <InputForm
       v-model="sonstigesUmsetung"
-      :content="{ title: 'Sonstiges', id: 'sonstigesUmsetung', type:'text', color:'umsetzungColor', border:'umsetzungBorder'}"
+      :content="{ title: 'Weitere Anmerkungen zur Umsetzung der Intervention', id: 'sonstigesUmsetung', type:'text', color:'umsetzungColor', border:'umsetzungBorder'}"
     />
     <p class="umsetzungAspekt">Monitoring-Parameter</p>
     <EntwicklungMonitoring/>

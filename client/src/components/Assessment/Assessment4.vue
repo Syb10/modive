@@ -16,7 +16,7 @@
         />
         <InputForm
           v-model="bmi"
-          :content="{title:'gBody Mass Index (in kg/m&sup2;)', id:'bmi', type:'number', min:'0', step: '0.01', color:'assessmentColor', border:'assessmentBorder'}"
+          :content="{title:'Body Mass Index (in kg/m&sup2;)', id:'bmi', type:'number', min:'0', step: '0.01', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <InputForm
           v-model="taillenumfang"
@@ -48,7 +48,7 @@
           v-model="vitalzeichen"
           :content="{ title: 'Vitalzeichen', id: 'vitalzeichen', color:'assessmentColor', border:'assessmentBorder'}"
           :isTipp="true"
-          :myTipp="'Blutdruck, Temperatur, Puls, Atmung, Bewusstsein'"
+          :myTipp="'z.B. Blutdruck, Temperatur, Puls, Atmung, Bewusstsein'"
         />
         <TextareaForm
           v-model="weitereMessungen"
@@ -103,7 +103,7 @@
         ]"
         :title="'Mundgesundheit'"
         :isTipp="true"
-        :myTipp="'Zahnfleisch, Lippen, Zähne, Zunge'"
+        :myTipp="'z.B. Zahnfleisch, Lippen, Zähne, Zunge'"
         :color ="'assessmentColor'"
         v-model="mundgesundheit"
       />

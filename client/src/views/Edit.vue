@@ -24,21 +24,21 @@
         <button
           type="submit"
           @click.prevent="updateKlient"
-          class="btn btn-primary mb-3 mr-3"
+          class="btn btn-grey mb-3 mr-3"
         >
           Änderungen speichern und beenden
         </button>
         <button
           type="submit"
           @click.prevent="saveKlient"
-          class="btn btn-primary mb-3 mr-3"
+          class="btn btn-grey mb-3 mr-3"
         >
           Änderungen speichern
         </button>
         <button
           type="submit"
           @click.prevent="resetKlient"
-          class="btn btn-primary mb-3"
+          class="btn btn-grey mb-3"
         >
           Abbrechen
         </button>
