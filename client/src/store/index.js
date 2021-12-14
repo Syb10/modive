@@ -23,6 +23,7 @@ export default createStore({
     vorname:"",
     nachname: "",
     geburtsdatum:"",
+    isLogged: false,
   },
   getters: {},
   mutations: {
@@ -34,6 +35,9 @@ export default createStore({
     },
     geburtsdatum(state, value) {
       state.geburtsdatum = value
+    },
+    isLogged(state, value) {
+      state.isLogged = value
     },
   },
   actions: {},

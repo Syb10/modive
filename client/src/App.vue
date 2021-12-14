@@ -1,17 +1,23 @@
 <template>
-  <div>
+  <div class="wrap">
     <!--Bootstrap header-->
     <header class="nav shadowheader"  ref="nav">
       <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">
+          <a href="/" class="d-flex align-items-center">
             <img src="./assets/logo.png" alt="logo" width="40"/>
           </a>
 
-          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <router-link to="/" class="nav-link">Formular</router-link>
-            <router-link to="/list" class="nav-link">Klienten-Liste</router-link>
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <router-link to="/" class="nav-link">Home</router-link>
+            <router-link v-if="isLogged" to="/form" class="nav-link">Formular</router-link>
+            <router-link v-if="isLogged" to="/list" class="nav-link">Klienten-Liste</router-link>
           </ul>
+          <div class="text-end">
+            <button v-if="!isLogged" class="btn btn-primary mt-1 mr-2"><router-link to="/register"  class="navbutton">Registrierung</router-link></button>
+            <button v-if="!isLogged" class="btn btn-primary mt-1"><router-link to="/login" class="navbutton">Anmeldung</router-link></button>
+            <button v-if="isLogged" class="btn btn-primary mt-1" @click.prevent="logout">abmelden</button>
+          </div> 
         </div>
       </div>
     </header>
@@ -19,21 +25,28 @@
       <router-view/>
     </div>
     <button @click.prevent="scrollMeTo('nav')" class="nachObenButton btn"><i class="fa fa-arrow-circle-up"></i></button>
+    <!--Bootstrap footer-->
+    <footer class="footer py-3 mt-5 shadowfooter">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Impressum</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+      </ul>
+      <p class="text-center text-muted">© 2021</p>
+    </footer>
   </div>
-  <!--Bootstrap footer-->
-  <footer class="py-3 mt-5 shadowfooter">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Impressum</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-    </ul>
-    <p class="text-center text-muted">© 2021</p>
-  </footer>
 </template>
 
 <script>
+import {authMixin} from "./mixins/authMixin.js";
   export default {
     name: "App",
+    mixins:[authMixin],
+    computed: {
+      isLogged(){
+        return this.$store.state.isLogged
+      },
+    },
     methods: {
       //https://stackoverflow.com/questions/42645964/vue-js-anchor-to-div-within-the-same-component
       scrollMeTo(refName) {
@@ -51,20 +64,34 @@
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-
+.wrap{
+  min-height: 100vh;
+}
 .nav {
   padding: 1rem;
 }
 
-.nav a {
+.nav-link {
   color: #6c757d;
 }
-.nav a:hover {
+.nav-link:hover {
   color: #2c3e50;
 }
 
-.nav a.router-link-exact-active {
+.nav-link.router-link-exact-active {
   color: #2c3e50;
+}
+.navbutton {
+  color: #fff;
+  text-decoration: none;
+}
+.navbutton:hover{
+  color: #fff;
+  text-decoration: none;
+}
+.footer{
+  position: sticky;
+  top: 100%;
 }
 .shadowheader{
   box-shadow: 0 5px 5px #dee2e6;
@@ -189,6 +216,14 @@
 }
 .checkbox {
   border-radius: 0 0.25rem 0.25rem 0 !important;
+}
+.loginColor{
+  background-color: #007bff !important;
+  border: 1px solid #007bff !important;
+  color: white;
+}
+.loginBorder {
+  border: 1px solid #007bff !important;
 }
 .assessmentColor {
   background-color: #9a884f !important;
