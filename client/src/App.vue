@@ -5,7 +5,7 @@
       <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">
           <a href="/" class="d-flex align-items-center">
-            <img src="./assets/logo.png" alt="logo" width="40"/>
+            <img src="./assets/logo60.png" alt="logo"/>
           </a>
 
           <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
