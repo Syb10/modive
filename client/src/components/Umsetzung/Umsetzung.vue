@@ -1,6 +1,7 @@
 <template>
   <div>
     <p class="umsetzungAspekt">Verlaufsdokumentation</p>
+    <p v-if="isNoInterventionsform" class="alert alert-danger">In der Planung der Intervention wurden noch keine Umsetzungen festgelegt</p>
     <UmsetzungTermine v-if="/\bEinzelberatung\b/.test(interventionsform)"
       :headline="'Einzelberatung mit Klient*in'"
       :title="'Einzelberatung'"
@@ -94,6 +95,13 @@ import {mapState, mapMutations} from "vuex";
         "lehrkueche",
         "andereInterventionsform",
       ]),
+      isNoInterventionsform(){
+        if(this.interventionsform != '' || this.interventionsformAndere != ''){
+          return false
+        } else {
+          return true
+        }
+      },
       zusatznahrung: {
         get() {
           return this.$store.state.u.zusatznahrung
