@@ -18,7 +18,7 @@
     </div>
     <p class="evaluationAspekt">Zielerreichung</p>
     <p>Ziel(e) des/der Klient*in</p>
-    <p v-if="getZieleKlient == ''" class="alert alert-danger">In der Planung der Intervention wurden noch kein(e) Ziel(e) der/des Klient*in erfasst</p>
+    <p v-if="getZieleKlient == ''" class="alert alert-danger">In der Planung der Intervention wurden noch kein(e) Ziel(e) des/der Klient*in erfasst</p>
     <ol>
       <div v-for="(item, index) in getZieleKlient" :key="index">
         <li>{{item}}</li>

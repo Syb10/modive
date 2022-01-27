@@ -184,7 +184,7 @@
             {title:'Sehbehinderung', id:'sehbehinderung'},
             {title:'Hörbehinderung', id:'hörbehinderung'},
           ]"
-          :title="'Welche körperliche Beeinträchtigungen sind vorhanden'"
+          :title="'Welche körperlichen Beeinträchtigungen sind vorhanden?'"
           :color ="'assessmentColor'"
           v-model="beeintraechtigungenVorhanden"
           :style="marginSmall"

@@ -24,20 +24,20 @@
         />
         <InputForm
           v-model="hautfaltendicke"
-          :content="{title:'Hautfaltendicke', id:'hautfaltendicke', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
+          :content="{title:'Hautfaltendicke (in mm)', id:'hautfaltendicke', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <p class="assessmentAspekt" ref="koerperzusammensetzung">Körperzusammensetzung</p>
         <InputForm
           v-model="fettfreieMasse"
-          :content="{title:'fettfreie Masse (FFM)', id:'fettfreieMasse', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
+          :content="{title:'fettfreie Masse (FFM)(in %)', id:'fettfreieMasse', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <InputForm
           v-model="fettmasse"
-          :content="{title:'Fettmasse (FM)', id:'fettmasse', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
+          :content="{title:'Fettmasse (FM) (in %)', id:'fettmasse', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <InputForm
           v-model="ruheenergieumsatz"
-          :content="{title:'Ruheenergieumsatz', id:'ruheenergieumsatz', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
+          :content="{title:'Ruheenergieumsatz (in kcal oder kJ)', id:'ruheenergieumsatz', type:'text', color:'assessmentColor', border:'assessmentBorder'}"
         />
         <p class="assessmentAspekt" ref="biochemischeParameter">Biochemische Parameter, medizinische Tests/Maßnahmen</p>
         <TextareaForm
