@@ -252,11 +252,12 @@ import {navMixin} from "../mixins/navMixin.js";
         this.$store.state.d.errorList = res.data.ErrorList;
 
         this.$store.state.p.priorisierung = res.data.Priorisierung;
-        this.$store.state.p.zieleKlient = res.data.ZieleKlient;
-        this.$store.state.p.counterKlient = res.data.planung.CounterKlient;
         this.$store.state.p.leitlinien = res.data.planung.Leitlinien;
-        this.$store.state.p.zieleIntervention = res.data.ZieleIntervention;
-        this.$store.state.p.counterIntervention = res.data.planung.CounterIntervention;
+        this.$store.state.p.uebergeordetesZiel = res.data.UebergeordetesZiel;
+        this.$store.state.p.counterUebergeordetesZiel = res.data.planung.CounterUebergeordetesZiel;     
+        this.$store.state.p.verlaufsziel = res.data.Verlaufsziel;
+        this.$store.state.p.counterVerlaufsziel = res.data.planung.CounterVerlaufsziel;
+        this.$store.state.p.ernaehrungsempfehlung = res.data.planung.Ernaehrungsempfehlung;
         this.$store.state.p.interventionsform = res.data.planung.Interventionsform[0];
         this.$store.state.p.interventionsformAndere = res.data.planung.Interventionsform[1];
         this.$store.state.p.weitereAnmerkungenInterventionform = res.data.planung.WeitereAnmerkungenInterventionform;
@@ -284,10 +285,10 @@ import {navMixin} from "../mixins/navMixin.js";
         this.$store.state.p.entwicklungMonitoring = res.data.EntwicklungMonitoring;
         
         this.$store.state.e.evaluationEntwicklungMonitoring = res.data.evaluation.EvaluationEntwicklungMonitoring;
-        this.$store.state.e.zielerreichungKlient = res.data.evaluation.ZielerreichungKlient;
-        this.$store.state.e.begruendungZielerreichungKlient = res.data.evaluation.BegruendungZielerreichungKlient;
-        this.$store.state.e.zielerreichungIntervention = res.data.evaluation.ZielerreichungIntervention;
-        this.$store.state.e.begruendungZielerreichungIntervention = res.data.evaluation.BegruendungZielerreichungIntervention;
+        this.$store.state.e.zielerreichungUebergeordetesZiel = res.data.evaluation.ZielerreichungUebergeordetesZiel;
+        this.$store.state.e.begruendungZielerreichungUebergeordetesZiel = res.data.evaluation.BegruendungZielerreichungUebergeordetesZiel;
+        this.$store.state.e.zielerreichungVerlaufsziel = res.data.evaluation.ZielerreichungVerlaufsziel;
+        this.$store.state.e.begruendungZielerreichungVerlaufsziel = res.data.evaluation.BegruendungZielerreichungVerlaufsziel;
         this.$store.state.e.evaluationWeitersVorgehen = res.data.evaluation.EvaluationWeitersVorgehen;
         
       })

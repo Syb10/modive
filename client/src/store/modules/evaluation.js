@@ -2,10 +2,10 @@ export default {
   namespaced: true,
   state: {
     evaluationEntwicklungMonitoring: [],
-    zielerreichungKlient: [],
-    begruendungZielerreichungKlient: [],
-    zielerreichungIntervention:[],
-    begruendungZielerreichungIntervention:[],
+    zielerreichungUebergeordetesZiel: [],
+    begruendungZielerreichungUebergeordetesZiel: [],
+    zielerreichungVerlaufsziel:[],
+    begruendungZielerreichungVerlaufsziel:[],
     evaluationWeitersVorgehen: "",
   },
   getters: {
@@ -16,44 +16,44 @@ export default {
       }
       return array
     },
-    getZieleKlient(state, getters, rootState) {
+    getUebergeordetesZiel(state, getters, rootState) {
       var array = [];
-      for(var i=0; i<rootState.p.zieleKlient.length; i++) {
-        if(rootState.p.zieleKlient[i].vmodel != '') {
-          array.push(rootState.p.zieleKlient[i].vmodel)
+      for(var i=0; i<rootState.p.uebergeordetesZiel.length; i++) {
+        if(rootState.p.uebergeordetesZiel[i].vmodel != '') {
+          array.push(rootState.p.uebergeordetesZiel[i].vmodel)
         }
       }
       return array
     },
-    getZieleIntervention(state, getters, rootState) {
+    getVerlaufsziel(state, getters, rootState) {
         var array = [];
-        for(var i=0; i<rootState.p.zieleIntervention.length; i++) {
-          if(rootState.p.zieleIntervention[i].vmodel != '') {
-            array.push(rootState.p.zieleIntervention[i].vmodel)
+        for(var i=0; i<rootState.p.verlaufsziel.length; i++) {
+          if(rootState.p.verlaufsziel[i].vmodel != '') {
+            array.push(rootState.p.verlaufsziel[i].vmodel)
           }
         }
         return array
       },
-      evaluationZieleKlient(state, getters) {
+      evaluationUebergeordetesZiel(state, getters) {
         var array=[]
-          for(var i=0; i < getters.getZieleKlient.length; i++){
-            if(state.zielerreichungKlient[i]){
-              array[i] = getters.getZieleKlient[i] + " <b>Ziel erreicht: " + state.zielerreichungKlient[i] + "</b>"
+          for(var i=0; i < getters.getUebergeordetesZiel.length; i++){
+            if(state.zielerreichungUebergeordetesZiel[i]){
+              array[i] = getters.getUebergeordetesZiel[i] + " <b>Ziel erreicht: " + state.zielerreichungUebergeordetesZiel[i] + "</b>"
             }
-            if(state.zielerreichungKlient[i] && state.begruendungZielerreichungKlient[i]){
-              array[i] = getters.getZieleKlient[i] + " <b>Ziel erreicht: " + state.zielerreichungKlient[i] + "</b>, " + state.begruendungZielerreichungKlient[i]
+            if(state.zielerreichungUebergeordetesZiel[i] && state.begruendungZielerreichungUebergeordetesZiel[i]){
+              array[i] = getters.getUebergeordetesZiel[i] + " <b>Ziel erreicht: " + state.zielerreichungUebergeordetesZiel[i] + "</b>, " + state.begruendungZielerreichungUebergeordetesZiel[i]
             }
           }
         return array  
       },
-      evaluationZieleIntervention(state, getters) {
+      evaluationVerlaufsziel(state, getters) {
         var array=[]
-          for(var i=0; i < getters.getZieleIntervention.length; i++){
-            if(state.zielerreichungIntervention[i]){
-              array[i] = getters.getZieleIntervention[i] + " <b>Ziel erreicht: " + state.zielerreichungIntervention[i] + "</b>"
+          for(var i=0; i < getters.getVerlaufsziel.length; i++){
+            if(state.zielerreichungVerlaufsziel[i]){
+              array[i] = getters.getVerlaufsziel[i] + " <b>Ziel erreicht: " + state.zielerreichungVerlaufsziel[i] + "</b>"
             }
-            if(state.zielerreichungIntervention[i] && state.begruendungZielerreichungIntervention[i]){
-              array[i] = getters.getZieleIntervention[i] + " <b>Ziel erreicht: " + state.zielerreichungIntervention[i] + "</b>, " + state.begruendungZielerreichungIntervention[i]
+            if(state.zielerreichungVerlaufsziel[i] && state.begruendungZielerreichungVerlaufsziel[i]){
+              array[i] = getters.getVerlaufsziel[i] + " <b>Ziel erreicht: " + state.zielerreichungVerlaufsziel[i] + "</b>, " + state.begruendungZielerreichungVerlaufsziel[i]
             }
           }
         return array  
@@ -63,17 +63,17 @@ export default {
     evaluationEntwicklungMonitoring(state, value) {
       state.evaluationEntwicklungMonitoring = value
     },
-    zielerreichungKlient(state, value) {
-      state.zielerreichungKlient = value
+    zielerreichungUebergeordetesZiel(state, value) {
+      state.zielerreichungUebergeordetesZiel = value
     },
-    begruendungZielerreichungKlient(state, value) {
-      state.begruendungZielerreichungKlient = value
+    begruendungZielerreichungUebergeordetesZiel(state, value) {
+      state.begruendungZielerreichungUebergeordetesZiel = value
     },
-    zielerreichungIntervention(state, value) {
-      state.zielerreichungIntervention = value
+    zielerreichungVerlaufsziel(state, value) {
+      state.zielerreichungVerlaufsziel = value
     },
-    begruendungZielerreichungIntervention(state, value) {
-      state.begruendungZielerreichungIntervention = value
+    begruendungZielerreichungVerlaufsziel(state, value) {
+      state.begruendungZielerreichungVerlaufsziel = value
     },
     evaluationWeitersVorgehen(state, value) {
       state.evaluationWeitersVorgehen = value

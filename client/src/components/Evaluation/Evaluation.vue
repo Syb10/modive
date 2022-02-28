@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="evaluationAspekt">Entwicklung der Monitoring- und Outcome-Parameter</p>
-    <p v-if="entwicklung == 0" class="alert alert-danger">In der Umsetzung der Intervention wurden noch keine Monitoring-Parameter erfasst</p>
+    <p v-if="entwicklung == 0" class="alert alert-danger">In der Umsetzung der Intervention wurden noch keine Monitoring-Parameter erfasst.</p>
     <div v-if="entwicklung != 0">
       <div v-for="(i, indexI) in joinMonitoring" :key="indexI">
         {{i[0]}} / {{i[1]}}
@@ -17,47 +17,47 @@
       </div>
     </div>
     <p class="evaluationAspekt">Zielerreichung</p>
-    <p>Ziel(e) des/der Klient*in</p>
-    <p v-if="getZieleKlient == ''" class="alert alert-danger">In der Planung der Intervention wurden noch kein(e) Ziel(e) des/der Klient*in erfasst</p>
+    <p>Übergeordnetes Ziel (diätetisches Outcome)</p>
+    <p v-if="getUebergeordetesZiel == ''" class="alert alert-danger">In der Planung der Intervention wurden noch kein übergeordnetes Ziel (diätetisches Outcome) erfasst.</p>
     <ol>
-      <div v-for="(item, index) in getZieleKlient" :key="index">
+      <div v-for="(item, index) in getUebergeordetesZiel" :key="index">
         <li>{{item}}</li>
         <RadioForm
         :items="[
-          {title:'ja', id:'jaZielerreichungKlient'+index, name:'zielerreichungKlient'+index},
-          {title:'nein', id:'neinZielerreichungKlient'+index, name:'zielerreichungKlient'+index},
+          {title:'ja', id:'jaUebergeordetesZiel'+index, name:'uebergeordetesZiel'+index},
+          {title:'nein', id:'neinUebergeordetesZiel'+index, name:'uebergeordetesZiel'+index},
         ]"
         :title="'Wurde das gesetzte Ziel erreicht?'"
         :color ="'evaluationColor'"
-        v-model="zielerreichungKlient[index]"
+        v-model="zielerreichungUebergeordetesZiel[index]"
         />
-        <div v-if="zielerreichungKlient[index] == 'nein'">
+        <div v-if="zielerreichungUebergeordetesZiel[index] == 'nein'">
             <InputForm
-              v-model="begruendungZielerreichungKlient[index]"
-              :content="{ title: 'Begründung', id: 'begruendungZielerreichungKlient'+index, type:'text', color:'evaluationColor', border:'evaluationBorder'}"
+              v-model="begruendungZielerreichungUebergeordetesZiel[index]"
+              :content="{ title: 'Begründung', id: 'begruendungZielerreichungUebergeordetesZiel'+index, type:'text', color:'evaluationColor', border:'evaluationBorder'}"
               :style="marginSmall"
             />        
         </div>
       </div>
     </ol>
-    <p>Ziel(e) der Intervention</p>
-    <p v-if="getZieleIntervention == ''" class="alert alert-danger">In der Planung der Intervention wurden noch kein(e) Ziel(e) der Intervention erfasst</p>
+    <p>Verlaufsziele</p>
+    <p v-if="getVerlaufsziel == ''" class="alert alert-danger">In der Planung der Intervention wurden noch keine Verlaufsziele erfasst.</p>
     <ol>  
-      <div v-for="(item, index) in getZieleIntervention" :key="index">
+      <div v-for="(item, index) in getVerlaufsziel" :key="index">
         <li>{{item}}</li>
         <RadioForm
         :items="[
-          {title:'ja', id:'jaZielerreichungIntervention'+index, name:'zielerreichungIntervention'+index},
-          {title:'nein', id:'neinZielerreichungIntervention'+index, name:'zielerreichungIntervention'+index},
+          {title:'ja', id:'jaZielerreichungVerlaufsziel'+index, name:'zielerreichungVerlaufsziel'+index},
+          {title:'nein', id:'neinZielerreichungVerlaufsziel'+index, name:'zielerreichungVerlaufsziel'+index},
         ]"
         :title="'Wurde das gesetzte Ziel erreicht?'"
         :color ="'evaluationColor'"
-        v-model="zielerreichungIntervention[index]"
+        v-model="zielerreichungVerlaufsziel[index]"
         />
-        <div v-if="zielerreichungIntervention[index] == 'nein'">
+        <div v-if="zielerreichungVerlaufsziel[index] == 'nein'">
             <InputForm
-              v-model="begruendungZielerreichungIntervention[index]"
-              :content="{ title: 'Begründung', id: 'begruendungZielerreichungIntervention'+index, type:'text', color:'evaluationColor', border:'evaluationBorder'}"
+              v-model="begruendungZielerreichungVerlaufsziel[index]"
+              :content="{ title: 'Begründung', id: 'begruendungZielerreichungVerlaufsziel'+index, type:'text', color:'evaluationColor', border:'evaluationBorder'}"
               :style="marginSmall"
             />        
         </div>
@@ -99,8 +99,8 @@ import moment from 'moment';
         "joinMonitoring",
       ]),
       ...mapGetters("e",[
-        "getZieleKlient",
-        "getZieleIntervention",
+        "getUebergeordetesZiel",
+        "getVerlaufsziel",
       ]),
       entwicklung() {
        for(var i=0; i<this.entwicklungMonitoring.length; i++) {
@@ -123,36 +123,36 @@ import moment from 'moment';
           this.$store.commit("e/evaluationEntwicklungMonitoring", value)
         }
       },
-      zielerreichungKlient: {
+      zielerreichungUebergeordetesZiel: {
         get() {
-          return this.$store.state.e.zielerreichungKlient
+          return this.$store.state.e.zielerreichungUebergeordetesZiel
         },
         set(value) {
           this.$store.commit("e/zielerreichungKlient", value)
         }
       },
-      begruendungZielerreichungKlient: {
+      begruendungZielerreichungUebergeordetesZiel: {
         get() {
-          return this.$store.state.e.begruendungZielerreichungKlient
+          return this.$store.state.e.begruendungZielerreichungUebergeordetesZiel
         },
         set(value) {
-          this.$store.commit("e/begruendungZielerreichungKlient", value)
+          this.$store.commit("e/begruendungZielerreichungUebergeordetesZiel", value)
         }
       },
-      zielerreichungIntervention: {
+      zielerreichungVerlaufsziel: {
         get() {
-          return this.$store.state.e.zielerreichungIntervention
+          return this.$store.state.e.zielerreichungVerlaufsziel
         },
         set(value) {
-          this.$store.commit("e/zielerreichungIntervention", value)
+          this.$store.commit("e/zielerreichungVerlaufsziel", value)
         }
       },
-      begruendungZielerreichungIntervention: {
+      begruendungZielerreichungVerlaufsziel: {
         get() {
-          return this.$store.state.e.begruendungZielerreichungIntervention
+          return this.$store.state.e.begruendungZielerreichungVerlaufsziel
         },
         set(value) {
-          this.$store.commit("e/begruendungZielerreichungIntervention", value)
+          this.$store.commit("e/begruendungZielerreichungVerlaufsziel", value)
         }
       },
       evaluationWeitersVorgehen: {

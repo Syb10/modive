@@ -184,12 +184,13 @@ export const navMixin = {
       "errorList",
     ]),
     ...mapState("p", [
-      "priorisierung",
-      "zieleKlient",
-      "counterKlient",
+      "priorisierung",  
       "leitlinien",
-      "zieleIntervention",
-      "counterIntervention",
+      "uebergeordetesZiel",
+      "counterUebergeordetesZiel",
+      "verlaufsziel",
+      "counterVerlaufsziel",
+      "ernaehrungsempfehlung",
       "interventionsform",
       "interventionsformAndere",
       "weitereAnmerkungenInterventionform",
@@ -222,15 +223,15 @@ export const navMixin = {
     ]),
     ...mapState("e", [
       "evaluationEntwicklungMonitoring",
-      "zielerreichungKlient",
-      "begruendungZielerreichungKlient",
-      "zielerreichungIntervention",
-      "begruendungZielerreichungIntervention",
+      "zielerreichungUebergeordetesZiel",
+      "begruendungZielerreichungUebergeordetesZiel",
+      "zielerreichungVerlaufsziel",
+      "begruendungZielerreichungVerlaufsziel",
       "evaluationWeitersVorgehen",
     ]),
     ...mapGetters("e", [
-      "evaluationZieleKlient",
-      "evaluationZieleIntervention",
+      "evaluationUebergeordetesZiel",
+      "evaluationVerlaufsziel",
     ]),
     klient() {
       return {
@@ -382,12 +383,13 @@ export const navMixin = {
         "Error": this.error,
         "ErrorList": this.errorList,
         "Priorisierung": this.priorisierung,
-        "ZieleKlient": this.zieleKlient,
-        "ZieleIntervention": this.zieleIntervention,
-        planung: {     
-          "CounterKlient": this.counterKlient,
-          "Leitlinien": this.leitlinien,
-          "CounterIntervention": this.counterIntervention,
+        "UebergeordetesZiel": this.uebergeordetesZiel,
+        "Verlaufsziel": this.verlaufsziel,
+        planung: { 
+          "Leitlinien": this.leitlinien,    
+          "CounterUebergeordetesZiel": this.counterUebergeordetesZiel,
+          "CounterVerlaufsziel": this.counterVerlaufsziel,
+          "Ernaehrungsempfehlung": this.ernaehrungsempfehlung,
           "Interventionsform": [this.interventionsform, this.interventionsformAndere],
           "WeitereAnmerkungenInterventionform": this.weitereAnmerkungenInterventionform,
           "ZeitraumIntervention": this.zeitraumIntervention,
@@ -414,12 +416,12 @@ export const navMixin = {
         "EntwicklungMonitoring": this.entwicklungMonitoring,
         evaluation: {
           "EvaluationEntwicklungMonitoring": this.evaluationEntwicklungMonitoring,
-          "ZielerreichungKlient": this.zielerreichungKlient,
-          "BegruendungZielerreichungKlient": this.begruendungZielerreichungKlient,
-          "ZielerreichungIntervention": this.zielerreichungIntervention,
-          "BegruendungZielerreichungIntervention": this.begruendungZielerreichungIntervention,
-          "EvaluationZieleKlient": this.evaluationZieleKlient,
-          "EvaluationZieleIntervention": this.evaluationZieleIntervention,
+          "ZielerreichungUebergeordetesZiel": this.zielerreichungUebergeordetesZiel,
+          "BegruendungZielerreichungUebergeordetesZiel": this.begruendungZielerreichungUebergeordetesZiel,
+          "ZielerreichungVerlaufsziel": this.zielerreichungVerlaufsziel,
+          "BegruendungZielerreichungVerlaufsziel": this.begruendungZielerreichungVerlaufsziel,
+          "EvaluationUebergeordetesZiel": this.evaluationUebergeordetesZiel,
+          "EvaluationVerlaufsziel": this.evaluationVerlaufsziel,
           "EvaluationWeitersVorgehen": this.evaluationWeitersVorgehen,
         }
       } 
@@ -584,17 +586,18 @@ export const navMixin = {
       this.$store.state.a4.appetitBeeintraechtigung = "";
       this.$store.state.a4.weitereKoerperlicheBefunde = "";
       this.$store.state.a3.uploadAssessment4 = [];
-      this.$store.state.d.diagnosestellung = [[{title: "Diätetisches Problem", vmodel:"", id:"diaetetischesProblem0", myTipp:"Informationen hierzu finden Sie im Assessment in der Kategorie Ernährungsgewohnheiten."},{title: "Ätiologie/Ursache", vmodel:"", id:"ursache0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},{title: "Zeichen und Symptome", vmodel:"",id:"symptome0", myTipp:"Informationen hierzu finden Sie im Assessment, in den Kategorien Klinischer Status und Ernährungsgewohnheiten."},{title: "positive Ressourcen", vmodel:"", id:"positiveRessourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},{title: "negative Ressourcen", vmodel:"", id:"negativeRessourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},]];
+      this.$store.state.d.diagnosestellung = [[{title: "Diätetisches Problem", vmodel:"", id:"diaetetischesProblem0", myTipp:"Informationen hierzu finden Sie im Assessment in der Kategorie Ernährungsgewohnheiten."},{title: "Ätiologie/Ursache", vmodel:"", id:"ursache0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},{title: "Zeichen und Symptome", vmodel:"",id:"symptome0", myTipp:"Informationen hierzu finden Sie im Assessment, in den Kategorien Klinischer Status und Ernährungsgewohnheiten."},{title: "Positive Ressourcen", vmodel:"", id:"positiveRessourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},{title: "Negative Ressourcen", vmodel:"", id:"negativeRessourcen0", myTipp:"Informationen hierzu finden Sie im Assessment, insbesondere in der Kategorie  Verhalten & Umfeld, aber auch in Klient*innengeschichte, Ernährungsgewohnheiten."},]];
       this.$store.state.d.pasr = [];
       this.$store.state.d.counter = 1;
       this.$store.state.d.error = [];
       this.$store.state.d.errorList = [[]];
       this.$store.state.p.priorisierung = [];
-      this.$store.state.p.zieleKlient = [{title: "Ziel", vmodel:"", id:"zielKlient0"}];
-      this.$store.state.p.counterKlient = 1;
       this.$store.state.p.leitlinien = "";
-      this.$store.state.p.zieleIntervention = [{title: "Ziel", vmodel:"", id:"zielIntervention0"}];
-      this.$store.state.p.counterIntervention = 1;
+      this.$store.state.p.uebergeordetesZiel = [{title: "Übergeordnetes Ziel (diätetisches Outcome)", vmodel:"", id:"uebergeordetesZiel0"}];
+      this.$store.state.p.counterUebergeordetesZiel = 1;
+      this.$store.state.p.verlaufsziel = [{title: "Verlaufsziel", vmodel:"", id:"verlaufsziel0"}];
+      this.$store.state.p.counterVerlaufsziel = 1;
+      this.$store.state.p.ernaehrungsempfehlung = "";
       this.$store.state.p.interventionsform = [];
       this.$store.state.p.interventionsformAndere = "";
       this.$store.state.p.weitereAnmerkungenInterventionform = "";
@@ -620,10 +623,10 @@ export const navMixin = {
       this.$store.state.u.sonstigesUmsetung = "";
       this.$store.state.p.entwicklungMonitoring = [[{datum: "",ergebnisse:"", }]];
       this.$store.state.e.evaluationEntwicklungMonitoring = [];
-      this.$store.state.e.zielerreichungKlient = [];
-      this.$store.state.e.begruendungZielerreichungKlient = [];
-      this.$store.state.e.zielerreichungIntervention = [];
-      this.$store.state.e.begruendungZielerreichungIntervention = [];
+      this.$store.state.e.zielerreichungUebergeordetesZiel = [];
+      this.$store.state.e.begruendungZielerreichungUebergeordetesZiel = [];
+      this.$store.state.e.zielerreichungVerlaufsziel = [];
+      this.$store.state.e.begruendungZielerreichungVerlaufsziel = [];
       this.$store.state.e.evaluationWeitersVorgehen = "";
     },       
   }
