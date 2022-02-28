@@ -1,16 +1,40 @@
 <template>
   <div>
-    <button @click.prevent="scrollMeTo('priorisierung')" class="btn mt-1 mr-1 tab-button tab-button-planung">Priorisierung der PASR-Statements</button>
-    <button @click.prevent="scrollMeTo('zieleKlient')" class="btn mt-1 mr-1 tab-button tab-button-planung">Ziel(e) der/des Klient*in</button>
+    <button @click.prevent="scrollMeTo('priorisierung')" class="btn mt-1 mr-1 tab-button tab-button-planung">Priorisierung der diätetischen Diagnosen</button>
+    <button @click.prevent="scrollMeTo('leitlinien')" class="btn mt-1 mr-1 tab-button tab-button-planung">Leitlinien und Literatur</button>
+    <button @click.prevent="scrollMeTo('ziele')" class="btn mt-1 mr-1 tab-button tab-button-planung">Ziele</button>
     <button @click.prevent="scrollMeTo('interventionsplan')" class="btn mt-1 mr-1 tab-button tab-button-planung">Interventionsplan</button> 
-    <p class="planungAspekt mt-5" ref="priorisierung">Priorisierung der PASR-Statements</p>
+    <div>
+      <label class="planungAspekt mt-5" ref="priorisierung">Priorisierung der diätetischen Diagnosen
+        <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
+          <span class="tipptext">Die diätetischen Diagnosen sind die formulierten PASR-Statements</span>
+        </div>
+      </label>
+    </div>
     <Prio/>
-    <p class="planungAspekt" ref="zieleKlient">Ziel(e) des/der Klient*in</p>
+    <p class="planungAspekt mt-5" ref="leitlinien">Leitlinien und Literatur</p>
+    <TextareaForm
+      v-model="leitlinien"
+      :content="{ title: 'verwendete Leitlinien oder Literatur', id: 'leitlinien', color:'planungColor', border:'planungBorder'}"
+    />
+    <div>
+      <label class="planungAspekt" ref="ziele">Ziele
+        <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
+          <span class="tipptext">Orientieren Sie sich bei der Festlegung der Ziele an den SMART-Kriterien. Ziele sollten möglichst Spezifisch, Messbar, Attraktiv, Realistisch und Terminiert sein.</span>
+        </div>
+      </label>
+    </div>
+    <label>
+      Übergeordnetes Ziel (diätetisches Outcome) 
+      <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
+        <span class="tipptext">Das diätetische Outcome ist das Ergebnis des gesamten diätetischen Interventionsprozesses, das entsprechend der Verlaufsziele bis zum Ende der diätetischen Intervention erreicht werden soll. Es bezieht sich direkt auf die Lösung des/der diätetischen Problem(e) der Diätetischen Diagnosestellung.</span>
+      </div>
+    </label>
     <div class="form-group mb-5 position-relative">
-      <div class="mb-3" v-for="(ziel, index) in zieleKlient" :key="index">
+      <div class="mb-3" v-for="(ziel, index) in uebergeordetesZiel" :key="index">
         <label :for="ziel.id" class="input-group-text textareaForm normal-white-space planungColor">
           {{index+1}}. {{ziel.title }}
-          <i class="fa fa-trash trash-right" @click.prevent="deleteZielKlient(index)"></i>
+          <i class="fa fa-trash trash-right" @click.prevent="deleteUebergeordetesZiel(index)"></i>
         </label>
         <textarea
           class="form-control textareaForm planungBorder"
@@ -18,24 +42,20 @@
           v-model="ziel.vmodel"
         />
       </div>
-      <button class="btn btn-darkblue mt-3" @click.prevent="addNewZielKlient"><i class="fa fa-plus-circle"></i> Ziel hinzufügen</button> 
+      <button class="btn btn-darkblue mt-3" @click.prevent="addNewUebergeordetesZiel"><i class="fa fa-plus-circle"></i> Übergeordnetes Ziel (diätetisches Outcome) hinzufügen</button> 
     </div>
-    <TextareaForm
-      v-model="leitlinien"
-      :content="{ title: 'verwendete Leitlinien oder Literatur', id: 'leitlinien', color:'planungColor', border:'planungBorder'}"
-    />
-    <p class="planungAspekt" ref="interventionsplan">Interventionsplan</p>
+    
     <label>
-      Ziel(e) der gesamten Intervention
+      Verlaufsziele
       <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
-        <span class="tipptext">Die Ziele leiten sich aus den PASR-Statements unter Einbezug der Ziele des/der Klient*in ab. Es können ernährungsbezogene Ziele (z.B. aus den Bereichen Wissenszuwachs, Verhaltensänderung) und/oder gesundheitsbezogene Ziele (medizinische Ziele, gesundheitsökonomische Ziele, subjekt-orientierte Ziele) festgelegt werden.</span>
+        <span class="tipptext">Verlaufsziele sind kurzfristige Ziele, die während der diätetischen Intervention, meist von einem zum nächsten Termin, erreicht werden sollen. Sie werden von Ernährungsfachkraft und Klient*in gemeinsam entschieden. Sie sollten partizipativ mit Klient*innen festgelegt werden.</span>
       </div>
     </label>
     <div class="form-group mb-5 position-relative">
-      <div class="mb-3" v-for="(ziel, index) in zieleIntervention" :key="index">
+      <div class="mb-3" v-for="(ziel, index) in verlaufsziel" :key="index">
         <label :for="ziel.id" class="input-group-text textareaForm normal-white-space planungColor">
           {{index+1}}. {{ziel.title }}
-          <i class="fa fa-trash trash-right" @click.prevent="deleteZielIntervention(index)"></i>
+          <i class="fa fa-trash trash-right" @click.prevent="deleteVerlaufsziel(index)"></i>
         </label>
         <textarea
           class="form-control textareaForm planungBorder"
@@ -43,8 +63,19 @@
           v-model="ziel.vmodel"
         /> 
       </div>
-      <button class="btn btn-darkblue mt-3" @click.prevent="addNewZielIntervention"><i class="fa fa-plus-circle"></i> Ziel hinzufügen</button>
+      <button class="btn btn-darkblue mt-3" @click.prevent="addNewVerlaufsziel"><i class="fa fa-plus-circle"></i> Verlaufsziel hinzufügen</button>
     </div>
+    <p class="planungAspekt" ref="interventionsplan">Interventionsplan</p>
+    <label>
+      Ernährungsempfehlung
+      <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
+        <span class="tipptext">Die Ernährungsempfehlung basiert auf der diätetischen Diagnose, der aktuell verfügbaren Evidenz und dem Gesundheitszustand des/der Klient*in. Zu berücksichtigen sind die individuell empfohlene Energiezufuhr basierend auf den Richtwerten für die Energiezufuhr; der Nährstoffbedarf; Lebensmittel, die gut akzeptiert werden und für die Umsetzung der Empfehlungen geeignet sind.</span>
+      </div>
+    </label>
+    <TextareaForm
+      v-model="ernaehrungsempfehlung"
+      :content="{ title: 'Ernährungsempfehlung', id: 'ernaehrungsempfehlung', color:'planungColor', border:'planungBorder'}"
+    />
     <CheckboxForm
       :checkboxs="[
         {title:'Einzelberatung', id:'einzelberatung'},
@@ -142,6 +173,12 @@
       v-model="weitereAnmerkungenInterventionNochmal"
       :content="{ title: 'weitere Anmerkungen', id: 'weitereAnmerkungenInterventionNochmal', color:'planungColor', border:'planungBorder'}"
     />
+    <label>
+      Monitoring- und Outcome-Parameter
+      <div class="tipp ml-3"> <i class="fa fa-info-circle"></i>
+        <span class="tipptext">Monitoring- und Outcome-Parameter sind abhängig von den oben formulierten Zielen. Sie sind Indikatoren, die zur Überprüfung des Verlaufs der diätetischen Intervention und der Zielerreichung dienen. Gewählte Indikatoren sollten in der Lage sein, Veränderungen zu messen, die mit dem Referenzstandards oder einem Ausgangswert verglichen werden können.</span>
+      </div>
+    </label>
     <table class="table table-striped table-bordered mb-4">
       <thead>
         <th>Monitoring- und Outcome-Parameter</th>
@@ -195,9 +232,6 @@ import {mapMutations, mapState} from "vuex";
         "planungLehrkueche",
         "planungAndereInterventionsform",
       ]),
-      zieleKlient(){
-        return this.$store.state.p.zieleKlient
-      },
       leitlinien:{
         get() {
           return this.$store.state.p.leitlinien
@@ -206,8 +240,19 @@ import {mapMutations, mapState} from "vuex";
           this.$store.commit("p/leitlinien", value)
         }
       },
-      zieleIntervention(){
-        return this.$store.state.p.zieleIntervention
+      uebergeordetesZiel(){
+        return this.$store.state.p.uebergeordetesZiel
+      },
+      verlaufsziel(){
+        return this.$store.state.p.verlaufsziel
+      },
+      ernaehrungsempfehlung:{
+        get() {
+          return this.$store.state.p.ernaehrungsempfehlung
+        },
+        set(value) {
+          this.$store.commit("p/ernaehrungsempfehlung", value)
+        }
       },
       interventionsform:{
         get() {
@@ -295,10 +340,10 @@ import {mapMutations, mapState} from "vuex";
         element.scrollIntoView({behavior: 'smooth'});
       },
       ...mapMutations("p", [
-        "addNewZielKlient",
-        "deleteZielKlient",
-        "addNewZielIntervention",
-        "deleteZielIntervention",
+        "addNewUebergeordetesZiel",
+        "deleteUebergeordetesZiel",
+        "addNewVerlaufsziel",
+        "deleteVerlaufsziel",
         "addNewRowPlanungEinzelberatung",
         "deleteRowPlanungEinzelberatung",
         "updateEinzelberatung",

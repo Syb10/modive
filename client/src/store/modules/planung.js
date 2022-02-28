@@ -2,11 +2,12 @@ export default {
     namespaced: true,
     state: {
       priorisierung: [],
-      zieleKlient:[{title: "Ziel", vmodel:"", id:"zielKlient0"}],
-      counterKlient:1,
       leitlinien: "",
-      zieleIntervention: [{title: "Ziel", vmodel:"", id:"zielIntervention0"}],
-      counterIntervention: 1,
+      uebergeordetesZiel:[{title: "Übergeordnetes Ziel (diätetisches Outcome)", vmodel:"", id:"uebergeordetesZiel0"}],
+      counterUebergeordetesZiel:1,
+      verlaufsziel: [{title: "Verlaufsziel", vmodel:"", id:"verlaufsziel0"}],
+      counterVerlaufsziel: 1,
+      ernaehrungsempfehlung: "",
       interventionsform: [],
       interventionsformAndere: "",
       weitereAnmerkungenInterventionform: "",
@@ -150,27 +151,30 @@ export default {
     mutations: {
       priorisierung(state, value) {
         state.priorisierung = value
-      },
-      addNewZielKlient(state) {
-        state.zieleKlient.push(
-          {title: "Ziel", vmodel:"", id:"zielKlient"+state.counterKlient},
-        );
-        state.counterKlient++;
-      },
-      deleteZielKlient(state, index) {
-        state.zieleKlient.splice(index, 1);
-      },
+      }, 
       leitlinien(state, value) {
         state.leitlinien = value
       },
-      addNewZielIntervention(state) {
-        state.zieleIntervention.push(
-          {title: "Ziel", vmodel:"", id:"zielIntervention"+state.counterIntervention},
+      addNewUebergeordetesZiel(state) {
+        state.uebergeordetesZiel.push(
+          {title: "Übergeordnetes Ziel (diätetisches Outcome)", vmodel:"", id:"uebergeordetesZiel"+state.counterUebergeordetesZiel},
         );
-        state.counterIntervention++;
+        state.counterUebergeordetesZiel++;
       },
-      deleteZielIntervention(state, index) {
-        state.zieleIntervention.splice(index, 1);
+      deleteUebergeordetesZiel(state, index) {
+        state.uebergeordetesZiel.splice(index, 1);
+      },
+      addNewVerlaufsziel(state) {
+        state.verlaufsziel.push(
+          {title: "Verlaufsziel", vmodel:"", id:"verlaufsziel"+state.counterVerlaufsziel},
+        );
+        state.counterVerlaufsziel++;
+      },
+      deleteVerlaufsziel(state, index) {
+        state.verlaufsziel.splice(index, 1);
+      },
+      ernaehrungsempfehlung(state, value){
+        state.ernaehrungsempfehlung = value
       },
       interventionsform(state, value) {
         state.interventionsform = value
