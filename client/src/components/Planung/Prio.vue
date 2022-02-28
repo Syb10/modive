@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="pasr == ''" class="alert alert-danger">In der Diagnosestellung wurden noch keine PASR-Statements erfasst</p>
+    <p v-if="pasr == ''" class="alert alert-danger">In der Diagnosestellung wurden noch keine PASR-Statements erfasst.</p>
     <div v-if="pasr != ''">
       <div v-for="(item, indexI) in pasr" :key="indexI" class="mb-4">
         <select :id="indexI" v-model="priorisierung[indexI]">

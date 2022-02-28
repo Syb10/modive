@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="joinMonitoring == ''" class="alert alert-danger">In der Planung der Intervention wurden noch keine Monitoring-Parameter erfasst</p>
+    <p v-if="joinMonitoring == ''" class="alert alert-danger">In der Planung der Intervention wurden noch keine Monitoring-Parameter erfasst.</p>
     <div v-if="joinMonitoring != ''">
       <div v-for="(item, indexI) in joinMonitoring" :key="indexI">
         <p>{{joinMonitoring[indexI][0]}} / {{joinMonitoring[indexI][1]}}</p>
