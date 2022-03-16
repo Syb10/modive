@@ -43,7 +43,7 @@
 
 <script>
 import {mapState, mapMutations} from "vuex";
-import InputForm from "./InputForm.vue";
+import InputForm from "../InputForm.vue";
 
   export default {
     name: "RecallTable",
