@@ -189,8 +189,10 @@
           />
           <RadioTableDynamic
             :subtitle="'andere'"
-            :isAndere="true"
-          /> 
+            :data="wichtigkeitAndere"
+            :addNewRow="addNewRowAndere"
+            :deleteRow="deleteRowAndere"
+          />
         </tbody>
       </table>
       <p class="assessmentAspekt" ref="verhalten">Verhalten und Verhaltensänderungen</p>
@@ -320,7 +322,7 @@ import TextareaForm from "../TextareaForm.vue";
 import RadioTable from "../RadioTable.vue";
 import RadioTableDynamic from "../RadioTableDynamic.vue";
 import UploadFile from "../UploadFile.vue";
-import {mapGetters} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 export default {
     name: "assessment3",
     components: {
@@ -649,6 +651,9 @@ export default {
           this.$store.commit("a3/wichtigkeitDerSaisonalitaet", value)
         }
       },
+      wichtigkeitAndere() {
+        return this.$store.state.a3.wichtigkeitAndere
+      },
       ernaehrungsgewohnheitenVeraendern:{
         get() {
           return this.$store.state.a3.ernaehrungsgewohnheitenVeraendern
@@ -749,6 +754,10 @@ export default {
         var element = this.$refs[refName];
         element.scrollIntoView({behavior: 'smooth'});
       },
+      ...mapMutations("a3", [
+        "addNewRowAndere",
+        "deleteRowAndere"
+      ]),
     }
 };
 </script>

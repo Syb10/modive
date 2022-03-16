@@ -213,8 +213,18 @@
           <th>mehr</th>
         </thead>
         <tbody>
-          <Vitamine/>
-          <Mineralstoffe/>
+          <RadioTableDynamic
+            :subtitle="'Vitamine'"
+            :data="vitamine"
+            :addNewRow="addNewRowVitamine"
+            :deleteRow="deleteRowVitamine"
+          />
+          <RadioTableDynamic
+            :subtitle="'Mineralstoffe'"
+            :data="mineralstoffe"
+            :addNewRow="addNewRowMineralstoffe"
+            :deleteRow="deleteRowMineralstoffe"
+          />
         </tbody>
       </table>
       <TextareaForm
@@ -343,15 +353,15 @@
 </template>
 
 <script>
-import RecallTable from "../RecallTable.vue";
+import RecallTable from "./RecallTable.vue";
 import TextareaForm from "../TextareaForm.vue";
 import RadioForm from "../RadioForm.vue";
 import InputForm from "../InputForm.vue";
 import CheckboxForm from "../CheckboxForm.vue";
 import RadioTable from "../RadioTable.vue";
-import Vitamine from "../Vitamine.vue";
-import Mineralstoffe from "../Mineralstoffe.vue";
+import RadioTableDynamic from "../RadioTableDynamic.vue";
 import UploadFile from "../UploadFile.vue";
+import {mapMutations} from "vuex";
 
 export default {
     name: "assessment2",
@@ -505,8 +515,7 @@ export default {
       InputForm,
       CheckboxForm,
       RadioTable,
-      Vitamine,
-      Mineralstoffe,
+      RadioTableDynamic,
       UploadFile,
     },  
     computed: {
@@ -758,6 +767,12 @@ export default {
          this.$store.commit("a2/cholesterin", value)
         }
       },
+      vitamine() {
+        return this.$store.state.a2.vitamine
+      },
+      mineralstoffe() {
+        return this.$store.state.a2.mineralstoffe
+      },
       vorlieben:{
         get() {
           return this.$store.state.a2.vorlieben
@@ -880,6 +895,12 @@ export default {
         var element = this.$refs[refName];
         element.scrollIntoView({behavior: 'smooth'});
       },
+      ...mapMutations("a2", [
+        "addNewRowVitamine",
+        "deleteRowVitamine",
+        "addNewRowMineralstoffe",
+        "deleteRowMineralstoffe",
+      ]),
     }
 };
 </script>

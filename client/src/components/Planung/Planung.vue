@@ -185,9 +185,13 @@
         <th>Frequenz der Überprüfung</th>
       </thead>
       <tbody>
-        <RadioTableDynamic
-          :isMonitoring="true"
-        />
+        <tr v-for="(item, indexI) in monitoring" :key="indexI">
+          <td v-for="(i, index) in item" :key="index">
+            <input v-if="i.input" class="form-control planungBorder" type="text" v-model="i.title"/>
+            <i v-if="i.button" class="fa fa-trash btn btn-red ml-3" @click.prevent="deleteRowMonitoring(indexI)"></i>
+          </td>
+        </tr>
+        <button class="btn btn-darkblue mb-3 marginRadioTableDynamic" @click.prevent="addNewRowMonitoring"><i class="fa fa-plus-circle"></i> Zeile hinzufügen</button> 
       </tbody>
     </table>
   </div>
@@ -197,7 +201,6 @@
 import TextareaForm from "../TextareaForm.vue";
 import CheckboxForm from "../CheckboxForm.vue";
 import InputForm from "../InputForm.vue";
-import RadioTableDynamic from "../RadioTableDynamic.vue";
 import RadioForm from "../RadioForm.vue";
 import Prio from "./Prio.vue";
 import PlanungTermine from "./PlanungTermine.vue";
@@ -209,7 +212,6 @@ import {mapMutations, mapState} from "vuex";
         TextareaForm,
         CheckboxForm,
         InputForm,
-        RadioTableDynamic,
         RadioForm,
         Prio,
         PlanungTermine,
@@ -329,9 +331,6 @@ import {mapMutations, mapState} from "vuex";
       monitoring() {
         return this.$store.state.p.monitoring
       },
-      entwicklungMonitoring() {
-        return this.$store.state.p.entwicklungMonitoring
-      }
     },
     methods: {
       //https://stackoverflow.com/questions/42645964/vue-js-anchor-to-div-within-the-same-component
@@ -359,6 +358,8 @@ import {mapMutations, mapState} from "vuex";
         "addNewRowPlanungAndereInterventionsform",
         "deleteRowPlanungAndereInterventionsform",
         "updateAndereInterventionsform",
+        "addNewRowMonitoring",
+        "deleteRowMonitoring"
       ]),
     },
   }
