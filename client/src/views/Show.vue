@@ -14,6 +14,7 @@
         :color ="'loginColor'"
         :title="alleAuswaehlen"
         v-model="printAlle"
+        @changePrintAlle="changePrintAlle"
       />
       <button data-html2canvas-ignore class="btn btn-grey downloadButton" @click.prevent="downloadPDF()"><i class="fa fa-file-pdf-o"></i> Download</button>
     </p>
@@ -276,7 +277,7 @@
           </ul>  
         </div>
         <li v-if="!isObjectEmpty(myPlanungLehrkueche)">Planung Lehrküche:</li>
-        <div v-for="(item, indexI) in myPlanungEinzelberatung" :key="indexI">
+        <div v-for="(item, indexI) in myPlanungLehrkueche" :key="indexI">
           {{indexI+1}}. Lehrküche:
           <ul>
             <div v-for="(mykey,myIndex) in planungLehrkueche" :key="myIndex">
@@ -424,15 +425,18 @@
       </ul>
     </div>  
   </div>
-  <CheckboxPrint
-      :checkboxs="[
-        {title:'alle', id:'alle2'},
-      ]"
-      :color ="'loginColor'"
-      :title="alleAuswaehlen"
-      v-model="printAlle"
-    />
-  <button class="btn btn-grey mt-3 downloadButton" @click.prevent="downloadPDF()"><i class="fa fa-file-pdf-o"></i> Download</button>
+  <p>
+    <CheckboxPrint
+        :checkboxs="[
+          {title:'alle', id:'alle2'},
+        ]"
+        :color ="'loginColor'"
+        :title="alleAuswaehlen"
+        v-model="printAlle"
+        @changePrintAlle="changePrintAlle"
+      />
+    <button class="btn btn-grey downloadButton" @click.prevent="downloadPDF()"><i class="fa fa-file-pdf-o"></i> Download</button>
+  </p>
   <p @click.prevent="resetKlient" class="mb-5 mt-5"><i class="fa fa-arrow-left"></i> zurück</p>
 </template>
 
@@ -725,6 +729,7 @@
         printUmsetzung: true,
         printEvaluation: true,
         printAlle:true,
+        printCounter:8,
       }
     },
     computed: {
@@ -736,70 +741,66 @@
       printKlientenhistorie(newValue, oldValue){
         if(newValue != oldValue){
           this.printKlientenhistorie ? 
-          this.$refs.klientenhistorie.removeAttribute("data-html2canvas-ignore", "true") : 
-          this.$refs.klientenhistorie.setAttribute("data-html2canvas-ignore", "true")
+          (this.$refs.klientenhistorie.removeAttribute("data-html2canvas-ignore", "true") , this.printCounter++) : 
+          (this.$refs.klientenhistorie.setAttribute("data-html2canvas-ignore", "true") , this.printCounter--)
         }
+        this.checkPrintAll();
       },
       printErnaehrungsgewohnheiten(newValue, oldValue){
         if(newValue != oldValue){
           this.printErnaehrungsgewohnheiten ? 
-          this.$refs.ernaehrungsgewohnheiten.removeAttribute("data-html2canvas-ignore", "true") : 
-          this.$refs.ernaehrungsgewohnheiten.setAttribute("data-html2canvas-ignore", "true")
+          (this.$refs.ernaehrungsgewohnheiten.removeAttribute("data-html2canvas-ignore", "true") , this.printCounter++) : 
+          (this.$refs.ernaehrungsgewohnheiten.setAttribute("data-html2canvas-ignore", "true"), this.printCounter--)
         }
+        this.checkPrintAll();
       },
       printVerhalten(newValue, oldValue){
         if(newValue != oldValue){
           this.printVerhalten ? 
-          this.$refs.verhalten.removeAttribute("data-html2canvas-ignore", "true") : 
-          this.$refs.verhalten.setAttribute("data-html2canvas-ignore", "true")
+          (this.$refs.verhalten.removeAttribute("data-html2canvas-ignore", "true") , this.printCounter++) : 
+          (this.$refs.verhalten.setAttribute("data-html2canvas-ignore", "true") , this.printCounter--)
         }
+        this.checkPrintAll();
       },
       printKlinischerStatus(newValue, oldValue){
         if(newValue != oldValue){
           this.printKlinischerStatus ? 
-          this.$refs.klinischerStatus.removeAttribute("data-html2canvas-ignore", "true") : 
-          this.$refs.klinischerStatus.setAttribute("data-html2canvas-ignore", "true")
+          (this.$refs.klinischerStatus.removeAttribute("data-html2canvas-ignore", "true") ,this.printCounter++) : 
+          (this.$refs.klinischerStatus.setAttribute("data-html2canvas-ignore", "true") , this.printCounter--)
         }
+        this.checkPrintAll();
       },
       printDiagnosestellung(newValue, oldValue){
         if(newValue != oldValue){
           this.printDiagnosestellung ? 
-          this.$refs.diagnosestellung.removeAttribute("data-html2canvas-ignore", "true") : 
-          this.$refs.diagnosestellung.setAttribute("data-html2canvas-ignore", "true")
+          (this.$refs.diagnosestellung.removeAttribute("data-html2canvas-ignore", "true") , this.printCounter++) : 
+          (this.$refs.diagnosestellung.setAttribute("data-html2canvas-ignore", "true") , this.printCounter--)
         }
+        this.checkPrintAll();
       },
       printPlanung(newValue, oldValue){
         if(newValue != oldValue){
           this.printPlanung ? 
-          this.$refs.planung.removeAttribute("data-html2canvas-ignore", "true") : 
-          this.$refs.planung.setAttribute("data-html2canvas-ignore", "true")
+          (this.$refs.planung.removeAttribute("data-html2canvas-ignore", "true") , this.printCounter++) : 
+          (this.$refs.planung.setAttribute("data-html2canvas-ignore", "true") , this.printCounter--)
         }
+        this.checkPrintAll();
       },
       printUmsetzung(newValue, oldValue){
         if(newValue != oldValue){
           this.printUmsetzung ? 
-          this.$refs.umsetzung.removeAttribute("data-html2canvas-ignore", "true") : 
-          this.$refs.umsetzung.setAttribute("data-html2canvas-ignore", "true")
+          (this.$refs.umsetzung.removeAttribute("data-html2canvas-ignore", "true") , this.printCounter++) : 
+          (this.$refs.umsetzung.setAttribute("data-html2canvas-ignore", "true") , this.printCounter--)
         }
+        this.checkPrintAll();
       },
       printEvaluation(newValue, oldValue){
         if(newValue != oldValue){
           this.printEvaluation ? 
-          this.$refs.evaluation.removeAttribute("data-html2canvas-ignore", "true") : 
-          this.$refs.evaluation.setAttribute("data-html2canvas-ignore", "true")
+          (this.$refs.evaluation.removeAttribute("data-html2canvas-ignore", "true") , this.printCounter++) : 
+          (this.$refs.evaluation.setAttribute("data-html2canvas-ignore", "true") , this.printCounter--)
         }
-      },
-      printAlle(newValue, oldValue){
-        if(newValue != oldValue){
-          this.printKlientenhistorie = newValue;
-          this.printErnaehrungsgewohnheiten = newValue;
-          this.printVerhalten = newValue;
-          this.printKlinischerStatus = newValue;
-          this.printDiagnosestellung = newValue;
-          this.printPlanung = newValue;
-          this.printUmsetzung = newValue;
-          this.printEvaluation = newValue;
-        }
+        this.checkPrintAll();
       },
     },
     created() {
@@ -1116,6 +1117,25 @@
         for(var i=0; i<downloadButton.length; i++){
           downloadButton[i].innerHTML = "<i class='fa fa-file-pdf-o'></i> Download";
         } 
+      },
+      changePrintAlle(){
+        this.printAlle = !this.printAlle;
+        this.printKlientenhistorie = this.printAlle;
+        this.printErnaehrungsgewohnheiten = this.printAlle;
+        this.printVerhalten = this.printAlle;
+        this.printKlinischerStatus = this.printAlle;
+        this.printDiagnosestellung = this.printAlle;
+        this.printPlanung = this.printAlle;
+        this.printUmsetzung = this.printAlle;
+        this.printEvaluation = this.printAlle;
+      },
+      checkPrintAll(){
+        if(this.printAlle &&  this.printCounter != 8){
+          this.printAlle = false; 
+        }
+        if(!this.printAlle &&  this.printCounter == 8){
+          this.printAlle = true; 
+        }
       },
     }
   }
